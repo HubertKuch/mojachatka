@@ -55,12 +55,9 @@ app.use('/createOffer', isAuthenticated, createOffer);
 app.use('/editOffer/:offerId', isAuthenticated, editOffer);
 app.use('/deleteImage/:offerId/:imgId', isAuthenticated, deleteImage)
 app.use('/createBoostedOffer', isAuthenticated, createBoostedOffer)
-app.use('./createBoostedMainOffer', isAuthenticated, createBoostedMainOffer)
+app.use('/createBoostedMainOffer', isAuthenticated, createBoostedMainOffer)
 
-// Get the specific offers
-// We do not need any authorisation for this as we want the users to get them on page load
 app.use('/getAllOffers', getAllOffers)
-
 
 // ACCOUNT PACKETS
 app.use('/getAccountPackets', getAllPackets);
@@ -75,8 +72,6 @@ app.use('/getUserBoosts', isAuthenticated, getUserBoosts);
 app.use("/payments", paymenentsNofity);
 
 // NEED TESTING
-
-// This return offers that are not containing any user private information so we dont need any authorisation for that
 app.use('/getUserOffers', getUserOffers)
 
 app.use('/getOffer', getOfferByID)

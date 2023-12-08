@@ -39,7 +39,7 @@ instance.on(process.env.EVENT_PAYMENT_SUCCESS, async (payment) => {
         await db.userBoosts.create({
           data: {
             userId: relatedUser.id,
-            properties: JSON.stringify({ ...boost, used: false }),
+            properties: { ...boost, used: false },
           }
         });
       }
@@ -47,6 +47,10 @@ instance.on(process.env.EVENT_PAYMENT_SUCCESS, async (payment) => {
 
     if (snap.properties.listings) {
       await db.user.update({ where: { id: relatedUser.id }, data: { listings: { increment: snap.properties.listings } } });
+    }
+
+    if (snap.properties.bids) {
+      await db.user.update({ where: { id: relatedUser.id }, data: { bids: { increment: snap.properties.bids } } });
     }
   }
 });

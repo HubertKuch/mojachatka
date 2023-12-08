@@ -98,7 +98,7 @@ model UserBoosts {
   id          String        @id @unique @default(uuid())
   user        User          @relation(fields: [userId], references: [id])
   userId      String
-  properties  Json   // { "used": Boolean }
+  properties  Json   // { "used": Boolean, ... }
   OfferBoosts OfferBoosts[]
 }
 
@@ -107,7 +107,7 @@ model AccountPackets {
   name                 String
   subname              String                 @default("")
   price                Int
-  properties           Json // { "boosts"?: [{days: Number}], "descriptionFields": String[], "expirationDays": Number, "allowedFor": UserType[], "boostDiscount"?: Number, "listings": Number }] }
+  properties           Json // { "boosts"?: [{days: Number}], "descriptionFields": String[], "expirationDays": Number, "allowedFor": UserType[], "boostDiscount"?: Number, "listings": Number, bids: Number }] }
   AccountPacketPayment AccountPacketPayment[]
 }
 
