@@ -1,0 +1,205 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+  PREMIUM
+}
+
+enum UserType {
+  INDIVIDUAL
+  AGENT
+  DEVELOPER
+}
+
+enum Region {
+  DOLNOSLASKIE
+  KUJAWSKOPOMORSKIE
+  LUBELSKIE
+  LUBUSKIE
+  LODZKIE
+  MALOPOLSKIE
+  MAZOWIECKIE
+  OPOLSKIE
+  PODKARPACKIE
+  PODLASKIE
+  POMORSKIE
+  SLASKIE
+  SWIETOKRZYSKIE
+  WARMINSKOMAZURSKIE
+  WIELKOPOLSKIE
+  ZACHODNIOPOMORSKIE
+}
+
+enum OfferType {
+  DOM
+  MIESZKANIE
+  DZIALKA
+  GARAZ
+  POKOJ
+  LOKAL
+  MAGAZYN
+}
+
+enum EstateType {
+  PRIMARYMARKET
+  AFTERMARKET
+}
+
+enum SellType {
+  RENT
+  BUY
+}
+
+enum PaymentStatus {
+  SUCCEEDED
+  PENDING
+  FAILED
+}
+
+model Payment {
+  id                   String                 @id @unique @default(uuid())
+  stripeId             String                 @unique
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  resolvedAt           DateTime?
+  resolved             Boolean                @default(false)
+  status               PaymentStatus?
+  continueUrl          String                 @db.Text
+  AccountPacketPayment AccountPacketPayment[]
+  BoostOfferPayment    BoostOfferPayment[]
+}
+
+model BoostPacket {
+  id                String              @id @unique @default(uuid())
+  name              String
+  price             Float
+  days              Int
+  properties        Json // { "boostType": ["MAIN" |& "GLOBAL"] }
+  BoostOfferPayment BoostOfferPayment[]
+}
+
+model BoostOfferPayment {
+  id            String      @id @unique @default(uuid())
+  boostPacket   BoostPacket @relation(fields: [boostPacketId], references: [id])
+  boostPacketId String
+  payment       Payment     @relation(fields: [paymentId], references: [id])
+  paymentId     String
+}
+
+model UserBoosts {
+  id          String        @id @unique @default(uuid())
+  user        User          @relation(fields: [userId], references: [id])
+  userId      String
+  properties  Json   // { "used": Boolean }
+  OfferBoosts OfferBoosts[]
+}
+
+model AccountPackets {
+  id                   String                 @id @unique @default(uuid())
+  name                 String
+  subname              String                 @default("")
+  price                Int
+  properties           Json // { "boosts"?: [{days: Number}], "descriptionFields": String[], "expirationDays": Number, "allowedFor": UserType[], "boostDiscount"?: Number, "listings": Number }] }
+  AccountPacketPayment AccountPacketPayment[]
+}
+
+model AccountPacketPayment {
+  id        String         @id @unique @default(uuid())
+  packet    AccountPackets @relation(fields: [packetId], references: [id])
+  packetId  String
+  user      User           @relation(fields: [userId], references: [id])
+  userId    String
+  payment   Payment        @relation(fields: [paymentId], references: [id])
+  paymentId String
+}
+
+model UserAccountPacketsSnapshots {
+  id         String   @id @unique @default(uuid())
+  packetId   String
+  name       String
+  boughtAt   DateTime @default(now())
+  properties Json
+  price      Int
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id                          String                        @id @unique @default(uuid())
+  username                    String                        @unique @db.Char(20)
+  email                       String                        @unique
+  phoneNumber                 String                        @unique @db.Char(9) // Polish number has 9 numbers without (+48)
+  password                    String
+  listings                    Int                           @default(0)
+  bids                        Int                           @default(0)
+  premiumBids                 Int                           @default(0)
+  banned                      Boolean                       @default(false)
+  activated                   Boolean                       @default(false)
+  role                        Role                          @default(USER)
+  type                        UserType
+  refreshTokens               RefreshToken[]
+  verification                Verification[]
+  offers                      Offers[]
+  createdAt                   DateTime                      @default(now())
+  updatedAt                   DateTime                      @updatedAt
+  AccountPacketPayment        AccountPacketPayment[]
+  UserAccountPacketsSnapshots UserAccountPacketsSnapshots[]
+  UserBoosts                  UserBoosts[]
+}
+
+// Auth
+model RefreshToken {
+  id          String   @id @unique @default(uuid())
+  hashedToken String
+  userId      String
+  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  revoked     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Verification {
+  id      String   @id @unique @default(uuid())
+  email   String
+  User    User     @relation(fields: [email], references: [email], onDelete: Cascade)
+  code    Int
+  expires DateTime
+}
+
+// Add Phone Number
+
+model Offers {
+  id          String    @id @unique @default(uuid())
+  author      String
+  authorName  String
+  User        User      @relation(fields: [author], references: [id], onDelete: Cascade)
+  title       String    @db.Char(100)
+  description String    @db.VarChar(10000)
+  price       Int
+  region      Region
+  type        OfferType
+  sellType    SellType
+  city        String
+  isBoosted   Boolean   @default(false)
+  properties  Json
+  expires     DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model OfferBoosts {
+  id          String     @id @unique @default(uuid())
+  offerId     String
+  expires     DateTime
+  userBoost   UserBoosts @relation(fields: [userBoostId], references: [id], onDelete: Cascade)
+  userBoostId String
+  properties  Json // { }
+}
