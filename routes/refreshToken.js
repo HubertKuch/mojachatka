@@ -6,7 +6,7 @@ const { getUserByID } = require('../services/getUsers')
 const { hashToken } = require('../utils/hash')
 const router = express.Router()
 
-router.post('/', async (req, res, next) => {
+router.post('/refreshToken', async (req, res, next) => {
     try {
       const { refreshToken } = req.body;
       if (!refreshToken) {

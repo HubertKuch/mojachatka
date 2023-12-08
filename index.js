@@ -19,6 +19,7 @@ const deleteImage = require('./routes/deleteImage');
 const getAllOffers = require('./routes/getAllOffers')
 const getUserOffers = require('./routes/getUsersOffer')
 const getOfferByID = require('./routes/getOfferByID')
+const offerTypes = require('./routes/offertTypes'); 
 
 const getAllPackets = require('./routes/getAccountPackets');
 const buyPacket = require('./routes/buyPacket');
@@ -45,36 +46,35 @@ app.use(
 )
 
 // User Authentication
-app.use('/register', register)
-app.use('/login', login)
-app.use('/refreshToken', refreshToken)
-app.use('/verifyEmail', verifyEmail)
+app.use('/', register)
+app.use('/', login)
+app.use('/', refreshToken)
+app.use('/', verifyEmail)
 
 // Cteate new offer on the website
-app.use('/createOffer', isAuthenticated, createOffer);
-app.use('/editOffer/:offerId', isAuthenticated, editOffer);
-app.use('/deleteImage/:offerId/:imgId', isAuthenticated, deleteImage)
-app.use('/createBoostedOffer', isAuthenticated, createBoostedOffer)
-app.use('/createBoostedMainOffer', isAuthenticated, createBoostedMainOffer)
+app.use('/', isAuthenticated, createOffer);
+app.use('/', isAuthenticated, editOffer);
+app.use('/', isAuthenticated, deleteImage)
+app.use('/', isAuthenticated, createBoostedOffer)
+app.use('/', isAuthenticated, createBoostedMainOffer)
 
-app.use('/getAllOffers', getAllOffers)
+app.use('/', getAllOffers)
+app.use('/', offerTypes)
 
 // ACCOUNT PACKETS
-app.use('/getAccountPackets', getAllPackets);
-app.use('/boughtedPackets', isAuthenticated, getUserPackets);
-app.use('/buyPacket', isAuthenticated, buyPacket);
+app.use('/', getAllPackets);
+app.use('/', isAuthenticated, getUserPackets);
+app.use('/', isAuthenticated, buyPacket);
 
 // BOOST PACKETS
-app.use('/getBoostPackets', getBoostPackets);
-app.use('/getUserBoosts', isAuthenticated, getUserBoosts);
+app.use('/', getBoostPackets);
+app.use('/', isAuthenticated, getUserBoosts);
 
 // PAYMENTS
 app.use("/payments", paymenentsNofity);
 
-// NEED TESTING
-app.use('/getUserOffers', getUserOffers)
-
-app.use('/getOffer', getOfferByID)
+app.use('/', isAuthenticated, getUserOffers)
+app.use('/', getOfferByID)
 
 app.get('/profile', isAuthenticated, async (req, res) => {
   const userId = req.payload.data.id

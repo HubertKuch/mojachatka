@@ -7,7 +7,7 @@ const { GetUserByEmail } = require('../services/getUsers')
 const bcrypt = require('bcrypt')
 const router = express.Router()
 
-router.post('/', async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body
 

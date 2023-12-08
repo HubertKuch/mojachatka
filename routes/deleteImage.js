@@ -3,7 +3,7 @@ const { deleteFile } = require('../utils/fileSystem');
 const { validateHowManyImages } = require('../utils/validateOfferImages');
 const router = require('express').Router({ mergeParams: true });
 
-router.delete('/', async (req, res) => {
+router.delete('/deleteImage/:offerId/:imgId', async (req, res) => {
   const user = req.payload.data;
   const offerId = req.params.offerId;
   const imgId = req.params.imgId;

@@ -4,7 +4,7 @@ const getOrThrow = require('../utils/getOrThrow');
 
 const router = require('express').Router();
 
-router.post("/", async (req, res) => {
+router.post("/buyPacket", async (req, res) => {
   const packetId = getOrThrow(req.body.packetId, new Error("Field: `packetId` is required"));
   const user = req.payload.data;
 

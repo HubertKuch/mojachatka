@@ -3,7 +3,7 @@ const router = express.Router()
 const { verifyEmailCode } = require('../utils/mail')
 
 
-router.get('/', async (req, res) => {
+router.get('/verifyEmail', async (req, res) => {
     const { code, email } = req.query
 
     if (!code || !email) {

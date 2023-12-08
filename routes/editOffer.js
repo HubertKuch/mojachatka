@@ -4,7 +4,7 @@ const { db } = require('../utils/db');
 const validateOfferImages = require('../utils/validateOfferImages');
 const { appendImages } = require('../services/manageOffers');
 
-router.patch('/', async (req, res) => {
+router.patch('/editOffer/:offerId', async (req, res) => {
   const offerId = req.params.offerId;
 
   if (!offerId) {

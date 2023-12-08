@@ -1,40 +1,22 @@
-const express = require('express')
-const router = express.Router()
-const { getOfferByID } = require('../services/manageOffers')
+const express = require('express');
+const OffersService = require('../services/OffersService');
+const router = express.Router({ mergeParams: true });
+const APIError = require('../errors/APIError');
 
-router.get('/', async (req, res) => {
-    const { page, offerID } = req.query
+router.get('/getOffer/:id', async (req, res, next) => {
+  const { id } = req.params;
 
-    const thePage = page || 1
+  if (!id) {
+    return next(new APIError("Id must be provided", 400)); 
+  }
 
-    if (!offerID) {
-        res.status(400).json({message: "Offer not provided"})
-    }
+  const offer = await OffersService.getById(id);
 
-    try {
+  if (!offer) {
+    return next(new APIError("Offer not found", 404));
+  }
 
-        const offer = await getOfferByID(thePage, process.env.LIMIT_PER_PAGE, offerID)
-
-
-        if (offer === "Server Error") {
-            res.status(500).json({message: "Internal Server Error"})
-            return
-        }
-
-        if (offer === "Offer not found") {
-            res.status(400).json({message: "Offer was not found"})
-        }
-
-        res.status(200).json({message: "Successfull", offer})
-
-
-    } catch (err) {
-        console.error(err)
-        res.status(500).json({message: "Internal Server Error"})
-        return
-    }
-
-    
+  res.status(200).json(offer);
 })
 
 module.exports = router

@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router();
 const BoostOfferService = require("../services/BoostOfferService.js");
 
-router.post('/', async (req, res, next) => {
+router.post('/createBoostedOffer', async (req, res, next) => {
   const { offerId, boostId } = req.body;
   const userId = req.payload.data.id;
 

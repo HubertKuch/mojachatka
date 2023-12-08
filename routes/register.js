@@ -6,11 +6,10 @@ const { generateTokens } = require("../utils/jwt")
 const { addRefreshTokenToWhitelist } = require('../utils/auth')
 const { createUser } = require("../services/createUser")
 const { sendMail } = require('../utils/mail');
-const { default: phone } = require('phone');
 
 const router = express.Router()
 
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
 
   try {
     let { username, email, password, confirmPassword, phoneNumber, type } = req.body

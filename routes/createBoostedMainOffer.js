@@ -3,7 +3,7 @@ const OfferBoostType = require('../utils/OfferBoostType');
 const BoostOfferService = require('../services/BoostOfferService');
 const router = express.Router();
 
-router.post('/', async (req, res, next) => {
+router.post('/createBoostedMainOffer', async (req, res, next) => {
   const { offerId, boostId } = req.body;
   const userId = req.payload.data.id;
 
