@@ -7,7 +7,7 @@ const { createDirectory, createFile } = require('../utils/fileSystem')
 const uuid = require('uuid');
 const { join } = require('path')
 
-async function getOffers(page, perPage, boosted) {
+async function getOffers(page, perPage, boosted, user) {
   // get 20 offers and give a pagination
   // Sort it by the newest ones
   // delete expiration from each one of them
@@ -19,6 +19,10 @@ async function getOffers(page, perPage, boosted) {
 
     if (boosted) {
       where['isBoosted'] = true;
+    }
+
+    if (user) {
+      where['author'] = user;
     }
 
     return await paginate(

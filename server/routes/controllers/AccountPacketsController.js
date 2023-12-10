@@ -1,6 +1,9 @@
+const { UserType } = require('@prisma/client');
 const { buyPacket, getPackets, getUserAccountPackets } = require('../../services/packets');
 const { db } = require('../../utils/db');
 const getOrThrow = require('../../utils/getOrThrow');
+const APIError = require('../../errors/APIError');
+const AccountPacketsService = require('../../services/AccountPacketsService');
 
 class AccountPacketsController {
   static async buyPacket(req, res) {
@@ -22,12 +25,16 @@ class AccountPacketsController {
     }
   }
 
-  static async getAllowedAccountPackets(req, res) {
+  static async getAllowedAccountPackets(req, res, next) {
     const { type } = req.query;
 
     if (!Object.values(UserType).includes(type)) {
-      next(new APIError("Unknow userType", 400));
+      return next(new APIError("Unknow userType", 400));
     }
+
+    const packets = await AccountPacketsService.getByUserType(type);
+
+    res.status(200).json(packets);
   }
 
   static async getUserAccountPackets(req, res) {

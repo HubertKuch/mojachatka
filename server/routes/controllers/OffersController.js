@@ -13,12 +13,12 @@ const { OfferType } = require('@prisma/client');
 
 class OffersController {
   static async getOffers(req, res) {
-    const { page, boosted } = req.query
+    const { page, boosted, user } = req.query
 
     const thePage = page || 1
 
     try {
-      const offers = await getOffers(thePage, process.env.LIMIT_PER_PAGE, boosted)
+      const offers = await getOffers(thePage, process.env.LIMIT_PER_PAGE, boosted, user)
 
       if (offers === "Server Error") {
         res.status(500).json({ message: "Internal Server Error" })
