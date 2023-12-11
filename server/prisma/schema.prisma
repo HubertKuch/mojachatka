@@ -186,22 +186,38 @@ model Verification {
 // Add Phone Number
 
 model Offers {
-  id          String    @id @unique @default(uuid())
-  author      String
-  authorName  String
-  User        User      @relation(fields: [author], references: [id], onDelete: Cascade)
-  title       String    @db.Char(100)
-  description String    @db.VarChar(10000)
-  price       Int
-  region      Region
-  type        OfferType
-  sellType    SellType
-  city        String
-  isBoosted   Boolean   @default(false)
-  properties  Json
-  expires     DateTime
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id            String         @id @unique @default(uuid())
+  author        String
+  authorName    String
+  User          User           @relation(fields: [author], references: [id], onDelete: Cascade)
+  title         String         @db.Char(100)
+  description   String         @db.VarChar(10000)
+  price         Int
+  pricePerMonth Int
+  region        Region
+  type          OfferType
+  sellType      SellType
+  city          String
+  isBoosted     Boolean        @default(false)
+  properties    Json
+  expires       DateTime
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  OfferFeature  OfferFeature[]
+}
+
+model Feature {
+  id           String         @id @unique @default(uuid())
+  name         String         @unique
+  OfferFeature OfferFeature[]
+}
+
+model OfferFeature {
+  id        String  @id @unique @default(uuid())
+  Offer     Offers  @relation(fields: [offerId], references: [id])
+  offerId   String
+  Feature   Feature @relation(fields: [featureId], references: [id])
+  featureId String
 }
 
 model OfferBoosts {
