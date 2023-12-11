@@ -192,8 +192,8 @@ model Offers {
   User          User           @relation(fields: [author], references: [id], onDelete: Cascade)
   title         String         @db.Char(100)
   description   String         @db.VarChar(10000)
-  price         Int
-  pricePerMonth Int
+  price         Int?
+  pricePerMonth Int?
   region        Region
   type          OfferType
   sellType      SellType

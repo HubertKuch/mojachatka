@@ -134,64 +134,7 @@ async function appendImages(userId, offerId, properties) {
 }
 
 async function postOffer(data, userId) {
-  try {
-    const user = await getUserByID(userId)
-    const date = new Date()
-    const expiration = addDays(date, 30)
- 
-    if (!user || user === "User not Found") {
-      return null;
-    }
-
-    if (user.listings === 0) {
-      return false
-    }
-
-    try {
-      var finalOffer = await db.offers.create({
-        data: {
-          author: user.id,
-          authorName: user.username,
-          title: data.title,
-          description: data.description,
-          price: data.price,
-          region: data.region,
-          type: data.type,
-          sellType: data.sellType,
-          city: data.city,
-          isBoosted: false,
-          properties: data.properties,
-          expires: expiration
-        }
-      });
-    } catch (err) {
-      if (err instanceof Prisma.PrismaClientKnownRequestError) {
-        if (err.code === 'P2000') {
-          return err
-        }
-        return "Server Error"
-      }
-    }
-
-    await db.user.update({
-      where: {
-        id: user.id
-      },
-      data: {
-        listings: user.listings - 1
-      }
-    })
-
-    await appendImages(user.id, finalOffer.id, data.properties)
-
-    return true
-
-  } catch (err) {
-    console.error(err)
-    return "Server Error"
   }
-
-}
 
 async function postBoostedOffer(userId, offerId) {
   const date = new Date()
