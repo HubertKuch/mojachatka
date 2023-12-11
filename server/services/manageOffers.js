@@ -42,6 +42,15 @@ async function getOffers(page, perPage, boosted, user) {
           expires: false,
           createdAt: true,
           updatedAt: true,
+          OfferFeature: {
+            select: {
+              Feature: {
+                select: {
+                  name: true
+                }
+              }
+            }
+          }
         }
       }
     )
@@ -134,7 +143,7 @@ async function appendImages(userId, offerId, properties) {
 }
 
 async function postOffer(data, userId) {
-  }
+}
 
 async function postBoostedOffer(userId, offerId) {
   const date = new Date()

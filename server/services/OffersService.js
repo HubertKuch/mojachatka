@@ -16,38 +16,58 @@ class OffersService extends PaginatorService {
     const date = new Date();
     const expiration = addDays(date, 30);
 
-    const [offer] = await db.$transaction([
-      db.offers.create({
-        data: {
-          author: user.id,
-          authorName: user.username,
-          title: data.title,
-          description: data.description,
-          price: data.price,
-          region: data.region,
-          type: data.type,
-          sellType: data.sellType,
-          city: data.city,
-          isBoosted: false,
-          properties: data.properties,
-          expires: expiration
+    try {
+      const features = data.features ? await Promise.all(data.features.map(async (featureId) => {
+        const feature = await db.feature.findUnique({ where: { id: featureId } });
+
+        console.log(feature)
+
+        if (!feature) {
+          throw new APIError(`Feature ${featureId} not recognized`);
         }
-      }),
-      db.user.update({
-        where: {
-          id: user.id
-        },
-        data: {
-          listings: {
-            decrement: 1
+
+        return feature;
+      })) : [];
+
+      const [offer] = await db.$transaction([
+        db.offers.create({
+          data: {
+            author: user.id,
+            authorName: user.username,
+            title: data.title,
+            description: data.description,
+            price: data.price,
+            region: data.region,
+            type: data.type,
+            sellType: data.sellType,
+            city: data.city,
+            isBoosted: false,
+            properties: data.properties,
+            expires: expiration
           }
-        }
-      })
-    ]);
+        }),
+        db.user.update({
+          where: {
+            id: user.id
+          },
+          data: {
+            listings: {
+              decrement: 1
+            }
+          }
+        })
+      ]);
 
-    await appendImages(user.id, offer.id, data.properties)
+      features.forEach(async (feature) => {
+        await db.offerFeature.create({ data: { featureId: feature.id, offerId: offer.id } });
+      });
 
-    return await db.offers.findUnique({ where: { id: offer.id } });
+      await appendImages(user.id, offer.id, data.properties)
+
+      return await db.offers.findUnique({ where: { id: offer.id } });
+    } catch (e) {
+      throw e;
+    }
   }
 
   static async getUserOffers(userId, { all, page }) {

@@ -1,7 +1,4 @@
 const { getOffers } = require('../../services/manageOffers')
-const { postOffer } = require('../../services/manageOffers')
-const { getUserByID } = require('../../services/getUsers')
-const { isImage } = require('../../utils/isImage');
 const { db } = require('../../utils/db');
 const validateOfferImages = require('../../utils/validateOfferImages');
 const { appendImages } = require('../../services/manageOffers');
@@ -10,7 +7,7 @@ const APIError = require('../../errors/APIError');
 const { deleteFile } = require('../../utils/fileSystem');
 const { validateHowManyImages } = require('../../utils/validateOfferImages');
 const { OfferType } = require('@prisma/client');
-const { createOfferValidator, getCreateOfferValidator } = require('../../schemas/OffersSchema');
+const { getCreateOfferValidator } = require('../../schemas/OffersSchema');
 
 class OffersController {
   static async getOffers(req, res) {
