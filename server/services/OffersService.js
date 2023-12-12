@@ -1,3 +1,4 @@
+const { SellType, OfferType } = require("@prisma/client");
 const APIError = require("../errors/APIError");
 const { addDays } = require("../utils/addDays");
 const { db } = require("../utils/db");
@@ -6,6 +7,81 @@ const UserService = require("./UserService");
 const { appendImages } = require("./manageOffers");
 
 class OffersService extends PaginatorService {
+  static async findAll({
+    page,
+    boosted,
+    user,
+    offerType,
+    sellType,
+    minPrice,
+    maxPrice,
+    bedrooms,
+    rooms
+  }) {
+    const paginate = this.getPaginator(page || 1);
+
+    const where = { AND: [] };
+
+    if (user) where.author = user;
+    if (boosted) where.isBoosted = boosted;
+    if (offerType) {
+      if (!Object.values(OfferType).includes(offerType)) {
+        throw new APIError("offerType must be a offer type enum case");
+      }
+
+      where.type = offerType
+    }
+
+    if (sellType) {
+      if (!Object.values(SellType).includes(sellType)) {
+        throw new APIError("sellType must be a sell type enum case");
+      }
+
+      where.sellType = sellType
+    }
+    if (minPrice && maxPrice) {
+      where.AND = [
+        {
+          AND: [
+            {
+              OR: [
+                {
+                  AND: [
+                    {
+                      price: {
+                        not: null
+                      }
+                    },
+                    {
+                      price: { gte: Number.parseInt(minPrice), lte: Number.parseInt(maxPrice) }
+                    }
+                  ]
+                },
+                {
+                  AND: [
+                    {
+                      pricePerMonth: {
+                        not: null
+                      }
+                    },
+                    {
+                      pricePerMonth: { gte: Number.parseInt(minPrice), lte: Number.parseInt(maxPrice) }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+    if (bedrooms) where.AND.push({ properties: { path: "$.bedrooms", equals: Number.parseInt(bedrooms) } });
+    if (rooms) where.AND.push({ properties: { path: "$.rooms", equals: Number.parseInt(rooms) } });
+    return await paginate(db.offers, {
+      where
+    });
+  }
+
   static async createOffer(data, userId) {
     const user = await UserService.findById(userId)
 

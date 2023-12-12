@@ -1,8 +1,15 @@
+const { query } = require('express-validator');
 const { isAuthenticated } = require('../../utils/middlewares');
 const OffersController = require('../controllers/OffersController');
 const router = require('express').Router({ mergeParams: true });
 
-router.get('/getAllOffers', OffersController.getOffers);
+router.get('/getAllOffers',
+  query("bedrooms")
+    .isNumeric()
+    .withMessage("dsd"),
+  OffersController.getOffers);
+
+
 router.get('/getOffer/:id', OffersController.getById);
 router.get('/getUserOffers', isAuthenticated, OffersController.getUserOffers);
 router.get("/offerTypes", OffersController.getOffersTypes);

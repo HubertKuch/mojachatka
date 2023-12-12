@@ -10,13 +10,13 @@ const { OfferType } = require('@prisma/client');
 const { getCreateOfferValidator } = require('../../schemas/OffersSchema');
 
 class OffersController {
-  static async getOffers(req, res) {
+  static async getOffers(req, res, next) {
     const { page, boosted, user } = req.query
 
     const thePage = page || 1
 
     try {
-      const offers = await getOffers(thePage, process.env.LIMIT_PER_PAGE, boosted, user)
+      const offers = await OffersService.findAll(req.query); 
 
       if (offers === "Server Error") {
         res.status(500).json({ message: "Internal Server Error" })
@@ -28,9 +28,7 @@ class OffersController {
 
 
     } catch (err) {
-      console.error(err)
-      res.status(500).json({ message: "Internal Server Error" })
-      return
+      next(err);
     }
   }
 
