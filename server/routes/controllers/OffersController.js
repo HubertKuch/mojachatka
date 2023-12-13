@@ -11,22 +11,10 @@ const { getCreateOfferValidator } = require('../../schemas/OffersSchema');
 
 class OffersController {
   static async getOffers(req, res, next) {
-    const { page, boosted, user } = req.query
-
-    const thePage = page || 1
-
     try {
       const offers = await OffersService.findAll(req.query); 
 
-      if (offers === "Server Error") {
-        res.status(500).json({ message: "Internal Server Error" })
-        return
-      }
-
-
       res.status(200).json({ message: "Successfull", offers })
-
-
     } catch (err) {
       next(err);
     }

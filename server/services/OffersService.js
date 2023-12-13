@@ -16,12 +16,14 @@ class OffersService extends PaginatorService {
     minPrice,
     maxPrice,
     bedrooms,
-    rooms
+    rooms,
+    search
   }) {
     const paginate = this.getPaginator(page || 1);
 
     const where = { AND: [] };
 
+    if (search) where.OR = [ { title: { contains: search } }, { description: { contains: search } } ];
     if (user) where.author = user;
     if (boosted) where.isBoosted = boosted;
     if (offerType) {
