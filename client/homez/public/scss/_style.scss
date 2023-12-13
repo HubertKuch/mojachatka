@@ -11,7 +11,6 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 
 ********/
 /* CSS Document */
-
 @import url(../css/fontawesome.css);
 @import url(../css/ace-responsive-menu.css);
 @import url(../css/dashbord_navitaion.css);
@@ -10429,6 +10428,13 @@ input:focus-visible {
 .border-none,
 .no-border {
     border: none;
+}
+
+.error {
+  padding: 10px;
+  font-weight: bold;
+  color: #fc4254;
+  text-align: center;
 }
 
 .white-bdrt1 {

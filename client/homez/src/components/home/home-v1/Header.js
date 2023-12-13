@@ -6,9 +6,11 @@ import LoginSignupModal from "@/components/common/login-signup-modal";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import AuthController from "@/controllers/AuthController";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const changeBackground = () => {
     if (window.scrollY >= 10) {
@@ -21,6 +23,7 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener("scroll", changeBackground);
     return () => {
+      AuthController.isLoggedIn().then(setIsLoggedIn);
       window.removeEventListener("scroll", changeBackground);
     };
   }, []);
@@ -28,9 +31,8 @@ const Header = () => {
   return (
     <>
       <header
-        className={`header-nav nav-homepage-style main-menu  ${
-          navbar ? "sticky slideInDown animated" : ""
-        }`}
+        className={`header-nav nav-homepage-style main-menu  ${navbar ? "sticky slideInDown animated" : ""
+          }`}
       >
         <nav className="posr">
           <div className="container posr menu_bdrt1">
@@ -73,7 +75,7 @@ const Header = () => {
                     role="button"
                   >
                     <i className="far fa-user-circle fz16 me-2" />{" "}
-                    <span className="d-none d-xl-block">Logowanie / Rejestracja</span>
+                    {isLoggedIn ? null : <span className="d-none d-xl-block">Logowanie / Rejestracja</span>}
                   </a>
                   <Link
                     className="ud-btn add-property menu-btn bdrs60 mx-2 mx-xl-4"

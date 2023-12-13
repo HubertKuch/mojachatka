@@ -6,7 +6,7 @@ const OffersService = require('../../services/OffersService');
 const APIError = require('../../errors/APIError');
 const { deleteFile } = require('../../utils/fileSystem');
 const { validateHowManyImages } = require('../../utils/validateOfferImages');
-const { OfferType } = require('@prisma/client');
+const { OfferType, SellType } = require('@prisma/client');
 const { getCreateOfferValidator } = require('../../schemas/OffersSchema');
 
 class OffersController {
@@ -156,6 +156,10 @@ class OffersController {
 
   static async getOffersTypes(req, res) {
     res.status(200).json(Object.values(OfferType));
+  }
+
+  static async getSellTypes(req, res) {
+    res.status(200).json(Object.values(SellType));
   }
 
   static async deleteImage(req, res) {

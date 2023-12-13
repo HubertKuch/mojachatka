@@ -21,7 +21,7 @@ const DefaultHeader = () => {
   useEffect(() => {
     window.addEventListener("scroll", changeBackground);
     return () => {
-      window.removeEventListener("scroll", changeBackground);
+           window.removeEventListener("scroll", changeBackground);
     };
   }, []);
 

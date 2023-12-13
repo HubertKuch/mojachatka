@@ -30,8 +30,8 @@ const OtherFeatures = ({filterFunctions}) => {
           {featuresLeftColumn.map((feature, index) => (
             <label className="custom_checkbox" key={index}>
               {feature.label}
-              <input checked={filterFunctions?.categories.includes(feature.label)}
-             type="checkbox" onChange={()=>filterFunctions?.handlecategories(feature.label)}  />
+              <input
+              type="checkbox" />
               <span className="checkmark" />
             </label>
           ))}
@@ -45,7 +45,7 @@ const OtherFeatures = ({filterFunctions}) => {
             <label className="custom_checkbox" key={index}>
               {feature.label}
               
-              <input type="checkbox" onChange={()=>filterFunctions?.handlecategories(feature.label)}  defaultChecked={feature.defaultChecked} />
+              <input type="checkbox" defaultChecked={feature.defaultChecked} />
               <span className="checkmark" />
             </label>
           ))}

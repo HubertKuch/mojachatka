@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors');
 
 require('./services/paymentResolveIntervalService');
 require('./events/listeners/paymentListener');
@@ -18,6 +19,7 @@ const adminFeatureRoutes = require('./routes/definitions/adminFeatureRoutesDefin
 const app = express()
 const port = process.env.SERVER_PORT || 3000
 
+app.use(cors());
 app.use(bodyParser.json({ limit: '250mb', extended: true }));
 app.use(
   bodyParser.urlencoded({

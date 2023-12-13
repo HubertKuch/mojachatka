@@ -1,15 +1,35 @@
+"use client";
+import AuthController from "@/controllers/AuthController";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 const SignIn = () => {
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [err, setErr] = useState("");
+
   return (
-    <form className="form-style1">
+    <form className="form-style1" onSubmit={async (ev) => {
+      ev.preventDefault();
+
+      const res = await AuthController.login(email, pass);
+
+      if (!res.success) {
+        return setErr(res.message);
+      }
+
+      window.location.replace("/")
+    }}>
+      <div className="error">
+        {err}
+      </div>
       <div className="mb25">
         <label className="form-label fw600 dark-color">Email</label>
         <input
           type="email"
           className="form-control"
           placeholder="Wprowadź adres email"
+          onChange={(el) => setEmail(el.target.value)}
           required
         />
       </div>
@@ -18,8 +38,9 @@ const SignIn = () => {
       <div className="mb15">
         <label className="form-label fw600 dark-color">Hasło</label>
         <input
-          type="text"
+          type="password"
           className="form-control"
+          onChange={(el) => setPass(el.target.value)}
           placeholder="Wprowadź hasło"
           required
         />
@@ -33,7 +54,7 @@ const SignIn = () => {
           <span className="checkmark" />
         </label>
         <a className="fz14 ff-heading" href="#">
-          Nie pamiętasz hasła?
+          Nie pamiętasz hasła? -- NIE DZIALA --
         </a>
       </div>
       {/* End  Lost your password? */}
@@ -45,6 +66,7 @@ const SignIn = () => {
       </div>
       {/* End submit */}
 
+      {/*}
       <div className="hr_content mb20">
         <hr />
         <span className="hr_top_text">LUB</span>
@@ -60,6 +82,8 @@ const SignIn = () => {
           <i className="fab fa-facebook-f" /> Kontynuuj z Facebookiem
         </button>
       </div>
+
+      */}
       <p className="dark-color text-center mb0 mt10">
         Nie posiadasz jeszcze konta?{" "}
         <Link className="dark-color fw600" href="/register">

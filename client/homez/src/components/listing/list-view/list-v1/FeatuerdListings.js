@@ -24,10 +24,10 @@ const FeaturedListings = ({ data, colstyle }) => {
                 height={248}
                 className="w-100  cover"
                 style={{ height: "253px" }}
-                src={listing.image}
+                src={listing.properties.images[0]}
                 alt="listings"
               />
-              <div className="sale-sticker-wrap">
+              {listing.isBoosted ? <div className="sale-sticker-wrap">
                 {!listing.forRent && (
                   <div className="list-tag fz12">
                     <span className="flaticon-electricity me-2" />
@@ -35,9 +35,10 @@ const FeaturedListings = ({ data, colstyle }) => {
                   </div>
                 )}
               </div>
-
+                : null
+              }
               <div className="list-price">
-                {listing.price} / <span>mo</span>
+                {listing.price ? <span>{listing.price}PLN </span> : <span>${listing.pricePerMonth}PLN mo </span>}
               </div>
             </div>
             <div className="list-content">
@@ -57,12 +58,11 @@ const FeaturedListings = ({ data, colstyle }) => {
                 </a>
               </div>
               <p className="list-text2">
-                An exceptional exclusive five bedroom apartment for sale in this
-                much sought after development in Knightsbridge.
+                {listing.description}
               </p>
               <hr className="mt-2 mb-2" />
               <div className="list-meta2 d-flex justify-content-between align-items-center">
-                <span className="for-what">For Rent</span>
+                <span className="for-what">{listing.sellType}</span>
                 <div className="icons d-flex align-items-center">
                   <a href="#">
                     <span className="flaticon-fullscreen" />
