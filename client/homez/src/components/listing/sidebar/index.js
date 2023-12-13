@@ -1,5 +1,3 @@
-'use client'
-
 import React from "react";
 import SearchBox from "./SearchBox";
 import ListingStatus from "./ListingStatus";
@@ -8,6 +6,7 @@ import PriceSlider from "./PriceRange";
 import Bedroom from "./Bedroom";
 import Bathroom from "./Bathroom";
 import OtherFeatures from "./OtherFeatures";
+import toQuery from "../../../utilis/queryParams";
 
 const ListingSidebar = ({ filters }) => {
   return (
@@ -102,7 +101,7 @@ const ListingSidebar = ({ filters }) => {
 
       <div className="widget-wrapper mb20">
         <div className="btn-area d-grid align-items-center">
-          <button className="ud-btn btn-thm" onClick={() => console.log(filters)}  >
+          <button className="ud-btn btn-thm" onClick={() => console.log(filters, toQuery.objectToQueryUri(filters))}  >
             <span className="flaticon-search align-text-top pr10" />
             Szukaj
           </button>

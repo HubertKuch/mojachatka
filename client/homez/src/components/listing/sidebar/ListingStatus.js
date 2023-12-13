@@ -10,7 +10,9 @@ const ListingStatus = ({ filters }) => {
     return () => {
       OffersControllers.getSellTypes().then(setSellTypes)
     }
-  }, [sellTypes]);
+  }, []);
+
+  console.log(filters);
 
   return (
     <>

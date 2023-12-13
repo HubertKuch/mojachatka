@@ -7,13 +7,10 @@ const PropertyType = ({ filters }) => {
   const [types, setTypes] = useState([]);
 
   useEffect(() => {
-    if (!types) return;
     return () => {
-      if (!types) {
-        OffersControllers.getOfferTypes().then(setTypes);
-      }
+      OffersControllers.getOfferTypes().then(setTypes);
     }
-  }, [types]);
+  }, []);
 
   return (
     <>
