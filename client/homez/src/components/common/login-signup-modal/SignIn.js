@@ -2,11 +2,13 @@
 import AuthController from "@/controllers/AuthController";
 import Link from "next/link";
 import React, { useState } from "react";
+import useStore from "@/store/store";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [err, setErr] = useState("");
+  const setUser = useStore(s => s.setUser);
 
   return (
     <form className="form-style1" onSubmit={async (ev) => {
@@ -17,6 +19,8 @@ const SignIn = () => {
       if (!res.success) {
         return setErr(res.message);
       }
+
+      setUser(res.user);
 
       window.location.replace("/")
     }}>

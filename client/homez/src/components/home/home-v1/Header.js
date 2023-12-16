@@ -6,11 +6,12 @@ import LoginSignupModal from "@/components/common/login-signup-modal";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import AuthController from "@/controllers/AuthController";
+import useStore from "@/store/store";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = useStore(s => s.isLoggedIn);
+  const user = useStore(s => s.user);
 
   const changeBackground = () => {
     if (window.scrollY >= 10) {
@@ -23,7 +24,6 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener("scroll", changeBackground);
     return () => {
-      AuthController.isLoggedIn().then(setIsLoggedIn);
       window.removeEventListener("scroll", changeBackground);
     };
   }, []);
@@ -67,16 +67,25 @@ const Header = () => {
 
               <div className="col-auto">
                 <div className="d-flex align-items-center">
-                  <a
-                    href="#"
-                    className="login-info d-flex align-items-center"
-                    data-bs-toggle="modal"
-                    data-bs-target="#loginSignupModal"
-                    role="button"
-                  >
-                    <i className="far fa-user-circle fz16 me-2" />{" "}
-                    {isLoggedIn ? null : <span className="d-none d-xl-block">Logowanie / Rejestracja</span>}
-                  </a>
+                  {
+                    isLoggedIn ?
+                      <Link
+                        href={"/dashboard-home"}
+                        className="login-info d-flex align-items-center"
+                      >
+                        <i className="far fa-user-circle fz16 me-2" />{" "}
+                        <span className="d-none d-xl-block">{`Witaj ${user.username}`}</span>
+                      </Link> : <a
+                        href={"#"}
+                        className="login-info d-flex align-items-center"
+                        data-bs-toggle="modal"
+                        data-bs-target="#loginSignupModal"
+                        role="button"
+                      >
+                        <i className="far fa-user-circle fz16 me-2" />{" "}
+                        <span className="d-none d-xl-block">{"Logowanie / Rejestracja"}</span>
+                      </a>
+                  }
                   <Link
                     className="ud-btn add-property menu-btn bdrs60 mx-2 mx-xl-4"
                     href="/dashboard-add-property"
