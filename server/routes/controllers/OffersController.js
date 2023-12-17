@@ -1,4 +1,3 @@
-const { getOffers } = require('../../services/manageOffers')
 const { db } = require('../../utils/db');
 const validateOfferImages = require('../../utils/validateOfferImages');
 const { appendImages } = require('../../services/manageOffers');
@@ -6,13 +5,13 @@ const OffersService = require('../../services/OffersService');
 const APIError = require('../../errors/APIError');
 const { deleteFile } = require('../../utils/fileSystem');
 const { validateHowManyImages } = require('../../utils/validateOfferImages');
-const { OfferType, SellType } = require('@prisma/client');
+const { OfferType, SellType, Region } = require('@prisma/client');
 const { getCreateOfferValidator } = require('../../schemas/OffersSchema');
 
 class OffersController {
   static async getOffers(req, res, next) {
     try {
-      const offers = await OffersService.findAll(req.query); 
+      const offers = await OffersService.findAll(req.query);
 
       res.status(200).json({ message: "Successfull", offers })
     } catch (err) {
@@ -39,9 +38,13 @@ class OffersController {
       return next(new APIError("Only one price field can be filled"));
     }
 
-    const createOffer = await OffersService.createOffer(data.data, req.payload.data.id);
+    try {
+      const createOffer = await OffersService.createOffer(data.data, req.payload.data.id);
 
-    res.status(200).json(createOffer);
+      res.status(200).json(createOffer);
+    } catch (error) {
+      return next(error);
+    }
   }
 
   static async editOffer(req, res) {
@@ -148,6 +151,10 @@ class OffersController {
 
   static async getSellTypes(req, res) {
     res.status(200).json(Object.values(SellType));
+  }
+
+  static async getRegions(req, res) {
+    res.status(200).json(Object.values(Region));
   }
 
   static async deleteImage(req, res) {

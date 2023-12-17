@@ -601,6 +601,11 @@
 .mm-toggle:checked {
 	background: #4bd963;
 }
+
+div[class*="-MenuPortal"] {
+    z-index: 9999 !important;
+}
+
 .mm-toggle:checked:before {
 	-webkit-transform: translateX(calc(var(--mm-toggle-size) * 0.75));
 	-ms-transform: translateX(calc(var(--mm-toggle-size) * 0.75));

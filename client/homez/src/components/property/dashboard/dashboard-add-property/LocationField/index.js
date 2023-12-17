@@ -1,82 +1,111 @@
+"use client";
 import React from "react";
-import SelectMulitField from "./SelectMulitField";
 import Map from "./Map";
+import useRegion from "@/hooks/useRegion";
+import Select from "react-select";
 
 const LocationField = () => {
+  const regions = useRegion();
+
   return (
     <form className="form-style1">
       <div className="row">
         <div className="col-sm-12">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
-              Address
+              Miejscowosc
+              <input
+                data-property
+                type="text"
+                name="city"
+                className="form-control"
+                placeholder="Warszawa"
+              />
             </label>
+            {'  '}
+            <label className="heading-color ff-heading fw600 mb10">
+              Adres
+              <input
+                data-property
+                name="address"
+                type="text"
+                className="form-control"
+                placeholder="Wiejska"
+              />
+            </label>
+          </div>
+
+          <div className="mb20">
+            <label className="heading-color ff-heading fw600 mb10">
+              Dom
+              <input
+                name="houseNumber"
+                data-property type="text"
+                className="form-control"
+                placeholder="1"
+              />
+            </label>
+            {' '}
+            <label className="heading-color ff-heading fw600 mb10">
+              Mieszkanie
+              <input
+                type="text"
+                name="localNumber"
+                data-property className="form-control"
+                placeholder="4"
+              />
+            </label>
+
+          </div>
+
+          <label className="mb-4">
             <input
-              type="text"
-              className="form-control"
+              type="checkbox"
+              data-property name="publicAddress"
               placeholder="Your Name"
             />
-          </div>
+            {' '}
+            Adres widoczny dla wszystkich
+          </label>
         </div>
-        {/* End col-12 */}
-
-        <SelectMulitField />
 
         <div className="col-sm-6 col-xl-4">
           <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">Zip</label>
-            <input type="text" className="form-control" />
+            <label className="heading-color ff-heading fw600 mb10">Kod pocztowy</label>
+            <input data-property type="text" name="zipCode" placeholder="84-300" className="form-control" />
           </div>
         </div>
-        {/* End col-4 */}
 
         <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
-              Neighborhood
+              Region
             </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Neighborhood"
-            />
+            <div className="location-area">
+              <Select
+                defaultValue={[regions[1]]}
+                name="region"
+                styles={{ menu: prov => ({ ...prov, zIndex: 99999999 }), menuList: prov => ({ ...prov, zIndex: 99999999 }) }}
+                options={regions}
+                className="select-custom pl-0"
+                menuPosition="fixed"
+                menuPortalTarget={document.body}
+                classNamePrefix="select"
+                required
+              />
+            </div>
           </div>
         </div>
-        {/* End col-4 */}
 
         <div className="col-sm-12">
-          <div className="mb20 mt30">
+          <div className="mb20 mt30" style={{ width: "100%", height: "400px" }}>
             <label className="heading-color ff-heading fw600 mb30">
-              Place the listing pin on the map
+              Miejsce na mapie
             </label>
             <Map />
           </div>
         </div>
-        {/* End col-12 */}
       </div>
-      {/* End .row */}
-
-      <div className="row">
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb30">
-            <label className="heading-color ff-heading fw600 mb10">
-              Latitude
-            </label>
-            <input type="text" className="form-control" />
-          </div>
-        </div>
-        {/* End .col-sm-6 */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb30">
-            <label className="heading-color ff-heading fw600 mb10">
-              Longitude
-            </label>
-            <input type="text" className="form-control" />
-          </div>
-        </div>
-      </div>
-      {/* End .row */}
     </form>
   );
 };

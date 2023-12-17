@@ -14,6 +14,7 @@ router.get('/getOffer/:id', OffersController.getById);
 router.get('/getUserOffers', isAuthenticated, OffersController.getUserOffers);
 router.get("/offerTypes", OffersController.getOffersTypes);
 router.get("/sellTypes", OffersController.getSellTypes);
+router.get("/regions", OffersController.getRegions);
 router.post('/createOffer', isAuthenticated, OffersController.createOffer);
 router.patch('/editOffer/:offerId', isAuthenticated, OffersController.editOffer);
 router.delete('/deleteImage/:offerId/:imgId', isAuthenticated, OffersController.deleteImage);;

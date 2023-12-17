@@ -194,10 +194,11 @@ model Offers {
   description   String         @db.VarChar(10000)
   price         Int?
   pricePerMonth Int?
-  region        Region
+  region Region?
   type          OfferType
   sellType      SellType
-  city          String
+  lat           Float
+  lng           Float
   isBoosted     Boolean        @default(false)
   properties    Json
   expires       DateTime

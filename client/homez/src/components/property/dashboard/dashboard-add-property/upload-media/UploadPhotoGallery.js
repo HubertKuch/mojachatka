@@ -30,11 +30,6 @@ const UploadPhotoGallery = () => {
     event.preventDefault();
   };
 
-  const handleButtonClick = () => {
-    // Programmatically trigger the hidden file input
-    fileInputRef.current.click();
-  };
-
   const handleDelete = (index) => {
     const newImages = [...uploadedImages];
     newImages.splice(index, 1);
@@ -48,6 +43,7 @@ const UploadPhotoGallery = () => {
         onDrop={handleDrop}
         onDragOver={handleDragOver}
       >
+        <textarea data-property name="images" hidden value={JSON.stringify(uploadedImages)}></textarea>
         <div className="icon mb30">
           <span className="flaticon-upload" />
         </div>

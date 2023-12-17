@@ -1,6 +1,4 @@
 import React from "react";
-import MultiSelectField from "./MultiSelectField";
-import StructureType from "./StructureType";
 
 const DetailsFiled = () => {
   return (
@@ -9,216 +7,46 @@ const DetailsFiled = () => {
         <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
-              Size in ft (only numbers)
+              Powierzchnia (w m2)
             </label>
             <input
+              data-property
               type="text"
+              name="sizeInMeters"
               className="form-control"
-              placeholder="Your Name"
+              placeholder="72"
             />
           </div>
-        </div>
-        {/* End .col-4 */}
-
-        <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
-              Lot size in ft (only numbers)
+              Ilosc pokoi
             </label>
             <input
-              type="text"
+              type="number"
+              data-property
+              data-type="number"
+              name="rooms"
               className="form-control"
-              placeholder="Your Name"
+              placeholder="4"
             />
           </div>
-        </div>
-        {/* End .col-4 */}
 
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">Rooms</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Your Name"
-            />
-          </div>
-        </div>
-        {/* End .col-4 */}
-
-        <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
-              Bedrooms
+              Ilosc sypialni
             </label>
             <input
-              type="text"
+              name="bedrooms"
+              type="number"
+              data-property
+              data-type="number"
               className="form-control"
-              placeholder="Your Name"
+              placeholder="2"
             />
           </div>
         </div>
-        {/* End .col-4 */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Bathrooms
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Your Name"
-            />
-          </div>
-        </div>
-        {/* End .col-4 */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Custom ID (text)
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Your Name"
-            />
-          </div>
-        </div>
-        {/* End .col-4 */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Garages
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Your Name"
-            />
-          </div>
-        </div>
-        {/* End .col-4 */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Garage size
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Your Name"
-            />
-          </div>
-        </div>
-        {/* End .col-4 */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Year built (numeric)
-            </label>
-            <input type="text" className="form-control" />
-          </div>
-        </div>
-        {/* End .col-4 */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Available from (date)
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="99.aa.yyyy"
-            />
-          </div>
-        </div>
-        {/* End .col-4 */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Basement
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Your Name"
-            />
-          </div>
-        </div>
-        {/* End .col-4 */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Extra details
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Your Name"
-            />
-          </div>
-        </div>
-        {/* End .col-4 */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Roofing
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Your Name"
-            />
-          </div>
-        </div>
-        {/* End .col-4 */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Exterior Material
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Your Name"
-            />
-          </div>
-        </div>
-        {/* End .col-4 */}
-
-        <StructureType />
       </div>
-      {/* End .row */}
-
-      <div className="row">
-        <MultiSelectField />
-
-        <div className="col-sm-12">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Owner/ Agent nots (not visible on front end)
-            </label>
-            <textarea
-              cols={30}
-              rows={5}
-              placeholder="There are many variations of passages."
-              defaultValue={""}
-            />
-          </div>
-        </div>
-        {/* End .col-12 */}
-      </div>
-    </form>
+    </form >
   );
 };
 

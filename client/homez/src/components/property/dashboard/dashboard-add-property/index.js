@@ -1,11 +1,15 @@
-import React from "react";
+"use client";
+import React, { useRef, useState } from "react";
 import PropertyDescription from "./property-description";
 import UploadMedia from "./upload-media";
 import LocationField from "./LocationField";
 import DetailsFiled from "./details-field";
 import Amenities from "./Amenities";
+import AddOfferEnd from "./AddOfferEnd";
 
 const AddPropertyTabContent = () => {
+  const formRef = useRef();
+
   return (
     <>
       <nav>
@@ -20,7 +24,7 @@ const AddPropertyTabContent = () => {
             aria-controls="nav-item1"
             aria-selected="true"
           >
-            1. Oferta 
+            1. Oferta
           </button>
           <button
             className="nav-link fw600"
@@ -70,75 +74,104 @@ const AddPropertyTabContent = () => {
           >
             5. Wyposazenie
           </button>
+
+          <button
+            className="nav-link fw600"
+            id="nav-item6-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-item6"
+            type="button"
+            role="tab"
+            aria-controls="nav-item6"
+            aria-selected="false"
+          >
+            6. Zakonczenie
+          </button>
         </div>
       </nav>
       {/* End nav tabs */}
-
-      <div className="tab-content" id="nav-tabContent">
-        <div
-          className="tab-pane fade show active"
-          id="nav-item1"
-          role="tabpanel"
-          aria-labelledby="nav-item1-tab"
-        >
-          <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-            <h4 className="title fz17 mb30">Opis oferty</h4>
-            <PropertyDescription />
-          </div>
-        </div>
-        {/* End tab for Property Description */}
-
-        <div
-          className="tab-pane fade"
-          id="nav-item2"
-          role="tabpanel"
-          aria-labelledby="nav-item2-tab"
-        >
-          <UploadMedia />
-        </div>
-        {/* End tab for Upload photos of your property */}
-
-        <div
-          className="tab-pane fade"
-          id="nav-item3"
-          role="tabpanel"
-          aria-labelledby="nav-item3-tab"
-        >
-          <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-            <h4 className="title fz17 mb30">Listing Location</h4>
-            <LocationField />
-          </div>
-        </div>
-        {/* End tab for Listing Location */}
-
-        <div
-          className="tab-pane fade"
-          id="nav-item4"
-          role="tabpanel"
-          aria-labelledby="nav-item4-tab"
-        >
-          <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-            <h4 className="title fz17 mb30">Listing Details</h4>
-            <DetailsFiled />
-          </div>
-        </div>
-        {/* End tab for Listing Details */}
-
-        <div
-          className="tab-pane fade"
-          id="nav-item5"
-          role="tabpanel"
-          aria-labelledby="nav-item5-tab"
-        >
-          <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-            <h4 className="title fz17 mb30">Select Amenities</h4>
-            <div className="row">
-              <Amenities />
+      <form ref={formRef}>
+        <div className="tab-content" id="nav-tabContent">
+          <div
+            className="tab-pane fade show active"
+            id="nav-item1"
+            role="tabpanel"
+            aria-labelledby="nav-item1-tab"
+          >
+            <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
+              <h4 className="title fz17 mb30">Opis oferty</h4>
+              <PropertyDescription />
             </div>
           </div>
+          {/* End tab for Property Description */}
+
+          <div
+            className="tab-pane fade"
+            id="nav-item2"
+            role="tabpanel"
+            aria-labelledby="nav-item2-tab"
+          >
+            <UploadMedia />
+          </div>
+          {/* End tab for Upload photos of your property */}
+
+          <div
+            className="tab-pane fade"
+            id="nav-item3"
+            role="tabpanel"
+            aria-labelledby="nav-item3-tab"
+          >
+            <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
+              <h4 className="title fz17 mb30">Listing Location</h4>
+              <LocationField />
+            </div>
+          </div>
+          {/* End tab for Listing Location */}
+
+          <div
+            className="tab-pane fade"
+            id="nav-item4"
+            role="tabpanel"
+            aria-labelledby="nav-item4-tab"
+          >
+            <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
+              <h4 className="title fz17 mb30">Listing Details</h4>
+              <DetailsFiled />
+            </div>
+          </div>
+          {/* End tab for Listing Details */}
+
+          <div
+            className="tab-pane fade"
+            id="nav-item5"
+            role="tabpanel"
+            aria-labelledby="nav-item5-tab"
+          >
+            <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
+              <h4 className="title fz17 mb30">Select Amenities</h4>
+              <div className="row">
+                <Amenities />
+              </div>
+            </div>
+          </div>
+          {/* End tab for Select Amenities */}
+
+          <div
+            className="tab-pane fade"
+            id="nav-item6"
+            role="tabpanel"
+            aria-labelledby="nav-item6-tab"
+          >
+            <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
+              <h4 className="title fz17 mb30">Zakoczenie</h4>
+              <div className="row">
+                <AddOfferEnd formRef={formRef} />
+              </div>
+            </div>
+          </div>
+
         </div>
-        {/* End tab for Select Amenities */}
-      </div>
+      </form>
     </>
   );
 };
