@@ -68,7 +68,7 @@ const MainMenu = () => {
       {/* End homeItems */}
 
       <li className="megamenu_style dropitem">
-        <a className="list-item" href="#">
+        <a className="list-item" href="/pricing">
           <span className={topMenu == "listing" ? "title menuActive" : "title"}>
             Cennik
           </span>

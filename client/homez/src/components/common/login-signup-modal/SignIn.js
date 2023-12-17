@@ -20,7 +20,7 @@ const SignIn = () => {
         return setErr(res.message);
       }
 
-      setUser(res.user);
+      setUser((await AuthController.getProfile()).user);
 
       window.location.replace("/")
     }}>

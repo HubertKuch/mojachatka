@@ -138,11 +138,9 @@ class OffersController {
   }
 
   static async getUserOffers(req, res) {
-    const { page } = req.query;
-    const thePage = page || 1
     const user = req.payload.data;
 
-    res.status(200).json(await OffersService.getUserOffers(user.id, thePage));
+    res.status(200).json(await OffersService.getUserOffers(user.id, req.query));
   }
 
   static async getOffersTypes(req, res) {

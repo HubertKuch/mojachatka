@@ -1,3 +1,5 @@
+"use client";
+
 import DashboardHeader from "@/components/common/DashboardHeader";
 import MobileMenu from "@/components/common/mobile-menu";
 import Pagination from "@/components/property/Pagination";
@@ -6,12 +8,16 @@ import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import FilterHeader from "../../../../components/property/dashboard/dashboard-my-properties/FilterHeader";
 import PropertyDataTable from "@/components/property/dashboard/dashboard-my-properties/PropertyDataTable";
 import DboardMobileNavigation from "@/components/property/dashboard/DboardMobileNavigation";
-
-export const metadata = {
-  title: "Dashboard Properties || Homez - Real Estate NextJS Template",
-};
+import { useState } from "react";
 
 const DashboardMyProperties = () => {
+  const [meta, setMeta] = useState(null);
+  const [currPage, setCurrPage] = useState(1);
+
+  const handleNewPage = (page) => {
+    setCurrPage(page);
+  }
+
   return (
     <>
       {/* Main Header Nav */}
@@ -42,7 +48,6 @@ const DashboardMyProperties = () => {
                 <div className="col-xxl-3">
                   <div className="dashboard_title_area">
                     <h2>My Properties</h2>
-                    <p className="text">We are glad to see you again!</p>
                   </div>
                 </div>
                 <div className="col-xxl-9">
@@ -55,10 +60,10 @@ const DashboardMyProperties = () => {
                 <div className="col-xl-12">
                   <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
                     <div className="packages_table table-responsive">
-                      <PropertyDataTable />
+                      <PropertyDataTable currPage={currPage} setMeta={setMeta} />
 
                       <div className="mt30">
-                        <Pagination />
+                        <Pagination {...meta} onPageChange={handleNewPage} />
                       </div>
                     </div>
                   </div>

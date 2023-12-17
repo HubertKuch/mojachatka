@@ -24,17 +24,9 @@ const FilterHeader = () => {
             Sort by:
           </span>
           <select className="form-select show-tick">
-            <option>Best Seller</option>
-            <option>Best Match</option>
-            <option>Price Low</option>
-            <option>Price High</option>
           </select>
         </div>
       </div>
-      <a href="#" className="ud-btn btn-thm">
-        Add New Property
-        <i className="fal fa-arrow-right-long" />
-      </a>
     </div>
   );
 };

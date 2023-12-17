@@ -1,33 +1,29 @@
 import React from "react";
 
-const statisticsData = [
-  {
-    text: "All Properties",
-    title: "583",
-    icon: "flaticon-home",
-  },
-  {
-    text: "Total Views",
-    title: "192",
-    icon: "flaticon-search-chart",
-  },
-  {
-    text: "Total Visitor Reviews",
-    title: "438",
-    icon: "flaticon-review",
-  },
-  {
-    text: "Total Favorites",
-    title: "67",
-    icon: "flaticon-like",
-  },
-];
+const TopStateBlock = ({ user }) => {
+  console.log(user)
+  const statisticsData = [
+    {
+      text: "Oferty",
+      title: user.offers.length,
+      icon: "flaticon-home",
+    },
+    {
+      text: "Wyswietlen",
+      title: 0,
+      icon: "flaticon-search-chart",
+    },
+    {
+      text: "Polubione",
+      title: 0,
+      icon: "flaticon-like",
+    },
+  ];
 
-const TopStateBlock = () => {
   return (
     <>
       {statisticsData.map((data, index) => (
-        <div key={index} className="col-sm-6 col-xxl-3">
+        <div key={index} className="col-sm-6 col-xxl-4">
           <div className="d-flex justify-content-between statistics_funfact">
             <div className="details">
               <div className="text fz25">{data.text}</div>

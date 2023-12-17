@@ -6,13 +6,9 @@ import ApartmentType from "@/components/home/home-v1/ApartmentType";
 import CallToActions from "@/components/common/CallToActions";
 import FeaturedListings from "@/components/home/home-v1/FeatuerdListings";
 import Header from "@/components/home/home-v1/Header";
-import Partner from "@/components/common/Partner";
-import PopularListings from "@/components/home/home-v1/PopularListings";
 import PropertiesByCities from "@/components/home/home-v1/PropertiesByCities";
-import Testimonial from "@/components/home/home-v1/Testimonial";
 import Hero from "@/components/home/home-v1/hero";
 import Image from "next/image";
-import Blog from "@/components/common/Blog";
 import Link from "next/link";
 import PopulerProperty from "@/components/home/home-v1/PopulerProperty";
 

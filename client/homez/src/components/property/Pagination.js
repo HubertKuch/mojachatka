@@ -1,19 +1,25 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Pagination = () => {
-  const totalPages = 8; // Replace this with your actual total number of pages
-  const [currentPage, setCurrentPage] = useState(2); // Initialize the current page state to 2 (or any other default active page)
+const Pagination = ({ lastPage, currentPage: currPage, onPageChange }) => {
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1); // Initialize the current page state to 2 (or any other default active page)
+
+  useEffect(() => {
+    setTotalPages(lastPage);
+  }, [lastPage]);
 
   const handlePageClick = (page) => {
     setCurrentPage(page);
-    // Here you can add additional logic to handle what happens when the user clicks on a page number.
-    // For example, you can fetch data corresponding to the selected page from the server or update the URL.
+    onPageChange(page);
+
+    setCurrentPage(currPage);
+    setTotalPages(lastPage);
   };
 
   const generatePageNumbers = () => {
     const pageNumbers = [];
-    const maxPagesToShow = 5; // You can set the maximum number of page numbers to show in the pagination
+    const maxPagesToShow = 5;
 
     const startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
     const endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
@@ -63,9 +69,6 @@ const Pagination = () => {
           </span>
         </li>
       </ul>
-      <p className="mt10 pagination_page_count text-center">
-        1-8 of 300+ property available
-      </p>
     </div>
   );
 };

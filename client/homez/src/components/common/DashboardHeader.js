@@ -109,64 +109,7 @@ const DashboardHeader = () => {
               {/* End d-none d-lg-block */}
 
               <div className="col-6 col-lg-auto">
-                <div className="text-center text-lg-end header_right_widgets">
-                  <ul className="mb0 d-flex justify-content-center justify-content-sm-end p-0">
-                    <li className="d-none d-sm-block">
-                      <Link className="text-center mr15" href="/login">
-                        <span className="flaticon-email" />
-                      </Link>
-                    </li>
-                    {/* End email box */}
-
-                    <li className="d-none d-sm-block">
-                      <a className="text-center mr20 notif" href="#">
-                        <span className="flaticon-bell" />
-                      </a>
-                    </li>
-                    {/* End notification icon */}
-
-                    <li className=" user_setting">
-                      <div className="dropdown">
-                        <a className="btn" href="#" data-bs-toggle="dropdown">
-                          <Image
-                            width={44}
-                            height={44}
-                            src="/images/resource/user.png"
-                            alt="user.png"
-                          />
-                        </a>
-                        <div className="dropdown-menu">
-                          <div className="user_setting_content">
-                            {menuItems.map((section, sectionIndex) => (
-                              <div key={sectionIndex}>
-                                <p
-                                  className={`fz15 fw400 ff-heading ${
-                                    sectionIndex === 0 ? "mb20" : "mt30"
-                                  }`}
-                                >
-                                  {section.title}
-                                </p>
-                                {section.items.map((item, itemIndex) => (
-                                  <Link
-                                    key={itemIndex}
-                                    className={`dropdown-item ${
-                                      pathname == item.href ? "-is-active" : ""
-                                    } `}
-                                    href={item.href}
-                                  >
-                                    <i className={`${item.icon} mr10`} />
-                                    {item.text}
-                                  </Link>
-                                ))}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    {/* End avatar dropdown */}
-                  </ul>
-                </div>
+                <div className="text-center text-lg-end header_right_widgets"></div>
               </div>
               {/* End .col-6 */}
             </div>

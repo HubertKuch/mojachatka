@@ -6,9 +6,11 @@ import LoginSignupModal from "@/components/common/login-signup-modal";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import useUser from "@/hooks/useUser";
 
 const DefaultHeader = () => {
   const [navbar, setNavbar] = useState(false);
+  const user = useUser();
 
   const changeBackground = () => {
     if (window.scrollY >= 10) {
@@ -21,16 +23,15 @@ const DefaultHeader = () => {
   useEffect(() => {
     window.addEventListener("scroll", changeBackground);
     return () => {
-           window.removeEventListener("scroll", changeBackground);
+      window.removeEventListener("scroll", changeBackground);
     };
   }, []);
 
   return (
     <>
       <header
-        className={`header-nav nav-homepage-style light-header menu-home4 main-menu ${
-          navbar ? "sticky slideInDown animated" : ""
-        }`}
+        className={`header-nav nav-homepage-style light-header menu-home4 main-menu ${navbar ? "sticky slideInDown animated" : ""
+          }`}
       >
         <nav className="posr">
           <div className="container posr menu_bdrt1">
@@ -65,7 +66,13 @@ const DefaultHeader = () => {
 
               <div className="col-auto">
                 <div className="d-flex align-items-center">
-                  <a
+                  {user ? <Link
+                    href={"/dashboard-home"}
+                    className="login-info d-flex align-items-center"
+                  >
+                    <i className="far fa-user-circle fz16 me-2" />{" "}
+                    <span className="d-none d-xl-block">{`Witaj ${user.username}`}</span>
+                  </Link> : <a
                     href="#"
                     className="login-info d-flex align-items-cente"
                     data-bs-toggle="modal"
@@ -75,6 +82,8 @@ const DefaultHeader = () => {
                     <i className="far fa-user-circle fz16 me-2" />{" "}
                     <span className="d-none d-xl-block">Logowanie / Rejestracja</span>
                   </a>
+                  }
+
                   <Link
                     className="ud-btn btn-white add-property bdrs60 mx-2 mx-xl-4"
                     href="/dashboard-add-property"

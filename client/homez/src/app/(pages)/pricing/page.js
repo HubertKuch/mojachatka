@@ -5,7 +5,7 @@ import MobileMenu from "@/components/common/mobile-menu";
 import Pricing from "@/components/pages/pricing/Pricing";
 
 export const metadata = {
-  title: "Pricing  || Homez - Real Estate NextJS Template",
+  title: "Cennik",
 };
 
 const PricingPlan = () => {
@@ -43,8 +43,7 @@ const PricingPlan = () => {
           <div className="row" data-aos="fade-up" data-aos-delay="100">
             <div className="col-lg-6 offset-lg-3">
               <div className="main-title text-center mb30">
-                <h2>Membership Plans</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                <h2>Pakiety</h2>
               </div>
             </div>
           </div>
