@@ -80,7 +80,8 @@ const ListingSidebar = ({ filters }) => {
                   aria-expanded="true"
                   aria-controls="collapseOne"
                 >
-                  <span className="flaticon-settings" /> Inne udogodnienia -- NIE DZIALA --
+                  <span className="flaticon-settings" /> Inne udogodnienia --
+                  NIE DZIALA --
                 </button>
               </h2>
               <div
@@ -101,7 +102,12 @@ const ListingSidebar = ({ filters }) => {
 
       <div className="widget-wrapper mb20">
         <div className="btn-area d-grid align-items-center">
-          <button className="ud-btn btn-thm" onClick={() => console.log(filters, toQuery.objectToQueryUri(filters))}  >
+          <button
+            className="ud-btn btn-thm"
+            onClick={() =>
+              console.log(filters, toQuery.objectToQueryUri(filters))
+            }
+          >
             <span className="flaticon-search align-text-top pr10" />
             Szukaj
           </button>
@@ -110,7 +116,11 @@ const ListingSidebar = ({ filters }) => {
       {/* End .widget-wrapper */}
 
       <div className="reset-area d-flex align-items-center justify-content-between">
-        <div onClick={() => filterFunctions.resetFilter()} className="reset-button cursor" href="#">
+        <div
+          onClick={() => filterFunctions.resetFilter()}
+          className="reset-button cursor"
+          href="#"
+        >
           <span className="flaticon-turn-back" />
           <u>Resetuj</u>
         </div>

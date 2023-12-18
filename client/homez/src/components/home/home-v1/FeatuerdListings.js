@@ -10,7 +10,9 @@ const FeaturedListings = () => {
   const firstThreeListings = listings.slice(0, 3);
   const remainingListings = listings.slice(3, 6);
   const listingsToShow = [...firstThreeListings, ...remainingListings];
-  {/*Powyżej są obiekty 1-3 oraz 4-6*/}
+  {
+    /*Powyżej są obiekty 1-3 oraz 4-6*/
+  }
   return (
     <div className="featured-listings">
       <div className="row">
@@ -41,7 +43,9 @@ const FeaturedListings = () => {
                 </div>
                 <div className="list-content">
                   <h6 className="list-title">
-                    <Link href={`/single-v1/${listing.id}`}>{listing.title}</Link>
+                    <Link href={`/single-v1/${listing.id}`}>
+                      {listing.title}
+                    </Link>
                   </h6>
                   <p className="list-text">{listing.location}</p>
                   <div className="list-meta d-flex align-items-center">

@@ -1,7 +1,6 @@
 import React from "react";
 
-const TopStateBlock = ({ user }) => {
-  console.log(user)
+const TopStateBlock = ({ user, stats }) => {
   const statisticsData = [
     {
       text: "Oferty",
@@ -10,7 +9,7 @@ const TopStateBlock = ({ user }) => {
     },
     {
       text: "Wyswietlen",
-      title: 0,
+      title: stats.views?.total || 0,
       icon: "flaticon-search-chart",
     },
     {

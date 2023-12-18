@@ -36,9 +36,7 @@ const Register = () => {
                     />
                   </Link>
                   <h2>Stwórz konto</h2>
-                  <p className="text">
-                    Zarejestruj się za pomocą formularza.
-                  </p>
+                  <p className="text">Zarejestruj się za pomocą formularza.</p>
                 </div>
                 <SignUp />
               </div>

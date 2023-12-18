@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 
-const PriceRange = ({filters}) => {
+const PriceRange = ({ filters }) => {
   const [price, setPrice] = useState({ value: { min: 20, max: 1000000 } });
 
   const handleOnChange = (value) => {
     setPrice({ value });
     filters.minPrice = value.min;
     filters.maxPrice = value.max;
- };
+  };
 
   return (
     <>
@@ -19,7 +19,7 @@ const PriceRange = ({filters}) => {
           formatLabel={() => ``}
           maxValue={1000000}
           minValue={0}
-          value={{min: price.value.min, max: price.value.max}}
+          value={{ min: price.value.min, max: price.value.max }}
           onChange={(value) => handleOnChange(value)}
           id="slider"
         />

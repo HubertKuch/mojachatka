@@ -169,7 +169,6 @@ const AddPropertyTabContent = () => {
               </div>
             </div>
           </div>
-
         </div>
       </form>
     </>

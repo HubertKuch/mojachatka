@@ -96,8 +96,7 @@ const DashboardHeader = () => {
                     data-bs-toggle="offcanvas"
                     data-bs-target="#SidebarPanel"
                     aria-controls="SidebarPanelLabel"
-                  >
-                  </a>
+                  ></a>
                 </div>
               </div>
               {/* End .col-auto */}

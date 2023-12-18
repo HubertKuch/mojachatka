@@ -28,9 +28,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white"
-              >
-                
-              </a>{" "}
+              ></a>{" "}
               - Wszelkie prawa zastrzeżone
             </p>
           </div>

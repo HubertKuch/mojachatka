@@ -17,10 +17,10 @@ const ReviewBoxForm = () => {
         backgroundColor: isSelected
           ? "#eb6753"
           : isHovered
-          ? "#eb675312"
-          : isFocused
-          ? "#eb675312"
-          : undefined,
+            ? "#eb675312"
+            : isFocused
+              ? "#eb675312"
+              : undefined,
       };
     },
   };

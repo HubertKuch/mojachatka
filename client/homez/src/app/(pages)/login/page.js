@@ -36,9 +36,7 @@ const Login = () => {
                     />
                   </Link>
                   <h2>Zaloguj się</h2>
-                  <p className="text">
-                    
-                  </p>
+                  <p className="text"></p>
                 </div>
                 <SignIn />
               </div>

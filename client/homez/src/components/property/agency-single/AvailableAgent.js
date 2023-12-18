@@ -10,7 +10,7 @@ const AvailableAgent = () => {
         <div className="col-sm-6 col-md-4" key={agent.id}>
           <div className="feature-style2 mb30">
             <div className="feature-img">
-              <Link  href={`/agent-single/${agent.id}`}>
+              <Link href={`/agent-single/${agent.id}`}>
                 <Image
                   width={210}
                   height={240}
@@ -22,7 +22,7 @@ const AvailableAgent = () => {
             </div>
             <div className="feature-content pt20">
               <h6 className="title mb-1">
-                <Link  href={`/agent-single/${agent.id}`}>{agent.name}</Link>
+                <Link href={`/agent-single/${agent.id}`}>{agent.name}</Link>
               </h6>
               <p className="text fz15">Broker</p>
             </div>

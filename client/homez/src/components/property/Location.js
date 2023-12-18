@@ -1,12 +1,12 @@
 "use client";
 import Select from "react-select";
 
-const Location = ({filterFunctions}) => {
+const Location = ({ filterFunctions }) => {
   const locationOptions = [
     { value: "All Cities", label: "All Cities" },
     { value: "California", label: "California" },
     { value: "Los Angeles", label: "Los Angeles" },
-   
+
     { value: "New York", label: "New York" },
     { value: "San Diego", label: "San Diego" },
     { value: "San Francisco", label: "San Francisco" },
@@ -20,10 +20,10 @@ const Location = ({filterFunctions}) => {
         backgroundColor: isSelected
           ? "#eb6753"
           : isHovered
-          ? "#eb675312"
-          : isFocused
-          ? "#eb675312"
-          : undefined,
+            ? "#eb675312"
+            : isFocused
+              ? "#eb675312"
+              : undefined,
       };
     },
   };
@@ -37,8 +37,11 @@ const Location = ({filterFunctions}) => {
       className="select-custom"
       classNamePrefix="select"
       required
-      value={{value:filterFunctions.location,label:filterFunctions.location}}
-      onChange={(e)=>filterFunctions?.handlelocation(e.value)}
+      value={{
+        value: filterFunctions.location,
+        label: filterFunctions.location,
+      }}
+      onChange={(e) => filterFunctions?.handlelocation(e.value)}
     />
   );
 };

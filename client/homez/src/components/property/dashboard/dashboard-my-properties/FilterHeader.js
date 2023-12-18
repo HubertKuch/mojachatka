@@ -23,8 +23,7 @@ const FilterHeader = () => {
           <span style={{ minWidth: "50px" }} className="title-color">
             Sort by:
           </span>
-          <select className="form-select show-tick">
-          </select>
+          <select className="form-select show-tick"></select>
         </div>
       </div>
     </div>

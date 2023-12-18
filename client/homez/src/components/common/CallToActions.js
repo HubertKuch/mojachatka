@@ -29,7 +29,9 @@ const CallToActions = () => {
           <div className="row align-items-center">
             <div className="col-lg-7 col-xl-6 " data-aos="fade-right">
               <div className="cta-style1">
-                <h2 className="cta-title">Potrzebujesz pomocy? Skontaktuj się z naszymi ekspertami.</h2>
+                <h2 className="cta-title">
+                  Potrzebujesz pomocy? Skontaktuj się z naszymi ekspertami.
+                </h2>
                 <p className="cta-text mb-0">
                   Napisz lub zadzwoń do naszych ekspertów.
                 </p>
@@ -39,10 +41,7 @@ const CallToActions = () => {
 
             <div className="col-lg-5 col-xl-6 " data-aos="fade-left">
               <div className="cta-btns-style1 d-block d-sm-flex align-items-center justify-content-lg-end">
-                <Link
-                  href="#"
-                  className="ud-btn btn-transparent mr30 mr0-xs"
-                >
+                <Link href="#" className="ud-btn btn-transparent mr30 mr0-xs">
                   Napisz do nas
                   <i className="fal fa-arrow-right-long" />
                 </Link>

@@ -1,5 +1,5 @@
-const { faker } = require('@faker-js/faker');
-const { Role } = require('@prisma/client');
+const { faker } = require("@faker-js/faker");
+const { Role } = require("@prisma/client");
 
 function createRandomUser() {
   return {
@@ -10,14 +10,16 @@ function createRandomUser() {
   };
 }
 
-function mockRequest({ data, params, query, } = {}, { randomUser, role = Role.USER } = {}) {
+function mockRequest(
+  { data, params, query } = {},
+  { randomUser, role = Role.USER } = {},
+) {
   return {
     data,
     params,
     query,
-    payload: randomUser ? { data: { ...createRandomUser(), role } } : undefined
-  }
+    payload: randomUser ? { data: { ...createRandomUser(), role } } : undefined,
+  };
 }
 
 module.exports = { mockRequest, createRandomUser };
-

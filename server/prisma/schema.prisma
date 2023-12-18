@@ -194,7 +194,7 @@ model Offers {
   description   String         @db.VarChar(10000)
   price         Int?
   pricePerMonth Int?
-  region Region?
+  region        Region?
   type          OfferType
   sellType      SellType
   lat           Float
@@ -204,7 +204,9 @@ model Offers {
   expires       DateTime
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
+  createdOnIp   String 
   OfferFeature  OfferFeature[]
+  OfferViews    OfferViews[]
 }
 
 model Feature {
@@ -228,4 +230,12 @@ model OfferBoosts {
   userBoost   UserBoosts @relation(fields: [userBoostId], references: [id], onDelete: Cascade)
   userBoostId String
   properties  Json // { }
+}
+
+model OfferViews {
+  id      String   @id @unique @default(uuid())
+  at      DateTime @default(now())
+  by      String
+  offer   Offers   @relation(fields: [offerId], references: [id])
+  offerId String
 }

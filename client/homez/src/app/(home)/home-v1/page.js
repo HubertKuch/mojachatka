@@ -63,10 +63,10 @@ const Home_V1 = () => {
           <div className="row align-items-center" data-aos="fade-up">
             <div className="col-lg-9">
               <div className="main-title2">
-                <h1 className="title text-white">Odkryj nasze wyróżnione oferty</h1>
-                <p className="paragraph">
-
-                </p>
+                <h1 className="title text-white">
+                  Odkryj nasze wyróżnione oferty
+                </h1>
+                <p className="paragraph"></p>
               </div>
             </div>
             <div className="col-lg-3">
@@ -91,7 +91,6 @@ const Home_V1 = () => {
       </section>
       {/* End Featured Listings */}
 
-
       {/* Explore Apartment */}
       <section id="explore-property" className="pb90 pb30-md">
         <div className="container">
@@ -103,9 +102,7 @@ const Home_V1 = () => {
                 data-aos-delay="300"
               >
                 <h2 className="title">Przeglądaj różne rodzaje ogłoszeń</h2>
-                <p className="paragraph">
-                  Wybieraj sposród wielu kategorii
-                </p>
+                <p className="paragraph">Wybieraj sposród wielu kategorii</p>
               </div>
             </div>
             {/* End header */}
@@ -163,7 +160,8 @@ const Home_V1 = () => {
               <div className="main-title text-center">
                 <h2 className="title">Zobacz jak możemy Ci pomóc</h2>
                 <p className="paragraph">
-                  Nasza strona ma na celu pomoc przy sprzedaży lub zakupie nieruchomości
+                  Nasza strona ma na celu pomoc przy sprzedaży lub zakupie
+                  nieruchomości
                 </p>
               </div>
             </div>
@@ -177,7 +175,6 @@ const Home_V1 = () => {
       </section>
       {/* End Explore Apartment */}
 
-
       {/* Explore property-city */}
       <section className="pb40-md pb90">
         <div className="container">
@@ -188,9 +185,12 @@ const Home_V1 = () => {
           >
             <div className="col-lg-9">
               <div className="main-title2">
-                <h1 className="title">Nieruchomości w wybranych miejscowościach</h1>
+                <h1 className="title">
+                  Nieruchomości w wybranych miejscowościach
+                </h1>
                 <p className="paragraph">
-                  Przenieś się do wybranej miejscowości za pomocą jednego kliknięcia
+                  Przenieś się do wybranej miejscowości za pomocą jednego
+                  kliknięcia
                 </p>
               </div>
             </div>

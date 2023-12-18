@@ -35,10 +35,10 @@ const AdvanceFilterModal = () => {
         backgroundColor: isSelected
           ? "#eb6753"
           : isHovered
-          ? "#eb675312"
-          : isFocused
-          ? "#eb675312"
-          : undefined,
+            ? "#eb675312"
+            : isFocused
+              ? "#eb675312"
+              : undefined,
       };
     },
   };
@@ -194,7 +194,12 @@ const AdvanceFilterModal = () => {
             <u>Zresetuj wszystkie filtry</u>
           </button>
           <div className="btn-area">
-            <button data-bs-dismiss="modal" type="submit" className="ud-btn btn-thm" onClick={() => router.push("/map-v1")} >
+            <button
+              data-bs-dismiss="modal"
+              type="submit"
+              className="ud-btn btn-thm"
+              onClick={() => router.push("/map-v1")}
+            >
               <span className="flaticon-search align-text-top pr10" />
               Szukaj
             </button>

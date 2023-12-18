@@ -16,7 +16,7 @@ export const metadata = {
   title: "Blog Single  || Homez - Real Estate NextJS Template",
 };
 
-const BlogSingle = ({params}) => {
+const BlogSingle = ({ params }) => {
   return (
     <>
       {/* Main Header Nav */}
@@ -29,10 +29,7 @@ const BlogSingle = ({params}) => {
 
       {/* Blog Section Area */}
       <section className="our-blog pt50">
-
-        <Details  id={params.id} />
-       
-
+        <Details id={params.id} />
 
         <div className="container">
           <div className="roww" data-aos="fade-up" data-aos-delay="500">

@@ -1,13 +1,10 @@
-'use client'
-
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-
-
-const AllAgents = ({data}) => {
+const AllAgents = ({ data }) => {
   return (
     <>
       {data.map((agent) => (
@@ -31,7 +28,10 @@ const AllAgents = ({data}) => {
               <h6 className="agency-title mb-1">{agent.agencyTitle}</h6>
               <p className="fz15">{agent.address}</p>
               <div className="d-grid">
-                <Link href={`/agency-single/${agent.id}`} className="ud-btn btn-white2">
+                <Link
+                  href={`/agency-single/${agent.id}`}
+                  className="ud-btn btn-white2"
+                >
                   View Listings
                   <i className="fal fa-arrow-right-long" />
                 </Link>

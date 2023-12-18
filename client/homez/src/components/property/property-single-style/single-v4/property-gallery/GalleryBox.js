@@ -5,12 +5,12 @@ import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 
-const GalleryBox = ({id}) => {
+const GalleryBox = ({ id }) => {
   const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
   const imageUrls = [
     "/images/listings/listing-single-slide1.jpg",
     "/images/listings/listing-single-slide2.jpg",
-    
+
     "/images/listings/listing-single-slide3.jpg",
   ];
 

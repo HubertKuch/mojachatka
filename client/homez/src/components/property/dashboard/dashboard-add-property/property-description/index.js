@@ -4,7 +4,6 @@ import usePropertyTypes from "@/hooks/usePropertyType";
 import Select from "react-select";
 import { useState } from "react";
 
-
 const PropertyDescription = () => {
   const sellTypes = useSellType();
   const propertyTypes = usePropertyTypes();
@@ -43,9 +42,7 @@ const PropertyDescription = () => {
       <div className="row">
         <div className="col-sm-12">
           <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Opis
-            </label>
+            <label className="heading-color ff-heading fw600 mb10">Opis</label>
             <textarea
               name="description"
               cols={30}
@@ -57,7 +54,6 @@ const PropertyDescription = () => {
         </div>
       </div>
       <div className="row">
-
         <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
@@ -65,7 +61,10 @@ const PropertyDescription = () => {
             </label>
             <div className="location-area">
               <Select
-                styles={{ menu: prov => ({ ...prov, zIndex: 99999999 }), menuList: prov => ({ ...prov, zIndex: 99999999 }) }}
+                styles={{
+                  menu: (prov) => ({ ...prov, zIndex: 99999999 }),
+                  menuList: (prov) => ({ ...prov, zIndex: 99999999 }),
+                }}
                 defaultValue={[propertyTypes[1]]}
                 name="type"
                 menuPosition="fixed"
@@ -81,7 +80,9 @@ const PropertyDescription = () => {
       <div className="row">
         <div className="col-sm-6 col-xl-4">
           <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">Rodzaj sprzedazy</label>
+            <label className="heading-color ff-heading fw600 mb10">
+              Rodzaj sprzedazy
+            </label>
             <div className="location-area">
               <Select
                 defaultValue={sellTypes[0]}
@@ -100,16 +101,20 @@ const PropertyDescription = () => {
       <div className="row">
         <div className="col-sm-6 col-xl-4">
           <div className="mb30">
-            {rentType === "BUY" ? <><label className="heading-color ff-heading fw600 mb10">
-              Cena
-            </label>
-              <input
-                type="text"
-                name="price"
-                required
-                className="form-control"
-                placeholder="400 000"
-              /> </> :
+            {rentType === "BUY" ? (
+              <>
+                <label className="heading-color ff-heading fw600 mb10">
+                  Cena
+                </label>
+                <input
+                  type="text"
+                  name="price"
+                  required
+                  className="form-control"
+                  placeholder="400 000"
+                />{" "}
+              </>
+            ) : (
               <>
                 <label className="heading-color ff-heading fw600 mb10">
                   Cena najmu
@@ -121,7 +126,8 @@ const PropertyDescription = () => {
                   placeholder="3500"
                   required
                 />
-              </>}
+              </>
+            )}
           </div>
         </div>
       </div>

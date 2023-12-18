@@ -37,7 +37,7 @@ const MainMenu = () => {
           setTopMenu("property");
           setSubmenu(item.label);
         }
-      })
+      }),
     );
     listingItems.forEach((item) =>
       item.submenu.forEach((elm) => {
@@ -45,7 +45,7 @@ const MainMenu = () => {
           setTopMenu("listing");
           setSubmenu(item.title);
         }
-      })
+      }),
     );
   }, [pathname]);
 
@@ -74,7 +74,6 @@ const MainMenu = () => {
           </span>
           <span className=""></span>
         </a>
-        
       </li>
       {/* End listings */}
 
@@ -87,10 +86,8 @@ const MainMenu = () => {
           </span>
           <span className=""></span>
         </a>
-        
       </li>
       {/* End property Items */}
-
 
       {/* End blog Items */}
 

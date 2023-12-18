@@ -1,13 +1,13 @@
-const { db } = require('../utils/db');
+const { db } = require("../utils/db");
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET);
+const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
 async function initPayment({ amount, description }) {
   const charge = await stripe.paymentIntents.create({
     amount,
-    currency: 'pln',
+    currency: "pln",
     description,
-    payment_method_types: ["card"]
+    payment_method_types: ["card"],
   });
 
   return charge;
@@ -16,7 +16,7 @@ async function initPayment({ amount, description }) {
 async function getOpenCheckoutSessions() {
   return await stripe.checkout.sessions.list({
     limit: 100,
-    status: 'open'
+    status: "open",
   });
 }
 
@@ -26,15 +26,16 @@ async function initCheckoutSession({ name, amount }) {
     line_items: [
       {
         price_data: {
-          currency: 'pln',
+          currency: "pln",
           product_data: {
             name,
           },
-          unit_amount: amount
-        }, quantity: 1
+          unit_amount: amount,
+        },
+        quantity: 1,
       },
     ],
-    mode: 'payment',
+    mode: "payment",
   });
 
   return session;
@@ -52,5 +53,11 @@ async function getAllNotResolvedPayments() {
   return await db.payment.findMany({ where: { resolved: false } });
 }
 
-module.exports = { initPayment, getAllNotResolvedPayments, getPaymentLinkById, initCheckoutSession, getOpenCheckoutSessions, retrieveCheckout };
-
+module.exports = {
+  initPayment,
+  getAllNotResolvedPayments,
+  getPaymentLinkById,
+  initCheckoutSession,
+  getOpenCheckoutSessions,
+  retrieveCheckout,
+};

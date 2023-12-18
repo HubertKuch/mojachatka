@@ -1,4 +1,4 @@
-const EventEmitter = require('node:events');
+const EventEmitter = require("node:events");
 
 class PaymentsEventEmitter extends EventEmitter {
   static #instance = null;
@@ -16,4 +16,3 @@ class PaymentsEventEmitter extends EventEmitter {
 }
 
 module.exports = { PaymentsEventEmitter };
-

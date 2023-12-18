@@ -15,4 +15,3 @@ class MockResponse {
 }
 
 module.exports = { MockResponse };
-

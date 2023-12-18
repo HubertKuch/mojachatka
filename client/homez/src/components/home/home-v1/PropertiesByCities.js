@@ -47,14 +47,14 @@ const PropertiesByCities = () => {
                     alt="cities"
                   />
                 </div>
-              <Link href="#">
-                <div className="feature-content">
-                  <div className="top-area">
-                    <h6 className="title mb-1">{city.name}</h6>
-                    <p className="text">{city.propertyCount} nieruchomości</p>
+                <Link href="#">
+                  <div className="feature-content">
+                    <div className="top-area">
+                      <h6 className="title mb-1">{city.name}</h6>
+                      <p className="text">{city.propertyCount} nieruchomości</p>
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
               </div>
             </div>
           </SwiperSlide>

@@ -4,8 +4,6 @@ import Link from "next/link";
 import React from "react";
 
 const LatestPost = () => {
-  
-
   return (
     <div className="sidebar-widget mb30">
       <h6 className="widget-title">Latest Posts</h6>
@@ -22,7 +20,7 @@ const LatestPost = () => {
               <Link href={`/blogs/${post.id}`}>{post.content}</Link>
             </p>
             <a className="body-light-color" href="#">
-              {post.date.day}{' '}{post.date.month}, {' '}{post.date.year}
+              {post.date.day} {post.date.month}, {post.date.year}
             </a>
           </div>
         </div>

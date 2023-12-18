@@ -1,23 +1,36 @@
-const { UserType } = require('@prisma/client');
-const { buyPacket, getPackets, getUserAccountPackets } = require('../../services/packets');
-const { db } = require('../../utils/db');
-const getOrThrow = require('../../utils/getOrThrow');
-const APIError = require('../../errors/APIError');
-const AccountPacketsService = require('../../services/AccountPacketsService');
+const { UserType } = require("@prisma/client");
+const {
+  buyPacket,
+  getPackets,
+  getUserAccountPackets,
+} = require("../../services/packets");
+const { db } = require("../../utils/db");
+const getOrThrow = require("../../utils/getOrThrow");
+const APIError = require("../../errors/APIError");
+const AccountPacketsService = require("../../services/AccountPacketsService");
 
 class AccountPacketsController {
   static async buyPacket(req, res) {
-    const packetId = getOrThrow(req.body.packetId, new Error("Field: `packetId` is required"));
+    const packetId = getOrThrow(
+      req.body.packetId,
+      new Error("Field: `packetId` is required"),
+    );
     const user = req.payload.data;
 
-    const packet = await db.accountPackets.findUnique({ where: { id: packetId } });
+    const packet = await db.accountPackets.findUnique({
+      where: { id: packetId },
+    });
 
     if (!packet || !packet.properties.allowedFor.includes(user.type)) {
-      return res.status(400).json({ message: "Invalid packet data for that user or invalid packet id" });
+      return res
+        .status(400)
+        .json({
+          message: "Invalid packet data for that user or invalid packet id",
+        });
     }
 
     try {
-      const boughtPacket = await buyPacket({ user, packetId })
+      const boughtPacket = await buyPacket({ user, packetId });
 
       res.status(201).json(boughtPacket);
     } catch (err) {
@@ -49,4 +62,3 @@ class AccountPacketsController {
 }
 
 module.exports = AccountPacketsController;
-

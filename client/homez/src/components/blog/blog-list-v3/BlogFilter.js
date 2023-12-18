@@ -5,8 +5,6 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 const BlogFilter = () => {
-  
-
   const [filteredBlogs, setFilteredBlogs] = useState(blogsThree);
   const [activeCategory, setActiveCategory] = useState("All");
 

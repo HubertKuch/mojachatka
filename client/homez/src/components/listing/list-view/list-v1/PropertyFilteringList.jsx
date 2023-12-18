@@ -9,18 +9,18 @@ import PaginationTwo from "../../PaginationTwo";
 export default function PropertyFilteringList() {
   const [pageNumber, setPageNumber] = useState(1);
   const [pageCapacity, setPageCapacity] = useState(1);
-  const [pageItems, setPageItems] = useState([])
+  const [pageItems, setPageItems] = useState([]);
   const [filters, setFilters] = useState({
-    offerTypes: []
+    offerTypes: [],
   });
 
   useEffect(() => {
     return () => {
-      OffersControllers.findAll(filters).then(res => {
+      OffersControllers.findAll(filters).then((res) => {
         setPageItems(res.offers.data);
-        setPageCapacity(res.offers.meta.perPage)
+        setPageCapacity(res.offers.meta.perPage);
       });
-    }
+    };
   }, [pageNumber]);
 
   return (

@@ -43,7 +43,7 @@ const images = [
   },
 ];
 
-const PropertyGallery = ({id}) => {
+const PropertyGallery = ({ id }) => {
   const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
   return (
     <>
@@ -52,14 +52,14 @@ const PropertyGallery = ({id}) => {
           <div className="sp-img-content mb15-lg">
             <div className="popup-img preview-img-1 sp-v3 sp-img">
               <Item
-                original={'/images/listings/listing-single-9.jpg'}
-                thumbnail={'/images/listings/listing-single-9.jpg'}
+                original={"/images/listings/listing-single-9.jpg"}
+                thumbnail={"/images/listings/listing-single-9.jpg"}
                 width={610}
                 height={507}
               >
                 {({ ref, open }) => (
                   <Image
-                    src={'/images/listings/listing-single-9.jpg'}
+                    src={"/images/listings/listing-single-9.jpg"}
                     width={610}
                     height={507}
                     ref={ref}

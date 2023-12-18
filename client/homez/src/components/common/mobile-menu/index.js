@@ -75,9 +75,7 @@ const MobileMenu = () => {
                 {/* End .row */}
 
                 <div className="row pt30 pb30 bdrt1">
-                  <div className="col-auto">
-                    
-                  </div>
+                  <div className="col-auto"></div>
                 </div>
               </div>
               {/* hiddenbar_footer */}

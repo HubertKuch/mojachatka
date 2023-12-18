@@ -27,18 +27,22 @@ const FeaturedListings = ({ data, colstyle }) => {
                 src={listing.properties.images[0]}
                 alt="listings"
               />
-              {listing.isBoosted ? <div className="sale-sticker-wrap">
-                {!listing.forRent && (
-                  <div className="list-tag fz12">
-                    <span className="flaticon-electricity me-2" />
-                    FEATURED
-                  </div>
-                )}
-              </div>
-                : null
-              }
+              {listing.isBoosted ? (
+                <div className="sale-sticker-wrap">
+                  {!listing.forRent && (
+                    <div className="list-tag fz12">
+                      <span className="flaticon-electricity me-2" />
+                      FEATURED
+                    </div>
+                  )}
+                </div>
+              ) : null}
               <div className="list-price">
-                {listing.price ? <span>{listing.price}PLN </span> : <span>${listing.pricePerMonth}PLN mo </span>}
+                {listing.price ? (
+                  <span>{listing.price}PLN </span>
+                ) : (
+                  <span>${listing.pricePerMonth}PLN mo </span>
+                )}
               </div>
             </div>
             <div className="list-content">
@@ -57,9 +61,7 @@ const FeaturedListings = ({ data, colstyle }) => {
                   <span className="flaticon-expand" /> {listing.sqft} sqft
                 </a>
               </div>
-              <p className="list-text2">
-                {listing.description}
-              </p>
+              <p className="list-text2">{listing.description}</p>
               <hr className="mt-2 mb-2" />
               <div className="list-meta2 d-flex justify-content-between align-items-center">
                 <span className="for-what">{listing.sellType}</span>

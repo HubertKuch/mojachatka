@@ -10,14 +10,14 @@ instance.on(process.env.EVENT_PAYMENT_SUCCESS, async (payment) => {
   const packet = await db.accountPacketPayment.findFirst({
     where: {
       payment: {
-        id: payment.id
-      }
+        id: payment.id,
+      },
     },
     include: {
       payment: true,
       user: true,
-      packet: true
-    }
+      packet: true,
+    },
   });
 
   if (packet) {
@@ -30,8 +30,8 @@ instance.on(process.env.EVENT_PAYMENT_SUCCESS, async (payment) => {
         price: packet.packet.price,
         properties: packet.packet.properties,
         boughtAt: packet.payment.resolvedAt,
-        userId: relatedUser.id
-      }
+        userId: relatedUser.id,
+      },
     });
 
     if (snap.properties.boosts) {
@@ -40,18 +40,23 @@ instance.on(process.env.EVENT_PAYMENT_SUCCESS, async (payment) => {
           data: {
             userId: relatedUser.id,
             properties: { ...boost, used: false },
-          }
+          },
         });
       }
     }
 
     if (snap.properties.listings) {
-      await db.user.update({ where: { id: relatedUser.id }, data: { listings: { increment: snap.properties.listings } } });
+      await db.user.update({
+        where: { id: relatedUser.id },
+        data: { listings: { increment: snap.properties.listings } },
+      });
     }
 
     if (snap.properties.bids) {
-      await db.user.update({ where: { id: relatedUser.id }, data: { bids: { increment: snap.properties.bids } } });
+      await db.user.update({
+        where: { id: relatedUser.id },
+        data: { bids: { increment: snap.properties.bids } },
+      });
     }
   }
 });
-

@@ -8,25 +8,26 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [err, setErr] = useState("");
-  const setUser = useStore(s => s.setUser);
+  const setUser = useStore((s) => s.setUser);
 
   return (
-    <form className="form-style1" onSubmit={async (ev) => {
-      ev.preventDefault();
+    <form
+      className="form-style1"
+      onSubmit={async (ev) => {
+        ev.preventDefault();
 
-      const res = await AuthController.login(email, pass);
+        const res = await AuthController.login(email, pass);
 
-      if (!res.success) {
-        return setErr(res.message);
-      }
+        if (!res.success) {
+          return setErr(res.message);
+        }
 
-      setUser((await AuthController.getProfile()).user);
+        setUser((await AuthController.getProfile()).user);
 
-      window.location.replace("/")
-    }}>
-      <div className="error">
-        {err}
-      </div>
+        window.location.replace("/");
+      }}
+    >
+      <div className="error">{err}</div>
       <div className="mb25">
         <label className="form-label fw600 dark-color">Email</label>
         <input

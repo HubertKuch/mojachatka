@@ -43,7 +43,12 @@ const UploadPhotoGallery = () => {
         onDrop={handleDrop}
         onDragOver={handleDragOver}
       >
-        <textarea data-property name="images" hidden value={JSON.stringify(uploadedImages)}></textarea>
+        <textarea
+          data-property
+          name="images"
+          hidden
+          value={JSON.stringify(uploadedImages)}
+        ></textarea>
         <div className="icon mb30">
           <span className="flaticon-upload" />
         </div>

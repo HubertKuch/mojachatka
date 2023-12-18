@@ -1,5 +1,4 @@
-
-'use client'
+"use client";
 
 import React from "react";
 
@@ -10,7 +9,7 @@ const SearchBox = ({ filters }) => {
         type="text"
         className="form-control"
         placeholder="Czego szukasz?"
-        onChange={(e) => filters.search = e.target.value}
+        onChange={(e) => (filters.search = e.target.value)}
       />
       <label>
         <span className="flaticon-search" />

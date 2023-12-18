@@ -1,7 +1,7 @@
 import listings from "@/data/listings";
 import React from "react";
 
-const PropertyDetails = ({id}) => {
+const PropertyDetails = ({ id }) => {
   const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
   const columns = [
     [
@@ -11,7 +11,7 @@ const PropertyDetails = ({id}) => {
       },
       {
         label: "Price",
-        value:data.price,
+        value: data.price,
       },
       {
         label: "Property Size",
@@ -45,7 +45,7 @@ const PropertyDetails = ({id}) => {
       },
       {
         label: "Property Status",
-        value: `For ${data.forRent ? 'rent':'sale'}`,
+        value: `For ${data.forRent ? "rent" : "sale"}`,
       },
     ],
   ];

@@ -1,7 +1,7 @@
 const { PrismockClient } = require("prismock");
 const client = new PrismockClient();
-const { faker } = require('@faker-js/faker');
-// MAN MAIN 
+const { faker } = require("@faker-js/faker");
+// MAN MAIN
 (async () => {
   for (let i = 0; i <= 100; i++) {
     const user = await client.user.create({
@@ -11,8 +11,8 @@ const { faker } = require('@faker-js/faker');
         username: faker.internet.userName(),
         password: faker.internet.password(),
         listings: faker.number.int(1, 20),
-        phoneNumber: faker.phone.number()
-      }
+        phoneNumber: faker.phone.number(),
+      },
     });
 
     for (let i = 0; i <= faker.number.int({ min: 1, max: 20 }); i++) {
@@ -26,13 +26,11 @@ const { faker } = require('@faker-js/faker');
           title: faker.lorem.words({ min: 4, max: 12 }),
           properties: {},
           User: user,
-          author: user.id
-        }
-      })
+          author: user.id,
+        },
+      });
     }
-
   }
 })();
 
 module.exports = client;
-

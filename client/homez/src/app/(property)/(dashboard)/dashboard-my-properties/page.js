@@ -16,7 +16,7 @@ const DashboardMyProperties = () => {
 
   const handleNewPage = (page) => {
     setCurrPage(page);
-  }
+  };
 
   return (
     <>
@@ -60,7 +60,10 @@ const DashboardMyProperties = () => {
                 <div className="col-xl-12">
                   <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
                     <div className="packages_table table-responsive">
-                      <PropertyDataTable currPage={currPage} setMeta={setMeta} />
+                      <PropertyDataTable
+                        currPage={currPage}
+                        setMeta={setMeta}
+                      />
 
                       <div className="mt30">
                         <Pagination {...meta} onPageChange={handleNewPage} />

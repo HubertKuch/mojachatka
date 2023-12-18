@@ -1,8 +1,7 @@
 import listings from "@/data/listings";
 import React from "react";
 
-
-const OverView = ({id}) => {
+const OverView = ({ id }) => {
   const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
   const overviewData = [
     {
@@ -35,7 +34,7 @@ const OverView = ({id}) => {
       label: "Property Type",
       value: data.propertyType,
     },
-  ]  
+  ];
   return (
     <>
       {overviewData.map((item, index) => (

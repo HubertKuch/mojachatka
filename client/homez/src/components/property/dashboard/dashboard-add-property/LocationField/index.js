@@ -22,7 +22,7 @@ const LocationField = () => {
                 placeholder="Warszawa"
               />
             </label>
-            {'  '}
+            {"  "}
             <label className="heading-color ff-heading fw600 mb10">
               Adres
               <input
@@ -40,39 +40,47 @@ const LocationField = () => {
               Dom
               <input
                 name="houseNumber"
-                data-property type="text"
+                data-property
+                type="text"
                 className="form-control"
                 placeholder="1"
               />
-            </label>
-            {' '}
+            </label>{" "}
             <label className="heading-color ff-heading fw600 mb10">
               Mieszkanie
               <input
                 type="text"
                 name="localNumber"
-                data-property className="form-control"
+                data-property
+                className="form-control"
                 placeholder="4"
               />
             </label>
-
           </div>
 
           <label className="mb-4">
             <input
               type="checkbox"
-              data-property name="publicAddress"
+              data-property
+              name="publicAddress"
               placeholder="Your Name"
-            />
-            {' '}
+            />{" "}
             Adres widoczny dla wszystkich
           </label>
         </div>
 
         <div className="col-sm-6 col-xl-4">
           <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">Kod pocztowy</label>
-            <input data-property type="text" name="zipCode" placeholder="84-300" className="form-control" />
+            <label className="heading-color ff-heading fw600 mb10">
+              Kod pocztowy
+            </label>
+            <input
+              data-property
+              type="text"
+              name="zipCode"
+              placeholder="84-300"
+              className="form-control"
+            />
           </div>
         </div>
 
@@ -85,7 +93,10 @@ const LocationField = () => {
               <Select
                 defaultValue={[regions[1]]}
                 name="region"
-                styles={{ menu: prov => ({ ...prov, zIndex: 99999999 }), menuList: prov => ({ ...prov, zIndex: 99999999 }) }}
+                styles={{
+                  menu: (prov) => ({ ...prov, zIndex: 99999999 }),
+                  menuList: (prov) => ({ ...prov, zIndex: 99999999 }),
+                }}
                 options={regions}
                 className="select-custom pl-0"
                 menuPosition="fixed"

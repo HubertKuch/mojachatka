@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React from "react";
 import Location from "./Location";
@@ -6,14 +6,12 @@ import Location from "./Location";
 const propertyTypes = [
   { label: "Houses" },
 
-  { label: "Apartments",},
+  { label: "Apartments" },
   { label: "Office" },
   { label: "Villa" },
 ];
 
-
-
-const TopFilter = ({filterFunctions}) => {
+const TopFilter = ({ filterFunctions }) => {
   return (
     <>
       <div className="col-md-9">
@@ -24,7 +22,7 @@ const TopFilter = ({filterFunctions}) => {
                 type="text"
                 className="form-control"
                 placeholder="Enter agent name"
-                onChange={(e)=>filterFunctions.setSearchQuery(e.target.value)}
+                onChange={(e) => filterFunctions.setSearchQuery(e.target.value)}
               />
             </div>
             {/* End searchbox */}
@@ -41,24 +39,31 @@ const TopFilter = ({filterFunctions}) => {
               <div className="dropdown-menu">
                 <div className="widget-wrapper bdrb1 pb25 mb0 pl20">
                   <div className="checkbox-style1">
-                                          <label className="custom_checkbox">
-                        All
-                      <input type="checkbox" 
-                      checked={!filterFunctions?.propertyTypes.length}
-                      onChange={(e=>{filterFunctions?.setPropertyTypes([])})}/>
+                    <label className="custom_checkbox">
+                      All
+                      <input
+                        type="checkbox"
+                        checked={!filterFunctions?.propertyTypes.length}
+                        onChange={(e) => {
+                          filterFunctions?.setPropertyTypes([]);
+                        }}
+                      />
                       <span className="checkmark" />
                     </label>
                     {propertyTypes.map((property, index) => (
-                      <label className="custom_checkbox" key={index} >
-                      {property.label}
-                      <input type="checkbox"
-                      checked={filterFunctions?.propertyTypes.includes(property.label)}
-                      onChange={(e=>{filterFunctions.handlepropertyTypes(property.label)})}
-                       />
-                      <span className="checkmark" />
-                    </label>
-
-                      
+                      <label className="custom_checkbox" key={index}>
+                        {property.label}
+                        <input
+                          type="checkbox"
+                          checked={filterFunctions?.propertyTypes.includes(
+                            property.label,
+                          )}
+                          onChange={(e) => {
+                            filterFunctions.handlepropertyTypes(property.label);
+                          }}
+                        />
+                        <span className="checkmark" />
+                      </label>
                     ))}
                   </div>
                 </div>

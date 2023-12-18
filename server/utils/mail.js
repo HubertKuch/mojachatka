@@ -1,91 +1,88 @@
-const { db } = require('../utils/db')
-const nodemailer = require('nodemailer')
+const { db } = require("../utils/db");
+const nodemailer = require("nodemailer");
 
-async function sendMail (email) {
+async function sendMail(email) {
+  function addMinutes(date, minutes) {
+    const dateCopy = new Date(date);
+    dateCopy.setMinutes(date.getMinutes() + minutes);
+    return dateCopy;
+  }
 
-    function addMinutes(date, minutes) {
-        const dateCopy = new Date(date);
-        dateCopy.setMinutes(date.getMinutes() + minutes);
-        return dateCopy;
+  const code = Math.floor(100000 + Math.random() * 900000);
+  const date = new Date();
+  const expires = addMinutes(date, 5);
+
+  await db.verification.create({
+    data: {
+      email: email,
+      code: code,
+      expires: expires,
+    },
+  });
+
+  const transporter = nodemailer.createTransport({
+    port: 465, // true for 465, false for other ports
+    host: "smtp.gmail.com",
+    auth: {
+      user: process.env.MAIL_EMAIL,
+      pass: process.env.MAIL_PASSWORD,
+    },
+    secure: true,
+  });
+
+  const mailOptions = {
+    from: process.env.MAIL_EMAIL,
+    to: email,
+    subject: `[${process.env.APP_NAME}] Please verify your email.`,
+    html: emailTemplate({ email, code }),
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
     }
-
-    const code = Math.floor(100000 + Math.random() * 900000)
-    const date = new Date();
-    const expires = addMinutes(date, 5);
-
-    await db.verification.create({
-        data: {
-            email: email,
-            code: code,
-            expires: expires
-        }
-    })
-
-    const transporter = nodemailer.createTransport({
-        port: 465,               // true for 465, false for other ports
-        host: "smtp.gmail.com",
-           auth: {
-                user: process.env.MAIL_EMAIL,
-                pass: process.env.MAIL_PASSWORD,
-             },
-        secure: true,
-        })
-
-        const mailOptions = {
-            from: process.env.MAIL_EMAIL,
-            to: email,
-            subject: `[${process.env.APP_NAME}] Please verify your email.`,
-            html: emailTemplate({email, code})
-          }
-
-        transporter.sendMail(mailOptions, function(error, info){
-            if (error) {
-                console.log(error);
-            } else {
-                console.log('Email sent: ' + info.response);
-            }
-        });
+  });
 }
 
-async function verifyEmailCode ({email, code}) {
-   
-    const codeFound = await db.verification.findFirstOrThrow({
-        where: {
-            code: parseInt(code)
-        }
-    })
-
-   if (codeFound === "NotFoundError: No User found error") {
-        return false
-   }
-
-   const currentDate = new Date()
-
-      if (currentDate > codeFound.expires) {
-            return false
-      }
-
-   await db.user.update({
+async function verifyEmailCode({ email, code }) {
+  const codeFound = await db.verification.findFirstOrThrow({
     where: {
-        email: email
+      code: parseInt(code),
+    },
+  });
+
+  if (codeFound === "NotFoundError: No User found error") {
+    return false;
+  }
+
+  const currentDate = new Date();
+
+  if (currentDate > codeFound.expires) {
+    return false;
+  }
+
+  await db.user.update({
+    where: {
+      email: email,
     },
     data: {
-        activated: true
-    }
-   })
-   
-   await db.verification.deleteMany({
-        where: { 
-            email: email 
-        },
-    })
+      activated: true,
+    },
+  });
 
-   return true
+  await db.verification.deleteMany({
+    where: {
+      email: email,
+    },
+  });
 
+  return true;
 }
 
-function emailTemplate ({email, code}) {
-    return `
+function emailTemplate({ email, code }) {
+  return `
         <html>
         <head>
 
@@ -303,7 +300,7 @@ function emailTemplate ({email, code}) {
 
         </body>
         </html>
-    `
+    `;
 }
 
-module.exports = { sendMail, verifyEmailCode }
+module.exports = { sendMail, verifyEmailCode };

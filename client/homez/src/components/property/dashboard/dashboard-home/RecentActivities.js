@@ -56,7 +56,7 @@ const RecentActivities = () => {
                   {part}
                   <span className="fw600">{activity.highlight}</span>
                 </>
-              )
+              ),
             )}
           </p>
         </div>

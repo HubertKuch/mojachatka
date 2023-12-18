@@ -5,7 +5,7 @@ import Image from "next/image";
 import React from "react";
 
 const Pricing = () => {
-  const user = useStore(s => s.user);
+  const user = useStore((s) => s.user);
   const packets = useAccountPackets(user.type);
 
   return (
@@ -43,7 +43,8 @@ const Pricing = () => {
                     {item.properties.boosts.map((boost, featureIndex) => (
                       <li key={featureIndex}>
                         <i className="far fa-check text-white bgc-dark fz15" />
-                        Podbicie na {boost.days} dni  {boost.type === "MAIN" ? "na strone glowna" : ""}
+                        Podbicie na {boost.days} dni{" "}
+                        {boost.type === "MAIN" ? "na strone glowna" : ""}
                       </li>
                     ))}
                   </ul>

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-const HeroContent = ({filterFunctions}) => {
+const HeroContent = ({ filterFunctions }) => {
   const [activeTab, setActiveTab] = useState("buy");
 
   const handleTabClick = (tab) => {
@@ -46,7 +46,10 @@ const HeroContent = ({filterFunctions}) => {
                           className="form-control bgc-f7 bdrs12"
                           type="text"
                           name="search"
-                          onChange={(e)=>filterFunctions && filterFunctions.setSearchQuery(e.target.value)}
+                          onChange={(e) =>
+                            filterFunctions &&
+                            filterFunctions.setSearchQuery(e.target.value)
+                          }
                           placeholder={`Enter an address, neighborhood, city, or ZIP code for ${tab.label}`}
                         />
                       </div>

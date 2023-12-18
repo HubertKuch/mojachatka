@@ -199,7 +199,7 @@ export default function ListingMap1() {
   });
   const center = useMemo(
     () => ({ lat: 27.411201277163975, lng: -96.12394824867293 }),
-    []
+    [],
   );
 
   // add long & lat

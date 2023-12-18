@@ -7,10 +7,12 @@ import Footer from "@/components/property/dashboard/Footer";
 import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import TopStateBlock from "@/components/property/dashboard/dashboard-home/TopStateBlock";
 import PropertyViews from "@/components/property/dashboard/dashboard-home/property-view";
+import useStatistics from "@/hooks/useStatistics";
 import useUser from "@/hooks/useUser";
 
 const DashboardHome = () => {
   const user = useUser();
+  const stats = useStatistics();
 
   return (
     <>
@@ -46,7 +48,7 @@ const DashboardHome = () => {
               {/* End .row */}
 
               <div className="row">
-                <TopStateBlock user={user} />
+                <TopStateBlock user={user} stats={stats} />
               </div>
               {/* End .row */}
 
@@ -54,7 +56,7 @@ const DashboardHome = () => {
                 <div className="col-xl-12">
                   <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
                     <div className="row">
-                      <PropertyViews />
+                      <PropertyViews data={stats} />
                     </div>
                   </div>
                 </div>

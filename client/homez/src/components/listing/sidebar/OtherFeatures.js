@@ -1,8 +1,8 @@
-'use client'
+"use client";
 
 import React from "react";
 
-const OtherFeatures = ({filterFunctions}) => {
+const OtherFeatures = ({ filterFunctions }) => {
   const featuresLeftColumn = [
     { label: "Attic" },
     { label: "Basketball court", defaultChecked: true },
@@ -21,8 +21,6 @@ const OtherFeatures = ({filterFunctions}) => {
     { label: "Refrigerator" },
   ];
 
-
-
   return (
     <div className="row">
       <div className="col-lg-6">
@@ -30,8 +28,7 @@ const OtherFeatures = ({filterFunctions}) => {
           {featuresLeftColumn.map((feature, index) => (
             <label className="custom_checkbox" key={index}>
               {feature.label}
-              <input
-              type="checkbox" />
+              <input type="checkbox" />
               <span className="checkmark" />
             </label>
           ))}
@@ -44,7 +41,7 @@ const OtherFeatures = ({filterFunctions}) => {
           {featuresRightColumn.map((feature, index) => (
             <label className="custom_checkbox" key={index}>
               {feature.label}
-              
+
               <input type="checkbox" defaultChecked={feature.defaultChecked} />
               <span className="checkmark" />
             </label>

@@ -8,7 +8,7 @@ const Amenities = () => {
 
   return (
     <div className="row">
-      {amenities.map(amenity => (
+      {amenities.map((amenity) => (
         <div key={amenity.id} className="col-sm-6 col-lg-3 col-xxl-2">
           <div className="checkbox-style1">
             <label className="custom_checkbox">

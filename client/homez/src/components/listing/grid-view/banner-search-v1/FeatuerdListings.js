@@ -3,17 +3,26 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const FeaturedListings = ({data,colstyle}) => {
+const FeaturedListings = ({ data, colstyle }) => {
   return (
     <>
       {data.map((listing) => (
-        <div  className={` ${colstyle ? 'col-sm-12':'col-sm-6'}  `} key={listing.id}>
-          <div className={colstyle ? "listing-style7 listCustom listing-type" : "listing-style7"}>
-            <div className="list-thumb"  >
+        <div
+          className={` ${colstyle ? "col-sm-12" : "col-sm-6"}  `}
+          key={listing.id}
+        >
+          <div
+            className={
+              colstyle
+                ? "listing-style7 listCustom listing-type"
+                : "listing-style7"
+            }
+          >
+            <div className="list-thumb">
               <Image
                 width={382}
                 height={248}
-                style={{height:'228px'}}
+                style={{ height: "228px" }}
                 className="w-100  cover"
                 src={listing.image}
                 alt="listings"
@@ -41,7 +50,7 @@ const FeaturedListings = ({data,colstyle}) => {
             </div>
             <div className="list-content">
               <h6 className="list-title">
-                <Link  href={`/single-v5/${listing.id}`}>{listing.title}</Link>
+                <Link href={`/single-v5/${listing.id}`}>{listing.title}</Link>
               </h6>
 
               <div className="d-flex justify-content-between align-items-center">

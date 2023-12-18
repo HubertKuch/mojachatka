@@ -2,19 +2,28 @@ import listings from "@/data/listings";
 import Image from "next/image";
 import Link from "next/link";
 
-const FeaturedListings = ({data,colstyle}) => {
+const FeaturedListings = ({ data, colstyle }) => {
   return (
     <>
       {data.map((listing) => (
-        <div  className={` ${colstyle ? 'col-sm-12':'col-sm-6'}  `} key={listing.id}>
-          <div className={colstyle ? "listing-style1 listCustom listing-type" : "listing-style1"}>
-            <div className="list-thumb"    >
+        <div
+          className={` ${colstyle ? "col-sm-12" : "col-sm-6"}  `}
+          key={listing.id}
+        >
+          <div
+            className={
+              colstyle
+                ? "listing-style1 listCustom listing-type"
+                : "listing-style1"
+            }
+          >
+            <div className="list-thumb">
               <Image
                 width={382}
                 height={248}
                 className="w-100 cover"
                 src={listing.image}
-                style={{height:'240px'}}
+                style={{ height: "240px" }}
                 alt="listings"
               />
               <div className="sale-sticker-wrap">

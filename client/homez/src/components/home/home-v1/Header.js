@@ -10,8 +10,8 @@ import useStore from "@/store/store";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
-  const isLoggedIn = useStore(s => s.isLoggedIn);
-  const user = useStore(s => s.user);
+  const isLoggedIn = useStore((s) => s.isLoggedIn);
+  const user = useStore((s) => s.user);
 
   const changeBackground = () => {
     if (window.scrollY >= 10) {
@@ -31,8 +31,9 @@ const Header = () => {
   return (
     <>
       <header
-        className={`header-nav nav-homepage-style main-menu  ${navbar ? "sticky slideInDown animated" : ""
-          }`}
+        className={`header-nav nav-homepage-style main-menu  ${
+          navbar ? "sticky slideInDown animated" : ""
+        }`}
       >
         <nav className="posr">
           <div className="container posr menu_bdrt1">
@@ -67,25 +68,28 @@ const Header = () => {
 
               <div className="col-auto">
                 <div className="d-flex align-items-center">
-                  {
-                    isLoggedIn ?
-                      <Link
-                        href={"/dashboard-home"}
-                        className="login-info d-flex align-items-center"
-                      >
-                        <i className="far fa-user-circle fz16 me-2" />{" "}
-                        <span className="d-none d-xl-block">{`Witaj ${user.username}`}</span>
-                      </Link> : <a
-                        href={"#"}
-                        className="login-info d-flex align-items-center"
-                        data-bs-toggle="modal"
-                        data-bs-target="#loginSignupModal"
-                        role="button"
-                      >
-                        <i className="far fa-user-circle fz16 me-2" />{" "}
-                        <span className="d-none d-xl-block">{"Logowanie / Rejestracja"}</span>
-                      </a>
-                  }
+                  {isLoggedIn ? (
+                    <Link
+                      href={"/dashboard-home"}
+                      className="login-info d-flex align-items-center"
+                    >
+                      <i className="far fa-user-circle fz16 me-2" />{" "}
+                      <span className="d-none d-xl-block">{`Witaj ${user.username}`}</span>
+                    </Link>
+                  ) : (
+                    <a
+                      href={"#"}
+                      className="login-info d-flex align-items-center"
+                      data-bs-toggle="modal"
+                      data-bs-target="#loginSignupModal"
+                      role="button"
+                    >
+                      <i className="far fa-user-circle fz16 me-2" />{" "}
+                      <span className="d-none d-xl-block">
+                        {"Logowanie / Rejestracja"}
+                      </span>
+                    </a>
+                  )}
                   <Link
                     className="ud-btn add-property menu-btn bdrs60 mx-2 mx-xl-4"
                     href="/dashboard-add-property"
@@ -99,9 +103,7 @@ const Header = () => {
                     data-bs-toggle="offcanvas"
                     data-bs-target="#SidebarPanel"
                     aria-controls="SidebarPanelLabel"
-                  >
-
-                  </a>
+                  ></a>
                 </div>
               </div>
               {/* End .col-auto */}

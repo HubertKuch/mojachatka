@@ -8,12 +8,12 @@ import Link from "next/link";
 
 const ListingsFavourites = () => {
   const [favoriteListings, setFavoriteListings] = useState(
-    listings.slice(0, 8)
+    listings.slice(0, 8),
   );
 
   const handleDeleteListing = (id) => {
     const updatedListings = favoriteListings.filter(
-      (listing) => listing.id !== id
+      (listing) => listing.id !== id,
     );
     setFavoriteListings(updatedListings);
   };

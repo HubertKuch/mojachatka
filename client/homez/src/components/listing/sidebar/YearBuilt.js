@@ -12,7 +12,7 @@ const YearBuilt = ({ filterFunctions }) => {
                 [
                   e.target.value || 1800,
                   document.getElementById("maxFeet2").value / 1,
-                ] || 2050
+                ] || 2050,
               )
             }
             className="form-control filterInput"

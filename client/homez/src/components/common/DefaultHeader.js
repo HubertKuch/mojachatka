@@ -30,8 +30,9 @@ const DefaultHeader = () => {
   return (
     <>
       <header
-        className={`header-nav nav-homepage-style light-header menu-home4 main-menu ${navbar ? "sticky slideInDown animated" : ""
-          }`}
+        className={`header-nav nav-homepage-style light-header menu-home4 main-menu ${
+          navbar ? "sticky slideInDown animated" : ""
+        }`}
       >
         <nav className="posr">
           <div className="container posr menu_bdrt1">
@@ -66,23 +67,28 @@ const DefaultHeader = () => {
 
               <div className="col-auto">
                 <div className="d-flex align-items-center">
-                  {user ? <Link
-                    href={"/dashboard-home"}
-                    className="login-info d-flex align-items-center"
-                  >
-                    <i className="far fa-user-circle fz16 me-2" />{" "}
-                    <span className="d-none d-xl-block">{`Witaj ${user.username}`}</span>
-                  </Link> : <a
-                    href="#"
-                    className="login-info d-flex align-items-cente"
-                    data-bs-toggle="modal"
-                    data-bs-target="#loginSignupModal"
-                    role="button"
-                  >
-                    <i className="far fa-user-circle fz16 me-2" />{" "}
-                    <span className="d-none d-xl-block">Logowanie / Rejestracja</span>
-                  </a>
-                  }
+                  {user ? (
+                    <Link
+                      href={"/dashboard-home"}
+                      className="login-info d-flex align-items-center"
+                    >
+                      <i className="far fa-user-circle fz16 me-2" />{" "}
+                      <span className="d-none d-xl-block">{`Witaj ${user.username}`}</span>
+                    </Link>
+                  ) : (
+                    <a
+                      href="#"
+                      className="login-info d-flex align-items-cente"
+                      data-bs-toggle="modal"
+                      data-bs-target="#loginSignupModal"
+                      role="button"
+                    >
+                      <i className="far fa-user-circle fz16 me-2" />{" "}
+                      <span className="d-none d-xl-block">
+                        Logowanie / Rejestracja
+                      </span>
+                    </a>
+                  )}
 
                   <Link
                     className="ud-btn btn-white add-property bdrs60 mx-2 mx-xl-4"
@@ -97,8 +103,7 @@ const DefaultHeader = () => {
                     data-bs-toggle="offcanvas"
                     data-bs-target="#SidebarPanel"
                     aria-controls="SidebarPanelLabel"
-                  >
-                  </a>
+                  ></a>
                 </div>
               </div>
               {/* End .col-auto */}

@@ -48,8 +48,8 @@ const ListV1 = () => {
       {/* End Breadcumb Sections */}
 
       {/* Property Filtering */}
-      <PropertyFilteringList/>
-     
+      <PropertyFilteringList />
+
       {/* Property Filtering */}
 
       {/* Start Our Footer */}

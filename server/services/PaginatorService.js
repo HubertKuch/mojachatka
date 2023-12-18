@@ -1,4 +1,4 @@
-const { createPaginator } = require('prisma-pagination');
+const { createPaginator } = require("prisma-pagination");
 
 class PaginatorService {
   static getPaginator(page) {

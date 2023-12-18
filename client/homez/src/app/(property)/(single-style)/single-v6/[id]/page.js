@@ -88,10 +88,8 @@ const SingleV6 = ({ params }) => {
               </div>
               {/* End .ps-widget */}
 
-              
               {/* End .ps-widget */}
 
-              
               {/* End .ps-widget */}
 
               <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 ">
@@ -102,20 +100,14 @@ const SingleV6 = ({ params }) => {
               </div>
               {/* End .ps-widget */}
 
-
+              {/* End .ps-widget */}
 
               {/* End .ps-widget */}
 
-              
               {/* End .ps-widget */}
 
-              
               {/* End .ps-widget */}
 
-              
-              {/* End .ps-widget */}
-
-              
               {/* End .ps-widget */}
 
               <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
@@ -124,10 +116,8 @@ const SingleV6 = ({ params }) => {
               </div>
               {/* End .ps-widget */}
 
-              
               {/* End .ps-widget */}
 
-              
               {/* End .ps-widget */}
             </div>
             {/* End .col-8 */}
@@ -152,10 +142,8 @@ const SingleV6 = ({ params }) => {
           </div>
           {/* End .row */}
 
-          
           {/* End .row */}
 
-          
           {/* End .row */}
         </div>
         {/* End .container */}

@@ -1,5 +1,5 @@
-const { UserType } = require('@prisma/client');
-const { db } = require('../utils/db');
+const { UserType } = require("@prisma/client");
+const { db } = require("../utils/db");
 
 class AccountPacketsService {
   static async getByUserType(userType) {
@@ -11,9 +11,9 @@ class AccountPacketsService {
       where: {
         properties: {
           path: "$.allowedFor",
-          array_contains: userType
-        }
-      }
+          array_contains: userType,
+        },
+      },
     });
   }
 }

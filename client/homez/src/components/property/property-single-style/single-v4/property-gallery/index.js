@@ -3,7 +3,7 @@ import GalleryBox from "./GalleryBox";
 import Map from "./Map";
 import RealMapView from "./RealMapView";
 
-const PropertyGallery = ({id}) => {
+const PropertyGallery = ({ id }) => {
   return (
     <>
       <div className="container">

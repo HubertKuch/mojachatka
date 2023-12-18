@@ -3,14 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const AllAgents = ({data}) => {
+const AllAgents = ({ data }) => {
   return (
     <>
       {data.map((agent) => (
         <div className="col" key={agent.id}>
           <div className="feature-style2 mb30">
             <div className="feature-img">
-              <Link  href={`/agent-single/${agent.id}`}>
+              <Link href={`/agent-single/${agent.id}`}>
                 <Image
                   width={210}
                   height={240}

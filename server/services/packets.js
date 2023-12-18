@@ -1,5 +1,5 @@
-const { db } = require('../utils/db');
-const { initCheckoutSession } = require('./payments');
+const { db } = require("../utils/db");
+const { initCheckoutSession } = require("./payments");
 
 async function getPackets() {
   return await db.accountPackets.findMany();
@@ -10,7 +10,9 @@ async function getUserAccountPackets(userId) {
 }
 
 async function buyPacket({ packetId, user }) {
-  const packet = await db.accountPackets.findUnique({ where: { id: packetId } });
+  const packet = await db.accountPackets.findUnique({
+    where: { id: packetId },
+  });
 
   if (!packet) {
     throw new Error("Packet id incorrect");
@@ -25,8 +27,8 @@ async function buyPacket({ packetId, user }) {
     data: {
       status: "PENDING",
       stripeId: session.id,
-      continueUrl: session.url
-    }
+      continueUrl: session.url,
+    },
   });
 
   return await db.accountPacketPayment.create({
@@ -38,13 +40,12 @@ async function buyPacket({ packetId, user }) {
     select: {
       payment: {
         select: {
-          continueUrl: true
-        }
+          continueUrl: true,
+        },
       },
-      packet: true
-    }
+      packet: true,
+    },
   });
 }
 
 module.exports = { getPackets, buyPacket, getUserAccountPackets };
-

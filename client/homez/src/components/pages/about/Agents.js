@@ -41,7 +41,7 @@ const Agents = () => {
         {agents.slice(0, 7).map((agent, index) => (
           <SwiperSlide key={index}>
             <div className="item" key={index}>
-              <Link  href={`/agent-single/${agent.id}`}>
+              <Link href={`/agent-single/${agent.id}`}>
                 <div className="team-style1">
                   <div className="team-img">
                     <Image

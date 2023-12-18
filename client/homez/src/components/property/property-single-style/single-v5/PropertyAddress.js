@@ -41,9 +41,8 @@ const PropertyAddress = () => {
       ))}
       {/* End col */}
 
-      <div className="col-md-12 h-500" style={{height:'400px'}}>
-
-   <ListingMap1/>
+      <div className="col-md-12 h-500" style={{ height: "400px" }}>
+        <ListingMap1 />
       </div>
       {/* End col */}
     </>

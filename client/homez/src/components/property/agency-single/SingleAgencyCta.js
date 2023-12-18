@@ -2,10 +2,7 @@ import { agentsData } from "@/data/agency";
 import Image from "next/image";
 import React from "react";
 
-
-
-const SingleAgencyCta = ({id}) => {
-
+const SingleAgencyCta = ({ id }) => {
   const data = agentsData.filter((elm) => elm.id == id)[0] || agentsData[0];
 
   const agentData = {
@@ -23,7 +20,7 @@ const SingleAgencyCta = ({id}) => {
             width={172}
             height={172}
             src={data.imgSrc}
-            style={{borderRadius:'50%',objectFit:'cover'}}
+            style={{ borderRadius: "50%", objectFit: "cover" }}
             alt="agents"
           />
         </div>

@@ -1,6 +1,6 @@
-const OfferBoostType = require('../../utils/OfferBoostType');
-const BoostOfferService = require('../../services/BoostOfferService');
-const { db } = require('../../utils/db');
+const OfferBoostType = require("../../utils/OfferBoostType");
+const BoostOfferService = require("../../services/BoostOfferService");
+const { db } = require("../../utils/db");
 
 class BoostController {
   static async createBoostedMainOffer(req, res, next) {
@@ -8,7 +8,12 @@ class BoostController {
     const userId = req.payload.data.id;
 
     try {
-      const boost = await BoostOfferService.boostOffer(userId, offerId, boostId, OfferBoostType.MAIN);
+      const boost = await BoostOfferService.boostOffer(
+        userId,
+        offerId,
+        boostId,
+        OfferBoostType.MAIN,
+      );
 
       res.status(200).json(boost);
     } catch (e) {
@@ -21,7 +26,11 @@ class BoostController {
     const userId = req.payload.data.id;
 
     try {
-      const boost = await BoostOfferService.boostOffer(userId, offerId, boostId);
+      const boost = await BoostOfferService.boostOffer(
+        userId,
+        offerId,
+        boostId,
+      );
 
       res.status(200).json(boost);
     } catch (e) {
@@ -36,10 +45,10 @@ class BoostController {
   static async getUserBoosts(req, res, next) {
     const user = req.payload.data;
 
-    res.status(200).json(await db.userBoosts.findMany({ where: { userId: user.id } }));
-
+    res
+      .status(200)
+      .json(await db.userBoosts.findMany({ where: { userId: user.id } }));
   }
 }
 
 module.exports = BoostController;
-

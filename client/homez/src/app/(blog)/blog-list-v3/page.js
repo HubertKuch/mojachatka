@@ -39,7 +39,7 @@ const BlogV3 = () => {
       {/* End Breadcrumb Start */}
 
       {/* Blog Section Area */}
-      <BlogFilterContainer/>
+      <BlogFilterContainer />
       {/* End Blog Section Area */}
 
       {/* Start Our Footer */}

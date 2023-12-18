@@ -1,10 +1,10 @@
-const expect = require('expect.js');
-const mockDatabase = require('./utils/mockDatabase');
-const proxyquire = require('proxyquire');
+const expect = require("expect.js");
+const mockDatabase = require("./utils/mockDatabase");
+const proxyquire = require("proxyquire");
 const OffersService = proxyquire("../services/OffersService", {
   "../utils/db": {
-    db: mockDatabase
-  }
+    db: mockDatabase,
+  },
 });
 
 describe("Offers", async () => {
@@ -23,5 +23,3 @@ describe("Offers", async () => {
     expect(offers[0].title).to.not.be(null);
   });
 });
-
-

@@ -3,8 +3,9 @@ import React from "react";
 
 const Map = () => {
   return (
-    <div style={{height:'600px'}}>
-    <ListingMap1/></div>
+    <div style={{ height: "600px" }}>
+      <ListingMap1 />
+    </div>
   );
 };
 

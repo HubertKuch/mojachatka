@@ -1,38 +1,35 @@
-const { db } = require('../utils/db')
+const { db } = require("../utils/db");
 
 async function getUserByID(id) {
   try {
     return db.user.findFirst({
       where: {
-        id
+        id,
       },
       include: {
         offers: true,
-        UserBoosts: true
-      }
-    })
+        UserBoosts: true,
+      },
+    });
   } catch (err) {
-    return "User not Found"
+    return "User not Found";
   }
 }
 
 async function GetUserByEmail(email) {
   return db.user.findUnique({
     where: {
-      email
+      email,
     },
-
-  })
+  });
 }
 
 async function getAllUsers() {
-  return db.user.findMany()
+  return db.user.findMany();
 }
-
-
 
 module.exports = {
   getAllUsers,
   getUserByID,
   GetUserByEmail,
-}
+};

@@ -23,7 +23,7 @@ export default function PropertyFilteringCol() {
 
   useEffect(() => {
     setPageItems(
-      sortedFilteredData.slice((pageNumber - 1) * 4, pageNumber * 4)
+      sortedFilteredData.slice((pageNumber - 1) * 4, pageNumber * 4),
     );
     setPageContentTrac([
       (pageNumber - 1) * 4 + 1,
@@ -72,7 +72,7 @@ export default function PropertyFilteringCol() {
       setPropertyTypes([]);
     } else {
       setPropertyTypes((pre) =>
-        pre.includes(elm) ? [...pre.filter((el) => el != elm)] : [...pre, elm]
+        pre.includes(elm) ? [...pre.filter((el) => el != elm)] : [...pre, elm],
       );
     }
   };
@@ -100,7 +100,7 @@ export default function PropertyFilteringCol() {
       setCategories([]);
     } else {
       setCategories((pre) =>
-        pre.includes(elm) ? [...pre.filter((el) => el != elm)] : [...pre, elm]
+        pre.includes(elm) ? [...pre.filter((el) => el != elm)] : [...pre, elm],
       );
     }
   };
@@ -144,7 +144,7 @@ export default function PropertyFilteringCol() {
 
     if (propertyTypes.length > 0) {
       const filtered = refItems.filter((elm) =>
-        propertyTypes.includes(elm.propertyType)
+        propertyTypes.includes(elm.propertyType),
       );
       filteredArrays = [...filteredArrays, filtered];
     }
@@ -172,7 +172,7 @@ export default function PropertyFilteringCol() {
           el.features
             .join(" ")
             .toLocaleLowerCase()
-            .includes(searchQuery.toLocaleLowerCase())
+            .includes(searchQuery.toLocaleLowerCase()),
       ),
     ];
 
@@ -181,7 +181,7 @@ export default function PropertyFilteringCol() {
       !categories.length
         ? [...refItems]
         : refItems.filter((elm) =>
-            categories.every((elem) => elm.features.includes(elem))
+            categories.every((elem) => elm.features.includes(elem)),
           ),
     ];
 
@@ -197,26 +197,26 @@ export default function PropertyFilteringCol() {
         (elm) =>
           Number(elm.price.split("$")[1].split(",").join("")) >=
             priceRange[0] &&
-          Number(elm.price.split("$")[1].split(",").join("")) <= priceRange[1]
+          Number(elm.price.split("$")[1].split(",").join("")) <= priceRange[1],
       );
       filteredArrays = [...filteredArrays, filtered];
     }
     if (squirefeet.length > 0 && squirefeet[1]) {
       const filtered = refItems.filter(
-        (elm) => elm.sqft >= squirefeet[0] && elm.sqft <= squirefeet[1]
+        (elm) => elm.sqft >= squirefeet[0] && elm.sqft <= squirefeet[1],
       );
       filteredArrays = [...filteredArrays, filtered];
     }
     if (yearBuild.length > 0) {
       const filtered = refItems.filter(
         (elm) =>
-          elm.yearBuilding >= yearBuild[0] && elm.yearBuilding <= yearBuild[1]
+          elm.yearBuilding >= yearBuild[0] && elm.yearBuilding <= yearBuild[1],
       );
       filteredArrays = [...filteredArrays, filtered];
     }
 
     const commonItems = refItems.filter((item) =>
-      filteredArrays.every((array) => array.includes(item))
+      filteredArrays.every((array) => array.includes(item)),
     );
 
     setFilteredData(commonItems);
@@ -237,21 +237,21 @@ export default function PropertyFilteringCol() {
     setPageNumber(1);
     if (currentSortingOption == "Newest") {
       const sorted = [...filteredData].sort(
-        (a, b) => a.yearBuilding - b.yearBuilding
+        (a, b) => a.yearBuilding - b.yearBuilding,
       );
       setSortedFilteredData(sorted);
     } else if (currentSortingOption.trim() == "Price Low") {
       const sorted = [...filteredData].sort(
         (a, b) =>
           a.price.split("$")[1].split(",").join("") -
-          b.price.split("$")[1].split(",").join("")
+          b.price.split("$")[1].split(",").join(""),
       );
       setSortedFilteredData(sorted);
     } else if (currentSortingOption.trim() == "Price High") {
       const sorted = [...filteredData].sort(
         (a, b) =>
           b.price.split("$")[1].split(",").join("") -
-          a.price.split("$")[1].split(",").join("")
+          a.price.split("$")[1].split(",").join(""),
       );
       setSortedFilteredData(sorted);
     } else {

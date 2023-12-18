@@ -1,5 +1,4 @@
-
-'use client'
+"use client";
 
 import React from "react";
 import PropertyType from "../../sidebar/PropertyType";
@@ -8,14 +7,16 @@ import Bedroom from "../../sidebar/Bedroom";
 import Bathroom from "../../sidebar/Bathroom";
 import ListingStatus from "../../sidebar/ListingStatus";
 
-const TopFilterBar2 = ({filterFunctions} ) => {
+const TopFilterBar2 = ({ filterFunctions }) => {
   return (
     <>
       <li className="list-inline-item position-relative">
         <input
           type="text"
           className="form-control search-field"
-          onChange={(e)=>filterFunctions && filterFunctions.setSearchQuery(e.target.value)}
+          onChange={(e) =>
+            filterFunctions && filterFunctions.setSearchQuery(e.target.value)
+          }
           placeholder="Enter an address, neighborhood or city"
         />
       </li>

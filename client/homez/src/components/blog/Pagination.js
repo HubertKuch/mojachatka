@@ -25,7 +25,7 @@ const Pagination = () => {
         >
           <span className="fas fa-angle-left" />
         </button>
-      </li>
+      </li>,
     );
 
     for (let page = 1; page <= totalPages; page++) {
@@ -38,7 +38,7 @@ const Pagination = () => {
           <button className="page-link" onClick={() => setCurrentPage(page)}>
             {page}
           </button>
-        </li>
+        </li>,
       );
     }
 
@@ -51,7 +51,7 @@ const Pagination = () => {
         >
           <span className="fas fa-angle-right" />
         </button>
-      </li>
+      </li>,
     );
 
     return paginationItems;
