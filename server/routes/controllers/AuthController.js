@@ -18,7 +18,7 @@ class AuthController {
   static async login(req, res) {
     try {
       const { email, password } = req.body;
-      console.log(req.body);
+
       if (!email || !password) {
         res.status(400).json({ message: "You must provide login credentials" });
         return;
@@ -49,14 +49,12 @@ class AuthController {
         userId: existingUser.id,
       });
       delete existingUser.password;
-      res
-        .status(200)
-        .json({
-          message: "Successfull",
-          token: accessToken,
-          refresh: refreshToken,
-          user: existingUser,
-        });
+      res.status(200).json({
+        message: "Successfull",
+        token: accessToken,
+        refresh: refreshToken,
+        user: existingUser,
+      });
     } catch (err) {
       console.log(err);
       res.status(500).json({ message: "Internal Server Error" });
@@ -197,13 +195,11 @@ class AuthController {
       });
       await sendMail(newUser.email);
 
-      res
-        .status(200)
-        .json({
-          message: "User created successfully",
-          token: accessToken,
-          refresh: refreshToken,
-        });
+      res.status(200).json({
+        message: "User created successfully",
+        token: accessToken,
+        refresh: refreshToken,
+      });
     } catch (err) {
       console.log(err);
       res.status(500).json({ message: "Internal Server Error!" });

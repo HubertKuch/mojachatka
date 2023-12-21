@@ -19,28 +19,6 @@ const ProfileBox = () => {
 
   return (
     <div className="profile-box position-relative d-md-flex align-items-end mb50">
-      <div className="profile-img new position-relative overflow-hidden bdrs12 mb20-sm">
-        <Image
-          width={240}
-          height={220}
-          className="w-100 cover h-100"
-          src={uploadedImage || "/images/listings/profile-1.jpg"}
-          alt="profile avatar"
-        />
-
-        <button
-          className="tag-del"
-          style={{ border: "none" }}
-          data-tooltip-id="profile_del"
-          onClick={() => setUploadedImage(null)}
-        >
-          <span className="fas fa-trash-can" />
-        </button>
-
-        <ReactTooltip id="profile_del" place="right" content="Delete Image" />
-      </div>
-      {/* End .profile-img */}
-
       <div className="profile-content ml30 ml0-sm">
         <label className="upload-label pointer">
           <input

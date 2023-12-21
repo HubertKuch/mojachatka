@@ -13,12 +13,12 @@ const SidebarDashboard = () => {
         {
           href: "/dashboard-home",
           icon: "flaticon-discovery",
-          text: "Dashboard",
+          text: "Panel",
         },
         {
           href: "/dashboard-message",
           icon: "flaticon-chat-1",
-          text: "Message",
+          text: "Wiadomosci",
         },
       ],
     },
@@ -28,27 +28,17 @@ const SidebarDashboard = () => {
         {
           href: "/dashboard-add-property",
           icon: "flaticon-new-tab",
-          text: "Add New Property",
+          text: "Dodaj oferte",
         },
         {
           href: "/dashboard-my-properties",
           icon: "flaticon-home",
-          text: "My Properties",
+          text: "Twoje oferty",
         },
         {
           href: "/dashboard-my-favourites",
           icon: "flaticon-like",
-          text: "My Favorites",
-        },
-        {
-          href: "/dashboard-saved-search",
-          icon: "flaticon-search-2",
-          text: "Saved Search",
-        },
-        {
-          href: "/dashboard-reviews",
-          icon: "flaticon-review",
-          text: "Reviews",
+          text: "Ulubione",
         },
       ],
     },
@@ -58,17 +48,17 @@ const SidebarDashboard = () => {
         {
           href: "/dashboard-my-package",
           icon: "flaticon-protection",
-          text: "My Package",
+          text: "Historia platnosci",
         },
         {
           href: "/dashboard-my-profile",
           icon: "flaticon-user",
-          text: "My Profile",
+          text: "Profil",
         },
         {
           href: "/login",
           icon: "flaticon-logout",
-          text: "Logout",
+          text: "Wyloguj sie",
         },
       ],
     },
@@ -80,9 +70,8 @@ const SidebarDashboard = () => {
         {sidebarItems.map((section, sectionIndex) => (
           <div key={sectionIndex}>
             <p
-              className={`fz15 fw400 ff-heading ${
-                sectionIndex === 0 ? "mt-0" : "mt30"
-              }`}
+              className={`fz15 fw400 ff-heading ${sectionIndex === 0 ? "mt-0" : "mt30"
+                }`}
             >
               {section.title}
             </p>
@@ -90,9 +79,8 @@ const SidebarDashboard = () => {
               <div key={itemIndex} className="sidebar_list_item">
                 <Link
                   href={item.href}
-                  className={`items-center   ${
-                    pathname == item.href ? "-is-active" : ""
-                  } `}
+                  className={`items-center   ${pathname == item.href ? "-is-active" : ""
+                    } `}
                 >
                   <i className={`${item.icon} mr15`} />
                   {item.text}

@@ -17,6 +17,7 @@ const adminUserRoutes = require("./routes/definitions/adminUserRoutesDefinitions
 const featureRoutes = require("./routes/definitions/featureRouteDefinitions");
 const adminFeatureRoutes = require("./routes/definitions/adminFeatureRoutesDefinitions");
 const offerViewsRoutes = require("./routes/definitions/offerViewsRoutesDefinitions");
+const socialMediaRoutes = require("./routes/definitions/socialMediaRoutesDefinitions");
 
 const app = express();
 const port = process.env.SERVER_PORT || 3000;
@@ -37,10 +38,10 @@ app.use("/", boostRoutes);
 app.use("/", authRoutes);
 app.use("/", verifyAccountRoutes);
 app.use("/", featureRoutes);
-
 app.use("/", adminUserRoutes);
 app.use("/", adminFeatureRoutes);
 app.use("/", offerViewsRoutes);
+app.use("/", socialMediaRoutes);
 
 app.use("/payments", paymenentsNofity);
 app.use("/static", express.static(process.env.APP_MEDIA_PATH));
