@@ -1,15 +1,35 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import useSocials from "@/hooks/useSocials";
+import SocialMediaController from "@/controllers/SocialMediaController";
 
 const SocialField = () => {
   const socials = useSocials();
-  const ref = useRef([]);
+  const [changedSocials, setChangedSocials] = useState([]);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(ref.current[0]);
+
+    console.log(changedSocials);
+
+    for (const social of changedSocials) {
+      await SocialMediaController.putMedia({
+        type: social.type,
+        link: social.link || "",
+      });
+    }
+  };
+
+  const onChange = (type, link) => {
+    console.log(link);
+    setChangedSocials((s) => {
+      const social = s.find((s) => s.type === type);
+
+      social ? (social.link = link) : s.push({ type, link });
+
+      return s;
+    });
   };
 
   return (
@@ -21,8 +41,10 @@ const SocialField = () => {
               Facebook Url
             </label>
             <input
-              ref={ref}
-              value={socials.find((s) => s.type === "FACEBOOK")?.link}
+              defaultValue={
+                socials.find((s) => s.type === "FACEBOOK")?.link || ""
+              }
+              onChange={(e) => onChange("FACEBOOK", e.target.value)}
               type="text"
               className="form-control"
               placeholder="Facebook Url"
@@ -36,9 +58,11 @@ const SocialField = () => {
               Pinterest Url
             </label>
             <input
-              value={socials.find((s) => s.type === "PINTEREST")?.link}
-              ref={ref}
+              defaultValue={
+                socials.find((s) => s.type === "PINTEREST")?.link || ""
+              }
               type="text"
+              onChange={(e) => onChange("PINTEREST", e.target.value)}
               className="form-control"
               placeholder="Pinterest Url"
             />
@@ -51,9 +75,11 @@ const SocialField = () => {
               Instagram Url
             </label>
             <input
-              value={socials.find((s) => s.type === "INSTAGRAM")?.link}
-              ref={ref}
+              defaultValue={
+                socials.find((s) => s.type === "INSTAGRAM")?.link || ""
+              }
               type="text"
+              onChange={(e) => onChange("INSTAGRAM", e.target.value)}
               className="form-control"
               placeholder="Instagram Url"
             />
@@ -66,9 +92,11 @@ const SocialField = () => {
               Twitter Url
             </label>
             <input
-              value={socials.find((s) => s.type === "TWITTER")?.link}
+              defaultValue={
+                socials.find((s) => s.type === "TWITTER")?.link || ""
+              }
               type="text"
-              ref={ref}
+              onChange={(e) => onChange("TWITTER", e.target.value)}
               className="form-control"
               placeholder="Twitter Url"
             />
@@ -81,9 +109,11 @@ const SocialField = () => {
               Linkedin Url
             </label>
             <input
-              value={socials.find((s) => s.type === "LINKEDIN")?.link}
+              defaultValue={
+                socials.find((s) => s.type === "LINKEDIN")?.link || ""
+              }
               type="text"
-              ref={ref}
+              onChange={(e) => onChange("LINKEDIN", e.target.value)}
               className="form-control"
               placeholder="Linkedin Url"
             />
