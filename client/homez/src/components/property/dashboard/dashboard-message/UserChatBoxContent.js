@@ -66,15 +66,6 @@ const ChatMessage = ({ message }) => {
             : "justify-content-end mb15"
         }`}
       >
-        {message.className === "sent float-start" ? (
-          <Image
-            width={50}
-            height={50}
-            className="img-fluid rounded-circle align-self-start mr10"
-            src={message.imageUrl}
-            alt={`${message.name}'s profile`}
-          />
-        ) : null}
         <div
           className={`title fz14 ${
             message.className === "reply float-end" ? "mr10" : "ml10"
@@ -88,15 +79,6 @@ const ChatMessage = ({ message }) => {
             </>
           )}
         </div>
-        {message.className === "reply float-end" ? (
-          <Image
-            width={50}
-            height={50}
-            className="img-fluid rounded-circle align-self-end ml10"
-            src={message.imageUrl}
-            alt={`${message.name}'s profile`}
-          />
-        ) : null}
       </div>
       <p>{message.message}</p>
     </li>

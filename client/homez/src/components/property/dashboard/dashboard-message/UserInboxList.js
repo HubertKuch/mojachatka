@@ -69,13 +69,6 @@ const UserItem = ({ user }) => {
     <div className="list-item">
       <a href="#">
         <div className="d-flex align-items-center position-relative">
-          <Image
-            width={50}
-            height={50}
-            className="img-fluid float-start rounded-circle mr10"
-            src={user.imageUrl}
-            alt={`${user.name}'s profile`}
-          />
           <div className="d-sm-flex">
             <div className="d-inline-block">
               <div className="fz14 fw600 dark-color ff-heading mb-0">
