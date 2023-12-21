@@ -1,6 +1,11 @@
+"use client";
+
+import useUser from "@/hooks/useUser";
 import React from "react";
 
 const PersonalInfo = () => {
+  const user = useUser();
+
   return (
     <form className="form-style1">
       <div className="row">
@@ -10,10 +15,11 @@ const PersonalInfo = () => {
               Username
             </label>
             <input
+              defaultValue={user.username}
               type="text"
               className="form-control"
-              placeholder="Your Name"
-              required
+              placeholder="Username"
+              disabled
             />
           </div>
         </div>
@@ -23,10 +29,11 @@ const PersonalInfo = () => {
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">Email</label>
             <input
+              defaultValue={user.email}
               type="email"
               className="form-control"
-              placeholder="Your Name"
-              required
+              placeholder="Mail"
+              disabled
             />
           </div>
         </div>
@@ -36,10 +43,11 @@ const PersonalInfo = () => {
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">Phone</label>
             <input
+              defaultValue={user.phoneNumber}
               type="text"
               className="form-control"
-              placeholder="Your Name"
-              required
+              placeholder="Telefon"
+              disabled
             />
           </div>
         </div>
@@ -51,10 +59,11 @@ const PersonalInfo = () => {
               First Name
             </label>
             <input
+              defaultValue={user.firstName}
               type="text"
               className="form-control"
               placeholder="Your Name"
-              required
+              disabled
             />
           </div>
         </div>
@@ -66,100 +75,11 @@ const PersonalInfo = () => {
               Last Name
             </label>
             <input
+              defaultValue={user.lastName}
               type="text"
               className="form-control"
               placeholder="Your Name"
-              required
-            />
-          </div>
-        </div>
-        {/* End .col */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Position
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Your Name"
-              required
-            />
-          </div>
-        </div>
-        {/* End .col */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Language
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Your Name"
-              required
-            />
-          </div>
-        </div>
-        {/* End .col */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Company Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Your Name"
-              required
-            />
-          </div>
-        </div>
-        {/* End .col */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Tax Number
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Your Name"
-              required
-            />
-          </div>
-        </div>
-        {/* End .col */}
-
-        <div className="col-xl-12">
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Address
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Your Name"
-              required
-            />
-          </div>
-        </div>
-        {/* End .col */}
-
-        <div className="col-md-12">
-          <div className="mb10">
-            <label className="heading-color ff-heading fw600 mb10">
-              About me
-            </label>
-            <textarea
-              cols={30}
-              rows={4}
-              placeholder="There are many variations of passages."
-              defaultValue={""}
+              disabled
             />
           </div>
         </div>
@@ -167,7 +87,7 @@ const PersonalInfo = () => {
 
         <div className="col-md-12">
           <div className="text-end">
-            <button type="submit" className="ud-btn btn-dark">
+            <button disabled type="submit" className="ud-btn btn-dark">
               Update Profile
               <i className="fal fa-arrow-right-long" />
             </button>

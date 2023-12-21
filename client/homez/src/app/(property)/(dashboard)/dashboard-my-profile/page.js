@@ -5,8 +5,8 @@ import Footer from "@/components/property/dashboard/Footer";
 import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import ChangePasswordForm from "@/components/property/dashboard/dashboard-profile/ChangePasswordForm";
 import PersonalInfo from "@/components/property/dashboard/dashboard-profile/PersonalInfo";
-import ProfileBox from "@/components/property/dashboard/dashboard-profile/ProfileBox";
 import SocialField from "@/components/property/dashboard/dashboard-profile/SocialField";
+import useUser from "@/hooks/useUser";
 
 export const metadata = {
   title: "Dashboard My Profile || Homez - Real Estate NextJS Template",
@@ -32,9 +32,7 @@ const DashboardMyProfile = () => {
           <div className="dashboard__main pl0-md">
             <div className="dashboard__content bgc-f7">
               <div className="row pb40">
-                <div className="col-lg-12">
-                  <DboardMobileNavigation />
-                </div>
+                <div className="col-lg-12"></div>
                 {/* End .col-12 */}
               </div>
               {/* End .row */}
@@ -43,7 +41,6 @@ const DashboardMyProfile = () => {
                 <div className="col-lg-12">
                   <div className="dashboard_title_area">
                     <h2>My Profile</h2>
-                    <p className="text">We are glad to see you again!</p>
                   </div>
                 </div>
               </div>
