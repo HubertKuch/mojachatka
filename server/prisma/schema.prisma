@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["extendedWhereUnique"]
 }
 
@@ -156,6 +156,10 @@ model User {
   UserBoosts                  UserBoosts[]
   Ban                         Ban?
   SocialMedia                 SocialMedia[]
+
+  Chat      Chat[]
+  Message   Message? @relation(fields: [messageId], references: [id])
+  messageId String?
 }
 
 model Ban {
@@ -256,4 +260,20 @@ model SocialMedia {
   type   SocialMediaType
   user   User            @relation(fields: [userId], references: [id])
   userId String
+}
+
+model Chat {
+  id      String    @id @unique @default(uuid())
+  users   User[]
+  Message Message[]
+}
+
+model Message {
+  id      String   @id @unique @default(uuid())
+  chat    Chat     @relation(fields: [chatId], references: [id])
+  message String
+  sentAt  DateTime @default(now())
+  meta    Json // { "readedBy": [uuidv4 of members] }
+  chatId  String
+  User    User[]
 }

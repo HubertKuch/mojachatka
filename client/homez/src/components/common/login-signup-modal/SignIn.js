@@ -1,12 +1,12 @@
 "use client";
 import AuthController from "@/controllers/AuthController";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import useStore from "@/store/store";
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+  const emailRef = useRef();
+  const passRef = useRef();
   const [err, setErr] = useState("");
   const setUser = useStore((s) => s.setUser);
 
@@ -15,6 +15,9 @@ const SignIn = () => {
       className="form-style1"
       onSubmit={async (ev) => {
         ev.preventDefault();
+
+        const email = emailRef.current.value;
+        const pass = passRef.current.value;
 
         const res = await AuthController.login(email, pass);
 
@@ -34,7 +37,7 @@ const SignIn = () => {
           type="email"
           className="form-control"
           placeholder="Wprowadź adres email"
-          onChange={(el) => setEmail(el.target.value)}
+          ref={emailRef}
           required
         />
       </div>
@@ -45,7 +48,7 @@ const SignIn = () => {
         <input
           type="password"
           className="form-control"
-          onChange={(el) => setPass(el.target.value)}
+          ref={passRef}
           placeholder="Wprowadź hasło"
           required
         />

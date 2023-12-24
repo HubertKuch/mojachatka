@@ -40,7 +40,6 @@ const SingleV6 = ({ params }) => {
       {/* Mobile Nav  */}
       <MobileMenu />
       {/* End Mobile Nav  */}
-
       {/* Property All Single  */}
       <section className="pt60 pb90 bgc-f7">
         <div className="container">

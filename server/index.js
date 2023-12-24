@@ -1,4 +1,6 @@
 const express = require("express");
+const { createServer } = require("node:http");
+const { Server } = require("socket.io");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const requestIp = require("request-ip");
@@ -18,8 +20,15 @@ const featureRoutes = require("./routes/definitions/featureRouteDefinitions");
 const adminFeatureRoutes = require("./routes/definitions/adminFeatureRoutesDefinitions");
 const offerViewsRoutes = require("./routes/definitions/offerViewsRoutesDefinitions");
 const socialMediaRoutes = require("./routes/definitions/socialMediaRoutesDefinitions");
+const initializeChatsIo = require("./routes/chat");
 
 const app = express();
+const server = createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3001",
+  },
+});
 const port = process.env.SERVER_PORT || 3000;
 
 app.use(cors());
@@ -31,6 +40,8 @@ app.use(
     extended: true,
   }),
 );
+
+initializeChatsIo(io);
 
 app.use("/", offersRouter);
 app.use("/", accountPacketsRouter);
@@ -48,7 +59,7 @@ app.use("/static", express.static(process.env.APP_MEDIA_PATH));
 app.use(logError);
 app.use(handleError);
 
-app.listen(port, () =>
+server.listen(port, () =>
   console.log(`
 🚀 Server ready at: http://localhost:${port}
 `),
