@@ -6,7 +6,7 @@ export default function useAccountPackets(accountType) {
 
   useEffect(() => {
     AccountPacketsController.getPacketsForAccount(accountType).then(setPackets);
-  });
+  }, []);
 
   return packets;
 }

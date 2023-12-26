@@ -1,12 +1,12 @@
 "use client";
+
+import AccountPacketsController from "@/controllers/AccountPacketsController";
 import useAccountPackets from "@/hooks/useAccountPackets";
-import useStore from "@/store/store";
 import Image from "next/image";
 import React from "react";
 
-const Pricing = () => {
-  const user = useStore((s) => s.user);
-  const packets = useAccountPackets(user.type);
+const Pricing = ({ type, user }) => {
+  const packets = useAccountPackets(type);
 
   return (
     <>
@@ -50,10 +50,23 @@ const Pricing = () => {
                   </ul>
                 </div>
                 <div className="d-grid">
-                  <a href="#" className="ud-btn btn-thm-border text-thm">
+                  <button
+                    onClick={async () => {
+                      const res = await AccountPacketsController.buyPacket(
+                        item.id,
+                      );
+
+                      if (res.payment) {
+                        window.open(res.payment.continueUrl, "mozillaTab");
+                      }
+                    }}
+                    disabled={user?.type !== type}
+                    href="#"
+                    className="ud-btn btn-thm-border text-thm"
+                  >
                     Kup
                     <i className="fal fa-arrow-right-long" />
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

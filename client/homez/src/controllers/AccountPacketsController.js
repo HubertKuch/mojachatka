@@ -10,4 +10,19 @@ export default class AccountPacketsController {
       )
     ).json();
   }
+
+  static async buyPacket(packetId) {
+    return (
+      await fetch(process.env.BASE_URL + "/buyPacket", {
+        method: "POST",
+        body: JSON.stringify({ packetId }),
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(
+            process.env.TOKEN_KEY,
+          )}`,
+          "Content-Type": "application/json",
+        },
+      })
+    ).json();
+  }
 }
