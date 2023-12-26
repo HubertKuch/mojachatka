@@ -11,6 +11,17 @@ class OffersControllers {
     ).json();
   }
 
+  static async findOneById(id) {
+    const res = await fetch(process.env.BASE_URL + "/getOffer/" + id, {
+      method: "GET",
+    });
+
+    return {
+      status: res.status,
+      offer: await res.json(),
+    };
+  }
+
   static async findOwn(page) {
     return await (
       await fetch(

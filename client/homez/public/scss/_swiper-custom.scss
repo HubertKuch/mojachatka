@@ -7,6 +7,12 @@
   }
 }
 
+.swiper-wrapper {
+  height: unset !important;
+  width: unset !important;
+  position: unset !important;
+}
+
 .swiper_button {
   background: transparent;
   border: none;

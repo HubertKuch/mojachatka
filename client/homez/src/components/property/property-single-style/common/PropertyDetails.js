@@ -1,52 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const PropertyDetails = () => {
-  const columns = [
-    [
-      {
-        label: "Property ID",
-        value: "RT48",
-      },
-      {
-        label: "Price",
-        value: "$252,000",
-      },
-      {
-        label: "Property Size",
-        value: "1500 Sq Ft",
-      },
-      {
-        label: "Bathrooms",
-        value: "3",
-      },
-      {
-        label: "Bedrooms",
-        value: "2",
-      },
-    ],
-    [
-      {
-        label: "Garage",
-        value: "2",
-      },
-      {
-        label: "Garage Size",
-        value: "200 SqFt",
-      },
-      {
-        label: "Year Built",
-        value: "2022",
-      },
-      {
-        label: "Property Type",
-        value: "Apartment",
-      },
-      {
-        label: "Property Status",
-        value: "For Sale",
-      },
-    ],
-  ];
+const PropertyDetails = ({ offer }) => {
+  const [columns, setColumns] = useState([]);
+
+  useEffect(() => {
+    if (offer) {
+      setColumns([
+        [
+          {
+            label: "Cena",
+            value: offer.price
+              ? offer.price + "zl"
+              : `${offer.pricePerMonth}zl / mo`,
+          },
+          {
+            label: "Powierzchnia",
+            value: offer.properties.sizeInMeters + "m2",
+          },
+          {
+            label: "Bathrooms",
+            value: offer.properties.bathrooms || "Brak danych",
+          },
+          {
+            label: "Bedrooms",
+            value: offer.properties.bedrooms,
+          },
+        ],
+        [
+          {
+            label: "Pokoje",
+            value: offer.properties.rooms,
+          },
+          {
+            label: "Garage",
+            value: offer.properties.garages || "Brak danych",
+          },
+
+          {
+            label: "Property Type",
+            value: offer.type,
+          },
+          {
+            label: "Property Status",
+            value: offer.sellType,
+          },
+        ],
+      ]);
+    }
+  }, [offer]);
 
   return (
     <div className="row">

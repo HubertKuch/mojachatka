@@ -17,6 +17,10 @@ function initializeChatsIo(io) {
     const user = await handshakeAuthorized(socket);
 
     socket.emit("chats", await ChatService.getChats(user.id));
+
+    socket.on("message", async (senderId, receiverId, message) => {
+      //      await ChatService.sendMessage(senderId, receiverId, message);
+    });
   });
 }
 

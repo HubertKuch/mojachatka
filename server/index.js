@@ -20,6 +20,7 @@ const featureRoutes = require("./routes/definitions/featureRouteDefinitions");
 const adminFeatureRoutes = require("./routes/definitions/adminFeatureRoutesDefinitions");
 const offerViewsRoutes = require("./routes/definitions/offerViewsRoutesDefinitions");
 const socialMediaRoutes = require("./routes/definitions/socialMediaRoutesDefinitions");
+const userRotuer = require("./routes/definitions/userRoutesDefinitions");
 const initializeChatsIo = require("./routes/chat");
 
 const app = express();
@@ -44,6 +45,7 @@ app.use(
 initializeChatsIo(io);
 
 app.use("/", offersRouter);
+app.use("/", userRotuer);
 app.use("/", accountPacketsRouter);
 app.use("/", boostRoutes);
 app.use("/", authRoutes);

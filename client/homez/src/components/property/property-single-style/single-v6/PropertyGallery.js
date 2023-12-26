@@ -1,79 +1,18 @@
 "use client";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Navigation, Thumbs } from "swiper";
+import { FreeMode, Thumbs, Navigation } from "swiper";
 import Image from "next/image";
-import "photoswipe/dist/photoswipe.css";
-import listings from "@/data/listings";
+
 import Map from "./Map";
 
-const images = [
-  "/images/listings/listing-single-6-1.jpg",
-  "/images/listings/listing-single-6-2.jpg",
-  "/images/listings/listing-single-6-3.jpg",
-  "/images/listings/listing-single-6-4.jpg",
-];
-
-const PropertyGallery = ({ id }) => {
+const PropertyGallery = ({ offer }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
 
   return (
     <>
       <div className="row">
         <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
-          <div className="ps-v4-hero-tab position-relative">
-            <ul
-              className="nav nav-pills justify-content-end"
-              id="pills-tab2"
-              role="tablist"
-            >
-              <li className="nav-item" role="presentation">
-                <button
-                  className="nav-link active mr10"
-                  id="pills-home-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#pills-home"
-                  type="button"
-                  role="tab"
-                  aria-controls="pills-home"
-                  aria-selected="true"
-                >
-                  <span className="flaticon-images text-white fz20" />
-                </button>
-              </li>
-              <li className="nav-item" role="presentation">
-                <button
-                  className="nav-link mr10"
-                  id="pills-profile-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#pills-profile"
-                  type="button"
-                  role="tab"
-                  aria-controls="pills-profile"
-                  aria-selected="false"
-                >
-                  <span className="flaticon-map text-white fz20" />
-                </button>
-              </li>
-              <li className="nav-item" role="presentation">
-                <button
-                  className="nav-link"
-                  id="pills-contact-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#pills-contact"
-                  type="button"
-                  role="tab"
-                  aria-controls="pills-contact"
-                  aria-selected="false"
-                >
-                  <span className="flaticon-maps-1 text-white fz20" />
-                </button>
-              </li>
-            </ul>
-          </div>
-          {/* End .ps-v4-hero-tab */}
-
           <div className="ps-v4-hero-tab">
             <div
               className="tab-content overflow-visible"
@@ -85,11 +24,12 @@ const PropertyGallery = ({ id }) => {
                 role="tabpanel"
                 aria-labelledby="pills-home-tab"
               >
-                <div className="container p-0">
+                <div className="p-0">
                   <div className="row" data-aos="fade-up" data-aos-delay="300">
                     <div className="col-lg-12">
-                      <div className="ps-v6-slider nav_none slider-1-grid owl-theme owl-carousel">
+                      <div className="">
                         <Swiper
+                          height={"auto"}
                           loop={true}
                           spaceBetween={10}
                           navigation={{
@@ -105,7 +45,7 @@ const PropertyGallery = ({ id }) => {
                           modules={[FreeMode, Navigation, Thumbs]}
                           className="mySwiper2"
                         >
-                          {images.map((item, i) => (
+                          {(offer.properties?.images || []).map((item, i) => (
                             <SwiperSlide key={i}>
                               <Image
                                 height={736}
@@ -130,17 +70,19 @@ const PropertyGallery = ({ id }) => {
                               modules={[FreeMode, Navigation, Thumbs]}
                               className="mySwiper mt20"
                             >
-                              {images.map((item, i) => (
-                                <SwiperSlide key={i}>
-                                  <Image
-                                    height={90}
-                                    width={83}
-                                    src={item}
-                                    alt="image"
-                                    className="w-100 bdrs12 cover pointer"
-                                  />
-                                </SwiperSlide>
-                              ))}
+                              {(offer.properties?.images || []).map(
+                                (item, i) => (
+                                  <SwiperSlide key={i}>
+                                    <Image
+                                      height={90}
+                                      width={83}
+                                      src={item}
+                                      alt="image"
+                                      className="w-100 bdrs12 cover pointer"
+                                    />
+                                  </SwiperSlide>
+                                ),
+                              )}
                             </Swiper>
                           </div>
                         </div>

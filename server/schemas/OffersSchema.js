@@ -58,6 +58,7 @@ const createOfferSchema = {
               type: "string",
               enum: Object.values(Region),
             },
+            sizeInMeters: { type: "integer" },
             city: { type: "string" },
             zipCode: { type: "string" },
             address: { type: "string" },
@@ -77,6 +78,7 @@ const createOfferSchema = {
             },
           },
           required: [
+            "sizeInMeters",
             "bedrooms",
             "rooms",
             "images",

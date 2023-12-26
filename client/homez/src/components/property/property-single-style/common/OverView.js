@@ -1,42 +1,39 @@
-import listings from "@/data/listings";
 import React from "react";
 
-const OverView = ({ id }) => {
-  const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+const OverView = ({ offer }) => {
   const overviewData = [
     {
       icon: "flaticon-bed",
       label: "Bedroom",
-      value: data.bed,
-    },
-    {
-      icon: "flaticon-shower",
-      label: "Bath",
-      value: data.bath,
-    },
-    {
-      icon: "flaticon-event",
-      label: "Year Built",
-      value: data.yearBuilding,
-    },
-    {
-      icon: "flaticon-garage",
-      label: "Garage",
-      value: "2",
-      xs: true,
-    },
-    {
-      icon: "flaticon-expand",
-      label: "Sqft",
-      value: data.sqft,
-      xs: true,
+      value: offer?.properties?.bedrooms,
     },
     {
       icon: "flaticon-home-1",
       label: "Property Type",
-      value: data.propertyType,
+      value: offer?.type,
+    },
+    {
+      icon: "flaticon-home",
+      label: "Powierzchnia",
+      value: offer?.properties.sizeInMeters + "m2",
     },
   ];
+
+  if (offer?.properties?.bathrooms) {
+    overviewData.push({
+      icon: "flaticon-shower",
+      label: "Bath",
+      value: offer?.properties?.bathrooms,
+    });
+  }
+
+  if (offer?.properties?.garages) {
+    overviewData.push({
+      icon: "flaticon-garage",
+      label: "Bath",
+      value: offer?.properties?.garages,
+    });
+  }
 
   return (
     <>

@@ -5,10 +5,9 @@ const { db } = require("../utils/db");
 const PaginatorService = require("./PaginatorService");
 const UserService = require("./UserService");
 const { appendImages } = require("./manageOffers");
-const { selectFields } = require("express-validator/src/field-selection");
 
 class OffersService extends PaginatorService {
-  selectedFields = {
+  static selectedFields = {
     id: true,
     author: true,
     authorName: true,
@@ -22,13 +21,35 @@ class OffersService extends PaginatorService {
     isBoosted: true,
     properties: true,
     createdAt: true,
-    OfferFeature: true,
+    OfferFeature: {
+      select: {
+        Feature: {
+          select: { name: true, id: true },
+        },
+      },
+    },
     OfferViews: {
       select: {
-        _count: true,
+        id: true,
       },
     },
   };
+
+  static toDTO(offer) {
+    const dto = {
+      ...offer,
+      features: offer.OfferFeature.map((f) => ({
+        name: f.Feature.name,
+        id: f.Feature.id,
+      })),
+      viewsCount: offer.OfferViews.length,
+    };
+
+    delete dto.OfferViews;
+    delete dto.OfferFeature;
+
+    return dto;
+  }
 
   static async findAll({
     page,
@@ -121,7 +142,7 @@ class OffersService extends PaginatorService {
 
     return await paginate(db.offers, {
       where,
-      select: this.selectFields,
+      select: this.selectedFields,
     });
   }
 
@@ -138,19 +159,18 @@ class OffersService extends PaginatorService {
     try {
       const features = data.features
         ? await Promise.all(
-            data.features.map(async (featureId) => {
-              const feature = await db.feature.findUnique({
-                where: { id: featureId },
-                select: selectFields,
-              });
+          data.features.map(async (featureId) => {
+            const feature = await db.feature.findUnique({
+              where: { id: featureId },
+            });
 
-              if (!feature) {
-                throw new APIError(`Feature ${featureId} not recognized`);
-              }
+            if (!feature) {
+              throw new APIError(`Feature ${featureId} not recognized`);
+            }
 
-              return feature;
-            }),
-          )
+            return feature;
+          }),
+        )
         : [];
 
       const [offer] = await db.$transaction([
@@ -195,7 +215,7 @@ class OffersService extends PaginatorService {
 
       return await db.offers.findUnique({
         where: { id: offer.id },
-        select: this.selectFields,
+        select: this.selectedFields,
       });
     } catch (e) {
       throw e;
@@ -206,7 +226,7 @@ class OffersService extends PaginatorService {
     if (all) {
       return await db.offers.findMany({
         where: { author: userId },
-        select: this.selectFields,
+        select: this.selectedFields,
       });
     }
 
@@ -215,16 +235,18 @@ class OffersService extends PaginatorService {
     return await paginate(db.offers, {
       where: {
         author: userId,
-        select: this.selectFields,
+        select: this.selectedFields,
       },
     });
   }
 
   static async getById(id) {
-    return await db.offers.findUnique({
-      where: { id },
-      select: this.selectFields,
-    });
+    return this.toDTO(
+      await db.offers.findUnique({
+        where: { id },
+        select: this.selectedFields,
+      }),
+    );
   }
 }
 
