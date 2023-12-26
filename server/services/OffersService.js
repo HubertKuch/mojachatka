@@ -235,8 +235,8 @@ class OffersService extends PaginatorService {
     return await paginate(db.offers, {
       where: {
         author: userId,
-        select: this.selectedFields,
       },
+      select: this.selectedFields,
     });
   }
 

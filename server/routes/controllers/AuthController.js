@@ -13,6 +13,7 @@ const { createUser } = require("../../services/createUser");
 const { sendMail } = require("../../utils/mail");
 const { UserType } = require("@prisma/client");
 const { db } = require("../../utils/db");
+const jwt = require("jsonwebtoken");
 
 class AuthController {
   static async login(req, res) {
@@ -61,12 +62,14 @@ class AuthController {
     }
   }
 
-  static async refreshToken(req, res) {
+  static async refreshToken(req, res, next) {
     try {
       const { refreshToken } = req.body;
+
       if (!refreshToken) {
         res.status(400).json({ message: "Missing refresh token." });
       }
+
       const payload = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
       const savedRefreshToken = await findRefreshTokenById(payload.jti);
 

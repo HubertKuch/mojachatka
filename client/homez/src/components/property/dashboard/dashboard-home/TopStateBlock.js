@@ -8,6 +8,11 @@ const TopStateBlock = ({ user, stats }) => {
       icon: "flaticon-home",
     },
     {
+      text: "Pozostalych ofert",
+      title: user.listings,
+      icon: "flaticon-home",
+    },
+    {
       text: "Wyswietlen",
       title: stats.views?.total || 0,
       icon: "flaticon-search-chart",

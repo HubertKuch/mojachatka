@@ -1,15 +1,18 @@
+"use client";
+
 import DashboardHeader from "@/components/common/DashboardHeader";
 import MobileMenu from "@/components/common/mobile-menu";
 import DboardMobileNavigation from "@/components/property/dashboard/DboardMobileNavigation";
 import Footer from "@/components/property/dashboard/Footer";
 import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import PackageDataTable from "@/components/property/dashboard/dashboard-package/PackageDataTable";
-
-export const metadata = {
-  title: "Dashboard My Package || Homez - Real Estate NextJS Template",
-};
+import useBoughtedPackets from "@/hooks/useBoughtedPackets";
 
 const DashboardMyPackage = () => {
+  const packets = useBoughtedPackets();
+
+  console.log(packets);
+
   return (
     <>
       {/* Main Header Nav */}
@@ -40,7 +43,6 @@ const DashboardMyPackage = () => {
                 <div className="col-lg-12">
                   <div className="dashboard_title_area">
                     <h2>My Package</h2>
-                    <p className="text">We are glad to see you again!</p>
                   </div>
                 </div>
               </div>
@@ -50,7 +52,7 @@ const DashboardMyPackage = () => {
                 <div className="col-xl-12">
                   <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
                     <div className="packages_table table-responsive">
-                      <PackageDataTable />
+                      <PackageDataTable packages={packets} />
                     </div>
                   </div>
                 </div>

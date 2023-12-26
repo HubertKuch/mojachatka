@@ -6,7 +6,20 @@ async function getPackets() {
 }
 
 async function getUserAccountPackets(userId) {
-  return await db.userAccountPacketsSnapshots.findMany({ where: { userId } });
+  const packets = await db.userAccountPacketsSnapshots.findMany({
+    where: { userId },
+  });
+
+  return packets.map((packet) => {
+    packet.expiringDate = new Date(
+      Date.parse(packet.boughtAt) +
+      packet.properties.expirationDays * 24 * 60 * 1000,
+    );
+
+    packet.isExpired = Date.now() > packet.expiringDate.valueOf();
+
+    return packet;
+  });
 }
 
 async function buyPacket({ packetId, user }) {

@@ -25,4 +25,16 @@ export default class AccountPacketsController {
       })
     ).json();
   }
+
+  static async getBoughtedPackets() {
+    return (
+      await fetch(process.env.BASE_URL + "/boughtedPackets", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(
+            process.env.TOKEN_KEY,
+          )}`,
+        },
+      })
+    ).json();
+  }
 }
