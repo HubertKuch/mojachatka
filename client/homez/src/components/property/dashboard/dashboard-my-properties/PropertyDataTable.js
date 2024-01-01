@@ -1,4 +1,5 @@
 "use client";
+import Modal from "@/components/customs/Modal";
 import useOwnOffers from "@/hooks/useOwnOffers";
 import Image from "next/image";
 import Link from "next/link";
@@ -64,11 +65,27 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                   <span className="flaticon-bin" />
                 </button>
 
+                <Modal
+                  title={"dsadas"}
+                  trigger={
+                    <button
+                      className="icon"
+                      style={{ border: "none" }}
+                      data-tooltip-id="promote"
+                    >
+                      <i class="fa-solid fa-rectangle-ad"></i>
+                    </button>
+                  }
+                >
+                  dsadsad
+                </Modal>
+
                 <ReactTooltip
                   id={`edit-${property.id}`}
                   place="top"
                   content="Edi"
                 />
+                <ReactTooltip id={"promote"} place="top" content="Promuj" />
                 <ReactTooltip
                   id={`delete-${property.id}`}
                   place="top"

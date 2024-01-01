@@ -5,7 +5,6 @@ import MobileMenu from "@/components/common/mobile-menu";
 import Pagination from "@/components/property/Pagination";
 import Footer from "@/components/property/dashboard/Footer";
 import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
-import FilterHeader from "../../../../components/property/dashboard/dashboard-my-properties/FilterHeader";
 import PropertyDataTable from "@/components/property/dashboard/dashboard-my-properties/PropertyDataTable";
 import DboardMobileNavigation from "@/components/property/dashboard/DboardMobileNavigation";
 import { useState } from "react";
@@ -49,9 +48,6 @@ const DashboardMyProperties = () => {
                   <div className="dashboard_title_area">
                     <h2>My Properties</h2>
                   </div>
-                </div>
-                <div className="col-xxl-9">
-                  <FilterHeader />
                 </div>
               </div>
               {/* End .row */}
