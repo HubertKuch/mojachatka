@@ -1,18 +1,15 @@
+import useStore from "@/store/store";
+import axios from "./axios";
+
 class AuthController {
   static async login(email, password) {
-    const res = await fetch(process.env.BASE_URL + "/login", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-    });
-
-    const body = await res.json();
+    const res = await axios.post("/login", { email, password });
+    const body = res.data;
 
     if (res.status === 200) {
       localStorage.setItem(process.env.TOKEN_KEY, body.token);
-      localStorage.setItem(process.env.REFRESH_KEY, body.refresh);
+      useStore.getState().setToken(body.token);
+      useStore.getState().setRefreshToken(body.refresh);
 
       return { ...body, success: true };
     }
@@ -20,35 +17,17 @@ class AuthController {
     return { ...body, success: false };
   }
 
-  static async refresh() {
-    const res = await fetch(process.env.BASE_URL + "/refreshToken", {
-      method: "POST",
-      body: JSON.stringify({
-        refreshToken: localStorage.getItem(process.env.REFRESH_KEY),
-      }),
+  static async getProfile() {
+    const res = await fetch(process.env.BASE_URL + "/profile", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem(process.env.TOKEN_KEY)}`,
       },
     });
 
-    if (res.status !== 200) {
-      console.error(await res.json());
-      return;
-    }
-
-    return await res.json();
-  }
-
-  static async getProfile() {
-    return await (
-      await fetch(process.env.BASE_URL + "/profile", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem(
-            process.env.TOKEN_KEY,
-          )}`,
-        },
-      })
-    ).json();
+    return {
+      status: res.status,
+      body: await res.json(),
+    };
   }
 
   static clearStorage() {

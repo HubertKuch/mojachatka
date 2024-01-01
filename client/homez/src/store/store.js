@@ -8,10 +8,12 @@ const useStore = create(
       isLoggedIn: false,
       setUser: (user) =>
         set((state) => {
-          state.isLoggedIn = true;
-
-          return { user };
+          return { user, isLoggedIn: true };
         }),
+      token: null,
+      setToken: (token) => set(() => ({ token })),
+      refreshToken: null,
+      setRefreshToken: (token) => set(() => ({ refreshToken: token })),
     }),
     {
       name: "app-store",

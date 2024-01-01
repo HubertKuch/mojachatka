@@ -157,9 +157,8 @@ model User {
   Ban                         Ban?
   SocialMedia                 SocialMedia[]
 
-  Chat      Chat[]
-  Message   Message? @relation(fields: [messageId], references: [id])
-  messageId String?
+  Chat     Chat[]
+  Messages Message[]
 }
 
 model Ban {
@@ -269,11 +268,12 @@ model Chat {
 }
 
 model Message {
-  id      String   @id @unique @default(uuid())
-  chat    Chat     @relation(fields: [chatId], references: [id])
-  message String
-  sentAt  DateTime @default(now())
-  meta    Json // { "readedBy": [uuidv4 of members] }
-  chatId  String
-  User    User[]
+  id       String   @id @unique @default(uuid())
+  chat     Chat     @relation(fields: [chatId], references: [id])
+  message  String
+  sentAt   DateTime @default(now())
+  meta     Json // { "readedBy": [uuidv4 of members] }
+  chatId   String
+  sender   User     @relation(fields: [senderId], references: [id])
+  senderId String
 }

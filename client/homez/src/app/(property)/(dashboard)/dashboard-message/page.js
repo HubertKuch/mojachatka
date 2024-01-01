@@ -8,11 +8,36 @@ import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import ChatBoxForm from "@/components/property/dashboard/dashboard-message/ChatBoxForm";
 import UserChatBoxContent from "@/components/property/dashboard/dashboard-message/UserChatBoxContent";
 import UserInboxList from "@/components/property/dashboard/dashboard-message/UserInboxList";
-import { useEffect, useState } from "react";
+import useUser from "@/hooks/useUser";
+import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 
 const DashboardMessage = () => {
   const [chats, setChats] = useState([]);
+  const [activeChat, setActiveChat] = useState();
+  const [activeChatId, setActiveChatId] = useState();
+  const [messages, setMessages] = useState([]);
+  const [socket, setSocket] = useState();
+  const contentRef = useRef();
+  const user = useUser();
+
+  window.onload = scrollToBottom;
+
+  function scrollToBottom() {
+    if (contentRef.current) {
+      contentRef.current.scrollTo({ top: contentRef.current.scrollHeight });
+    }
+  }
+
+  useEffect(() => {
+    if (contentRef.current) {
+      const observer = new MutationObserver(() => {
+        scrollToBottom();
+      });
+
+      observer.observe(contentRef.current, { childList: true, subtree: true });
+    }
+  }, [activeChat]);
 
   useEffect(() => {
     const socket = io(process.env.BASE_URL, {
@@ -21,14 +46,36 @@ const DashboardMessage = () => {
       },
     });
 
-    socket.on("connect", (socket) => {
-      console.log("connected");
-    });
+    setSocket(socket);
+
+    socket.emit("chats");
 
     socket.on("chats", (data) => {
       setChats(data);
+
+      if (data.length !== 0) {
+        setActiveChat(data[0]);
+        setActiveChatId(data[0].id);
+      }
+    });
+
+    socket.on("chat", (data) => {
+      setActiveChat(data);
+      setMessages(data.messages);
+    });
+
+    socket.on("message", (msg) => {
+      msg.own = msg.meta.sender === user.id;
+
+      setMessages((old) => [...old, msg]);
     });
   }, []);
+
+  useEffect(() => {
+    if (socket && activeChatId) {
+      socket.emit("chat", activeChatId);
+    }
+  }, [socket, activeChatId]);
 
   return (
     <>
@@ -61,7 +108,10 @@ const DashboardMessage = () => {
                     <div className="message_container">
                       <div className="inbox_user_list">
                         <div className="chat-member-list pr20">
-                          <UserInboxList />
+                          <UserInboxList
+                            chats={chats}
+                            activeChat={activeChat}
+                          />
                         </div>
                       </div>
                     </div>
@@ -69,27 +119,16 @@ const DashboardMessage = () => {
 
                   <div className="col-lg-6 col-xl-7 col-xxl-8">
                     <div className="message_container mt30-md">
-                      <div className="user_heading px-0 mx30">
-                        <div className="wrap">
-                          <div className="meta d-sm-flex justify-content-sm-between align-items-center">
-                            <div className="authors">
-                              <h6 className="name mb-0">Arlene McCoy</h6>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      {/* End .user_heading */}
-
-                      <div className="inbox_chatting_box">
+                      <div ref={contentRef} className="inbox_chatting_box">
                         <ul className="chatting_content">
-                          <UserChatBoxContent />
+                          <UserChatBoxContent messages={messages} />
                         </ul>
                       </div>
                       {/* End inbox-chatting */}
 
                       <div className="mi_text">
                         <div className="message_input">
-                          <ChatBoxForm />
+                          <ChatBoxForm chat={activeChat} socket={socket} />
                         </div>
                       </div>
                       {/* End button */}

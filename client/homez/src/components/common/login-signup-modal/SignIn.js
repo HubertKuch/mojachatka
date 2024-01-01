@@ -9,6 +9,7 @@ const SignIn = () => {
   const passRef = useRef();
   const [err, setErr] = useState("");
   const setUser = useStore((s) => s.setUser);
+  const setToken = useStore((s) => s.setToken);
 
   return (
     <form
@@ -25,7 +26,8 @@ const SignIn = () => {
           return setErr(res.message);
         }
 
-        setUser((await AuthController.getProfile()).user);
+        setToken(res.token);
+        setUser((await AuthController.getProfile()).body.user);
 
         window.location.replace("/");
       }}

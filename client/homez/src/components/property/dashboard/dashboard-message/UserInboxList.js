@@ -1,87 +1,24 @@
-import Image from "next/image";
 import React from "react";
 
-const users = [
-  {
-    name: "Darlene Robertson",
-    position: "Head of Development",
-    imageUrl: "/images/inbox/ms1.png",
-    notificationStatus: "online",
-  },
-  {
-    name: "Jane Cooper",
-    position: "Head of Development",
-    imageUrl: "/images/inbox/ms2.png",
-    notificationStatus: "none",
-  },
-  {
-    name: "Arlene McCoy",
-    position: "Head of Development",
-    imageUrl: "/images/inbox/ms3.png",
-    notificationStatus: "away",
-  },
-  {
-    name: "Albert Flores",
-    position: "Head of Development",
-    imageUrl: "/images/inbox/ms4.png",
-    notificationStatus: "busy",
-  },
-  {
-    name: "Darlene Robertson",
-    position: "Head of Development",
-    imageUrl: "/images/inbox/ms1.png",
-  },
-  {
-    name: "Darlene Robertson",
-    position: "Head of Development",
-    imageUrl: "/images/inbox/ms1.png",
-  },
-  {
-    name: "Jane Cooper",
-    position: "Head of Development",
-    imageUrl: "/images/inbox/ms2.png",
-  },
-  {
-    name: "Arlene McCoy",
-    position: "Head of Development",
-    imageUrl: "/images/inbox/ms3.png",
-  },
-  {
-    name: "Albert Flores",
-    position: "Head of Development",
-    imageUrl: "/images/inbox/ms4.png",
-    notificationStatus: "busy",
-  },
-  {
-    name: "Jane Cooper",
-    position: "Head of Development",
-    imageUrl: "/images/inbox/ms2.png",
-  },
-  {
-    name: "Arlene McCoy",
-    position: "Head of Development",
-    imageUrl: "/images/inbox/ms3.png",
-  },
-];
-
-const UserItem = ({ user }) => {
+const UserItem = ({ chat, isActive }) => {
   return (
-    <div className="list-item">
+    <div className="list-item" style={{ borderRadius: "1rem" }}>
       <a href="#">
         <div className="d-flex align-items-center position-relative">
           <div className="d-sm-flex">
-            <div className="d-inline-block">
-              <div className="fz14 fw600 dark-color ff-heading mb-0">
-                {user.name}
+            <div
+              className="d-inline-block"
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                width: "100%",
+              }}
+            >
+              <div>
+                <div className="fz14 fw600 mb-0">{chat.receiver.username}</div>
+                <div>{chat.lastMessage?.message || ""}</div>
               </div>
-              <p className="preview">{user.position}</p>
-            </div>
-
-            <div className="iul_notific">
-              <small>35 mins</small>
-              {user.notificationStatus !== undefined && (
-                <div className={`m_notif ${user.notificationStatus}`}>2</div>
-              )}
+              <span className={`m_notif`}>{chat.unReadedMessages}</span>
             </div>
           </div>
         </div>
@@ -90,11 +27,18 @@ const UserItem = ({ user }) => {
   );
 };
 
-const UserInboxList = () => {
+const UserInboxList = ({ chats, activeChat }) => {
   return (
     <>
-      {users.map((user, index) => (
-        <UserItem key={index} user={user} />
+      {chats.map((chat, index) => (
+        <>
+          <UserItem
+            key={index}
+            chat={chat}
+            isActive={chat.id === activeChat?.id}
+          />
+          <hr />
+        </>
       ))}
     </>
   );

@@ -1,81 +1,21 @@
-import Image from "next/image";
 import React from "react";
 
-const chatMessages = [
-  {
-    className: "sent float-start",
-    imageUrl: "/images/inbox/ms4.png",
-    name: "Albert Flores",
-    time: "35 mins",
-    message:
-      "How likely are you to recommend our company to your friends and family?",
-  },
-  {
-    className: "reply float-end",
-    imageUrl: "/images/inbox/ms5.png",
-    name: "You",
-    time: "35 mins",
-    message:
-      "Hey there, we’re just writing to let you know that you’ve been subscribed to a repository on GitHub.",
-  },
-  {
-    className: "reply float-end",
-    imageUrl: "/images/inbox/ms3.png",
-    name: "You",
-    time: "35 mins",
-    message: "Are we meeting today?",
-  },
-  {
-    className: "reply float-end",
-    imageUrl: "/images/inbox/ms3.png",
-    name: "You",
-    time: "35 mins",
-    message: "The project finally complete! Let's go to!",
-  },
-  {
-    className: "sent float-start",
-    imageUrl: "/images/inbox/ms2.png",
-    name: "Albert Flores",
-    time: "35 mins",
-    message: "Let's go!",
-  },
-  {
-    className: "sent float-start",
-    imageUrl: "/images/inbox/ms2.png",
-    name: "Albert Flores",
-    time: "35 mins",
-    message:
-      "simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's",
-  },
-  {
-    className: "sent float-start",
-    imageUrl: "/images/inbox/ms2.png",
-    name: "Albert Flores",
-    time: "35 mins",
-    message: "Hello, John!",
-  },
-];
-
 const ChatMessage = ({ message }) => {
+  const sentAt = new Date(message.sentAt).toLocaleString();
+
   return (
-    <li className={message.className}>
+    <li className={message.own ? "sent float-end" : "reply float-start"}>
       <div
-        className={`d-flex align-items-center ${
-          message.className === "sent float-start"
-            ? "mb15"
-            : "justify-content-end mb15"
-        }`}
-      >
-        <div
-          className={`title fz14 ${
-            message.className === "reply float-end" ? "mr10" : "ml10"
+        className={`d-flex align-items-center ${message.own ? "mb15" : "justify-content-end mb15"
           }`}
-        >
-          {message.className === "reply float-end" ? (
-            <small>{message.time}</small>
+      >
+        <div className={`title fz14 ${message.own ? "mr10" : "ml10"}`}>
+          {message.own ? (
+            <small>{sentAt} </small>
           ) : (
             <>
-              {message.name} <small className="ml10">{message.time}</small>
+              {message.sender.username}{" "}
+              <small className="ml10">{sentAt} </small>
             </>
           )}
         </div>
@@ -85,10 +25,10 @@ const ChatMessage = ({ message }) => {
   );
 };
 
-const UserChatBoxContent = () => {
+const UserChatBoxContent = ({ messages }) => {
   return (
     <>
-      {chatMessages.map((message, index) => (
+      {messages?.map((message, index) => (
         <ChatMessage key={index} message={message} />
       ))}
     </>

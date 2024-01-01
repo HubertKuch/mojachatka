@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useRef } from "react";
 
-const ChatBoxForm = () => {
+const ChatBoxForm = ({ chat, socket }) => {
+  const inputRef = useRef();
+
   return (
-    <form className="d-flex align-items-center">
+    <form
+      className="d-flex align-items-center"
+      onSubmit={(e) => {
+        e.preventDefault();
+        const value = inputRef.current.value;
+
+        socket.emit("message", chat.receiver.id, value);
+      }}
+    >
       <input
+        ref={inputRef}
         className="form-control"
         type="search"
         placeholder="Type a Message"
