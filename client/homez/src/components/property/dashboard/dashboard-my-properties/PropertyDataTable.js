@@ -30,8 +30,8 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
               <div className="listing-style1 dashboard-style d-xxl-flex align-items-center mb-0">
                 <div className="list-thumb">
                   <Image
-                    width={110}
-                    height={94}
+                    width={230}
+                    height={110}
                     className="w-100"
                     src={property.properties.images[0]}
                     alt="property"
@@ -51,7 +51,9 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
               </div>
             </th>
             <td className="vam">
-              <div className="d-flex">
+              <div
+                style={{ display: "grid", gap: "10px", alignItems: "right" }}
+              >
                 <button
                   className="icon"
                   style={{ border: "none" }}
@@ -66,7 +68,6 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                 >
                   <span className="flaticon-bin" />
                 </button>
-
                 <Modal
                   title={`Podbicie oferty ${property.title}`}
                   trigger={
@@ -74,6 +75,7 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                       className="icon"
                       style={{ border: "none" }}
                       data-tooltip-id="promote"
+                      disabled={property.isBoosted}
                     >
                       <i class="fa-solid fa-rectangle-ad"></i>
                     </button>
@@ -130,13 +132,31 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                     ]}
                   />
                 </Modal>
-
+                {property.isBoosted ? (
+                  <button disabled className="icon" style={{ border: "none" }}>
+                    {" "}
+                    <i
+                      className="fa-solid fa-star"
+                      style={{
+                        color: "#f6d32d",
+                      }}
+                    ></i>
+                  </button>
+                ) : null}
                 <ReactTooltip
                   id={`edit-${property.id}`}
                   place="top"
-                  content="Edi"
+                  content="Edytuj"
                 />
-                <ReactTooltip id={"promote"} place="top" content="Promuj" />
+                {property.isBoosted ? (
+                  <ReactTooltip
+                    id={"promote"}
+                    place="top"
+                    content={"Ta oferta jest juz promowana"}
+                  />
+                ) : (
+                  <ReactTooltip id={"promote"} place="top" content={"Promuj"} />
+                )}
                 <ReactTooltip
                   id={`delete-${property.id}`}
                   place="top"
