@@ -1,9 +1,11 @@
 "use client";
 import Modal from "@/components/customs/Modal";
+import BoostingController from "@/controllers/BoostingController";
 import useOwnOffers from "@/hooks/useOwnOffers";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
+import ReactSelect from "react-select";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const PropertyDataTable = ({ currPage, setMeta }) => {
@@ -66,7 +68,7 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                 </button>
 
                 <Modal
-                  title={"dsadas"}
+                  title={`Podbicie oferty ${property.title}`}
                   trigger={
                     <button
                       className="icon"
@@ -76,8 +78,57 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                       <i class="fa-solid fa-rectangle-ad"></i>
                     </button>
                   }
+                  actions={
+                    <button
+                      className="form-control btn"
+                      onClick={async () => {
+                        const value =
+                          document.querySelector("[name=type]").value;
+
+                        const err = document.querySelector("#modal-error");
+
+                        if (!["GLOBAL", "MAIN"].includes(value)) {
+                          return (err.innerText = "Nie poprawny rodzaj");
+                        }
+
+                        const res = await BoostingController.boostOffer(
+                          property.id,
+                          value,
+                        );
+
+                        if (!res.ok) {
+                          return (err.innerText = res.body?.message);
+                        }
+
+                        window.location.reload();
+                      }}
+                    >
+                      Akceptuj
+                    </button>
+                  }
                 >
-                  dsadsad
+                  <p
+                    className="fz16"
+                    style={{ color: "red" }}
+                    id={"modal-error"}
+                  ></p>
+                  <p className="fz16">
+                    Wybierz typ promowania. W razie braku mozliwej promocje
+                    mozesz zakupic pakiet promocyjny.
+                  </p>
+                  <ReactSelect
+                    name="type"
+                    options={[
+                      {
+                        value: "MAIN",
+                        label: "Standardowe",
+                      },
+                      {
+                        value: "GLOBAL",
+                        label: "Na strone glowna",
+                      },
+                    ]}
+                  />
                 </Modal>
 
                 <ReactTooltip

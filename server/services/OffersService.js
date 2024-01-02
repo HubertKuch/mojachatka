@@ -9,6 +9,7 @@ const { appendImages } = require("./manageOffers");
 class OffersService extends PaginatorService {
   static selectedFields = {
     id: true,
+    title: true,
     author: true,
     authorName: true,
     description: true,
@@ -159,18 +160,18 @@ class OffersService extends PaginatorService {
     try {
       const features = data.features
         ? await Promise.all(
-          data.features.map(async (featureId) => {
-            const feature = await db.feature.findUnique({
-              where: { id: featureId },
-            });
+            data.features.map(async (featureId) => {
+              const feature = await db.feature.findUnique({
+                where: { id: featureId },
+              });
 
-            if (!feature) {
-              throw new APIError(`Feature ${featureId} not recognized`);
-            }
+              if (!feature) {
+                throw new APIError(`Feature ${featureId} not recognized`);
+              }
 
-            return feature;
-          }),
-        )
+              return feature;
+            }),
+          )
         : [];
 
       const [offer] = await db.$transaction([
