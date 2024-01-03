@@ -74,7 +74,7 @@ class OffersService extends PaginatorService {
         { description: { contains: search } },
       ];
     if (user) where.author = user;
-    if (boosted) where.isBoosted = boosted;
+    if (boosted) where.isBoosted = !!boosted;
     if (offerType) {
       if (!Object.values(OfferType).includes(offerType)) {
         throw new APIError("offerType must be a offer type enum case");
@@ -160,18 +160,18 @@ class OffersService extends PaginatorService {
     try {
       const features = data.features
         ? await Promise.all(
-            data.features.map(async (featureId) => {
-              const feature = await db.feature.findUnique({
-                where: { id: featureId },
-              });
+          data.features.map(async (featureId) => {
+            const feature = await db.feature.findUnique({
+              where: { id: featureId },
+            });
 
-              if (!feature) {
-                throw new APIError(`Feature ${featureId} not recognized`);
-              }
+            if (!feature) {
+              throw new APIError(`Feature ${featureId} not recognized`);
+            }
 
-              return feature;
-            }),
-          )
+            return feature;
+          }),
+        )
         : [];
 
       const [offer] = await db.$transaction([

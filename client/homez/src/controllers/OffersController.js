@@ -5,8 +5,8 @@ class OffersControllers {
     return await (
       await fetch(
         process.env.BASE_URL +
-          "/getAllOffers" +
-          objectToQueryUri.objectToQueryUri(query),
+        "/getAllOffers" +
+        objectToQueryUri.objectToQueryUri(query),
       )
     ).json();
   }
@@ -26,8 +26,8 @@ class OffersControllers {
     return await (
       await fetch(
         process.env.BASE_URL +
-          "/getUserOffers" +
-          objectToQueryUri.objectToQueryUri({ page }),
+        "/getUserOffers" +
+        objectToQueryUri.objectToQueryUri({ page }),
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem(

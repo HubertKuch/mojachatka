@@ -1,18 +1,12 @@
 "use client";
-import listings from "@/data/listings";
+import useOffers from "@/hooks/useOffers";
 import Image from "next/image";
 import Link from "next/link";
-import { Navigation, Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 
 const FeaturedListings = () => {
-  const firstThreeListings = listings.slice(0, 3);
-  const remainingListings = listings.slice(3, 6);
-  const listingsToShow = [...firstThreeListings, ...remainingListings];
-  {
-    /*Powyżej są obiekty 1-3 oraz 4-6*/
-  }
+  const listingsToShow = useOffers({ boosted: true });
+
   return (
     <div className="featured-listings">
       <div className="row">
@@ -25,7 +19,7 @@ const FeaturedListings = () => {
                     width={382}
                     height={248}
                     className="w-100 h-100 cover"
-                    src={listing.image}
+                    src={listing.properties.images[0]}
                     alt="listings"
                   />
                   <div className="sale-sticker-wrap">
