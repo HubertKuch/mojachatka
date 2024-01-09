@@ -14,6 +14,8 @@ const useStore = create(
       setToken: (token) => set(() => ({ token })),
       refreshToken: null,
       setRefreshToken: (token) => set(() => ({ refreshToken: token })),
+      registerData: {},
+      setRegisterData: (data) => set(() => ({ registerData: data })),
     }),
     {
       name: "app-store",

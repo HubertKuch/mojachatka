@@ -18,7 +18,8 @@ class ChatService {
             },
           },
           select: {
-            username: true,
+            firstName: true,
+            lastName: true,
             id: true,
           },
         },
@@ -82,7 +83,8 @@ class ChatService {
       select: {
         users: {
           select: {
-            username: true,
+            firstName: true,
+            lastName: true,
             id: true,
           },
           where: {
@@ -99,7 +101,8 @@ class ChatService {
             sender: {
               select: {
                 id: true,
-                username: true,
+                firstName: true,
+                lastName: true,
               },
             },
           },

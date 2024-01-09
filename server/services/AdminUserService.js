@@ -13,8 +13,8 @@ class AdminUserService {
     type: true,
     email: true,
     offers: true,
-    username: true,
-    phoneNumber: true,
+    firstName: true,
+    lastName: true,
   };
 
   /** @param {Prisma.UserWhereInput} where **/

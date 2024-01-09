@@ -1,59 +1,112 @@
-import Link from "next/link";
+"use client";
+import MultiStep from "react-multistep";
+import AccountType from "./sign-up-steps/AccountType";
+import { useForm } from "react-hook-form";
+import { useEffect, useRef, useState } from "react";
+import AccountDataStep from "./sign-up-steps/individual/AccountDataStep";
+import PasswordDataStep from "./sign-up-steps/PasswordDataStep";
+import CompanyDetailsStep from "./sign-up-steps/CompanyDetailsStep";
+import SalesRepStep from "./sign-up-steps/SalesRepStep";
+import EndStep from "./EndStep";
+import useStore from "@/store/store";
 
 const SignUp = () => {
+  const [accountType, setAccountType] = useState("INDIVIDUAL");
+  const [steps, setSteps] = useState([]);
+  const { register, handleSubmit, formState } = useForm({ mode: "all" });
+  const [endDataToDisplay, setEndDataToDisplay] = useState({});
+  const formRef = useRef();
+
+  function onSubmit() {
+    console.log(2);
+  }
+
+  const stepsByType = [
+    {
+      type: "INDIVIDUAL",
+      steps: [
+        <AccountDataStep title={"Podstawowe dane"} register={register} />,
+        <PasswordDataStep title={"Haslo"} register={register} />,
+        <EndStep
+          title="Zakonczenie"
+          data={endDataToDisplay}
+          onSubmit={onSubmit}
+        />,
+      ],
+    },
+    {
+      type: "AGENT",
+      steps: [
+        <CompanyDetailsStep title={"Firma"} register={register} />,
+        <SalesRepStep title={"Przedstawiciel"} register={register} />,
+        <PasswordDataStep title={"Haslo"} register={register} />,
+        <EndStep
+          title="Zakonczenie"
+          data={endDataToDisplay}
+          onSubmit={onSubmit}
+        />,
+      ],
+    },
+    {
+      type: "DEVELOPER",
+      steps: [
+        <CompanyDetailsStep title={"Firma"} register={register} />,
+        <SalesRepStep title={"Przedstawiciel"} register={register} />,
+        <PasswordDataStep title={"Haslo"} register={register} />,
+        <EndStep
+          title="Zakonczenie"
+          data={endDataToDisplay}
+          onSubmit={onSubmit}
+        />,
+      ],
+    },
+  ];
+
+  useEffect(() => {
+    if (accountType) {
+      setSteps(
+        stepsByType.find((steps) => steps.type === accountType)?.steps || [],
+      );
+    }
+  }, [accountType]);
+
   return (
-    <form className="form-style1">
-      <div className="mb25">
-        <label className="form-label fw600 dark-color">Email</label>
-        <input
-          type="email"
-          className="form-control"
-          placeholder="Wprowadź adres email"
-          required
+    <form
+      onSubmit={handleSubmit((data) => console.log(data))}
+      ref={formRef}
+      className="form-style1"
+      onChange={() => {
+        const inputs = formRef.current.querySelectorAll("input");
+        const prev = JSON.parse(JSON.stringify(endDataToDisplay));
+
+        for (const input of inputs) {
+          if (input.name.includes("password")) {
+            continue;
+          }
+
+          prev[
+            formRef.current.querySelector(`[for=${input.name}]`)?.textContent
+          ] = input.value;
+        }
+
+        useStore.setState({ registerData: prev }, true);
+        setEndDataToDisplay(useStore.getState().registerData);
+      }}
+    >
+      <MultiStep
+        activeStep={0}
+        showTitles={true}
+        showNavigation={false}
+        prevButton={{ title: "Cofnij", style: {} }}
+        nextButton={{ title: "Nastepny", style: {} }}
+      >
+        <AccountType
+          title={"Typ konta"}
+          accountType={accountType}
+          setAccountType={setAccountType}
         />
-      </div>
-      {/* End Email */}
-
-      <div className="mb20">
-        <label className="form-label fw600 dark-color">Hasło</label>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Wprowadź hasło"
-          required
-        />
-      </div>
-      {/* End Password */}
-
-      <div className="d-grid mb20">
-        <button className="ud-btn btn-thm" type="submit">
-          Stwórz konto <i className="fal fa-arrow-right-long" />
-        </button>
-      </div>
-
-      {/*
-      <div className="hr_content mb20">
-        <hr />
-        <span className="hr_top_text">LUB</span>
-      </div>
-      <div className="d-grid mb10">
-        <button className="ud-btn btn-white" type="button">
-          <i className="fab fa-google" /> Kontynuuj z Google
-        </button>
-      </div>
-      <div className="d-grid mb10">
-        <button className="ud-btn btn-fb" type="button">
-          <i className="fab fa-facebook-f" /> Kontynuuj z Facebookiem
-        </button>
-      </div>
-
-      */}
-      <p className="dark-color text-center mb0 mt10">
-        Posiadasz już konto?{" "}
-        <Link className="dark-color fw600" href="/login">
-          Zaloguj się
-        </Link>
-      </p>
+        {steps}
+      </MultiStep>
     </form>
   );
 };

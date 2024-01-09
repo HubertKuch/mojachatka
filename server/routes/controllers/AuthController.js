@@ -14,6 +14,12 @@ const { sendMail } = require("../../utils/mail");
 const { UserType } = require("@prisma/client");
 const { db } = require("../../utils/db");
 const jwt = require("jsonwebtoken");
+const {
+  getIndividualUserSchema,
+  getAgentUserSchema,
+  getDeveloperUserSchema,
+} = require("../../schemas/UserRegisterSchema");
+const APIError = require("../../errors/APIError");
 
 class AuthController {
   static async login(req, res) {
@@ -108,86 +114,57 @@ class AuthController {
     }
   }
 
-  static async register(req, res) {
+  static async register(req, res, next) {
+    function getValidator(type) {
+      return {
+        INDIVIDUAL: getIndividualUserSchema(),
+        AGENT: getAgentUserSchema(),
+        DEVELOPER: getDeveloperUserSchema(),
+      }[type];
+    }
+
     try {
-      let { username, email, password, confirmPassword, phoneNumber, type } =
-        req.body;
+      const type = req.query.type;
+      const body = req.body;
 
       if (!type || !Object.values(UserType).includes(type)) {
         return res.status(400).json({ message: "Account type is required" });
       }
 
+      const validator = getValidator(type);
+
+      validator(body);
+
+      if (validator.errors) {
+        return next(new APIError("Nieprawidlowe zapytanie", 400));
+      }
+
       let emailRegex =
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-      if (!emailRegex.test(email)) {
+      if (!emailRegex.test(body.email)) {
         res.status(400).json({ message: "Invalid Email" });
         return;
       }
 
-      const checkUser = !!(await db.user.findFirst({
-        where: {
-          username: username,
-        },
-      }));
-
       const checkEmail = !!(await db.user.findFirst({
         where: {
-          email: email,
+          email: body.email,
         },
       }));
-
-      phoneNumber = phoneNumber.replace(" ", "").trim();
-
-      const checkPhone =
-        !!(await db.user.findFirst({
-          where: {
-            phoneNumber,
-          },
-        })) && phoneNumber.length === 9;
-
-      if (checkPhone) {
-        res
-          .status(400)
-          .json({ message: "Phone number isn't valid or exists." });
-        return;
-      }
-
-      if (checkUser) {
-        res.status(400).json({ message: "Username already exists." });
-        return;
-      }
-
-      if (username > 20) {
-        res
-          .status(400)
-          .json({ message: "Username cannot have more than 20 characters." });
-        return;
-      }
 
       if (checkEmail) {
         res.status(400).json({ message: "Email already exists." });
         return;
       }
 
-      if (password !== confirmPassword) {
+      if (body.password !== body.passwordRepeat) {
         res.status(400).json({ message: "Passwords must match" });
         return;
       }
 
-      if (!username || username.lenght === 0) {
-        res.status(400).json({ message: "Username cannot be empty" });
-        return;
-      }
-
-      const newUser = await createUser({
-        username,
-        email,
-        password,
-        phoneNumber,
-        type,
-      });
-
+      const { id, email } = await AuthController.registerUserByType(type, body);
+      const newUser = await db.user.findUnique({ where: { email, id } });
       const jti = uuidv4();
       const { accessToken, refreshToken } = generateTokens(newUser, jti);
 
@@ -196,7 +173,7 @@ class AuthController {
         refreshToken,
         userId: newUser.id,
       });
-      await sendMail(newUser.email);
+      await sendMail(email);
 
       res.status(200).json({
         message: "User created successfully",
@@ -207,6 +184,125 @@ class AuthController {
       console.log(err);
       res.status(500).json({ message: "Internal Server Error!" });
     }
+  }
+
+  static async registerUserByType(type, body) {
+    if (type === UserType.DEVELOPER) {
+      const user = await this.registerDeveloper(body);
+
+      return { userId: user.id, email: user.email };
+    } else if (type === UserType.AGENT) {
+      const user = await this.registerAgent(body);
+
+      return { userId: user.id, email: user.email };
+    } else if (type === UserType.INDIVIDUAL) {
+      const user = await this.registerIndividual(body);
+
+      return { userId: user.id, email: user.email };
+    }
+  }
+
+  static async registerIndividual(body) {
+    return await db.user.create({
+      data: {
+        type: "INDIVIDUAL",
+        firstName: body.firstName,
+        lastName: body.lastName,
+        email: body.email,
+        activated: true,
+        password: bcrypt.hashSync(body.password, 12),
+      },
+      select: {
+        id: true,
+        email: true,
+      },
+    });
+  }
+
+  static async registerAgent(body) {
+    return await db.company.create({
+      select: {
+        user: {
+          select: {
+            id: true,
+            email: true,
+          },
+        },
+      },
+      data: {
+        user: {
+          connectOrCreate: {
+            create: {
+              type: "AGENT",
+              firstName: body.salesRepFirstName,
+              lastName: body.salesRepLastName,
+              email: body.email,
+              password: bcrypt.hashSync(body.password, 12),
+            },
+          },
+        },
+        nip: body.nip,
+        name: body.name,
+        house: body.house,
+        address: body.address,
+        regon: body.regon,
+        license: body.license,
+        zipCode: body.zipCode,
+        SalesRep: {
+          connectOrCreate: {
+            create: {
+              lastName: body.salesRepLastName,
+              firstName: body.salesRepFirstName,
+              telephone: body.salesRepTelephone,
+              altTelephone: body.salesRepAltTelephone,
+            },
+          },
+        },
+      },
+    });
+  }
+
+  static async registerDeveloper(body) {
+    return await db.company.create({
+      select: {
+        user: {
+          select: {
+            id: true,
+            email: true,
+          },
+        },
+      },
+      data: {
+        user: {
+          connectOrCreate: {
+            create: {
+              type: "DEVELOPER",
+              firstName: body.salesRepFirstName,
+              lastName: body.salesRepLastName,
+              email: body.email,
+              password: bcrypt.hashSync(body.password, 12),
+            },
+          },
+        },
+        nip: body.nip,
+        name: body.name,
+        house: body.house,
+        address: body.address,
+        regon: body.regon,
+        license: body.license,
+        zipCode: body.zipCode,
+        SalesRep: {
+          connectOrCreate: {
+            create: {
+              lastName: body.salesRepLastName,
+              firstName: body.salesRepFirstName,
+              telephone: body.salesRepTelephone,
+              altTelephone: body.salesRepAltTelephone,
+            },
+          },
+        },
+      },
+    });
   }
 
   static async getProfile(req, res) {

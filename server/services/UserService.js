@@ -13,9 +13,9 @@ class UserService {
       select: {
         id: true,
         type: true,
-        username: true,
+        firstName: true,
+        lastName: true,
         SocialMedia: true,
-        phoneNumber: true,
       },
     });
   }

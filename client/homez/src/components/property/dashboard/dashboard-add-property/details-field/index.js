@@ -11,7 +11,7 @@ const DetailsFiled = () => {
             </label>
             <input
               data-property
-              type="text"
+              type="number"
               name="sizeInMeters"
               className="form-control"
               placeholder="72"

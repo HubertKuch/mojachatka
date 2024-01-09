@@ -178,7 +178,7 @@ class OffersService extends PaginatorService {
         db.offers.create({
           data: {
             author: user.id,
-            authorName: user.username,
+            authorName: `${user.firstName} ${user.lastName}`,
             title: data.title,
             description: data.description,
             price: data.price,

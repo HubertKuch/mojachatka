@@ -22,3 +22,11 @@ body {
 .cursor {
   cursor: pointer;
 }
+
+.hover-background {
+  border: 3px solid black;
+}
+
+.hover-background:hover {
+  border: 3px solid #0b9fbb;
+}
