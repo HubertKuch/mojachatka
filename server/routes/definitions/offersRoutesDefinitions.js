@@ -12,6 +12,7 @@ router.get(
 router.get("/getOffer/:id", OffersController.getById);
 router.get("/getUserOffers", isAuthenticated, OffersController.getUserOffers);
 router.get("/offerTypes", OffersController.getOffersTypes);
+router.get("/categoriesStats", OffersController.getCategories);
 router.get("/sellTypes", OffersController.getSellTypes);
 router.get("/regions", OffersController.getRegions);
 router.post("/createOffer", isAuthenticated, OffersController.createOffer);

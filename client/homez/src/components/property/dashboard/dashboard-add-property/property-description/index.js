@@ -1,28 +1,11 @@
 "use client";
-import useSellType from "@/hooks/useSellType";
-import usePropertyTypes from "@/hooks/usePropertyType";
-import Select from "react-select";
 import { useState } from "react";
+import PropertyTypesSelect from "@/components/property/filter/PropertyTypesSelect";
+import Select from "react-select";
+import SellTypesSelect from "@/components/property/filter/SellTypesSelect";
 
 const PropertyDescription = () => {
-  const sellTypes = useSellType();
-  const propertyTypes = usePropertyTypes();
   const [rentType, setRentType] = useState("BUY");
-
-  const customStyles = {
-    option: (styles, { isFocused, isSelected, isHovered }) => {
-      return {
-        ...styles,
-        backgroundColor: isSelected
-          ? "#eb6753"
-          : isHovered
-            ? "#eb675312"
-            : isFocused
-              ? "#eb675312"
-              : undefined,
-      };
-    },
-  };
 
   return (
     <form className="form-style1">
@@ -60,19 +43,7 @@ const PropertyDescription = () => {
               Rodzaj majatku
             </label>
             <div className="location-area">
-              <Select
-                styles={{
-                  menu: (prov) => ({ ...prov, zIndex: 99999999 }),
-                  menuList: (prov) => ({ ...prov, zIndex: 99999999 }),
-                }}
-                defaultValue={[propertyTypes[1]]}
-                name="type"
-                menuPosition="fixed"
-                options={propertyTypes}
-                className="select-custom pl-0"
-                classNamePrefix="select"
-                required
-              />
+              <PropertyTypesSelect />
             </div>
           </div>
         </div>
@@ -84,16 +55,7 @@ const PropertyDescription = () => {
               Rodzaj sprzedazy
             </label>
             <div className="location-area">
-              <Select
-                defaultValue={sellTypes[0]}
-                name="rentType"
-                onChange={(e) => setRentType(e.value)}
-                options={sellTypes}
-                styles={customStyles}
-                className="select-custom pl-0"
-                classNamePrefix="select"
-                required
-              />
+              <SellTypesSelect set={setRentType} />
             </div>
           </div>
         </div>

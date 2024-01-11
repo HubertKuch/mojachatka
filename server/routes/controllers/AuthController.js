@@ -310,6 +310,7 @@ class AuthController {
 
     const user = await getUserByID(userId);
     delete user.password;
+    user.username = `${user.firstName} ${user.lastName}`;
     res.status(200).json({ message: "Successfull", user: user });
   }
 }

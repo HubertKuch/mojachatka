@@ -5,22 +5,23 @@ import ListingSidebar from "../../sidebar";
 import FeaturedListings from "./FeatuerdListings";
 import OffersControllers from "@/controllers/OffersController";
 import PaginationTwo from "../../PaginationTwo";
+import { useSearchParams } from "next/navigation";
 
 export default function PropertyFilteringList() {
   const [pageNumber, setPageNumber] = useState(1);
   const [pageCapacity, setPageCapacity] = useState(1);
   const [pageItems, setPageItems] = useState([]);
+  const searchParams = useSearchParams();
   const [filters, setFilters] = useState({
+    ...Object.fromEntries(searchParams),
     offerTypes: [],
   });
 
   useEffect(() => {
-    return () => {
-      OffersControllers.findAll(filters).then((res) => {
-        setPageItems(res.offers.data);
-        setPageCapacity(res.offers.meta.perPage);
-      });
-    };
+    OffersControllers.findAll(filters).then((res) => {
+      setPageItems(res.offers.data);
+      setPageCapacity(res.offers.meta.perPage);
+    });
   }, [pageNumber]);
 
   return (
@@ -29,7 +30,11 @@ export default function PropertyFilteringList() {
         <div className="container">
           <div className="row gx-xl-5">
             <div className="col-lg-4 d-none d-lg-block">
-              <ListingSidebar filters={filters} />
+              <ListingSidebar
+                filters={filters}
+                setPageItems={setPageItems}
+                setPageCapacity={setPageCapacity}
+              />
             </div>
             {/* End .col-lg-4 */}
 
@@ -52,7 +57,11 @@ export default function PropertyFilteringList() {
                 ></button>
               </div>
               <div className="offcanvas-body p-0">
-                <ListingSidebar filters={filters} />
+                <ListingSidebar
+                  filters={filters}
+                  setPageItems={setPageItems}
+                  setPageCapacity={setPageCapacity}
+                />
               </div>
             </div>
             {/* End mobile filter sidebar */}

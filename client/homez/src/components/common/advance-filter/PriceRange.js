@@ -1,15 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 
-const PriceRange = () => {
+const PriceRange = ({ filters }) => {
   const [price, setPrice] = useState({ value: { min: 0, max: 100000 } });
 
-  // price range handler
   const handleOnChange = (value) => {
     setPrice({ value });
   };
+
+  useEffect(() => {
+    filters.minPrice = price.value.min;
+    filters.maxPrice = price.value.max;
+  }, [price]);
 
   return (
     <>

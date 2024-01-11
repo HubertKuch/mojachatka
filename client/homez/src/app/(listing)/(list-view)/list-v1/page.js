@@ -1,13 +1,13 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
+
 import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import PropertyFilteringList from "@/components/listing/list-view/list-v1/PropertyFilteringList";
 
 import React from "react";
-
-export const metadata = {
-  title: "Mojachatka: Nieruchomości, Domy, Mieszkania, Działki",
-};
 
 const ListV1 = () => {
   return (
@@ -28,8 +28,8 @@ const ListV1 = () => {
               <div className="breadcumb-style1">
                 <h2 className="title">Ogłoszenia</h2>
                 <div className="breadcumb-list">
-                  <a href="#">Strona Główna</a>
-                  <a href="#">Oferty</a>
+                  <a href="/">Strona Główna</a>
+                  <a href="/">Oferty</a>
                 </div>
                 <a
                   className="filter-btn-left mobile-filter-btn d-block d-lg-none"

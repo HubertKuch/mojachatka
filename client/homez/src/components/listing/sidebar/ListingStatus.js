@@ -12,8 +12,6 @@ const ListingStatus = ({ filters }) => {
     };
   }, []);
 
-  console.log(filters);
-
   return (
     <>
       {sellTypes.map((option) => (

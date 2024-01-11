@@ -6,9 +6,9 @@ import PriceSlider from "./PriceRange";
 import Bedroom from "./Bedroom";
 import Bathroom from "./Bathroom";
 import OtherFeatures from "./OtherFeatures";
-import toQuery from "../../../utilis/queryParams";
+import OffersControllers from "@/controllers/OffersController";
 
-const ListingSidebar = ({ filters }) => {
+const ListingSidebar = ({ filters, setPageItems, setPageCapacity }) => {
   return (
     <div className="list-sidebar-style1">
       <div className="widget-wrapper">
@@ -104,9 +104,12 @@ const ListingSidebar = ({ filters }) => {
         <div className="btn-area d-grid align-items-center">
           <button
             className="ud-btn btn-thm"
-            onClick={() =>
-              console.log(filters, toQuery.objectToQueryUri(filters))
-            }
+            onClick={async () => {
+              OffersControllers.findAll(filters).then((res) => {
+                setPageItems(res.offers.data);
+                setPageCapacity(res.offers.meta.perPage);
+              });
+            }}
           >
             <span className="flaticon-search align-text-top pr10" />
             Szukaj

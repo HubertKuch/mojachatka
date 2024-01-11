@@ -52,11 +52,24 @@ class OffersService extends PaginatorService {
     return dto;
   }
 
+  static async countByCategory(category) {
+    const count = await db.offers.count({
+      where: {
+        type: category,
+      },
+    });
+
+    return {
+      count,
+      category,
+    };
+  }
+
   static async findAll({
     page,
     boosted,
     user,
-    offerType,
+    type,
     sellType,
     minPrice,
     maxPrice,
@@ -75,12 +88,12 @@ class OffersService extends PaginatorService {
       ];
     if (user) where.author = user;
     if (boosted) where.isBoosted = !!boosted;
-    if (offerType) {
-      if (!Object.values(OfferType).includes(offerType)) {
+    if (type) {
+      if (!Object.values(OfferType).includes(type)) {
         throw new APIError("offerType must be a offer type enum case");
       }
 
-      where.type = offerType;
+      where.type = type;
     }
 
     if (sellType) {
@@ -160,18 +173,18 @@ class OffersService extends PaginatorService {
     try {
       const features = data.features
         ? await Promise.all(
-          data.features.map(async (featureId) => {
-            const feature = await db.feature.findUnique({
-              where: { id: featureId },
-            });
+            data.features.map(async (featureId) => {
+              const feature = await db.feature.findUnique({
+                where: { id: featureId },
+              });
 
-            if (!feature) {
-              throw new APIError(`Feature ${featureId} not recognized`);
-            }
+              if (!feature) {
+                throw new APIError(`Feature ${featureId} not recognized`);
+              }
 
-            return feature;
-          }),
-        )
+              return feature;
+            }),
+          )
         : [];
 
       const [offer] = await db.$transaction([

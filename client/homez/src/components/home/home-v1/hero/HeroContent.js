@@ -1,8 +1,9 @@
 "use client";
+import queryParams from "@/utilis/queryParams";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const HeroContent = () => {
+const HeroContent = ({ filters }) => {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("sold");
 
@@ -10,10 +11,7 @@ const HeroContent = () => {
     setActiveTab(tab);
   };
 
-  const tabs = [
-    { id: "sold", label: "Sprzedaż" },
-    { id: "rent", label: "Wynajem" },
-  ];
+  const tabs = [{ id: "sold", label: "Wyszukaj" }];
 
   return (
     <div className="advance-search-tab mt70 mt30-md mx-auto animate-up-3">
@@ -46,6 +44,9 @@ const HeroContent = () => {
                         <input
                           className="form-control bgc-f7 bdrs12"
                           type="text"
+                          onInput={(e) => {
+                            filters.search = e.currentTarget.value;
+                          }}
                           name="search"
                           placeholder={`Wpisz miejscowość lub kod pocztowy dla ${tab.label}`}
                         />
@@ -67,7 +68,11 @@ const HeroContent = () => {
                     </button>
                     <button
                       className="advance-search-icon ud-btn btn-thm ms-4"
-                      onClick={() => router.push("/list-v1")}
+                      onClick={() =>
+                        router.push(
+                          "/list-v1?" + queryParams.objectToQueryUri(filters),
+                        )
+                      }
                       type="button"
                     >
                       <span className="flaticon-search" />

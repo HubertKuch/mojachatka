@@ -10,6 +10,16 @@ const { getCreateOfferValidator } = require("../../schemas/OffersSchema");
 const OffersViewsService = require("../../services/OfferViewsService");
 
 class OffersController {
+  static async getCategories(req, res) {
+    const response = await Promise.all(
+      Object.values(OfferType).map(
+        async (category) => await OffersService.countByCategory(category),
+      ),
+    );
+
+    res.status(200).json(response);
+  }
+
   static async getOffers(req, res, next) {
     try {
       const offers = await OffersService.findAll(req.query);

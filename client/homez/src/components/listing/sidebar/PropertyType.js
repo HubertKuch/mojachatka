@@ -20,13 +20,7 @@ const PropertyType = ({ filters }) => {
           <input
             type="checkbox"
             onChange={() => {
-              if (filters.offerTypes.includes(option)) {
-                filters.offerTypes = filters.offerTypes.filter(
-                  (type) => type !== option,
-                );
-              } else {
-                filters.offerTypes.push(option);
-              }
+              filters.type = option;
             }}
           />
           <span className="checkmark" />

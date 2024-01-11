@@ -1,7 +1,12 @@
+"use client";
+
 import AdvanceFilterModal from "@/components/common/advance-filter";
 import HeroContent from "./HeroContent";
+import { useState } from "react";
 
 const Hero = () => {
+  const [filters, setFilters] = useState({});
+
   return (
     <>
       <div className="inner-banner-style1 text-center">
@@ -10,7 +15,7 @@ const Hero = () => {
         <p className="hero-text fz15 animate-up-3">
           We’ve more than 745,000 apartments, place &amp; plot.
         </p>
-        <HeroContent />
+        <HeroContent filters={filters} />
       </div>
       {/* End Hero content */}
 
@@ -23,7 +28,7 @@ const Hero = () => {
           aria-labelledby="advanceSeachModalLabel"
           aria-hidden="true"
         >
-          <AdvanceFilterModal />
+          <AdvanceFilterModal filters={filters} />
         </div>
       </div>
       {/* <!-- Advance Feature Modal End --> */}

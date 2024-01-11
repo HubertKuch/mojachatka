@@ -1,6 +1,11 @@
 import objectToQueryUri from "../utilis/queryParams";
+import instance from "./axios";
 
 class OffersControllers {
+  static async getCats() {
+    return (await instance.get("/categoriesStats")).data;
+  }
+
   static async findAll(query) {
     return await (
       await fetch(

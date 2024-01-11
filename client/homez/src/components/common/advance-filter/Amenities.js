@@ -1,24 +1,7 @@
+import useAmenities from "@/hooks/useAmenities";
+
 const Amenities = () => {
-  const amenities = [
-    [
-      { label: "Attic" },
-      { label: "Basketball court", defaultChecked: true },
-      { label: "Air Conditioning", defaultChecked: true },
-      { label: "Lawn", defaultChecked: true },
-    ],
-    [
-      { label: "TV Cable" },
-      { label: "Dryer" },
-      { label: "Outdoor Shower" },
-      { label: "Washer" },
-    ],
-    [
-      { label: "Lake view" },
-      { label: "Wine cellar" },
-      { label: "Front yard" },
-      { label: "Refrigerator" },
-    ],
-  ];
+  const amenities = useAmenities();
 
   return (
     <>
@@ -27,11 +10,12 @@ const Amenities = () => {
           <div className="widget-wrapper mb20">
             <div className="checkbox-style1">
               {column.map((amenity, amenityIndex) => (
-                <label className="custom_checkbox" key={amenityIndex}>
-                  {amenity.label}
+                <label className="custom_checkbox">
+                  {amenity.name}
                   <input
                     type="checkbox"
-                    defaultChecked={amenity.defaultChecked}
+                    className="amenity"
+                    value={amenity.id}
                   />
                   <span className="checkmark" />
                 </label>
