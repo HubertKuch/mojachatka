@@ -7,9 +7,15 @@ const useOffers = (query) => {
   const [offers, setOffers] = useState([]);
 
   useEffect(() => {
-    return async () => {
-      setOffers((await OffersControllers.findAll(query)).offers.data);
-    };
+    if (query.random && query.type) {
+      return () => {
+        OffersControllers.getRandom(query.type).then(setOffers);
+      };
+    } else {
+      return async () => {
+        setOffers((await OffersControllers.findAll(query)).offers.data);
+      };
+    }
   }, []);
 
   return offers;

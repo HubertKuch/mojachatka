@@ -5,7 +5,7 @@ import Link from "next/link";
 import "swiper/swiper-bundle.min.css";
 
 const FeaturedListings = () => {
-  const listingsToShow = useOffers({ boosted: true });
+  const listingsToShow = useOffers({ random: true, type: "MAIN" });
 
   return (
     <div className="featured-listings">

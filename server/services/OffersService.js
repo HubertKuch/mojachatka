@@ -5,6 +5,8 @@ const { db } = require("../utils/db");
 const PaginatorService = require("./PaginatorService");
 const UserService = require("./UserService");
 const { appendImages } = require("./manageOffers");
+const { raw } = require("@prisma/client/runtime");
+const OfferBoostType = require("../utils/OfferBoostType");
 
 class OffersService extends PaginatorService {
   static selectedFields = {
@@ -22,6 +24,7 @@ class OffersService extends PaginatorService {
     isBoosted: true,
     properties: true,
     createdAt: true,
+    createdOnIp: false,
     OfferFeature: {
       select: {
         Feature: {
@@ -65,9 +68,35 @@ class OffersService extends PaginatorService {
     };
   }
 
+  static async getRandomBoostedOffers(type) {
+    const count = await db.offers.count({
+      where: { isBoosted: true, boostType: type },
+    });
+
+    const takeTo = { [OfferBoostType.MAIN]: 6, [OfferBoostType.GLOBAL]: 3 }[
+      type
+    ];
+
+    let skipTo = Math.floor(Math.random() * (count - takeTo + 1) + 1);
+
+    if (skipTo <= 0) {
+      skipTo = 0;
+    }
+
+    return await db.offers.findMany({
+      where: { isBoosted: true, boostType: type },
+      skip: skipTo,
+      select: this.selectedFields,
+      take: takeTo,
+      orderBy: {
+        id: "asc",
+      },
+    });
+  }
+
   static async findAll({
     page,
-    boosted,
+    boostType,
     user,
     type,
     sellType,
@@ -87,7 +116,10 @@ class OffersService extends PaginatorService {
         { description: { contains: search } },
       ];
     if (user) where.author = user;
-    if (boosted) where.isBoosted = !!boosted;
+    if (boostType) {
+      where.boostType = boostType;
+      where.isBoosted = true;
+    }
     if (type) {
       if (!Object.values(OfferType).includes(type)) {
         throw new APIError("offerType must be a offer type enum case");
@@ -173,18 +205,18 @@ class OffersService extends PaginatorService {
     try {
       const features = data.features
         ? await Promise.all(
-            data.features.map(async (featureId) => {
-              const feature = await db.feature.findUnique({
-                where: { id: featureId },
-              });
+          data.features.map(async (featureId) => {
+            const feature = await db.feature.findUnique({
+              where: { id: featureId },
+            });
 
-              if (!feature) {
-                throw new APIError(`Feature ${featureId} not recognized`);
-              }
+            if (!feature) {
+              throw new APIError(`Feature ${featureId} not recognized`);
+            }
 
-              return feature;
-            }),
-          )
+            return feature;
+          }),
+        )
         : [];
 
       const [offer] = await db.$transaction([

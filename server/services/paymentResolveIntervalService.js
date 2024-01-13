@@ -1,10 +1,5 @@
 const { db } = require("../utils/db");
-const {
-  getAllNotResolvedPayments,
-  retrievePaymentById,
-  getOpenCheckoutSessions,
-  retrieveCheckout,
-} = require("./payments");
+const { retrieveCheckout } = require("./payments");
 const { PaymentsEventEmitter } = require("../events/emitters/PaymentEmitter");
 
 (async () => {
@@ -19,8 +14,6 @@ const { PaymentsEventEmitter } = require("../events/emitters/PaymentEmitter");
       if (!stripePayment) {
         continue;
       }
-
-      // console.log(stripePayment)
 
       if (stripePayment.payment_status === "paid") {
         const payment = await db.payment.update({

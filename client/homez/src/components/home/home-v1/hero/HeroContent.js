@@ -1,4 +1,5 @@
 "use client";
+import PropertyTypesSelect from "@/components/property/filter/PropertyTypesSelect";
 import queryParams from "@/utilis/queryParams";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -39,7 +40,13 @@ const HeroContent = ({ filters }) => {
                 <div className="col-md-8 col-lg-9">
                   <div className="advance-search-field position-relative text-start">
                     <form className="form-search position-relative">
-                      <div className="box-search">
+                      <div
+                        className="box-search"
+                        style={{
+                          display: "grid",
+                          gridTemplateColumns: "70% 30%",
+                        }}
+                      >
                         <span className="icon flaticon-home-1" />
                         <input
                           className="form-control bgc-f7 bdrs12"
@@ -50,6 +57,7 @@ const HeroContent = ({ filters }) => {
                           name="search"
                           placeholder={`Wpisz miejscowość lub kod pocztowy dla ${tab.label}`}
                         />
+                        <PropertyTypesSelect filters={filters} />
                       </div>
                     </form>
                   </div>

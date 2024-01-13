@@ -20,6 +20,12 @@ class OffersController {
     res.status(200).json(response);
   }
 
+  static async getRandom(req, res) {
+    const offers = await OffersService.getRandomBoostedOffers(req.query.type);
+
+    res.status(200).json(offers);
+  }
+
   static async getOffers(req, res, next) {
     try {
       const offers = await OffersService.findAll(req.query);

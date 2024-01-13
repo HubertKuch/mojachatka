@@ -6,6 +6,10 @@ class OffersControllers {
     return (await instance.get("/categoriesStats")).data;
   }
 
+  static async getRandom(type) {
+    return (await instance.get(`/randomOffers?type=${type}`)).data;
+  }
+
   static async findAll(query) {
     return await (
       await fetch(

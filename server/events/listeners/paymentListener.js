@@ -3,10 +3,7 @@ const { PaymentsEventEmitter } = require("../emitters/PaymentEmitter");
 
 const instance = PaymentsEventEmitter.getInstance();
 
-/**
- * @param {import("@prisma/client").Payment} payment
- * **/
-instance.on(process.env.EVENT_PAYMENT_SUCCESS, async (payment) => {
+async function resolveAccountPacketPayment(payment) {
   const packet = await db.accountPacketPayment.findFirst({
     where: {
       payment: {
@@ -58,5 +55,35 @@ instance.on(process.env.EVENT_PAYMENT_SUCCESS, async (payment) => {
         data: { bids: { increment: snap.properties.bids } },
       });
     }
+  }
+}
+
+async function resolveBoostPacketPayment(payment) {
+  const boostPayment = await db.boostOfferPayment.findFirst({
+    where: { paymentId: payment.id },
+    select: { user: true, boostPacket: true },
+  });
+  const relatedUser = boostPayment.user;
+
+  await db.userBoosts.create({
+    data: {
+      userId: relatedUser.id,
+      properties: { ...boostPayment.boostPacket, used: false },
+    },
+  });
+}
+
+/**
+ * @param {import("@prisma/client").Payment} payment
+ * **/
+instance.on(process.env.EVENT_PAYMENT_SUCCESS, async (payment) => {
+  if (
+    await db.accountPacketPayment.findFirst({
+      where: { payment: { id: payment.id } },
+    })
+  ) {
+    await resolveAccountPacketPayment(payment);
+  } else {
+    await resolveBoostPacketPayment(payment);
   }
 });

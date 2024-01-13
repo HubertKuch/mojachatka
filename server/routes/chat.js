@@ -12,33 +12,41 @@ function initializeChatsIo(io) {
   };
 
   io.on("connection", async (socket) => {
-    const user = await handshakeAuthorized(socket);
+    try {
+      const user = await handshakeAuthorized(socket);
 
-    socket.emit("chats", await ChatService.getChats(user.id));
+      socket.emit("chats", await ChatService.getChats(user.id));
 
-    socket.on("chats", async () => {
-      const chats = await ChatService.getChats(user.id);
+      socket.on("chats", async () => {
+        const chats = await ChatService.getChats(user.id);
 
-      chats.forEach((chat) => socket.join(chat.id));
+        chats.forEach((chat) => socket.join(chat.id));
 
-      socket.emit("chats", chats);
-    });
+        socket.emit("chats", chats);
+      });
 
-    socket.on("chat", async (id) => {
-      if (!id) {
-        return socket.emit("chat", { error: "Id must be specified" });
-      }
+      socket.on("chat", async (id) => {
+        if (!id) {
+          return socket.emit("chat", { error: "Id must be specified" });
+        }
 
-      socket.emit("chat", await ChatService.getChatById(id, user.id));
-    });
+        socket.emit("chat", await ChatService.getChatById(id, user.id));
+      });
 
-    socket.on("message", async (receiverId, msg) => {
-      const senderId = user.id;
+      socket.on("message", async (receiverId, msg) => {
+        const senderId = user.id;
 
-      const message = await ChatService.sendMessage(senderId, receiverId, msg);
+        const message = await ChatService.sendMessage(
+          senderId,
+          receiverId,
+          msg,
+        );
 
-      socket.to(message.chatId).emit("message", message);
-    });
+        socket.to(message.chatId).emit("message", message);
+      });
+    } catch (e) {
+      console.error(e);
+    }
   });
 }
 

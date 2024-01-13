@@ -9,6 +9,7 @@ router.post(
   isAuthenticated,
   BoostController.createBoostedMainOffer,
 );
+router.post("/buyBoost/:id", isAuthenticated, BoostController.buyBoost);
 router.post(
   "/createBoostedOffer",
   isAuthenticated,

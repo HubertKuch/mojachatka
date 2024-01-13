@@ -8,7 +8,7 @@ router.get(
   query("bedrooms").isNumeric().withMessage("dsd"),
   OffersController.getOffers,
 );
-
+router.get("/randomOffers", OffersController.getRandom);
 router.get("/getOffer/:id", OffersController.getById);
 router.get("/getUserOffers", isAuthenticated, OffersController.getUserOffers);
 router.get("/offerTypes", OffersController.getOffersTypes);

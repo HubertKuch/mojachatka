@@ -1,8 +1,26 @@
 const OfferBoostType = require("../../utils/OfferBoostType");
 const BoostOfferService = require("../../services/BoostOfferService");
 const { db } = require("../../utils/db");
+const APIError = require("../../errors/APIError");
 
 class BoostController {
+  static async buyBoost(req, res, next) {
+    try {
+      const userId = req.payload.data.id;
+      const boostId = req.params.id;
+
+      if (!boostId) {
+        return next(new APIError("Nie wskazano pakietu"));
+      }
+
+      const payment = await BoostOfferService.buyBoostPacket(userId, boostId);
+
+      return res.status(200).json(payment);
+    } catch (e) {
+      return next(e);
+    }
+  }
+
   static async createBoostedMainOffer(req, res, next) {
     const { offerId, boostId } = req.body;
     const userId = req.payload.data.id;

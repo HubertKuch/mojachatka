@@ -2,8 +2,45 @@ const { db } = require("../utils/db");
 const { addDays } = require("../utils/addDays");
 const APIError = require("../errors/APIError");
 const OfferBoostType = require("../utils/OfferBoostType");
+const { initCheckoutSession } = require("./payments");
 
 class BoostOfferService {
+  static async buyBoostPacket(buyerId, packetId) {
+    const packet = await db.boostPacket.findFirst({ where: { id: packetId } });
+
+    if (!packet) {
+      throw new APIError("Nie znaleziono szukanego pakietu");
+    }
+
+    const session = await initCheckoutSession({
+      amount: packet.price,
+      name: packet.name,
+    });
+
+    const payment = await db.payment.create({
+      data: {
+        status: "PENDING",
+        stripeId: session.id,
+        continueUrl: session.url,
+      },
+    });
+
+    return await db.boostOfferPayment.create({
+      data: {
+        paymentId: payment.id,
+        boostPacketId: packet.id,
+        userId: buyerId,
+      },
+      select: {
+        payment: {
+          select: {
+            continueUrl: true,
+          },
+        },
+      },
+    });
+  }
+
   static async boostOffer(
     loggedInUserId,
     offerId,
@@ -57,7 +94,10 @@ class BoostOfferService {
         where: { id: boostId },
         data: { properties: boost.properties },
       }),
-      db.offers.update({ where: { id: offerId }, data: { isBoosted: true } }),
+      db.offers.update({
+        where: { id: offerId },
+        data: { isBoosted: true, boostType: type },
+      }),
     ]);
 
     return { boostedOffer, userBoost, updatedOffer };

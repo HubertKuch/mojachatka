@@ -163,6 +163,7 @@ async function postBoostedOffer(userId, offerId) {
     }
 
     offer.isBoosted = true;
+    offer.boostType = "GLOBAL";
     offer.expires = expiration;
 
     await db.BoostedOffers.create({
@@ -206,6 +207,7 @@ async function postBoostedMainOffer(userId, offerId) {
     }
 
     offer.isBoosted = true;
+    offer.boostType = "MAIN";
     offer.expires = expiration;
 
     await db.MainBoostedOffers.create({
