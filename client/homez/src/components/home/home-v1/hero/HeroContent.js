@@ -78,7 +78,7 @@ const HeroContent = ({ filters }) => {
                       className="advance-search-icon ud-btn btn-thm ms-4"
                       onClick={() =>
                         router.push(
-                          "/list-v1?" + queryParams.objectToQueryUri(filters),
+                          "/oferty?" + queryParams.objectToQueryUri(filters),
                         )
                       }
                       type="button"

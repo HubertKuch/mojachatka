@@ -141,7 +141,7 @@ const AdvanceFilterModal = ({ filters }) => {
               type="submit"
               className="ud-btn btn-thm"
               onClick={() => {
-                router.push("/list-v1" + queryParams.objectToQueryUri(filters));
+                router.push("/oferty" + queryParams.objectToQueryUri(filters));
               }}
             >
               <span className="flaticon-search align-text-top pr10" />

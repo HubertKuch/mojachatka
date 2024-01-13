@@ -52,7 +52,7 @@ module.exports = [
       {
         label: "Listing View",
         subMenu: [
-          { label: "List v1", path: "/list-v1" },
+          { label: "List v1", path: "/oferty" },
           { label: "List All Style", path: "/list-all-style" },
         ],
       },

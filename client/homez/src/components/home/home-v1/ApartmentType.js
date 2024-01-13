@@ -54,11 +54,12 @@ const ApartmentType = () => {
       {cats.map((type) => (
         <SwiperSlide key={type.id}>
           <div className="item">
-            <Link href={`/list-v1?type=${type.category}`}>
+            <Link href={`/oferty?type=${type.category}`}>
               <div className="iconbox-style1">
                 <span
-                  className={`icon ${iconsByType.find((ic) => ic.type === type.category)?.icon
-                    }`}
+                  className={`icon ${
+                    iconsByType.find((ic) => ic.type === type.category)?.icon
+                  }`}
                 />
                 <div className="iconbox-content">
                   <h6 className="title" style={{ textTransform: "capitalize" }}>
