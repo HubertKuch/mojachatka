@@ -1,11 +1,18 @@
 import React from "react";
 
 const TopStateBlock = ({ user, stats }) => {
+  console.log(user);
   const statisticsData = [
     {
       text: "Oferty",
       title: user.offers.length,
       icon: "flaticon-home",
+    },
+
+    {
+      text: "Wyswietlen",
+      title: stats.views?.total || 0,
+      icon: "flaticon-search-chart",
     },
     {
       text: "Pozostalych ofert",
@@ -13,14 +20,22 @@ const TopStateBlock = ({ user, stats }) => {
       icon: "flaticon-home",
     },
     {
-      text: "Wyswietlen",
-      title: stats.views?.total || 0,
-      icon: "flaticon-search-chart",
+      text: "Pozostale podbicia na glowna",
+      title: user.UserBoosts.filter(
+        (b) =>
+          b.properties.properties?.boostType === "MAIN" &&
+          !b.properties.properties?.used,
+      ).length,
+      icon: "fa-solid fa-globe",
     },
     {
-      text: "Polubione",
-      title: 0,
-      icon: "flaticon-like",
+      text: "Pozostale podbicia na liste",
+      title: user.UserBoosts.filter(
+        (b) =>
+          b.properties.properties?.boostType === "GLOBAL" &&
+          !b.properties.properties?.used,
+      ).length,
+      icon: "fa-solid fa-globe",
     },
   ];
 
