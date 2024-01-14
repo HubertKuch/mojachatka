@@ -1,6 +1,8 @@
+import instance from "./axios";
+
 class FeatureController {
   static async findAll() {
-    return await (await fetch(process.env.BASE_URL + "/features")).json();
+    return (await instance.get("/features")).data;
   }
 }
 

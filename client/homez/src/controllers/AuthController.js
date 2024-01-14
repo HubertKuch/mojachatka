@@ -18,20 +18,12 @@ class AuthController {
   }
 
   static async getProfile() {
-    const res = await fetch(process.env.BASE_URL + "/profile", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem(process.env.TOKEN_KEY)}`,
-      },
-    });
+    const res = await axios.get("/profile");
 
     return {
       status: res.status,
-      body: await res.json(),
+      body: res.data,
     };
-  }
-
-  static clearStorage() {
-    localStorage.clear();
   }
 }
 

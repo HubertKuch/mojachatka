@@ -1,10 +1,8 @@
-require("./axios");
+import instance from "./axios";
 
 class UserController {
   static async getPublic(id) {
-    return await (
-      await fetch(process.env.BASE_URL + "/publicUser/" + id)
-    ).json();
+    return (await instance.get("/publicUser/" + id)).data;
   }
 }
 

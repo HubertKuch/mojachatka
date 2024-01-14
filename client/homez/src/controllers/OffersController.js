@@ -11,67 +11,46 @@ class OffersControllers {
   }
 
   static async findAll(query) {
-    return await (
-      await fetch(
-        process.env.BASE_URL +
-        "/getAllOffers" +
-        objectToQueryUri.objectToQueryUri(query),
+    return (
+      await instance.get(
+        "/getAllOffers" + objectToQueryUri.objectToQueryUri(query),
       )
-    ).json();
+    ).data;
   }
 
   static async findOneById(id) {
-    const res = await fetch(process.env.BASE_URL + "/getOffer/" + id, {
-      method: "GET",
-    });
+    const res = await instance.get("/getOffer/" + id);
 
     return {
       status: res.status,
-      offer: await res.json(),
+      offer: res.data,
     };
   }
 
   static async findOwn(page) {
-    return await (
-      await fetch(
-        process.env.BASE_URL +
-        "/getUserOffers" +
-        objectToQueryUri.objectToQueryUri({ page }),
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem(
-              process.env.TOKEN_KEY,
-            )}`,
-          },
-        },
+    return (
+      await instance.get(
+        "/getUserOffers" + objectToQueryUri.objectToQueryUri({ page }),
       )
-    ).json();
+    ).data;
   }
 
   static async createOffer(body) {
-    const res = await fetch(process.env.BASE_URL + "/createOffer", {
-      body: JSON.stringify(body),
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem(process.env.TOKEN_KEY)}`,
-        "Content-Type": "application/json",
-        Accepts: "application/json",
-      },
-    });
+    const res = await instance.post("/createOffer", JSON.stringify(body));
 
     return { body: await res.json(), status: res.status };
   }
 
   static async getSellTypes() {
-    return await (await fetch(process.env.BASE_URL + "/sellTypes")).json();
+    return (await instance.get("/sellTypes")).data;
   }
 
   static async getRegions() {
-    return await (await fetch(process.env.BASE_URL + "/regions")).json();
+    return (await instance.get("/regions")).data;
   }
 
   static async getOfferTypes() {
-    return await (await fetch(process.env.BASE_URL + "/offerTypes")).json();
+    return (await instance.get("/offerTypes")).data;
   }
 }
 
