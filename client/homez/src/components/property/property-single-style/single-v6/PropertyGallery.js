@@ -3,7 +3,10 @@ import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Thumbs, Navigation } from "swiper";
 import Image from "next/image";
-
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 import Map from "./Map";
 
 const PropertyGallery = ({ offer }) => {
@@ -29,7 +32,7 @@ const PropertyGallery = ({ offer }) => {
                     <div className="col-lg-12">
                       <div className="">
                         <Swiper
-                          height={"auto"}
+                          autoHeigh
                           loop={true}
                           spaceBetween={10}
                           navigation={{
