@@ -64,7 +64,6 @@ const createOfferSchema = {
             address: { type: "string" },
             houseNumber: { type: "string" },
             localNumber: { type: "string" },
-            publicAddress: { type: "boolean" },
             images: {
               type: "array",
               minItems: 1,
@@ -84,7 +83,6 @@ const createOfferSchema = {
             "images",
             "region",
             "city",
-            "publicAddress",
             "address",
             "zipCode",
             "houseNumber",

@@ -5,7 +5,6 @@ const { db } = require("../utils/db");
 const PaginatorService = require("./PaginatorService");
 const UserService = require("./UserService");
 const { appendImages } = require("./manageOffers");
-const { raw } = require("@prisma/client/runtime");
 const OfferBoostType = require("../utils/OfferBoostType");
 
 class OffersService extends PaginatorService {
@@ -83,7 +82,7 @@ class OffersService extends PaginatorService {
       skipTo = 0;
     }
 
-    return await db.offers.findMany({
+    const offers = await db.offers.findMany({
       where: { isBoosted: true, boostType: type },
       skip: skipTo,
       select: this.selectedFields,
@@ -92,6 +91,8 @@ class OffersService extends PaginatorService {
         id: "asc",
       },
     });
+
+    return offers.map((o) => this.toDTO(o));
   }
 
   static async findAll({
@@ -186,10 +187,15 @@ class OffersService extends PaginatorService {
         properties: { path: "$.rooms", equals: Number.parseInt(rooms) },
       });
 
-    return await paginate(db.offers, {
+    const offers = await paginate(db.offers, {
       where,
       select: this.selectedFields,
     });
+
+    return {
+      data: offers.data.map((o) => this.toDTO(o)),
+      meta: offers.meta,
+    };
   }
 
   static async createOffer(data, ip, userId) {
@@ -205,18 +211,18 @@ class OffersService extends PaginatorService {
     try {
       const features = data.features
         ? await Promise.all(
-          data.features.map(async (featureId) => {
-            const feature = await db.feature.findUnique({
-              where: { id: featureId },
-            });
+            data.features.map(async (featureId) => {
+              const feature = await db.feature.findUnique({
+                where: { id: featureId },
+              });
 
-            if (!feature) {
-              throw new APIError(`Feature ${featureId} not recognized`);
-            }
+              if (!feature) {
+                throw new APIError(`Feature ${featureId} not recognized`);
+              }
 
-            return feature;
-          }),
-        )
+              return feature;
+            }),
+          )
         : [];
 
       const [offer] = await db.$transaction([
