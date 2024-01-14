@@ -19,6 +19,7 @@ const PropertyType = ({ filters }) => {
           {option}
           <input
             type="checkbox"
+            name=""
             onChange={() => {
               filters.type = option;
             }}

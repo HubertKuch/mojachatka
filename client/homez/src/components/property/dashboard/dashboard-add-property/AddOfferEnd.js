@@ -2,8 +2,6 @@ import OffersControllers from "@/controllers/OffersController";
 
 const AddOfferEnd = ({ formRef }) => {
   function buildBody() {
-    const curr = formRef.current;
-
     return {
       data: {
         title: curr.querySelector("[name=title]")?.value,
@@ -41,17 +39,17 @@ const AddOfferEnd = ({ formRef }) => {
   return (
     <div className="row">
       <button
+        type="submit"
         onClick={(e) => {
-          e.preventDefault();
-
-          OffersControllers.createOffer(buildBody()).then((res) => {
-            if (res.status !== 200) {
-              document.querySelector("#add-offer-error").innerText =
-                res.body.message;
-            } else {
-              document.location.replace("/dashboard-my-properties");
-            }
-          });
+          //
+          // OffersControllers.createOffer()).then((res) => {
+          //   if (res.status !== 200) {
+          //     document.querySelector("#add-offer-error").innerText =
+          //       res.body.message;
+          //   } else {
+          //     document.location.replace("/dashboard-my-properties");
+          //   }
+          // });
         }}
       >
         Dodaj

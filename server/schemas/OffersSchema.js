@@ -64,6 +64,38 @@ const createOfferSchema = {
             address: { type: "string" },
             houseNumber: { type: "string" },
             localNumber: { type: "string" },
+            security: {
+              type: "object",
+              properties: {
+                antiBreakingRoles: {
+                  type: "boolean",
+                },
+                monitoring: {
+                  type: "boolean",
+                },
+                security: {
+                  type: "boolean",
+                },
+                antiBurglaryWindows: {
+                  type: "boolean",
+                },
+                antiBurglaryDoors: {
+                  type: "boolean",
+                },
+                alarmSystem: {
+                  type: "boolean",
+                },
+                intercom: {
+                  type: "boolean",
+                },
+                videophone: {
+                  type: "boolean",
+                },
+                closedArea: {
+                  type: "boolean",
+                },
+              },
+            },
             images: {
               type: "array",
               minItems: 1,
@@ -78,10 +110,10 @@ const createOfferSchema = {
           },
           required: [
             "sizeInMeters",
-            "bedrooms",
             "rooms",
             "images",
             "region",
+            "security",
             "city",
             "address",
             "zipCode",

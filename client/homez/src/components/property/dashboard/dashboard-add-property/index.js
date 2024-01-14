@@ -6,10 +6,10 @@ import LocationField from "./LocationField";
 import DetailsFiled from "./details-field";
 import Amenities from "./Amenities";
 import AddOfferEnd from "./AddOfferEnd";
+import { Form, Formik } from "formik";
 
 const AddPropertyTabContent = () => {
   const formRef = useRef();
-
   return (
     <>
       <nav>
@@ -90,87 +90,91 @@ const AddPropertyTabContent = () => {
         </div>
       </nav>
       {/* End nav tabs */}
-      <form ref={formRef}>
-        <div className="tab-content" id="nav-tabContent">
-          <div
-            className="tab-pane fade show active"
-            id="nav-item1"
-            role="tabpanel"
-            aria-labelledby="nav-item1-tab"
-          >
-            <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-              <h4 className="title fz17 mb30">Opis oferty</h4>
-              <PropertyDescription />
-            </div>
-          </div>
-          {/* End tab for Property Description */}
+      <Formik initialValues={{}} onSubmit={(data) => console.log(data)}>
+        {({ handleChange }) => {
+          return (
+            <Form>
+              <div className="tab-content" id="nav-tabContent">
+                <div
+                  className="tab-pane fade show active"
+                  id="nav-item1"
+                  role="tabpanel"
+                  aria-labelledby="nav-item1-tab"
+                >
+                  <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
+                    <h4 className="title fz17 mb30">Opis oferty</h4>
+                    <PropertyDescription onChange={handleChange} />
+                  </div>
+                </div>
+                {/* End tab for Property Description */}
 
-          <div
-            className="tab-pane fade"
-            id="nav-item2"
-            role="tabpanel"
-            aria-labelledby="nav-item2-tab"
-          >
-            <UploadMedia />
-          </div>
-          {/* End tab for Upload photos of your property */}
+                <div
+                  className="tab-pane fade"
+                  id="nav-item2"
+                  role="tabpanel"
+                  aria-labelledby="nav-item2-tab"
+                >
+                  <UploadMedia />
+                </div>
+                {/* End tab for Upload photos of your property */}
 
-          <div
-            className="tab-pane fade"
-            id="nav-item3"
-            role="tabpanel"
-            aria-labelledby="nav-item3-tab"
-          >
-            <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-              <h4 className="title fz17 mb30">Listing Location</h4>
-              <LocationField />
-            </div>
-          </div>
-          {/* End tab for Listing Location */}
+                <div
+                  className="tab-pane fade"
+                  id="nav-item3"
+                  role="tabpanel"
+                  aria-labelledby="nav-item3-tab"
+                >
+                  <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
+                    <h4 className="title fz17 mb30">Listing Location</h4>
+                    <LocationField />
+                  </div>
+                </div>
+                {/* End tab for Listing Location */}
 
-          <div
-            className="tab-pane fade"
-            id="nav-item4"
-            role="tabpanel"
-            aria-labelledby="nav-item4-tab"
-          >
-            <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-              <h4 className="title fz17 mb30">Listing Details</h4>
-              <DetailsFiled />
-            </div>
-          </div>
-          {/* End tab for Listing Details */}
+                <div
+                  className="tab-pane fade"
+                  id="nav-item4"
+                  role="tabpanel"
+                  aria-labelledby="nav-item4-tab"
+                >
+                  <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
+                    <DetailsFiled onChange={handleChange} />
+                  </div>
+                </div>
+                {/* End tab for Listing Details */}
 
-          <div
-            className="tab-pane fade"
-            id="nav-item5"
-            role="tabpanel"
-            aria-labelledby="nav-item5-tab"
-          >
-            <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-              <h4 className="title fz17 mb30">Select Amenities</h4>
-              <div className="row">
-                <Amenities />
+                <div
+                  className="tab-pane fade"
+                  id="nav-item5"
+                  role="tabpanel"
+                  aria-labelledby="nav-item5-tab"
+                >
+                  <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
+                    <h4 className="title fz17 mb30">Select Amenities</h4>
+                    <div className="row">
+                      <Amenities />
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  className="tab-pane fade"
+                  id="nav-item6"
+                  role="tabpanel"
+                  aria-labelledby="nav-item6-tab"
+                >
+                  <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
+                    <h4 className="title fz17 mb30">Zakoczenie</h4>
+                    <div className="row">
+                      <AddOfferEnd formRef={formRef} />
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          {/* End tab for Select Amenities */}
-
-          <div
-            className="tab-pane fade"
-            id="nav-item6"
-            role="tabpanel"
-            aria-labelledby="nav-item6-tab"
-          >
-            <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-              <h4 className="title fz17 mb30">Zakoczenie</h4>
-              <div className="row">
-                <AddOfferEnd formRef={formRef} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
+            </Form>
+          );
+        }}
+      </Formik>
     </>
   );
 };

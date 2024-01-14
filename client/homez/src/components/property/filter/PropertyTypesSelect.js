@@ -1,7 +1,7 @@
 import usePropertyTypes from "@/hooks/usePropertyType";
 import Select from "react-select";
 
-export default function PropertyTypesSelect({ filters, className }) {
+export default function PropertyTypesSelect({ filters, className, onChange }) {
   const propertyTypes = usePropertyTypes();
 
   return (
@@ -12,7 +12,9 @@ export default function PropertyTypesSelect({ filters, className }) {
         menuList: (prov) => ({ ...prov, zIndex: 99999999 }),
       }}
       onChange={({ value }) => {
-        filters.type = value;
+        if (filters) filters.type = value;
+
+        if (onChange) onChange("type")(value);
       }}
       defaultValue={[propertyTypes[1]]}
       name="type"

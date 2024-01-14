@@ -3,8 +3,9 @@ import { useState } from "react";
 import PropertyTypesSelect from "@/components/property/filter/PropertyTypesSelect";
 import Select from "react-select";
 import SellTypesSelect from "@/components/property/filter/SellTypesSelect";
+import { FastField, Field } from "formik";
 
-const PropertyDescription = () => {
+const PropertyDescription = ({ onChange }) => {
   const [rentType, setRentType] = useState("BUY");
 
   return (
@@ -13,9 +14,8 @@ const PropertyDescription = () => {
         <div className="col-sm-12">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">Tytul</label>
-            <input
+            <FastField
               name="title"
-              type="text"
               className="form-control"
               placeholder="Tytul oferty"
             />
@@ -26,10 +26,11 @@ const PropertyDescription = () => {
         <div className="col-sm-12">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">Opis</label>
-            <textarea
+            <Field
               name="description"
               cols={30}
               rows={5}
+              as="textarea"
               placeholder="Opis oferty."
               defaultValue={""}
             />
@@ -43,7 +44,7 @@ const PropertyDescription = () => {
               Rodzaj majatku
             </label>
             <div className="location-area">
-              <PropertyTypesSelect />
+              <PropertyTypesSelect onChange={onChange} />
             </div>
           </div>
         </div>
@@ -55,7 +56,7 @@ const PropertyDescription = () => {
               Rodzaj sprzedazy
             </label>
             <div className="location-area">
-              <SellTypesSelect set={setRentType} />
+              <SellTypesSelect onChange={onChange} set={setRentType} />
             </div>
           </div>
         </div>
@@ -68,7 +69,7 @@ const PropertyDescription = () => {
                 <label className="heading-color ff-heading fw600 mb10">
                   Cena
                 </label>
-                <input
+                <FastField
                   type="text"
                   name="price"
                   required
@@ -81,7 +82,7 @@ const PropertyDescription = () => {
                 <label className="heading-color ff-heading fw600 mb10">
                   Cena najmu
                 </label>
-                <input
+                <FastField
                   type="text"
                   name="pricePerMonth"
                   className="form-control"

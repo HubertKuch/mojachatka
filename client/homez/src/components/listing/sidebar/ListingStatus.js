@@ -19,6 +19,7 @@ const ListingStatus = ({ filters }) => {
           <input
             className="form-check-input"
             type="radio"
+            name="sellType"
             id={option}
             onChange={() => (filters.sellType = option)}
           />

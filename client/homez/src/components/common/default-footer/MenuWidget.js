@@ -5,10 +5,19 @@ const MenuWidget = () => {
     {
       title: "Popularne wyszukiwania",
       links: [
-        { label: "Mieszkania na wynajem", href: "#" },
-        { label: "Mieszkania na sprzedaż", href: "#" },
-        { label: "Domy na sprzedaż", href: "#" },
-        { label: "Działki na sprzedaż", href: "#" },
+        {
+          label: "Mieszkania na wynajem",
+          href: "/oferty?type=MIESZKANIE&sellType=RENT",
+        },
+        {
+          label: "Mieszkania na sprzedaż",
+          href: "/oferty?type=MIESZKANIE&sellType=BUY",
+        },
+        { label: "Domy na sprzedaż", href: "/oferty?type=DOM&sellType=BUY" },
+        {
+          label: "Działki na sprzedaż",
+          href: "/oferty?type=DZIALKA&sellType=BUY",
+        },
       ],
     },
     {
@@ -16,22 +25,9 @@ const MenuWidget = () => {
       links: [
         { label: "Warunki współpracy", href: "#" },
         { label: "Polityka prywatności", href: "#" },
-        { label: "Cennik", href: "#" },
+        { label: "Cennik", href: "/cennik" },
         /*{ label: "Careers", href: "#" }, */
         { label: "Najczęściej zadawane pytania", href: "#" },
-      ],
-    },
-    {
-      title: "Odkrywaj",
-      links: [
-        { label: "Warszawa", href: "#" },
-        { label: "Kraków", href: "#" },
-        { label: "Poznań", href: "#" },
-        { label: "Gdańsk", href: "#" },
-        { label: "Wrocław", href: "#" },
-        { label: "Szczecin", href: "#" },
-        { label: "Łódź", href: "#" },
-        { label: "Bydgoszcz", href: "#" },
       ],
     },
   ];

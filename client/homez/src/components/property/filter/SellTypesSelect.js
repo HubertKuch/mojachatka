@@ -1,7 +1,7 @@
 import Select from "react-select";
 import useSellType from "@/hooks/useSellType";
 
-export default function SellTypesSelect({ set, filters }) {
+export default function SellTypesSelect({ set, filters, onChange }) {
   const sellTypes = useSellType();
 
   const customStyles = {
@@ -24,9 +24,11 @@ export default function SellTypesSelect({ set, filters }) {
       defaultValue={sellTypes[0]}
       name="rentType"
       onChange={(e) => {
-        filters.sellType = e.value;
+        if (filters) filters.sellType = e.value;
 
         if (set) set(e.value);
+
+        if (onChange) onChange("rentType")(e.value);
       }}
       options={sellTypes}
       styles={customStyles}
