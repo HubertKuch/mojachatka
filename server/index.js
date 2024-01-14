@@ -22,19 +22,29 @@ const offerViewsRoutes = require("./routes/definitions/offerViewsRoutesDefinitio
 const socialMediaRoutes = require("./routes/definitions/socialMediaRoutesDefinitions");
 const userRotuer = require("./routes/definitions/userRoutesDefinitions");
 const initializeChatsIo = require("./routes/chat");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
+    allowedHeaders: ["Content-Type", "Accept"],
     origin: "http://localhost:3001",
+    credentials: true,
+    methods: ["POST", "GET", "PUT", "OPTION", "DELETE", "PATCH"],
   },
 });
 const port = process.env.SERVER_PORT || 3000;
 
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3001",
+  }),
+);
 app.use(requestIp.mw());
 app.use(bodyParser.json({ limit: "250mb", extended: true }));
+app.use(cookieParser());
 app.use(
   bodyParser.urlencoded({
     limit: "250mb",

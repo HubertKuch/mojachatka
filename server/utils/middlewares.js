@@ -1,16 +1,18 @@
 const jwt = require("jsonwebtoken");
 const { isBanned, isActivated, checkAdmin } = require("../services/manageUser");
+const { db } = require("./db");
+const refresh = require("./refreshToken");
 
 async function isAuthenticated(req, res, next) {
-  const { authorization } = req.headers;
+  const token = req.cookies["auth-token"];
+  const refreshToken = req.cookies["refresh-token"];
 
-  if (!authorization) {
+  if (!token) {
     res.status(401).json({ message: "Token not provided" });
     return;
   }
 
   try {
-    const token = authorization.split(" ")[1];
     const payload = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
     req.payload = payload;
 
@@ -25,14 +27,16 @@ async function isAuthenticated(req, res, next) {
     const activated = await isActivated(userId);
 
     if (!activated) {
-      console.log(activated);
       res.status(401).json({ message: "Your account is not activated" });
       return;
     }
+
+    const newAuthToken = await refresh(refreshToken);
+
+    res.cookie("auth-token", newAuthToken.accessToken, {
+      expires: new Date(Date.now() + 7200000),
+    });
   } catch (err) {
-    if (err.name === "TokenExpiredError") {
-      console.error(err.name);
-    }
     res.status(401).json({ message: "Unauthorized" });
     console.log(err);
     return;

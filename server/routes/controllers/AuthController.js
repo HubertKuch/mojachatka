@@ -1,19 +1,11 @@
-const {
-  addRefreshTokenToWhitelist,
-  deleteRefreshToken,
-  findRefreshTokenById,
-} = require("../../utils/auth");
-const { GetUserByEmail } = require("../../services/getUsers");
+const { addRefreshTokenToWhitelist } = require("../../utils/auth");
 const { generateTokens } = require("../../utils/jwt");
-const { getUserByID } = require("../../services/getUsers");
-const { hashToken } = require("../../utils/hash");
+const { getUserByID, GetUserByEmail } = require("../../services/getUsers");
 const bcrypt = require("bcrypt");
-const { v4: uuidv4 } = require("uuid");
-const { createUser } = require("../../services/createUser");
 const { sendMail } = require("../../utils/mail");
 const { UserType } = require("@prisma/client");
 const { db } = require("../../utils/db");
-const jwt = require("jsonwebtoken");
+const { v4: uuidv4 } = require("uuid");
 const {
   getIndividualUserSchema,
   getAgentUserSchema,
@@ -55,62 +47,28 @@ class AuthController {
         refreshToken,
         userId: existingUser.id,
       });
+
       delete existingUser.password;
-      res.status(200).json({
-        message: "Successfull",
-        token: accessToken,
-        refresh: refreshToken,
-        user: existingUser,
-      });
+
+      res
+        .status(200)
+        .cookie("auth-token", accessToken, {
+          httpOnly: true,
+          expires: new Date(Date.now() + 7200000),
+        })
+        .cookie("refresh-token", refreshToken, {
+          httpOnly: true,
+          expires: new Date(Date.now() + 172800000),
+        })
+        .json({
+          message: "Successfull",
+          token: accessToken,
+          refresh: refreshToken,
+          user: existingUser,
+        });
     } catch (err) {
       console.log(err);
       res.status(500).json({ message: "Internal Server Error" });
-    }
-  }
-
-  static async refreshToken(req, res, next) {
-    try {
-      const { refreshToken } = req.body;
-
-      if (!refreshToken) {
-        res.status(400).json({ message: "Missing refresh token." });
-      }
-
-      const payload = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
-      const savedRefreshToken = await findRefreshTokenById(payload.jti);
-
-      if (!savedRefreshToken || savedRefreshToken.revoked === true) {
-        res.status(401).json({ message: "Unauthorized" });
-      }
-
-      const hashedToken = hashToken(refreshToken);
-      if (hashedToken !== savedRefreshToken.hashedToken) {
-        res.status(401).json({ message: "Unauthorized" });
-      }
-
-      const user = await getUserByID(payload.userId);
-      if (!user) {
-        res.status(401).json({ message: "Unauthorized" });
-      }
-
-      await deleteRefreshToken(savedRefreshToken.id);
-      const jti = uuidv4();
-      const { accessToken, refreshToken: newRefreshToken } = generateTokens(
-        user,
-        jti,
-      );
-      await addRefreshTokenToWhitelist({
-        jti,
-        refreshToken: newRefreshToken,
-        userId: user.id,
-      });
-
-      res.json({
-        accessToken,
-        refreshToken: newRefreshToken,
-      });
-    } catch (err) {
-      next(err);
     }
   }
 
