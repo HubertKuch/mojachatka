@@ -39,7 +39,7 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                 </div>
                 <div className="list-content py-0 p-0 mt-2 mt-xxl-0 ps-xxl-4">
                   <div className="h6 list-title">
-                    <Link href={`/single-v1/${property.id}`}>
+                    <Link href={`/oferta/${property.id}`}>
                       {property.title}
                     </Link>
                   </div>

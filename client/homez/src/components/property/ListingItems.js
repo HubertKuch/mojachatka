@@ -31,7 +31,7 @@ const ListingItems = ({ data }) => {
             </div>
             <div className="list-content">
               <h6 className="list-title">
-                <Link href={`/single-v1/${listing.id}`}>{listing.title}</Link>
+                <Link href={`/oferta/${listing.id}`}>{listing.title}</Link>
               </h6>
               <p className="list-text">{listing.location}</p>
               <div className="list-meta d-flex align-items-center">
