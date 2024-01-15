@@ -7,6 +7,7 @@ import DetailsFiled from "./details-field";
 import Amenities from "./Amenities";
 import AddOfferEnd from "./AddOfferEnd";
 import { Form, Formik } from "formik";
+import OffersControllers from "@/controllers/OffersController";
 
 const AddPropertyTabContent = () => {
   const formRef = useRef();
@@ -90,8 +91,20 @@ const AddPropertyTabContent = () => {
         </div>
       </nav>
       {/* End nav tabs */}
-      <Formik initialValues={{}} onSubmit={(data) => console.log(data)}>
-        {({ handleChange }) => {
+      <Formik
+        initialValues={{ features: [], properties: { security: {} } }}
+        onSubmit={(data) => {
+          OffersControllers.createOffer({ data: data }).then((res) => {
+            if (res.status !== 200) {
+              document.querySelector("#add-offer-error").innerText =
+                res.body.message;
+            } else {
+              document.location.replace("/dashboard-my-properties");
+            }
+          });
+        }}
+      >
+        {({ handleChange, setFieldValue }) => {
           return (
             <Form>
               <div className="tab-content" id="nav-tabContent">
@@ -114,9 +127,8 @@ const AddPropertyTabContent = () => {
                   role="tabpanel"
                   aria-labelledby="nav-item2-tab"
                 >
-                  <UploadMedia />
+                  <UploadMedia onChange={handleChange} />
                 </div>
-                {/* End tab for Upload photos of your property */}
 
                 <div
                   className="tab-pane fade"
@@ -126,10 +138,9 @@ const AddPropertyTabContent = () => {
                 >
                   <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
                     <h4 className="title fz17 mb30">Listing Location</h4>
-                    <LocationField />
+                    <LocationField onChange={handleChange} />
                   </div>
                 </div>
-                {/* End tab for Listing Location */}
 
                 <div
                   className="tab-pane fade"
@@ -138,10 +149,9 @@ const AddPropertyTabContent = () => {
                   aria-labelledby="nav-item4-tab"
                 >
                   <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-                    <DetailsFiled onChange={handleChange} />
+                    <DetailsFiled setValue={setFieldValue} />
                   </div>
                 </div>
-                {/* End tab for Listing Details */}
 
                 <div
                   className="tab-pane fade"

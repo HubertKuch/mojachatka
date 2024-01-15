@@ -1,7 +1,19 @@
-import { Field, FieldArray } from "formik";
+import { Field, useFormikContext } from "formik";
 import React from "react";
 
-const DetailsFiled = ({ onChange }) => {
+const DetailsFiled = () => {
+  const {
+    setFieldValue,
+    values: {
+      properties: { security },
+      properties,
+    },
+  } = useFormikContext();
+
+  function set(props) {
+    setFieldValue(props.currentTarget.name, props.currentTarget.checked);
+  }
+
   return (
     <form className="form-style1">
       <div className="row">
@@ -13,6 +25,8 @@ const DetailsFiled = ({ onChange }) => {
                 Rolety antywlamiowe
               </label>{" "}
               <Field
+                onChange={set}
+                checked={security.antiBreakingRoles}
                 type="checkbox"
                 name="properties.security.antiBreakingRoles"
               />
@@ -22,18 +36,20 @@ const DetailsFiled = ({ onChange }) => {
                 Drzwi antywlamaniowe
               </label>{" "}
               <Field
+                onChange={set}
+                checked={security.antiBurglaryDoors}
                 type="checkbox"
                 name="properties.security.antiBurglaryDoors"
-                value="afterMarket"
               />
             </div>
             <label className="heading-color ff-heading fw600 mb10">
               Okna antywlamaniowe
             </label>{" "}
             <Field
+              onChange={set}
+              checked={security.antiBurglaryWindows}
               type="checkbox"
               name="properties.security.antiBurglaryWindows"
-              value="afterMarket"
             />
           </div>{" "}
           <div className="mb20">
@@ -43,7 +59,8 @@ const DetailsFiled = ({ onChange }) => {
             <Field
               type="checkbox"
               name="properties.security.closedArea"
-              value="afterMarket"
+              onChange={set}
+              checked={security.closedArea}
             />
           </div>
           <div className="mb20">
@@ -53,7 +70,8 @@ const DetailsFiled = ({ onChange }) => {
             <Field
               type="checkbox"
               name="properties.security.monitoring"
-              value="afterMarket"
+              onChange={set}
+              checked={security.monitoring}
             />
           </div>
           <div className="mb20">
@@ -63,7 +81,8 @@ const DetailsFiled = ({ onChange }) => {
             <Field
               type="checkbox"
               name="properties.security.security"
-              value="afterMarket"
+              onChange={set}
+              checked={security.security}
             />
           </div>{" "}
           <div className="mb20">
@@ -71,20 +90,31 @@ const DetailsFiled = ({ onChange }) => {
             <Field
               type="checkbox"
               name="properties.security.alarm"
-              value="afterMarket"
+              onChange={set}
+              checked={security.alarm}
             />
           </div>{" "}
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
               Domofon
             </label>{" "}
-            <Field type="checkbox" name="properties.security.intercom" />
+            <Field
+              type="checkbox"
+              name="properties.security.intercom"
+              onChange={set}
+              checked={security.intercom}
+            />
           </div>
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
               Wideofon
             </label>{" "}
-            <Field type="checkbox" name="properties.security.videophone" />
+            <Field
+              type="checkbox"
+              name="properties.security.videophone"
+              onChange={set}
+              checked={security.videophone}
+            />
           </div>
         </div>
 
@@ -99,6 +129,12 @@ const DetailsFiled = ({ onChange }) => {
               type="number"
               name="properties.buildYear"
               className="form-control"
+              onChange={(prop) =>
+                setFieldValue(
+                  prop.currentTarget.name,
+                  prop.currentTarget.valueAsNumber,
+                )
+              }
               placeholder="2010"
             />
           </div>
@@ -110,7 +146,8 @@ const DetailsFiled = ({ onChange }) => {
             <Field
               type="checkbox"
               name="properties.afterMarket"
-              value="afterMarket"
+              onChange={set}
+              checked={properties.afterMarket}
             />
           </div>
         </div>
@@ -122,6 +159,12 @@ const DetailsFiled = ({ onChange }) => {
               Powierzchnia (w m2)
             </label>
             <Field
+              onChange={(prop) =>
+                setFieldValue(
+                  prop.currentTarget.name,
+                  prop.currentTarget.valueAsNumber,
+                )
+              }
               type="number"
               name="properties.sizeInMeters"
               className="form-control"
@@ -133,6 +176,12 @@ const DetailsFiled = ({ onChange }) => {
               Ilosc pokoi
             </label>
             <Field
+              onChange={(prop) =>
+                setFieldValue(
+                  prop.currentTarget.name,
+                  prop.currentTarget.valueAsNumber,
+                )
+              }
               type="number"
               name="properties.rooms"
               className="form-control"
@@ -145,9 +194,15 @@ const DetailsFiled = ({ onChange }) => {
               Ilosc sypialni
             </label>
             <Field
-              name="bedrooms"
-              type="properties.bedrooms"
+              onChange={(prop) =>
+                setFieldValue(
+                  prop.currentTarget.name,
+                  prop.currentTarget.valueAsNumber,
+                )
+              }
+              name="properties.bedrooms"
               className="form-control"
+              type="number"
               placeholder="2"
             />
           </div>
@@ -157,8 +212,14 @@ const DetailsFiled = ({ onChange }) => {
               Ilosc lazienek
             </label>
             <Field
-              name="bedrooms"
-              type="properties.bathrooms"
+              onChange={(prop) =>
+                setFieldValue(
+                  prop.currentTarget.name,
+                  prop.currentTarget.valueAsNumber,
+                )
+              }
+              type="number"
+              name="properties.bathrooms"
               className="form-control"
               placeholder="2"
             />

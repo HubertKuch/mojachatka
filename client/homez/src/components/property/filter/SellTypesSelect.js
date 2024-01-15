@@ -22,13 +22,13 @@ export default function SellTypesSelect({ set, filters, onChange }) {
   return (
     <Select
       defaultValue={sellTypes[0]}
-      name="rentType"
+      name="sellType"
       onChange={(e) => {
         if (filters) filters.sellType = e.value;
 
         if (set) set(e.value);
 
-        if (onChange) onChange("rentType")(e.value);
+        if (onChange) onChange("sellType")(e.value);
       }}
       options={sellTypes}
       styles={customStyles}

@@ -38,7 +38,7 @@ class OffersControllers {
   static async createOffer(body) {
     const res = await instance.post("/createOffer", JSON.stringify(body));
 
-    return { body: await res.json(), status: res.status };
+    return { body: res.data, status: res.status };
   }
 
   static async getSellTypes() {

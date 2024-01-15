@@ -3,8 +3,9 @@ import React from "react";
 import Map from "./Map";
 import useRegion from "@/hooks/useRegion";
 import Select from "react-select";
+import { Field } from "formik";
 
-const LocationField = () => {
+const LocationField = ({ onChange }) => {
   const regions = useRegion();
 
   return (
@@ -14,10 +15,9 @@ const LocationField = () => {
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
               Miejscowosc
-              <input
-                data-property
+              <Field
                 type="text"
-                name="city"
+                name="properties.city"
                 className="form-control"
                 placeholder="Warszawa"
               />
@@ -25,9 +25,8 @@ const LocationField = () => {
             {"  "}
             <label className="heading-color ff-heading fw600 mb10">
               Adres
-              <input
-                data-property
-                name="address"
+              <Field
+                name="properties.address"
                 type="text"
                 className="form-control"
                 placeholder="Wiejska"
@@ -38,9 +37,8 @@ const LocationField = () => {
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
               Dom
-              <input
-                name="houseNumber"
-                data-property
+              <Field
+                name="properties.houseNumber"
                 type="text"
                 className="form-control"
                 placeholder="1"
@@ -48,25 +46,14 @@ const LocationField = () => {
             </label>{" "}
             <label className="heading-color ff-heading fw600 mb10">
               Mieszkanie
-              <input
+              <Field
                 type="text"
-                name="localNumber"
-                data-property
+                name="properties.localNumber"
                 className="form-control"
                 placeholder="4"
               />
             </label>
           </div>
-
-          <label className="mb-4">
-            <input
-              type="checkbox"
-              data-property
-              name="publicAddress"
-              placeholder="Your Name"
-            />{" "}
-            Adres widoczny dla wszystkich
-          </label>
         </div>
 
         <div className="col-sm-6 col-xl-4">
@@ -74,10 +61,9 @@ const LocationField = () => {
             <label className="heading-color ff-heading fw600 mb10">
               Kod pocztowy
             </label>
-            <input
-              data-property
+            <Field
               type="text"
-              name="zipCode"
+              name="properties.zipCode"
               placeholder="84-300"
               className="form-control"
             />
@@ -91,8 +77,9 @@ const LocationField = () => {
             </label>
             <div className="location-area">
               <Select
+                onChange={({ value }) => onChange("properties.region")(value)}
                 defaultValue={[regions[1]]}
-                name="region"
+                name="properties.region"
                 styles={{
                   menu: (prov) => ({ ...prov, zIndex: 99999999 }),
                   menuList: (prov) => ({ ...prov, zIndex: 99999999 }),
@@ -113,7 +100,7 @@ const LocationField = () => {
             <label className="heading-color ff-heading fw600 mb30">
               Miejsce na mapie
             </label>
-            <Map />
+            <Map onChange={onChange} />
           </div>
         </div>
       </div>

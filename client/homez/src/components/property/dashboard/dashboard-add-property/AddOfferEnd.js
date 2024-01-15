@@ -38,22 +38,7 @@ const AddOfferEnd = ({ formRef }) => {
 
   return (
     <div className="row">
-      <button
-        type="submit"
-        onClick={(e) => {
-          //
-          // OffersControllers.createOffer()).then((res) => {
-          //   if (res.status !== 200) {
-          //     document.querySelector("#add-offer-error").innerText =
-          //       res.body.message;
-          //   } else {
-          //     document.location.replace("/dashboard-my-properties");
-          //   }
-          // });
-        }}
-      >
-        Dodaj
-      </button>
+      <button type="submit">Dodaj</button>
     </div>
   );
 };

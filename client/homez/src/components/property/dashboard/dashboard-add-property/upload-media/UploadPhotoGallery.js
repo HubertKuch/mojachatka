@@ -1,11 +1,20 @@
 "use client";
 import { Tooltip as ReactTooltip } from "react-tooltip";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import { Field, useFormikContext } from "formik";
 
 const UploadPhotoGallery = () => {
   const [uploadedImages, setUploadedImages] = useState([]);
   const fileInputRef = useRef(null);
+  const { setFieldValue } = useFormikContext();
+
+  useEffect(() => {
+    setFieldValue(
+      "properties.images",
+      JSON.parse(JSON.stringify(uploadedImages)),
+    );
+  }, [uploadedImages]);
 
   const handleUpload = (files) => {
     const newImages = [...uploadedImages];
@@ -43,12 +52,12 @@ const UploadPhotoGallery = () => {
         onDrop={handleDrop}
         onDragOver={handleDragOver}
       >
-        <textarea
-          data-property
+        <Field
           name="images"
           hidden
+          as="textarea"
           value={JSON.stringify(uploadedImages)}
-        ></textarea>
+        />
         <div className="icon mb30">
           <span className="flaticon-upload" />
         </div>

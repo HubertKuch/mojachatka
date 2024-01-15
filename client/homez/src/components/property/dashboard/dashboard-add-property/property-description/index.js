@@ -3,10 +3,11 @@ import { useState } from "react";
 import PropertyTypesSelect from "@/components/property/filter/PropertyTypesSelect";
 import Select from "react-select";
 import SellTypesSelect from "@/components/property/filter/SellTypesSelect";
-import { FastField, Field } from "formik";
+import { FastField, Field, useFormikContext } from "formik";
 
 const PropertyDescription = ({ onChange }) => {
   const [rentType, setRentType] = useState("BUY");
+  const { setFieldValue } = useFormikContext();
 
   return (
     <form className="form-style1">
@@ -70,7 +71,13 @@ const PropertyDescription = ({ onChange }) => {
                   Cena
                 </label>
                 <FastField
-                  type="text"
+                  onChange={(prop) =>
+                    setFieldValue(
+                      prop.currentTarget.name,
+                      prop.currentTarget.valueAsNumber,
+                    )
+                  }
+                  type="number"
                   name="price"
                   required
                   className="form-control"
@@ -83,7 +90,13 @@ const PropertyDescription = ({ onChange }) => {
                   Cena najmu
                 </label>
                 <FastField
-                  type="text"
+                  onChange={(prop) =>
+                    setFieldValue(
+                      prop.currentTarget.name,
+                      prop.currentTarget.valueAsNumber,
+                    )
+                  }
+                  type="number"
                   name="pricePerMonth"
                   className="form-control"
                   placeholder="3500"
