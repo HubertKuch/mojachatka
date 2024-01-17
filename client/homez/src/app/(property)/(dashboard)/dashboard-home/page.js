@@ -7,10 +7,12 @@ import Footer from "@/components/property/dashboard/Footer";
 import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import TopStateBlock from "@/components/property/dashboard/dashboard-home/TopStateBlock";
 import PropertyViews from "@/components/property/dashboard/dashboard-home/property-view";
+import useAuth from "@/hooks/useAuth";
 import useStatistics from "@/hooks/useStatistics";
 import useUser from "@/hooks/useUser";
 
 const DashboardHome = () => {
+  useAuth();
   const user = useUser();
   const stats = useStatistics();
 

@@ -22,18 +22,61 @@ import AllReviews from "@/components/property/property-single-style/common/revie
 import ContactWithAgent from "@/components/property/property-single-style/sidebar/ContactWithAgent";
 import ScheduleTour from "@/components/property/property-single-style/sidebar/ScheduleTour";
 import PropertyGallery from "@/components/property/property-single-style/single-v6/PropertyGallery";
-import React from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import MortgageCalculator from "@/components/property/property-single-style/common/MortgageCalculator";
 import WalkScore from "@/components/property/property-single-style/common/WalkScore";
 import useOffer from "@/hooks/useOffer";
 import { redirect } from "next/dist/server/api-utils";
+import HouseOverview from "@/components/property/single/HouseOverView";
+import HouseDatails from "@/components/property/single/HouseDetails";
+import ApartmentDatails from "@/components/property/single/ApartmentDetails";
+import ApartmentOverview from "@/components/property/single/ApartmentOverView";
+import PlotOverView from "@/components/property/single/PlotOverView";
+import PlotDetails from "@/components/property/single/PlotDetails";
+import GarageDetails from "@/components/property/single/GarageDetails";
+import GarageOverView from "@/components/property/single/GarageOverView";
+import RoomOverView from "@/components/property/single/RoomOverView";
+import RoomDetails from "@/components/property/single/RoomDetails";
+import CommercialLocalOverView from "@/components/property/single/CommercialLocalOverView";
+import CommercialLocalDetails from "@/components/property/single/CommercialLocalDetails";
+import WareHouseOverView from "@/components/property/single/WarehouseOverView";
+import WarehouseDetails from "@/components/property/single/WarehouseDetails";
 
 const SingleV6 = ({ params }) => {
   const offer = useOffer(params.id);
+  const [overview, setOverview] = useState();
+  const [details, setDetails] = useState();
 
   if (offer && offer.status === 404) {
     window.location.replace("/not-found");
   }
+
+  useEffect(() => {
+    if (offer) {
+      const OVERVIEW_BY_TYPE = {
+        DOM: <HouseOverview offer={offer?.offer} />,
+        MIESZKANIE: <ApartmentOverview offer={offer?.offer} />,
+        DZIALKA: <PlotOverView offer={offer?.offer} />,
+        GARAZ: <GarageOverView offer={offer?.offer} />,
+        POKOJ: <RoomOverView offer={offer?.offer} />,
+        LOKAL: <CommercialLocalOverView offer={offer?.offer} />,
+        MAGAZYN: <WareHouseOverView offer={offer?.offer} />,
+      };
+
+      const DETAILS_BY_TYPE = {
+        DOM: <HouseDatails offer={offer?.offer} />,
+        MIESZKANIE: <ApartmentDatails offer={offer?.offer} />,
+        DZIALKA: <PlotDetails offer={offer?.offer} />,
+        GARAZ: <GarageDetails offer={offer?.offer} />,
+        POKOJ: <RoomDetails offer={offer?.offer} />,
+        LOKAL: <CommercialLocalDetails offer={offer?.offer} />,
+        MAGAZYN: <WarehouseDetails offer={offer?.offer} />,
+      };
+
+      setOverview(OVERVIEW_BY_TYPE[offer?.offer?.type] || null);
+      setDetails(DETAILS_BY_TYPE[offer?.offer?.type] || null);
+    }
+  }, [offer]);
 
   return (
     <>
@@ -53,12 +96,18 @@ const SingleV6 = ({ params }) => {
           {/* End .row */}
 
           <div className="row wrap">
-            <div className="col-lg-12">
+            <div className="row col-lg-12">
               <PropertyGallery offer={offer?.offer || {}} />
-              <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
-                <h4 className="title fz17 mb30">Podstawowe informacje</h4>
-                <div className="row">
-                  <OverView offer={offer.offer} />
+              <div className="row ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
+                <div className="col-md-6 col-sm-12">
+                  <h4 className="title fz17 mb30">Podstawowe informacje</h4>
+                  <div className="">{overview}</div>
+                </div>
+                <div className="col-md-6 col-sm-12">
+                  <h4 className="title fz17 mb30">Adres</h4>
+                  <div className="">
+                    <PropertyAddress offer={offer.offer} />
+                  </div>
                 </div>
               </div>
               {/* End .ps-widget */}
@@ -66,30 +115,11 @@ const SingleV6 = ({ params }) => {
               <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
                 <h4 className="title fz17 mb30">Opis nieruchomości</h4>
                 <ProperytyDescriptions offer={offer.offer} />
-                {/* End property description */}
-
-                <h4 className="title fz17 mb30 mt50">Dodatkowe informacje</h4>
-                <div className="row">
-                  <PropertyDetails offer={offer.offer} />
-                </div>
               </div>
               {/* End .ps-widget */}
 
-              <div className="row">
-                <div className="col-lg-6 ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
-                  <h4 className="title fz17 mb30 mt30">Adres</h4>
-                  <div className="row">
-                    <PropertyAddress offer={offer.offer} />
-                  </div>
-                </div>
-                {/* End .ps-widget */}
-
-                <div className="col-lg-6 ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
-                  <h4 className="title fz17 mb30">Szczegóły ogłoszenia</h4>
-                  <div className="row">
-                    <PropertyFeaturesAminites offer={offer.offer} />
-                  </div>
-                </div>
+              <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
+                {details}
               </div>
 
               <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">

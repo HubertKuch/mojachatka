@@ -6,10 +6,10 @@ const PropertyAddress = ({ offer }) => {
   useEffect(() => {
     if (offer?.properties) {
       setAddress({
-        address: offer.properties.address,
-        city: offer.properties.city,
-        state: offer.properties.region,
-        zipCode: offer.properties.zipCode,
+        address: offer.properties.address.address,
+        city: offer.properties.address.city,
+        state: offer.properties.address.region,
+        zipCode: offer.properties.address.zipCode,
       });
     }
   }, [offer]);

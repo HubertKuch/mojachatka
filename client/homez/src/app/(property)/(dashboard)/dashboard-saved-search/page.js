@@ -1,3 +1,5 @@
+"use client";
+
 import DashboardHeader from "@/components/common/DashboardHeader";
 import MobileMenu from "@/components/common/mobile-menu";
 import Pagination from "@/components/property/Pagination";
@@ -5,12 +7,10 @@ import DboardMobileNavigation from "@/components/property/dashboard/DboardMobile
 import Footer from "@/components/property/dashboard/Footer";
 import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import SearchDataTable from "@/components/property/dashboard/dashboard-saved-search/SearchDataTable";
-
-export const metadata = {
-  title: "Dashboard Saved Search || Homez - Real Estate NextJS Template",
-};
+import useAuth from "@/hooks/useAuth";
 
 const DashboardSavedSearch = () => {
+  useAuth();
   return (
     <>
       {/* Main Header Nav */}

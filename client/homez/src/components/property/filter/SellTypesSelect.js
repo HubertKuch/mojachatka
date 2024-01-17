@@ -30,7 +30,10 @@ export default function SellTypesSelect({ set, filters, onChange }) {
 
         if (onChange) onChange("sellType")(e.value);
       }}
-      options={sellTypes}
+      options={[
+        { label: "Najm", value: "RENT" },
+        { label: "Sprzedaz", value: "BUY" },
+      ]}
       styles={customStyles}
       className="select-custom pl-0"
       classNamePrefix="select"

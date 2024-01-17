@@ -10,10 +10,18 @@ const {
   getIndividualUserSchema,
   getAgentUserSchema,
   getDeveloperUserSchema,
+  INDIVIDUAL_USER_SCHEMA,
+  AGENT_USER_SCHEMA,
+  DEVELOPER_USER_SCHEMA,
 } = require("../../schemas/UserRegisterSchema");
 const APIError = require("../../errors/APIError");
+const populateJsonSchemaError = require("../../utils/populateJsonSchemaError");
 
 class AuthController {
+  static async authenticated(req, res) {
+    res.status(200).json({ authenticated: !!req.cookies["auth-token"] });
+  }
+
   static async login(req, res) {
     try {
       const { email, password } = req.body;
@@ -81,11 +89,20 @@ class AuthController {
       }[type];
     }
 
+    function getSchema(type) {
+      return {
+        INDIVIDUAL: INDIVIDUAL_USER_SCHEMA,
+        AGENT: AGENT_USER_SCHEMA,
+        DEVELOPER: DEVELOPER_USER_SCHEMA,
+      }[type];
+    }
+
     try {
       const type = req.query.type;
       const body = req.body;
 
       if (!type || !Object.values(UserType).includes(type)) {
+        console.log(type, Object.values(UserType), req.query);
         return res.status(400).json({ message: "Account type is required" });
       }
 
@@ -94,7 +111,15 @@ class AuthController {
       validator(body);
 
       if (validator.errors) {
-        return next(new APIError("Nieprawidlowe zapytanie", 400));
+        if (
+          validator.errors.find((e) => e.keywordLocation.includes("telephone"))
+        ) {
+          return res
+            .status(400)
+            .json({ message: "Niepoprawny numer telefonu" });
+        }
+
+        return res.status(400).json({ message: "Niepoprawne zapytanie" });
       }
 
       let emailRegex =

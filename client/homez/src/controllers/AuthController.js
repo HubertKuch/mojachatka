@@ -17,6 +17,14 @@ class AuthController {
     return { ...body, success: false };
   }
 
+  static async authenticated() {
+    const res = await fetch(`${process.env.BASE_URL}/authenticated`, {
+      credentials: "include",
+    });
+
+    return (await res.json()).authenticated;
+  }
+
   static async getProfile() {
     const res = await axios.get("/profile");
 

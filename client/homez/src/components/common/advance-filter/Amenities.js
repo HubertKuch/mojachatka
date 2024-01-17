@@ -3,8 +3,6 @@ import useAmenities from "@/hooks/useAmenities";
 const Amenities = () => {
   const amenities = useAmenities();
 
-  console.log(amenities);
-
   return (
     <>
       {amenities.map((amenity) => (

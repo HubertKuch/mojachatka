@@ -1,10 +1,18 @@
-const { validator } = require("@exodus/schemasafe");
-
-const { isImage } = require("../utils/isImage");
-const { SellType, OfferType } = require("@prisma/client");
+const conditionSchema = {
+  type: "string",
+  label: "Kondycja",
+  enum: ["FORRESIDENCE", "FORFINISHING", "FORRENOVATION"],
+  cases: {
+    FORRESIDENCE: "do zamieszkania",
+    FORFINISHING: "do wykonczenia",
+    FORRENOVATION: "do remontu",
+  },
+};
 
 const securitySchema = {
   type: "object",
+  label: "Zabezpieczenia",
+  cols: 2,
   properties: {
     antiBreakingRoles: {
       type: "boolean",
@@ -43,20 +51,23 @@ const securitySchema = {
       label: "Ogrodzony teren",
     },
   },
-};
-
-const conditionSchema = {
-  type: "string",
-  enum: ["FORRESIDENCE", "FORFINISHING", "FORRENOVATION"],
-  cases: {
-    FORRESIDENCE: "do zamieszkania",
-    FORFINISHING: "do wykonczenia",
-    FORRENOVATION: "do remontu",
-  },
+  required: [
+    "antiBreakingRoles",
+    "monitoring",
+    "security",
+    "alarmSystem",
+    "videophone",
+    "closedArea",
+    "intercom",
+    "antiBurglaryDoors",
+    "antiBurglaryWindows",
+    "security",
+  ],
 };
 
 const heatingSchema = {
   type: "string",
+  label: "Ogrzewanie",
   cases: {
     OIL: "Olejowe",
     FIREPLACE: "Kominkowe",
@@ -87,6 +98,7 @@ const heatingSchema = {
 
 const equipmentSchema = {
   type: "object",
+  label: "wyposazenie",
   properties: {
     furniture: {
       label: "Meble",
@@ -120,55 +132,58 @@ const equipmentSchema = {
 };
 
 const mediaSchema = {
-  internet: {
-    label: "Internet",
-    type: "boolean",
-  },
-  cableTv: {
-    label: "Telewizja kablowa",
-    type: "boolean",
-  },
-  telephone: {
-    label: "Telefon",
-    type: "boolean",
-  },
-  water: {
-    label: "Woda",
-    type: "boolean",
-  },
-  energy: {
-    label: "Energia elektryczna",
-    type: "boolean",
-  },
-  gas: {
-    label: "Gaz",
-    type: "boolean",
-  },
-  sewage: {
-    label: "Kanalizacja",
-    type: "boolean",
-  },
-  severs: {
-    label: "Śmieci",
-    type: "boolean",
-  },
-  setpticTank: {
-    label: "Szambo",
-    type: "boolean",
+  type: "object",
+  cols: 2,
+  label: "media",
+  properties: {
+    internet: {
+      label: "Internet",
+      type: "boolean",
+    },
+    cableTv: {
+      label: "Telewizja kablowa",
+      type: "boolean",
+    },
+    telephone: {
+      label: "Telefon",
+      type: "boolean",
+    },
+    water: {
+      label: "Woda",
+      type: "boolean",
+    },
+    energy: {
+      label: "Energia elektryczna",
+      type: "boolean",
+    },
+    gas: {
+      label: "Gaz",
+      type: "boolean",
+    },
+    sewage: {
+      label: "Kanalizacja",
+      type: "boolean",
+    },
+    severs: {
+      label: "Śmieci",
+      type: "boolean",
+    },
+    setpticTank: {
+      label: "Szambo",
+      type: "boolean",
+    },
   },
 };
 
 const garageSchema = {
   type: "object",
+  label: "garaz",
   properties: {
     heating: {
       type: "boolean",
       label: "Ogrzewanie",
     },
-    sizeInMeters: {
-      type: "number",
-      label: "Wielkosc w metrach kwadratowych",
-    },
+
     lighting: {
       label: "Oświetlenie",
       type: "boolean",
@@ -176,6 +191,10 @@ const garageSchema = {
     availableFrom: {
       label: "Dostępny od",
       type: "string",
+    },
+    sizeInMeters: {
+      type: "number",
+      label: "Wielkosc w metrach kwadratowych",
     },
     location: {
       label: "Lokalizacja",
@@ -199,41 +218,17 @@ const garageSchema = {
       enum: ["BRICK", "SHED", "TIN", "WOODEN"],
     },
   },
-};
-
-const roomSchema = {
-  type: "object",
-  properties: {
-    personsInRooms: {
-      type: "integer",
-      label: "Liczba osób w pokoju",
-    },
-    sizeInMeters: {
-      type: "number",
-      label: "Wielkosc w metrach kwadratowych",
-    },
-    heating: heatingSchema,
-    availableFrom: { type: "string", label: "Dostępny od" },
-    onlyForNoSmokers: {type: "boolean", label: "Tylko dla nie palących"},
-    equipment: equipmentSchema,
-    media: {
-		type: "object",
-		properties: {
-			internet: {
-				type: "boolean", label: "Internet"
-			},
-			cableTv: {type: "boolean", label: "Telewizja kablowa"},
-			
-			telephone: {type: "boolean", label: "Telefon"},
-			
-		}
-	}
-  },
+  required: ["heating", "lighting", "location", "construction"],
 };
 
 const apartmentSchema = {
   type: "object",
+  label: "Mieszkanie",
   properties: {
+    area: {
+      type: "number",
+      label: "Powierzchnia",
+    },
     floor: { type: "number", label: "Piętro" },
     availableFrom: { type: "string", label: "Dostępny od" },
     propertyForm: {
@@ -249,11 +244,6 @@ const apartmentSchema = {
     },
     equipment: equipmentSchema,
     security: securitySchema,
-    area: {
-      type: "number",
-      label: "Powierzchnia",
-    },
-
     media: mediaSchema,
     additionalInfo: {
       type: "object",
@@ -335,6 +325,7 @@ const apartmentSchema = {
 
 const commercialLocalSchema = {
   type: "object",
+  label: "Lokal uzytkowy",
   properties: {
     buildYear: {
       type: "number",
@@ -406,6 +397,7 @@ const commercialLocalSchema = {
 
 const plotSchema = {
   type: "object",
+  label: "dzialka",
   properties: {
     sizeInMeters: {
       type: "number",
@@ -501,6 +493,7 @@ const plotSchema = {
 
 const warehouseSchema = {
   type: "object",
+  label: "Magazyn",
   properties: {
     heightInMeters: {
       type: "number",
@@ -509,15 +502,21 @@ const warehouseSchema = {
     construction: {
       type: "string",
       label: "Konstrukcja",
+      enum: ["WOODEN", "STEEL", "BRICK", "GLASS", "TENT", "SHELTER"],
+      cases: {
+        WOODEN: "Drewniana",
+        STEEL: "Stalowa",
+        BRICK: "Murowana",
+        GLASS: "Szklana",
+        TENT: "Namiotowa",
+        SHELTER: "WIATA",
+      },
     },
     parking: {
       type: "boolean",
       label: "Parking",
     },
-    flooring: {
-      type: "boolean",
-      label: "Podłoga",
-    },
+
     heating: heatingSchema,
     useFacility: {
       type: "string",
@@ -575,6 +574,7 @@ const warehouseSchema = {
 
 const fenceSchema = {
   type: "string",
+  label: "ogrodzenie",
   cases: {
     BRICK: "Murowane",
     WOODEN: "Drewniane",
@@ -589,6 +589,7 @@ const fenceSchema = {
 };
 
 const roomsSchema = {
+  label: "Pomieszczenia",
   type: "object",
   properties: {
     total: {
@@ -608,12 +609,14 @@ const roomsSchema = {
 
 const houseSchema = {
   type: "object",
+  label: "Dom",
   properties: {
     rooms: roomsSchema,
     media: mediaSchema,
     security: securitySchema,
     additionalInfo: {
       type: "object",
+      label: "Dodatkowe informacje",
       properties: {
         basement: { type: "boolean", label: "Piwnica" },
         pool: { type: "boolean", label: "Basen" },
@@ -752,11 +755,43 @@ const houseSchema = {
   },
 };
 
+const roomSchema = {
+  type: "object",
+  properties: {
+    personsInRooms: {
+      type: "integer",
+      label: "Liczba osób w pokoju",
+    },
+    sizeInMeters: {
+      type: "number",
+      label: "Wielkosc w metrach kwadratowych",
+    },
+    heating: heatingSchema,
+    availableFrom: { type: "string", label: "Dostępny od" },
+    onlyForNoSmokers: { type: "boolean", label: "Tylko dla nie palących" },
+    equipment: equipmentSchema,
+    media: {
+      type: "object",
+      properties: {
+        internet: {
+          type: "boolean",
+          label: "Internet",
+        },
+        cableTv: { type: "boolean", label: "Telewizja kablowa" },
+
+        telephone: { type: "boolean", label: "Telefon" },
+      },
+    },
+  },
+};
+
 const addressSchema = {
+  label: "Adres",
   type: "object",
   properties: {
     region: {
       type: "string",
+      label: "Region",
       cases: {
         DOLNOSLASKIE: "Dolnośląskie",
         KUJAWSKOPOMORSKIE: "Kujawsko-Pomorskie",
@@ -801,22 +836,17 @@ const addressSchema = {
     houseNumber: { type: "string", label: "Numer domu" },
     localNumber: { type: "string", label: "Numer lokalu" },
   },
-  required: ["region", "city", "zipCode", "address", "houseNumber"],
 };
 
 const createOfferSchema = {
+  $schema: "http://json-schema.org/draft-04/schema#",
   type: "object",
   properties: {
     data: {
       type: "object",
       properties: {
-        title: { type: "string", minLength: 8, maxLength: 120, label: "Tytuł" },
-        description: {
-          type: "string",
-          minLength: 40,
-          maxLength: 4000,
-          label: "Opis",
-        },
+        title: { type: "string", minLength: 8, label: "Tytuł" },
+        description: { type: "string", minLength: 40, label: "Opis" },
         price: { type: ["integer", "null"], minimum: 1, label: "Cena" },
         pricePerMonth: {
           type: ["integer", "null"],
@@ -825,13 +855,29 @@ const createOfferSchema = {
         },
         type: {
           type: "string",
-          enum: Object.values(OfferType),
-          cases: OfferType,
+          enum: [
+            "DOM",
+            "MIESZKANIE",
+            "DZIALKA",
+            "GARAZ",
+            "POKOJ",
+            "LOKAL",
+            "MAGAZYN",
+          ],
+          cases: {
+            DOM: "DOM",
+            MIESZKANIE: "MIESZKANIE",
+            DZIALKA: "DZIALKA",
+            GARAZ: "GARAZ",
+            POKOJ: "POKOJ",
+            LOKAL: "LOKAL",
+            MAGAZYN: "MAGAZYN",
+          },
           label: "Typ oferty",
         },
         sellType: {
           type: "string",
-          enum: Object.values(SellType),
+          enum: ["RENT", "BUY"],
           cases: {
             BUY: "Sprzedaz",
             RENT: "Wynajem",
@@ -871,7 +917,7 @@ const createOfferSchema = {
             ],
             label: "Zdjęcia nieruchomości",
           },
-          required: ["images", "security", "address"],
+          required: [],
         },
       },
       required: [
@@ -888,16 +934,21 @@ const createOfferSchema = {
   required: ["data"],
 };
 
-const createOfferConfig = {
-  formats: {
-    base64: (el) => isImage(el),
-  },
-  mode: "lax",
-  allErrors: true,
-  includeErrors: true,
+export {
+  securitySchema,
+  plotSchema,
+  fenceSchema,
+  houseSchema,
+  mediaSchema,
+  roomsSchema,
+  garageSchema,
+  addressSchema,
+  heatingSchema,
+  apartmentSchema,
+  conditionSchema,
+  equipmentSchema,
+  warehouseSchema,
+  roomSchema,
+  createOfferSchema,
+  commercialLocalSchema,
 };
-
-const getCreateOfferValidator = () =>
-  validator(createOfferSchema, createOfferConfig);
-
-module.exports = { getCreateOfferValidator, createOfferSchema };

@@ -10,6 +10,10 @@ const useStore = create(
         set((state) => {
           return { user, isLoggedIn: true };
         }),
+      logout: () =>
+        set((state) => {
+          return { user: null, isLoggedIn: false, token: null };
+        }),
       token: null,
       setToken: (token) => set(() => ({ token })),
       refreshToken: null,

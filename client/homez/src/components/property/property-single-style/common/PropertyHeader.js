@@ -33,20 +33,6 @@ const PropertyHeader = ({ offer }) => {
       <div className="col-lg-4">
         <div className="single-property-content">
           <div className="property-action text-lg-end">
-            <div className="d-flex mb20 mb10-md align-items-center justify-content-lg-end">
-              <a className="icon mr10" href="#">
-                <span className="flaticon-like" />
-              </a>
-              <a className="icon mr10" href="#">
-                <span className="flaticon-new-tab" />
-              </a>
-              <a className="icon mr10" href="#">
-                <span className="flaticon-share-1" />
-              </a>
-              <a className="icon" href="#">
-                <span className="flaticon-printer" />
-              </a>
-            </div>
             <h3 className="price mb-0">
               {offer?.price || offer?.pricePerMonth}zl{" "}
               <small>{offer.price ? "" : "/mo"}</small>

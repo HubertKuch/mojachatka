@@ -8,10 +8,12 @@ import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import PropertyDataTable from "@/components/property/dashboard/dashboard-my-properties/PropertyDataTable";
 import DboardMobileNavigation from "@/components/property/dashboard/DboardMobileNavigation";
 import { useState } from "react";
+import useAuth from "@/hooks/useAuth";
 
 const DashboardMyProperties = () => {
   const [meta, setMeta] = useState(null);
   const [currPage, setCurrPage] = useState(1);
+  useAuth();
 
   const handleNewPage = (page) => {
     setCurrPage(page);

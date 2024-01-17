@@ -32,7 +32,7 @@ const PropertyGallery = ({ offer }) => {
                     <div className="col-lg-12">
                       <div className="">
                         <Swiper
-                          autoHeigh
+                          height={"auto !important"}
                           loop={true}
                           spaceBetween={10}
                           navigation={{

@@ -21,6 +21,13 @@ export default function AccountData({ register }) {
         />
       </div>
       <div>
+        <label htmlFor="telephone">Numer telefonu</label>
+        <input
+          {...register("telephone", { required: true })}
+          className="form-control"
+        />
+      </div>
+      <div>
         <label htmlFor="email">Email</label>
         {err ? <p className="error">{err}</p> : ""}
         <input

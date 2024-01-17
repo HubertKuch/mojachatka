@@ -233,6 +233,7 @@ class OffersService extends PaginatorService {
             title: data.title,
             description: data.description,
             price: data.price,
+            pricePerMonth: data.pricePerMonth,
             lat: data.lat,
             lng: data.lng,
             region: data.region,

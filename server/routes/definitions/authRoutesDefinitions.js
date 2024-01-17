@@ -2,6 +2,7 @@ const AuthController = require("../controllers/AuthController");
 const router = require("express").Router();
 const { isAuthenticated } = require("../../utils/middlewares");
 
+router.get("/authenticated", AuthController.authenticated);
 router.get("/profile", isAuthenticated, AuthController.getProfile);
 router.post("/login", AuthController.login);
 router.post("/register", AuthController.register);

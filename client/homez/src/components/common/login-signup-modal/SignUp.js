@@ -9,6 +9,7 @@ import CompanyDetailsStep from "./sign-up-steps/CompanyDetailsStep";
 import SalesRepStep from "./sign-up-steps/SalesRepStep";
 import EndStep from "./EndStep";
 import useStore from "@/store/store";
+import UserController from "@/controllers/UserController";
 
 const SignUp = () => {
   const [accountType, setAccountType] = useState("INDIVIDUAL");
@@ -16,9 +17,14 @@ const SignUp = () => {
   const { register, handleSubmit, formState } = useForm({ mode: "all" });
   const [endDataToDisplay, setEndDataToDisplay] = useState({});
   const formRef = useRef();
+  const [error, setError] = useState("");
 
-  function onSubmit() {
-    console.log(2);
+  function onSubmit(data) {
+    UserController.register(accountType, data).then((res) => {
+      if (res.status !== 200) {
+        return setError(res.data.message);
+      }
+    });
   }
 
   const stepsByType = [
@@ -30,7 +36,7 @@ const SignUp = () => {
         <EndStep
           title="Zakonczenie"
           data={endDataToDisplay}
-          onSubmit={onSubmit}
+          onSubmit={handleSubmit((data) => onSubmit(data))}
         />,
       ],
     },
@@ -43,7 +49,7 @@ const SignUp = () => {
         <EndStep
           title="Zakonczenie"
           data={endDataToDisplay}
-          onSubmit={onSubmit}
+          onSubmit={handleSubmit((data) => onSubmit(data))}
         />,
       ],
     },
@@ -56,7 +62,7 @@ const SignUp = () => {
         <EndStep
           title="Zakonczenie"
           data={endDataToDisplay}
-          onSubmit={onSubmit}
+          onSubmit={handleSubmit((data) => onSubmit(data))}
         />,
       ],
     },
@@ -93,20 +99,23 @@ const SignUp = () => {
         setEndDataToDisplay(useStore.getState().registerData);
       }}
     >
-      <MultiStep
-        activeStep={0}
-        showTitles={true}
-        showNavigation={false}
-        prevButton={{ title: "Cofnij", style: {} }}
-        nextButton={{ title: "Nastepny", style: {} }}
-      >
-        <AccountType
-          title={"Typ konta"}
-          accountType={accountType}
-          setAccountType={setAccountType}
-        />
-        {steps}
-      </MultiStep>
+      <>
+        <div className="error">{error}</div>
+        <MultiStep
+          activeStep={0}
+          showTitles={true}
+          showNavigation={false}
+          prevButton={{ title: "Cofnij", style: {} }}
+          nextButton={{ title: "Nastepny", style: {} }}
+        >
+          <AccountType
+            title={"Typ konta"}
+            accountType={accountType}
+            setAccountType={setAccountType}
+          />
+          {steps}
+        </MultiStep>
+      </>
     </form>
   );
 };

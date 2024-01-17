@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import PropertyTypesSelect from "@/components/property/filter/PropertyTypesSelect";
-import Select from "react-select";
 import SellTypesSelect from "@/components/property/filter/SellTypesSelect";
-import { FastField, Field, useFormikContext } from "formik";
+import { ErrorMessage, FastField, Field, useFormikContext } from "formik";
+import Error from "@/components/common/Error";
 
 const PropertyDescription = ({ onChange }) => {
   const [rentType, setRentType] = useState("BUY");
@@ -15,6 +15,7 @@ const PropertyDescription = ({ onChange }) => {
         <div className="col-sm-12">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">Tytul</label>
+            <Error name="title" />
             <FastField
               name="title"
               className="form-control"
@@ -27,6 +28,8 @@ const PropertyDescription = ({ onChange }) => {
         <div className="col-sm-12">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">Opis</label>
+            <Error name="description" />
+
             <Field
               name="description"
               cols={30}
@@ -44,6 +47,8 @@ const PropertyDescription = ({ onChange }) => {
             <label className="heading-color ff-heading fw600 mb10">
               Rodzaj majatku
             </label>
+            <Error name="type" />
+
             <div className="location-area">
               <PropertyTypesSelect onChange={onChange} />
             </div>
@@ -56,6 +61,8 @@ const PropertyDescription = ({ onChange }) => {
             <label className="heading-color ff-heading fw600 mb10">
               Rodzaj sprzedazy
             </label>
+            <Error name="sellType" />
+
             <div className="location-area">
               <SellTypesSelect onChange={onChange} set={setRentType} />
             </div>
@@ -70,12 +77,10 @@ const PropertyDescription = ({ onChange }) => {
                 <label className="heading-color ff-heading fw600 mb10">
                   Cena
                 </label>
+                <Error name={"price"} />
                 <FastField
                   onChange={(prop) =>
-                    setFieldValue(
-                      prop.currentTarget.name,
-                      prop.currentTarget.valueAsNumber,
-                    )
+                    setFieldValue("price", prop.currentTarget.valueAsNumber)
                   }
                   type="number"
                   name="price"
@@ -89,10 +94,11 @@ const PropertyDescription = ({ onChange }) => {
                 <label className="heading-color ff-heading fw600 mb10">
                   Cena najmu
                 </label>
+                <Error name={"pricePerMonth"} />
                 <FastField
                   onChange={(prop) =>
                     setFieldValue(
-                      prop.currentTarget.name,
+                      "pricePerMonth",
                       prop.currentTarget.valueAsNumber,
                     )
                   }

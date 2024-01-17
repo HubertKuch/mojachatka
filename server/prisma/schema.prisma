@@ -222,7 +222,7 @@ model Offers {
   author        String
   authorName    String
   User          User           @relation(fields: [author], references: [id], onDelete: Cascade)
-  title         String         @db.Char(100)
+  title         String         
   description   String         @db.VarChar(10000)
   price         Int?
   pricePerMonth Int?

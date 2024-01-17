@@ -8,11 +8,13 @@ import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import ChatBoxForm from "@/components/property/dashboard/dashboard-message/ChatBoxForm";
 import UserChatBoxContent from "@/components/property/dashboard/dashboard-message/UserChatBoxContent";
 import UserInboxList from "@/components/property/dashboard/dashboard-message/UserInboxList";
+import useAuth from "@/hooks/useAuth";
 import useUser from "@/hooks/useUser";
 import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 
 const DashboardMessage = () => {
+  useAuth();
   const [chats, setChats] = useState([]);
   const [activeChat, setActiveChat] = useState();
   const [activeChatId, setActiveChatId] = useState();

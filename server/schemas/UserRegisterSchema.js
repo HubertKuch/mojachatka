@@ -16,11 +16,22 @@ const INDIVIDUAL_USER_SCHEMA = {
     lastName: {
       type: "string",
     },
+    telephone: {
+      type: "string",
+      format: "telephone",
+    },
     email: {
       type: "string",
     },
   },
-  required: ["password", "passwordRepeat", "firstName", "lastName", "email"],
+  required: [
+    "password",
+    "passwordRepeat",
+    "firstName",
+    "lastName",
+    "telephone",
+    "email",
+  ],
 };
 
 const AGENT_USER_SCHEMA = {
@@ -59,9 +70,11 @@ const AGENT_USER_SCHEMA = {
     },
     salesRepTelephone: {
       type: "string",
+      format: "telephone",
     },
     salesRepAltTelephone: {
-      type: "string",
+      type: ["string", "null"],
+      format: "telephone",
     },
     password: {
       type: "string",
@@ -83,7 +96,6 @@ const AGENT_USER_SCHEMA = {
     "salesRepFirstName",
     "salesRepLastName",
     "salesRepTelephone",
-    "salesRepAltTelephone",
     "password",
     "passwordRepeat",
   ],
@@ -125,9 +137,11 @@ const DEVELOPER_USER_SCHEMA = {
     },
     salesRepTelephone: {
       type: "string",
+      format: "telephone",
     },
     salesRepAltTelephone: {
-      type: "string",
+      type: ["string", "null"],
+      format: "telephone",
     },
     password: {
       type: "string",
@@ -149,23 +163,42 @@ const DEVELOPER_USER_SCHEMA = {
     "salesRepFirstName",
     "salesRepLastName",
     "salesRepTelephone",
-    "salesRepAltTelephone",
     "password",
     "passwordRepeat",
   ],
 };
 
+const telephoneFormat = {
+  telephone: (val) => {
+    return new RegExp(
+      /(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)/,
+    ).test(val);
+  },
+};
+
 const getIndividualUserSchema = () =>
-  validator(INDIVIDUAL_USER_SCHEMA, { includeErrors: true });
+  validator(INDIVIDUAL_USER_SCHEMA, {
+    includeErrors: true,
+    formats: { ...telephoneFormat },
+  });
 
 const getAgentUserSchema = () =>
-  validator(AGENT_USER_SCHEMA, { includeErrors: true });
+  validator(AGENT_USER_SCHEMA, {
+    includeErrors: true,
+    formats: { ...telephoneFormat },
+  });
 
 const getDeveloperUserSchema = () =>
-  validator(DEVELOPER_USER_SCHEMA, { includeErrors: true });
+  validator(DEVELOPER_USER_SCHEMA, {
+    includeErrors: true,
+    formats: { ...telephoneFormat },
+  });
 
 module.exports = {
   getIndividualUserSchema,
   getAgentUserSchema,
   getDeveloperUserSchema,
+  INDIVIDUAL_USER_SCHEMA,
+  AGENT_USER_SCHEMA,
+  DEVELOPER_USER_SCHEMA,
 };

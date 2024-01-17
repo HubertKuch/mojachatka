@@ -17,7 +17,7 @@ const LocationField = ({ onChange }) => {
               Miejscowosc
               <Field
                 type="text"
-                name="properties.city"
+                name="properties.address.city"
                 className="form-control"
                 placeholder="Warszawa"
               />
@@ -26,7 +26,7 @@ const LocationField = ({ onChange }) => {
             <label className="heading-color ff-heading fw600 mb10">
               Adres
               <Field
-                name="properties.address"
+                name="properties.address.address"
                 type="text"
                 className="form-control"
                 placeholder="Wiejska"
@@ -38,7 +38,7 @@ const LocationField = ({ onChange }) => {
             <label className="heading-color ff-heading fw600 mb10">
               Dom
               <Field
-                name="properties.houseNumber"
+                name="properties.address.houseNumber"
                 type="text"
                 className="form-control"
                 placeholder="1"
@@ -48,7 +48,7 @@ const LocationField = ({ onChange }) => {
               Mieszkanie
               <Field
                 type="text"
-                name="properties.localNumber"
+                name="properties.address.localNumber"
                 className="form-control"
                 placeholder="4"
               />
@@ -63,7 +63,7 @@ const LocationField = ({ onChange }) => {
             </label>
             <Field
               type="text"
-              name="properties.zipCode"
+              name="properties.address.zipCode"
               placeholder="84-300"
               className="form-control"
             />
@@ -77,9 +77,11 @@ const LocationField = ({ onChange }) => {
             </label>
             <div className="location-area">
               <Select
-                onChange={({ value }) => onChange("properties.region")(value)}
+                onChange={({ value }) =>
+                  onChange("properties.address.region")(value)
+                }
                 defaultValue={[regions[1]]}
-                name="properties.region"
+                name="properties.address.region"
                 styles={{
                   menu: (prov) => ({ ...prov, zIndex: 99999999 }),
                   menuList: (prov) => ({ ...prov, zIndex: 99999999 }),

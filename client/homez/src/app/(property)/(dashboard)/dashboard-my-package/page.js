@@ -6,12 +6,12 @@ import DboardMobileNavigation from "@/components/property/dashboard/DboardMobile
 import Footer from "@/components/property/dashboard/Footer";
 import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import PackageDataTable from "@/components/property/dashboard/dashboard-package/PackageDataTable";
+import useAuth from "@/hooks/useAuth";
 import useBoughtedPackets from "@/hooks/useBoughtedPackets";
 
 const DashboardMyPackage = () => {
   const packets = useBoughtedPackets();
-
-  console.log(packets);
+  useAuth();
 
   return (
     <>

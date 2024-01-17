@@ -1,40 +1,6 @@
 import React from "react";
 
-const OverView = ({ offer }) => {
-  const overviewData = [
-    {
-      icon: "flaticon-bed",
-      label: "Bedroom",
-      value: offer?.properties?.bedrooms,
-    },
-    {
-      icon: "flaticon-home-1",
-      label: "Property Type",
-      value: offer?.type,
-    },
-    {
-      icon: "flaticon-home",
-      label: "Powierzchnia",
-      value: offer?.properties.sizeInMeters + "m2",
-    },
-  ];
-
-  if (offer?.properties?.bathrooms) {
-    overviewData.push({
-      icon: "flaticon-shower",
-      label: "Bath",
-      value: offer?.properties?.bathrooms,
-    });
-  }
-
-  if (offer?.properties?.garages) {
-    overviewData.push({
-      icon: "flaticon-garage",
-      label: "Bath",
-      value: offer?.properties?.garages,
-    });
-  }
-
+const OverView = ({ overviewData }) => {
   return (
     <>
       {overviewData.map((item, index) => (

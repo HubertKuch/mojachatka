@@ -939,6 +939,11 @@ chalk@^4.0.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
+chunk@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.npmjs.org/chunk/-/chunk-0.0.3.tgz"
+  integrity sha512-oGfwvhjGRW3Ks4GTdGoJhZWKEO1eomjOC26001R+5H0TIlP7vBCO+/XcNcPCA6ayYC7RQSq1/NsN4679Odcm5A==
+
 classlist-polyfill@^1.0.3:
   version "1.2.0"
   resolved "https://registry.npmjs.org/classlist-polyfill/-/classlist-polyfill-1.2.0.tgz"

@@ -6,8 +6,12 @@ const APIError = require("../../errors/APIError");
 const { deleteFile } = require("../../utils/fileSystem");
 const { validateHowManyImages } = require("../../utils/validateOfferImages");
 const { OfferType, SellType, Region } = require("@prisma/client");
-const { getCreateOfferValidator } = require("../../schemas/OffersSchema");
+const {
+  getCreateOfferValidator,
+  createOfferSchema,
+} = require("../../schemas/OffersSchema");
 const OffersViewsService = require("../../services/OfferViewsService");
+const populateJsonSchemaError = require("../../utils/populateJsonSchemaError");
 
 class OffersController {
   static async getCategories(req, res) {
@@ -46,15 +50,15 @@ class OffersController {
 
     if (validate.errors) {
       console.error(validate.errors);
-      return next(new APIError("Invalid body"));
+      return next(
+        new APIError(
+          populateJsonSchemaError(createOfferSchema, validate.errors),
+        ),
+      );
     }
 
     if (!data.data.price && !data.data.pricePerMonth) {
       return next(new APIError("Price or price per month must be specified"));
-    }
-
-    if (data.data.price && data.data.pricePerMonth) {
-      return next(new APIError("Only one price field can be filled"));
     }
 
     try {
