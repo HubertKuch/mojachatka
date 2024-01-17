@@ -5,10 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export const metadata = {
-  title: "Nie znaleziono strony  || Mojachatka.pl",
-};
-
 const NotFound = () => {
   return (
     <>

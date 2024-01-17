@@ -1,30 +1,35 @@
 "use client";
 
-import OffersControllers from "@/controllers/OffersController";
 import React, { useEffect, useState } from "react";
 
 const ListingStatus = ({ filters }) => {
-  const [sellTypes, setSellTypes] = useState([]);
-
-  useEffect(() => {
-    return () => {
-      OffersControllers.getSellTypes().then(setSellTypes);
-    };
-  }, []);
+  const [sellTypes, setSellTypes] = useState([
+    {
+      label: "Sprzedaz",
+      value: "BUY",
+    },
+    {
+      label: "Wynajem",
+      value: "RENT",
+    },
+  ]);
 
   return (
     <>
       {sellTypes.map((option) => (
-        <div className="form-check d-flex align-items-center mb10" key={option}>
+        <div
+          className="form-check d-flex align-items-center mb10"
+          key={option.value}
+        >
           <input
             className="form-check-input"
             type="radio"
             name="sellType"
-            id={option}
-            onChange={() => (filters.sellType = option)}
+            id={option.value}
+            onChange={() => (filters.sellType = option.value)}
           />
-          <label className="form-check-label" htmlFor={option}>
-            {option}
+          <label className="form-check-label" htmlFor={option.label}>
+            {option.label}
           </label>
         </div>
       ))}

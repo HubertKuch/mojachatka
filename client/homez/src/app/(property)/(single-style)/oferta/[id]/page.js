@@ -48,7 +48,7 @@ const SingleV6 = ({ params }) => {
   const [details, setDetails] = useState();
 
   if (offer && offer.status === 404) {
-    window.location.replace("/not-found");
+    window?.location?.replace("/not-found");
   }
 
   useEffect(() => {

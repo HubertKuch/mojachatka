@@ -3,10 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export const metadata = {
-  title: "Rejestracja  || Mojachatka: Nieruchomości, Domy, Mieszkania, Działki",
-};
-
 const Register = () => {
   return (
     <>
@@ -14,11 +10,11 @@ const Register = () => {
       <section className="our-compare pt60 pb60">
         <Image
           style={{
-            width: "100%",
-            height: "100%",
+            position: "absolute",
+            width: "100vw",
+            height: "100vh",
             top: "0",
             left: "0",
-            position: "absolute",
           }}
           width={1024}
           height={100}
@@ -28,11 +24,16 @@ const Register = () => {
           data-aos="fade-right"
           data-aos-delay="300"
         />
-        <div className="container">
-          <div className="row" data-aos="fade-left" data-aos-delay="300">
+        <div className="container" style={{ minHeight: "80vh" }}>
+          <div
+            className="row"
+            style={{ minHeight: "100%" }}
+            data-aos="fade-left"
+            data-aos-delay="300"
+          >
             <div
               className="col-lg-6"
-              style={{ position: "relative", left: "25%" }}
+              style={{ position: "relative", left: "25%", minHeight: "100%" }}
             >
               <div className="log-reg-form signup-modal form-style1 bgc-white p50 p30-sm default-box-shadow2 bdrs12">
                 <div className="text-center mb40">

@@ -4,10 +4,6 @@ import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import ComapareTable from "@/components/pages/compare/ComapareTable";
 
-export const metadata = {
-  title: "Compare  || Homez - Real Estate NextJS Template",
-};
-
 const Compare = () => {
   return (
     <>

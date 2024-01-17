@@ -102,7 +102,7 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                           return (err.innerText = res.body?.message);
                         }
 
-                        window.location.reload();
+                        window?.location?.reload();
                       }}
                     >
                       Akceptuj

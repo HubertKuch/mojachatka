@@ -16,18 +16,16 @@ export default function EndStep({ onSubmit }) {
     <>
       <div>
         {Object.keys(data).map((key) => (
-          <div>
+          <div key={key}>
             <label>{key}</label>
             <input disabled className="form-control" value={data[key]} />
           </div>
         ))}
       </div>
       <div>
-        <ConfirmModal
-          setState={setOk}
-          title={"Czy wszystkie dane sie zgadzaja?"}
-          trigger={<button type="button">Zakoncz</button>}
-        />
+        <button type="submit" className="ud-button form-control mt-5">
+          Zakoncz
+        </button>
       </div>
     </>
   );

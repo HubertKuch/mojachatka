@@ -15,9 +15,9 @@ const PricingPlan = () => {
       type: "DEVELOPER",
       el: (
         <section
-          className={`our-pricing pb90 pt-0 ${
-            user.type === "DEVELOPER" ? "matched-type-packets-container" : ""
-          }`}
+          key={"developer"}
+          className={`our-pricing pb90 pt-0 ${user?.type === "DEVELOPER" ? "matched-type-packets-container" : ""
+            }`}
         >
           <div className="container">
             <div className="row" data-aos="fade-up" data-aos-delay="100">
@@ -37,9 +37,9 @@ const PricingPlan = () => {
       type: "AGENT",
       el: (
         <section
-          className={`our-pricing pb90 pt-0 ${
-            user.type === "AGENT" ? "matched-type-packets-container" : ""
-          }`}
+          key={"agent"}
+          className={`our-pricing pb90 pt-0 ${user?.type === "AGENT" ? "matched-type-packets-container" : ""
+            }`}
         >
           <div className="container">
             <div className="row" data-aos="fade-up" data-aos-delay="100">
@@ -59,9 +59,9 @@ const PricingPlan = () => {
       type: "INDIVIDUAL",
       el: (
         <section
-          className={`our-pricing pb90 pt-0 ${
-            user.type === "INDIVIDUAL" ? "matched-type-packets-container" : ""
-          }`}
+          key={"individual"}
+          className={`our-pricing pb90 pt-0 ${user?.type === "INDIVIDUAL" ? "matched-type-packets-container" : ""
+            }`}
         >
           <div className="container">
             <div className="row" data-aos="fade-up" data-aos-delay="100">
@@ -107,7 +107,7 @@ const PricingPlan = () => {
       </section>
       {/* End Breadcrumb Sections */}
 
-      {packetElements.sort((p) => p.type !== user.type).map((p) => p.el)}
+      {packetElements.sort((p) => p.type !== user?.type).map((p) => p.el)}
 
       {/* Our CTA */}
       <CallToActions />

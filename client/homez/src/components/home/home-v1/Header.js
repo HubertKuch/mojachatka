@@ -14,7 +14,7 @@ const Header = () => {
   const user = useStore((s) => s.user);
 
   const changeBackground = () => {
-    if (window.scrollY >= 10) {
+    if (window?.scrollY >= 10) {
       setNavbar(true);
     } else {
       setNavbar(false);
@@ -22,9 +22,9 @@ const Header = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", changeBackground);
+    window?.addEventListener("scroll", changeBackground);
     return () => {
-      window.removeEventListener("scroll", changeBackground);
+      window?.removeEventListener("scroll", changeBackground);
     };
   }, []);
 
@@ -73,7 +73,7 @@ const Header = () => {
                       className="login-info d-flex align-items-center"
                     >
                       <i className="far fa-user-circle fz16 me-2" />{" "}
-                      <span className="d-none d-xl-block">{`Witaj ${user.username}`}</span>
+                      <span className="d-none d-xl-block">{`Witaj ${user?.username}`}</span>
                     </Link>
                   ) : (
                     <a

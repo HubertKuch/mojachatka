@@ -12,10 +12,6 @@ import Image from "next/image";
 import Link from "next/link";
 import PopulerProperty from "@/components/home/home-v1/PopulerProperty";
 
-export const metadata = {
-  title: "Mojachatka: Nieruchomości, Domy, Mieszkania, Działki",
-};
-
 const Home_V1 = () => {
   return (
     <>
@@ -219,16 +215,6 @@ const Home_V1 = () => {
         </div>
       </section>
       {/* End Explore property-city */}
-
-      {/* <!-- About Us --> */}
-      <section className="pt0 pb40-md">
-        <div className="container">
-          <About />
-        </div>
-      </section>
-      {/*  <!-- End About Us --> */}
-
-      {/* Our CTA */}
       <CallToActions />
       {/* Our CTA */}
 

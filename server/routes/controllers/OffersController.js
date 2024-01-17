@@ -12,8 +12,41 @@ const {
 } = require("../../schemas/OffersSchema");
 const OffersViewsService = require("../../services/OfferViewsService");
 const populateJsonSchemaError = require("../../utils/populateJsonSchemaError");
+const cities = require("../../data/cities.json");
+const { normalizeToEn } = require("../../utils/normalizeChars");
 
 class OffersController {
+  static async findCities(req, res) {
+    const chars = req.query.chars;
+
+    if (!chars || chars.length <= 2) {
+      return res.status(400).json({ message: "Znakow musi byc conajmniej 3" });
+    }
+
+    const matchedCities = cities.filter((city) =>
+      normalizeToEn(city.toLowerCase()).startsWith(
+        normalizeToEn(chars.toLowerCase()),
+      ),
+    );
+
+    return res.status(200).json({ cities: matchedCities });
+  }
+
+  static async cityExists(req, res) {
+    const city = req.query.city;
+
+    if (!city) {
+      return res.status(400).json({ message: "Miasto musi byc podane" });
+    }
+
+    const matched = cities.find(
+      (c) =>
+        normalizeToEn(c.toLowerCase()) === normalizeToEn(city.toLowerCase()),
+    );
+
+    return res.status(200).json({ exists: !!matched, city: matched });
+  }
+
   static async getCategories(req, res) {
     const response = await Promise.all(
       Object.values(OfferType).map(

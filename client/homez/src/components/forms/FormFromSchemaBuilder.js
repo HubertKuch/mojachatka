@@ -126,15 +126,15 @@ const FormFromSchemaBuilder = ({ namePrefix = "", schema }) => {
       const property = schema.properties[key];
 
       if (property.type === "object")
-        return <NestedObject nameKey={key} property={property} />;
+        return <NestedObject key={key} nameKey={key} property={property} />;
       else if (property.type === "number" || property.type === "integer")
-        return <NumberField nameKey={key} property={property} />;
+        return <NumberField key={key} nameKey={key} property={property} />;
       else if (property.type === "boolean") {
-        return <BooleanField nameKey={key} property={property} />;
+        return <BooleanField key={key} nameKey={key} property={property} />;
       } else if (property.type === "string" && !property.enum)
-        return <TextField nameKey={key} property={property} />;
+        return <TextField key={key} nameKey={key} property={property} />;
       else if (property.type === "string" && property.enum)
-        return <EnumField nameKey={key} property={property} />;
+        return <EnumField nameKey={key} property={property} key={key} />;
     });
 
     if (schema.cols) {
@@ -142,7 +142,9 @@ const FormFromSchemaBuilder = ({ namePrefix = "", schema }) => {
       const chunks = chunk(elements, colSize);
 
       elements = chunks.map((chunk) => (
-        <div className={`col-${colSize}`}>{chunk}</div>
+        <div key={Math.random()} className={`col-${colSize}`}>
+          {chunk}
+        </div>
       ));
     }
 

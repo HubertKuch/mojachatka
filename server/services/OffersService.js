@@ -100,6 +100,7 @@ class OffersService extends PaginatorService {
     boostType,
     user,
     type,
+    city,
     sellType,
     minPrice,
     maxPrice,
@@ -178,6 +179,16 @@ class OffersService extends PaginatorService {
         },
       ];
     }
+
+    if (city) {
+      where.AND.push({
+        properties: {
+          path: "$.address.city",
+          equals: city,
+        },
+      });
+    }
+
     if (bedrooms)
       where.AND.push({
         properties: { path: "$.bedrooms", equals: Number.parseInt(bedrooms) },

@@ -59,13 +59,6 @@ const DashboardMyProfile = () => {
                     <SocialField />
                   </div>
                   {/* End .ps-widget */}
-
-                  <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
-                    -- NIE DZIALA --
-                    <h4 className="title fz17 mb30">Change password</h4>
-                    <ChangePasswordForm />
-                  </div>
-                  {/* End .ps-widget */}
                 </div>
               </div>
               {/* End .row */}

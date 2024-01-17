@@ -1,5 +1,6 @@
 const { db } = require("../utils/db");
 const nodemailer = require("nodemailer");
+const randomString = require("randomstring");
 
 async function sendMail(email) {
   function addMinutes(date, minutes) {
@@ -8,21 +9,25 @@ async function sendMail(email) {
     return dateCopy;
   }
 
-  const code = Math.floor(100000 + Math.random() * 900000);
+  const code = randomString.generate({ length: 190 });
   const date = new Date();
   const expires = addMinutes(date, 5);
 
   await db.verification.create({
     data: {
-      email: email,
+      User: {
+        connect: {
+          email,
+        },
+      },
       code: code,
       expires: expires,
     },
   });
 
   const transporter = nodemailer.createTransport({
-    port: 465, // true for 465, false for other ports
-    host: "smtp.gmail.com",
+    port: process.env.MAIL_PORT,
+    host: process.env.MAIL_HOST,
     auth: {
       user: process.env.MAIL_EMAIL,
       pass: process.env.MAIL_PASSWORD,
@@ -30,11 +35,13 @@ async function sendMail(email) {
     secure: true,
   });
 
+  const link = `${process.env.CLIENT_APP_URL}/aktywuj-konto?email=${email}&code=${code}`;
+
   const mailOptions = {
     from: process.env.MAIL_EMAIL,
     to: email,
     subject: `[${process.env.APP_NAME}] Please verify your email.`,
-    html: emailTemplate({ email, code }),
+    html: emailTemplate({ link }),
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -81,19 +88,16 @@ async function verifyEmailCode({ email, code }) {
   return true;
 }
 
-function emailTemplate({ email, code }) {
+function emailTemplate({ link }) {
   return `
         <html>
         <head>
 
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Email Confirmation</title>
+        <title>Potwierdzenie maila</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style type="text/css">
-        /**
-         * Google webfonts. Recommended to include the .woff version for cross-client compatibility.
-         */
         @media screen {
             @font-face {
             font-family: 'Source Sans Pro';
@@ -190,7 +194,7 @@ function emailTemplate({ email, code }) {
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                 <tr>
                     <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
-                    <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Confirm Your Email Address</h1>
+                    <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Potwierdz swojego maila</h1>
                     </td>
                 </tr>
                 </table>
@@ -216,7 +220,23 @@ function emailTemplate({ email, code }) {
                 <!-- start copy -->
                 <tr>
                     <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                    <p style="margin: 0;">Copy the code from below to confirm your email address. If you didn't create an account with <a href="http://localhost:3000">${process.env.APP_NAME}</a>, you can safely delete this email.</p>
+                    <p style="margin: 0;">Dziękujemy za rejestrację na naszym portalu ogłoszeniowym - mojachatka! Cieszymy się, że dołączyłeś/dołączyłaś do naszej społeczności.
+<br>
+Aby dokończyć proces rejestracji i aktywować swoje konto, prosimy o kliknięcie w poniższy link:
+<br>
+[Umieść tutaj bezpośredni link aktywacyjny]
+<br>
+Jeśli nie rejestrowałeś/rejestrowałaś się na naszej stronie, zignoruj tę wiadomość.
+<br>
+Dziękujemy i życzymy udanego korzystania z naszych usług!
+<br>
+Mojachatka.pl
+<br>
+Kontakt:
+<br><br>
+
+Numer telefonu: 789 857 202<br>
+Adres e-mail: pomoc@mojachatka.pl</p>
                     </td>
                 </tr>
                 <!-- end copy -->
@@ -230,7 +250,7 @@ function emailTemplate({ email, code }) {
                             <table border="0" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
-                                <a target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">${code}</a>
+<a target="${link}" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Aktywuj konto</a>
                                 </td>
                             </tr>
                             </table>
@@ -243,17 +263,8 @@ function emailTemplate({ email, code }) {
 
                 <!-- start copy -->
                 <tr>
-                    <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                    <p style="margin: 0;">If that doesn't work, copy and paste the following link in your browser:</p>
-                    <p style="margin: 0;"><a href="http://localhost:3000/verifyEmail?code=${code}&email=${email}" target="_blank">Verify Email</a></p>
-                    </td>
-                </tr>
-                <!-- end copy -->
-
-                <!-- start copy -->
-                <tr>
                     <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; border-bottom: 3px solid #d4dadf">
-                    <p style="margin: 0;">Thank You,<br> LocalHost</p>
+                    <p style="margin: 0;">Dziękujemy<br>, Zespol Mojachatka</p>
                     </td>
                 </tr>
                 <!-- end copy -->

@@ -76,6 +76,7 @@ export default function AccountType({ accountType, setAccountType }) {
     >
       {types.map((type) => (
         <Type
+          key={type.name}
           {...type}
           active={type.enumType === accountType}
           setAccountType={setAccountType}

@@ -5,23 +5,23 @@ const TopStateBlock = ({ user, stats }) => {
   const statisticsData = [
     {
       text: "Oferty",
-      title: user.offers.length,
+      title: user?.offers?.length,
       icon: "flaticon-home",
     },
 
     {
       text: "Wyswietlen",
-      title: stats.views?.total || 0,
+      title: stats?.views?.total || 0,
       icon: "flaticon-search-chart",
     },
     {
       text: "Pozostalych ofert",
-      title: user.listings,
+      title: user?.listings,
       icon: "flaticon-home",
     },
     {
       text: "Pozostale podbicia na glowna",
-      title: user.UserBoosts.filter(
+      title: user?.UserBoosts?.filter(
         (b) =>
           b.properties.properties?.boostType === "MAIN" &&
           !b.properties.properties?.used,
@@ -30,7 +30,7 @@ const TopStateBlock = ({ user, stats }) => {
     },
     {
       text: "Pozostale podbicia na liste",
-      title: user.UserBoosts.filter(
+      title: user?.UserBoosts?.filter(
         (b) =>
           b.properties.properties?.boostType === "GLOBAL" &&
           !b.properties.properties?.used,

@@ -24,6 +24,7 @@ const INDIVIDUAL_USER_SCHEMA = {
       type: "string",
     },
   },
+  additionalProperties: true,
   required: [
     "password",
     "passwordRepeat",
@@ -83,7 +84,7 @@ const AGENT_USER_SCHEMA = {
       type: "string",
     },
   },
-  additionalProperties: false,
+  additionalProperties: true,
   required: [
     "companyName",
     "license",
@@ -150,7 +151,7 @@ const DEVELOPER_USER_SCHEMA = {
       type: "string",
     },
   },
-  additionalProperties: false,
+  additionalProperties: true,
   required: [
     "companyName",
     "license",

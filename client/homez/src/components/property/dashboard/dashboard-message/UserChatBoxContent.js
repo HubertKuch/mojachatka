@@ -6,15 +6,16 @@ const ChatMessage = ({ message }) => {
   return (
     <li className={message.own ? "sent float-end" : "reply float-start"}>
       <div
-        className={`d-flex align-items-center ${message.own ? "mb15" : "justify-content-end mb15"
-          }`}
+        className={`d-flex align-items-center ${
+          message.own ? "mb15" : "justify-content-end mb15"
+        }`}
       >
         <div className={`title fz14 ${message.own ? "mr10" : "ml10"}`}>
           {message.own ? (
             <small>{sentAt} </small>
           ) : (
             <>
-              {message.sender.username}{" "}
+              {message.sender?.username}{" "}
               <small className="ml10">{sentAt} </small>
             </>
           )}

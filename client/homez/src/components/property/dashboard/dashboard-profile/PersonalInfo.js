@@ -15,7 +15,7 @@ const PersonalInfo = () => {
               Username
             </label>
             <input
-              defaultValue={user.username}
+              defaultValue={user?.username}
               type="text"
               className="form-control"
               placeholder="Username"
@@ -29,7 +29,7 @@ const PersonalInfo = () => {
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">Email</label>
             <input
-              defaultValue={user.email}
+              defaultValue={user?.email}
               type="email"
               className="form-control"
               placeholder="Mail"
@@ -43,7 +43,7 @@ const PersonalInfo = () => {
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">Phone</label>
             <input
-              defaultValue={user.phoneNumber}
+              defaultValue={user?.phoneNumber}
               type="text"
               className="form-control"
               placeholder="Telefon"
@@ -59,7 +59,7 @@ const PersonalInfo = () => {
               First Name
             </label>
             <input
-              defaultValue={user.firstName}
+              defaultValue={user?.firstName}
               type="text"
               className="form-control"
               placeholder="Your Name"
@@ -75,7 +75,7 @@ const PersonalInfo = () => {
               Last Name
             </label>
             <input
-              defaultValue={user.lastName}
+              defaultValue={user?.lastName}
               type="text"
               className="form-control"
               placeholder="Your Name"

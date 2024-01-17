@@ -1,12 +1,15 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Map from "./Map";
 import useRegion from "@/hooks/useRegion";
 import Select from "react-select";
 import { Field } from "formik";
+import ReactSelect from "react-select";
+import OffersControllers from "@/controllers/OffersController";
 
 const LocationField = ({ onChange }) => {
   const regions = useRegion();
+  const [cities, setCities] = useState([]);
 
   return (
     <form className="form-style1">
@@ -15,11 +18,26 @@ const LocationField = ({ onChange }) => {
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
               Miejscowosc
-              <Field
-                type="text"
+              <ReactSelect
+                onInputChange={(val) => {
+                  if (val.length <= 2) {
+                    return;
+                  }
+
+                  OffersControllers.getCities(val).then((res) => {
+                    if (res?.data?.cities) {
+                      setCities(
+                        res.data.cities.map((city) => ({
+                          value: city,
+                          label: city,
+                        })),
+                      );
+                    }
+                  });
+                }}
                 name="properties.address.city"
-                className="form-control"
-                placeholder="Warszawa"
+                placeholder="Wpisz 3 znaki by wyszukac"
+                options={cities}
               />
             </label>
             {"  "}

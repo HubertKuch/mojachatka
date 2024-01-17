@@ -23,7 +23,11 @@ const DashboardMessage = () => {
   const contentRef = useRef();
   const user = useUser();
 
-  window.onload = scrollToBottom;
+  useEffect(() => {
+    if (window) {
+      window.onload = scrollToBottom;
+    }
+  }, [window]);
 
   function scrollToBottom() {
     if (contentRef.current) {
@@ -71,7 +75,7 @@ const DashboardMessage = () => {
 
       setMessages((old) => [...old, msg]);
     });
-  }, []);
+  }, [user.id]);
 
   useEffect(() => {
     if (socket && activeChatId) {

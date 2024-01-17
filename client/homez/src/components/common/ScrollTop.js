@@ -4,7 +4,7 @@ export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
   const scrollToTop = () => {
-    window.scrollTo({
+    window?.scrollTo({
       top: 0,
       behavior: "smooth",
     });
@@ -12,16 +12,16 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 100) {
+      if (window?.pageYOffset > 100) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
       }
     };
 
-    window.addEventListener("scroll", toggleVisibility);
+    window?.addEventListener("scroll", toggleVisibility);
 
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    return () => window?.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   return (

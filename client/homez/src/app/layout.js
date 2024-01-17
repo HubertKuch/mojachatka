@@ -1,10 +1,12 @@
 "use client";
+
 import ScrollToTop from "@/components/common/ScrollTop";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import "../../public/scss/main.scss";
 import { DM_Sans, Poppins } from "next/font/google";
 import { useEffect } from "react";
+import Head from "next/head";
 
 if (typeof window !== "undefined") {
   import("bootstrap");
@@ -33,7 +35,14 @@ export default function RootLayout({ children }) {
   }, []);
 
   return (
-    <html lang="en">
+    <html lang="pl">
+      <head>
+        <title>Mojachatka: Nieruchomości, Domy, Mieszkania, Działki</title>
+        <meta
+          name="description"
+          content="Najtańszy portal ogłoszeniowy. Nieruchomości, sprzedaż, kupno, wynajem. Mieszkania, domy, działki i więcej."
+        />
+      </head>{" "}
       <body
         className={`body  ${poppins.className} ${dmSans.className}`}
         cz-shortcut-listen="false"

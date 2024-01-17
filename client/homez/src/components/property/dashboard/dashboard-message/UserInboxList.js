@@ -15,7 +15,9 @@ const UserItem = ({ chat, isActive }) => {
               }}
             >
               <div>
-                <div className="fz14 fw600 mb-0">{chat.receiver.username}</div>
+                <div className="fz14 fw600 mb-0">
+                  {chat?.receiver?.username}
+                </div>
                 <div>{chat.lastMessage?.message || ""}</div>
               </div>
               <span className={`m_notif`}>{chat.unReadedMessages}</span>

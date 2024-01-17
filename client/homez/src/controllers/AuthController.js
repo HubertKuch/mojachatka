@@ -2,15 +2,17 @@ import useStore from "@/store/store";
 import axios from "./axios";
 
 class AuthController {
+  static async activateAccount(email, code) {
+    const res = await axios.get(`/verifyEmail?email=${email}&code=${code}`);
+
+    return res;
+  }
+
   static async login(email, password) {
     const res = await axios.post("/login", { email, password });
     const body = res.data;
 
     if (res.status === 200) {
-      localStorage.setItem(process.env.TOKEN_KEY, body.token);
-      useStore.getState().setToken(body.token);
-      useStore.getState().setRefreshToken(body.refresh);
-
       return { ...body, success: true };
     }
 
@@ -27,6 +29,8 @@ class AuthController {
 
   static async getProfile() {
     const res = await axios.get("/profile");
+
+    useStore.setState({ user: res.data.user }, true);
 
     return {
       status: res.status,

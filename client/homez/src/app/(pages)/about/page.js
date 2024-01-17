@@ -10,10 +10,6 @@ import Mission from "@/components/pages/about/Mission";
 import Image from "next/image";
 import Link from "next/link";
 
-export const metadata = {
-  title: "About  || Homez - Real Estate NextJS Template",
-};
-
 const About = () => {
   return (
     <>

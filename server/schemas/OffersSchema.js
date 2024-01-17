@@ -2,6 +2,8 @@ const { validator } = require("@exodus/schemasafe");
 
 const { isImage } = require("../utils/isImage");
 const { SellType, OfferType } = require("@prisma/client");
+const cities = require("../data/cities.json");
+const { normalizeToEn } = require("../utils/normalizeChars");
 
 const securitySchema = {
   type: "object",
@@ -214,20 +216,20 @@ const roomSchema = {
     },
     heating: heatingSchema,
     availableFrom: { type: "string", label: "Dostępny od" },
-    onlyForNoSmokers: {type: "boolean", label: "Tylko dla nie palących"},
+    onlyForNoSmokers: { type: "boolean", label: "Tylko dla nie palących" },
     equipment: equipmentSchema,
     media: {
-		type: "object",
-		properties: {
-			internet: {
-				type: "boolean", label: "Internet"
-			},
-			cableTv: {type: "boolean", label: "Telewizja kablowa"},
-			
-			telephone: {type: "boolean", label: "Telefon"},
-			
-		}
-	}
+      type: "object",
+      properties: {
+        internet: {
+          type: "boolean",
+          label: "Internet",
+        },
+        cableTv: { type: "boolean", label: "Telewizja kablowa" },
+
+        telephone: { type: "boolean", label: "Telefon" },
+      },
+    },
   },
 };
 
@@ -795,7 +797,7 @@ const addressSchema = {
       ],
       label: "Region",
     },
-    city: { type: "string", label: "Miasto" },
+    city: { type: "string", label: "Miasto", format: "city" },
     zipCode: { type: "string", label: "Kod pocztowy" },
     address: { type: "string", label: "Adres" },
     houseNumber: { type: "string", label: "Numer domu" },
@@ -891,6 +893,11 @@ const createOfferSchema = {
 const createOfferConfig = {
   formats: {
     base64: (el) => isImage(el),
+    city: (city) =>
+      cities.find(
+        (c) =>
+          normalizeToEn(c.toLowerCase()) === normalizeToEn(city.toLowerCase()),
+      ),
   },
   mode: "lax",
   allErrors: true,

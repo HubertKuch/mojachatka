@@ -14,8 +14,6 @@ const {
   AGENT_USER_SCHEMA,
   DEVELOPER_USER_SCHEMA,
 } = require("../../schemas/UserRegisterSchema");
-const APIError = require("../../errors/APIError");
-const populateJsonSchemaError = require("../../utils/populateJsonSchemaError");
 
 class AuthController {
   static async authenticated(req, res) {
@@ -103,7 +101,7 @@ class AuthController {
 
       if (!type || !Object.values(UserType).includes(type)) {
         console.log(type, Object.values(UserType), req.query);
-        return res.status(400).json({ message: "Account type is required" });
+        return res.status(400).json({ message: "Typ konta jest wymagany" });
       }
 
       const validator = getValidator(type);
@@ -112,7 +110,7 @@ class AuthController {
 
       if (validator.errors) {
         if (
-          validator.errors.find((e) => e.keywordLocation.includes("telephone"))
+          validator.errors.find((e) => e.keywordLocation.includes("elephone"))
         ) {
           return res
             .status(400)
@@ -146,8 +144,8 @@ class AuthController {
         return;
       }
 
-      const { id, email } = await AuthController.registerUserByType(type, body);
-      const newUser = await db.user.findUnique({ where: { email, id } });
+      const { id } = await AuthController.registerUserByType(type, body);
+      const newUser = await db.user.findFirst({ where: { id } });
       const jti = uuidv4();
       const { accessToken, refreshToken } = generateTokens(newUser, jti);
 
@@ -156,7 +154,7 @@ class AuthController {
         refreshToken,
         userId: newUser.id,
       });
-      await sendMail(email);
+      await sendMail(body.email);
 
       res.status(200).json({
         message: "User created successfully",
@@ -192,7 +190,6 @@ class AuthController {
         firstName: body.firstName,
         lastName: body.lastName,
         email: body.email,
-        activated: true,
         password: bcrypt.hashSync(body.password, 12),
       },
       select: {
@@ -214,31 +211,27 @@ class AuthController {
       },
       data: {
         user: {
-          connectOrCreate: {
-            create: {
-              type: "AGENT",
-              firstName: body.salesRepFirstName,
-              lastName: body.salesRepLastName,
-              email: body.email,
-              password: bcrypt.hashSync(body.password, 12),
-            },
+          create: {
+            type: "AGENT",
+            firstName: body.salesRepFirstName,
+            lastName: body.salesRepLastName,
+            email: body.email,
+            password: bcrypt.hashSync(body.password, 12),
           },
         },
         nip: body.nip,
-        name: body.name,
+        name: body.companyName,
         house: body.house,
         address: body.address,
         regon: body.regon,
         license: body.license,
         zipCode: body.zipCode,
         SalesRep: {
-          connectOrCreate: {
-            create: {
-              lastName: body.salesRepLastName,
-              firstName: body.salesRepFirstName,
-              telephone: body.salesRepTelephone,
-              altTelephone: body.salesRepAltTelephone,
-            },
+          create: {
+            lastName: body.salesRepLastName,
+            firstName: body.salesRepFirstName,
+            telephone: body.salesRepTelephone,
+            altTelephone: body.salesRepAltTelephone,
           },
         },
       },
@@ -257,31 +250,27 @@ class AuthController {
       },
       data: {
         user: {
-          connectOrCreate: {
-            create: {
-              type: "DEVELOPER",
-              firstName: body.salesRepFirstName,
-              lastName: body.salesRepLastName,
-              email: body.email,
-              password: bcrypt.hashSync(body.password, 12),
-            },
+          create: {
+            type: "DEVELOPER",
+            firstName: body.salesRepFirstName,
+            lastName: body.salesRepLastName,
+            email: body.email,
+            password: bcrypt.hashSync(body.password, 12),
           },
         },
         nip: body.nip,
-        name: body.name,
+        ame: body.companyName,
         house: body.house,
         address: body.address,
         regon: body.regon,
         license: body.license,
         zipCode: body.zipCode,
         SalesRep: {
-          connectOrCreate: {
-            create: {
-              lastName: body.salesRepLastName,
-              firstName: body.salesRepFirstName,
-              telephone: body.salesRepTelephone,
-              altTelephone: body.salesRepAltTelephone,
-            },
+          create: {
+            lastName: body.salesRepLastName,
+            firstName: body.salesRepFirstName,
+            telephone: body.salesRepTelephone,
+            altTelephone: body.salesRepAltTelephone,
           },
         },
       },

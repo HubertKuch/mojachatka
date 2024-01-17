@@ -13,7 +13,7 @@ const DefaultHeader = () => {
   const user = useUser();
 
   const changeBackground = () => {
-    if (window.scrollY >= 10) {
+    if (window?.scrollY >= 10) {
       setNavbar(true);
     } else {
       setNavbar(false);
@@ -21,18 +21,17 @@ const DefaultHeader = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", changeBackground);
+    window?.addEventListener("scroll", changeBackground);
     return () => {
-      window.removeEventListener("scroll", changeBackground);
+      window?.removeEventListener("scroll", changeBackground);
     };
   }, []);
 
   return (
     <>
       <header
-        className={`header-nav nav-homepage-style light-header menu-home4 main-menu ${
-          navbar ? "sticky slideInDown animated" : ""
-        }`}
+        className={`header-nav nav-homepage-style light-header menu-home4 main-menu ${navbar ? "sticky slideInDown animated" : ""
+          }`}
       >
         <nav className="posr">
           <div className="container posr menu_bdrt1">
@@ -73,7 +72,7 @@ const DefaultHeader = () => {
                       className="login-info d-flex align-items-center"
                     >
                       <i className="far fa-user-circle fz16 me-2" />{" "}
-                      <span className="d-none d-xl-block">{`Witaj ${user.username}`}</span>
+                      <span className="d-none d-xl-block">{`Witaj ${user?.username}`}</span>
                     </Link>
                   ) : (
                     <a

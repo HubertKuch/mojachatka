@@ -15,6 +15,8 @@ router.get("/offerTypes", OffersController.getOffersTypes);
 router.get("/categoriesStats", OffersController.getCategories);
 router.get("/sellTypes", OffersController.getSellTypes);
 router.get("/regions", OffersController.getRegions);
+router.get("/cities", OffersController.findCities);
+router.get("/cityExists", OffersController.cityExists);
 router.post("/createOffer", isAuthenticated, OffersController.createOffer);
 router.patch(
   "/editOffer/:offerId",

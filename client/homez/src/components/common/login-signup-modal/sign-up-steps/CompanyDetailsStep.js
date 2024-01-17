@@ -2,6 +2,13 @@ export default function CompanyDetailsStep({ register }) {
   return (
     <div>
       <div>
+        <label htmlFor="email">Email</label>
+        <input
+          {...register("email", { required: true })}
+          className="form-control"
+        />
+      </div>
+      <div>
         <label htmlFor="companyName">Nazwa firmy</label>
         <input
           {...register("companyName", { required: true })}

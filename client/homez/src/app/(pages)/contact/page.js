@@ -5,10 +5,6 @@ import MobileMenu from "@/components/common/mobile-menu";
 import Form from "@/components/pages/contact/Form";
 import Office from "@/components/pages/contact/Office";
 
-export const metadata = {
-  title: "Contact  || Homez - Real Estate NextJS Template",
-};
-
 const Contact = () => {
   return (
     <>

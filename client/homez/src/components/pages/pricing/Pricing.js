@@ -57,7 +57,7 @@ const Pricing = ({ type, user }) => {
                       );
 
                       if (res.payment) {
-                        window.open(res.payment.continueUrl, "mozillaTab");
+                        window?.open(res.payment.continueUrl, "mozillaTab");
                       }
                     }}
                     disabled={user?.type !== type}

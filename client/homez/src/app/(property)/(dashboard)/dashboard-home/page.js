@@ -13,7 +13,7 @@ import useUser from "@/hooks/useUser";
 
 const DashboardHome = () => {
   useAuth();
-  const user = useUser();
+  const user = useUser({ reload: true });
   const stats = useStatistics();
 
   return (
@@ -42,7 +42,7 @@ const DashboardHome = () => {
 
                 <div className="col-lg-12">
                   <div className="dashboard_title_area">
-                    <h2>Witaj, {user.username}!</h2>
+                    <h2>Witaj, {user?.username}!</h2>
                   </div>
                 </div>
                 {/* col-lg-12 */}

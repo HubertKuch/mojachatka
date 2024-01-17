@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchBox from "./SearchBox";
 import ListingStatus from "./ListingStatus";
 import PropertyType from "./PropertyType";
@@ -7,8 +7,11 @@ import Bedroom from "./Bedroom";
 import Bathroom from "./Bathroom";
 import OtherFeatures from "./OtherFeatures";
 import OffersControllers from "@/controllers/OffersController";
+import ReactSelect from "react-select";
 
 const ListingSidebar = ({ filters, setPageItems, setPageCapacity }) => {
+  const [cities, setCities] = useState([]);
+
   return (
     <div className="list-sidebar-style1">
       <div className="widget-wrapper">
@@ -60,45 +63,37 @@ const ListingSidebar = ({ filters, setPageItems, setPageCapacity }) => {
       {/* End .widget-wrapper */}
 
       <div className="widget-wrapper advance-feature-modal">
-        <h6 className="list-title">Lokalizacja -- NIE DZIALA --</h6>
         <div className="form-style2 input-group">
-          {/* <Location filterFunctions={filters} /> */}
-        </div>
-      </div>
-      {/* End .widget-wrapper */}
+          <label className="heading-color ff-heading fw600 mb10">
+            Miejscowosc
+            <ReactSelect
+              onChange={(val) => {
+                filters.city = val.value;
+                console.log(filters);
+              }}
+              onInputChange={(val) => {
+                if (val.length <= 2) {
+                  return;
+                }
 
-      <div className="widget-wrapper">
-        <div className="feature-accordion">
-          <div className="accordion" id="accordionExample">
-            <div className="accordion-item border-none">
-              <h2 className="accordion-header" id="headingOne">
-                <button
-                  className="accordion-button border-none p-0 after-none feature-button"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  <span className="flaticon-settings" /> Inne udogodnienia --
-                  NIE DZIALA --
-                </button>
-              </h2>
-              <div
-                id="collapseOne"
-                className="accordion-collapse collapse"
-                aria-labelledby="headingOne"
-                data-bs-parent="#accordionExample"
-              >
-                <div className="accordion-body p-0 mt15">
-                  <OtherFeatures filterFunctions={filters} />
-                </div>
-              </div>
-            </div>
-          </div>
+                OffersControllers.getCities(val).then((res) => {
+                  if (res?.data?.cities) {
+                    setCities(
+                      res.data.cities.map((city) => ({
+                        value: city,
+                        label: city,
+                      })),
+                    );
+                  }
+                });
+              }}
+              name="properties.address.city"
+              placeholder="Wpisz 3 znaki by wyszukac"
+              options={cities}
+            />
+          </label>
         </div>
       </div>
-      {/* End .widget-wrapper */}
 
       <div className="widget-wrapper mb20">
         <div className="btn-area d-grid align-items-center">
@@ -117,17 +112,6 @@ const ListingSidebar = ({ filters, setPageItems, setPageCapacity }) => {
         </div>
       </div>
       {/* End .widget-wrapper */}
-
-      <div className="reset-area d-flex align-items-center justify-content-between">
-        <div
-          onClick={() => filterFunctions.resetFilter()}
-          className="reset-button cursor"
-          href="#"
-        >
-          <span className="flaticon-turn-back" />
-          <u>Resetuj</u>
-        </div>
-      </div>
     </div>
   );
 };

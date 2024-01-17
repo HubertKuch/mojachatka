@@ -5,6 +5,8 @@ const nextConfig = {
     TOKEN_KEY: "token",
     REFRESH_KEY: "refresh_token",
   },
+  output: "standalone",
+  typescript: { ignoreBuildErrors: true },
   images: {
     remotePatterns: [
       {

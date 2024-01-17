@@ -6,7 +6,7 @@ const Amenities = () => {
   return (
     <>
       {amenities.map((amenity) => (
-        <div className="col-sm-4">
+        <div key={amenity.id} className="col-sm-4">
           <div className="widget-wrapper mb20">
             <div className="checkbox-style1">
               <label className="custom_checkbox">

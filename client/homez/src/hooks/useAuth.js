@@ -18,8 +18,8 @@ const useAuth = ({ redirect } = { redirect: true }) => {
       logout();
     }
 
-    if (!auth && redirect) {
-      window.location.replace("/logowanie");
+    if (!auth && redirect && window) {
+      window?.location?.replace("/logowanie");
     }
   }, [auth]);
 

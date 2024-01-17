@@ -15,7 +15,11 @@ const PropertyType = ({ filters }) => {
   return (
     <>
       {types.map((option, index) => (
-        <label className="custom_checkbox" key={index}>
+        <label
+          style={{ textTransform: "lowercase" }}
+          className="custom_checkbox"
+          key={index}
+        >
           {option}
           <input
             type="checkbox"

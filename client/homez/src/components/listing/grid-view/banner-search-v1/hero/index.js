@@ -18,7 +18,7 @@ const Hero = ({ filterFunctions }) => {
       {/* <!-- Advance Feature Modal Start --> */}
       <div className="advance-feature-modal">
         <div
-          className="modal fade"
+          className="modal"
           id="advanceSeachModal"
           tabIndex={-1}
           aria-labelledby="advanceSeachModalLabel"

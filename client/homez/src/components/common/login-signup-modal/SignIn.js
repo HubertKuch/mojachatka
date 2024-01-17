@@ -9,7 +9,6 @@ const SignIn = () => {
   const passRef = useRef();
   const [err, setErr] = useState("");
   const setUser = useStore((s) => s.setUser);
-  const setToken = useStore((s) => s.setToken);
 
   return (
     <form
@@ -26,10 +25,15 @@ const SignIn = () => {
           return setErr(res.message);
         }
 
-        setToken(res.token);
-        setUser((await AuthController.getProfile()).body.user);
+        const profile = await AuthController.getProfile();
 
-        window.location.replace("/");
+        if (profile.status === 401) {
+          return setErr("Twoje konto jest nieaktywne");
+        }
+
+        useStore.setState({ user: profile.body.user, isLoggedIn: true }, true);
+
+        window?.location?.replace("/");
       }}
     >
       <div className="error">{err}</div>
@@ -63,7 +67,11 @@ const SignIn = () => {
           <input type="checkbox" defaultChecked="checked" />
           <span className="checkmark" />
         </label>
-        <a className="fz14 ff-heading" href="#">
+        <a
+          className="fz14 ff-heading "
+          style={{ visibility: "hidden" }}
+          href="#"
+        >
           Nie pamiętasz hasła? -- NIE DZIALA --
         </a>
       </div>
