@@ -18,7 +18,8 @@ export default function PropertyTypesSelect({ filters, className, onChange }) {
       }}
       defaultValue={[propertyTypes[1]]}
       name="type"
-      menuPosition="fixed"
+      placeholder="Typ"
+      menuPosition="absolute"
       options={propertyTypes}
       className="select-custom pl-0"
       classNamePrefix="select"

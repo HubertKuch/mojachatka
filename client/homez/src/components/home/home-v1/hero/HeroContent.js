@@ -6,13 +6,17 @@ import React, { useState } from "react";
 
 const HeroContent = ({ filters }) => {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState("sold");
+  const [activeTab, setActiveTab] = useState("BUY");
 
   const handleTabClick = (tab) => {
-    setActiveTab(tab);
+    setActiveTab(tab.id);
+    filters.rentType = tab.id;
   };
 
-  const tabs = [{ id: "sold", label: "Wyszukaj" }];
+  const tabs = [
+    { id: "BUY", label: "Sprzedaz" },
+    { id: "RENT", label: "Wynajem" },
+  ];
 
   return (
     <div className="advance-search-tab mt70 mt30-md mx-auto animate-up-3">
@@ -21,7 +25,7 @@ const HeroContent = ({ filters }) => {
           <li className="nav-item" key={tab.id}>
             <button
               className={`nav-link ${activeTab === tab.id ? "active" : ""}`}
-              onClick={() => handleTabClick(tab.id)}
+              onClick={() => handleTabClick(tab)}
             >
               {tab.label}
             </button>
