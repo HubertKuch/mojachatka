@@ -35,6 +35,10 @@ class BoostingController {
   static async getBoosts() {
     return await axios.get("/getUserBoosts");
   }
+
+  static async getAllBoosts() {
+    return (await axios.get("/getBoostPackets")).data;
+  }
 }
 
 export default BoostingController;

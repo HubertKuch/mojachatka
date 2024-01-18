@@ -4,7 +4,9 @@ const { Server } = require("socket.io");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const requestIp = require("request-ip");
+const path = require("node:path");
 
+require("dotenv").config({ path: path.join(__dirname, "./prisma/.env") });
 require("./services/paymentResolveIntervalService");
 require("./events/listeners/paymentListener");
 const { logError, handleError } = require("./errors/middleware");
@@ -31,7 +33,7 @@ const io = new Server(server, {
     allowedHeaders: ["Content-Type", "Accept"],
     origin: "http://localhost:3001",
     credentials: true,
-    methods: ["POST", "GET", "PUT", "OPTION", "DELETE", "PATCH"],
+    methods: ["POST", "GET", "PUT", "OPTIONS", "DELETE", "PATCH"],
   },
 });
 const port = process.env.SERVER_PORT || 3000;
@@ -39,6 +41,9 @@ const port = process.env.SERVER_PORT || 3000;
 app.use(
   cors({
     credentials: true,
+    origin: "http://localhost:3001",
+    credentials: true,
+    methods: ["POST", "GET", "PUT", "OPTIONS", "DELETE", "PATCH"],
     origin: "http://localhost:3001",
   }),
 );

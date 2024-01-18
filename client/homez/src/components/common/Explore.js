@@ -10,6 +10,7 @@ const Explore = () => {
       title: "Kup nieruchomość",
       text: "Odkryj idealny dom dla siebie dzięki naszej zaawansowanej wyszukiwarce nieruchomości. Znajdź miejsce, które spełnia wszystkie Twoje oczekiwania!.",
       linkText: "Znajdź dom",
+      link: "/oferty?type=DOM",
     },
     {
       id: 2,
@@ -17,6 +18,7 @@ const Explore = () => {
       title: "Sprzedaj nieruchomość",
       text: "Pomożemy Ci sprzedać każdą nieruchomości. Już teraz zamieść razem z nami swoje ogłoszenie.",
       linkText: "Zamieść ogłoszenie",
+      link: "/dashboard-add-property",
     },
     {
       id: 3,
@@ -24,6 +26,7 @@ const Explore = () => {
       title: "Wynajmij nieruchomość",
       text: "Z naszą pomocą znajdziesz idealną nieruchomość dla Ciebie w celu wynajmu. Przekonaj się już teraz i sprawdź dostępne oferty.",
       linkText: "Znajdź wynajem",
+      link: "/oferty?rentType=RENT",
     },
   ];
 
@@ -43,7 +46,7 @@ const Explore = () => {
             <div className="iconbox-content">
               <h4 className="title">{item.title}</h4>
               <p className="text">{item.text}</p>
-              <Link href="/grid-default" className="ud-btn btn-white2">
+              <Link href={item.link} className="ud-btn btn-white2">
                 {item.linkText}
                 <i className="fal fa-arrow-right-long" />
               </Link>

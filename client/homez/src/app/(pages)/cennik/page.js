@@ -5,10 +5,12 @@ import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import Pricing from "@/components/pages/pricing/Pricing";
+import useBoosts from "@/hooks/useBoosts";
 import useStore from "@/store/store";
 
 const PricingPlan = () => {
   const user = useStore((s) => s.user);
+  const boosts = useBoosts();
 
   const packetElements = [
     {
@@ -95,11 +97,7 @@ const PricingPlan = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="breadcumb-style1">
-                <h2 className="title">Membership Plans</h2>
-                <div className="breadcumb-list">
-                  <a href="#">Home</a>
-                  <a href="#">Plans</a>
-                </div>
+                <h2 className="title">Pakiety</h2>
               </div>
             </div>
           </div>
@@ -107,7 +105,50 @@ const PricingPlan = () => {
       </section>
       {/* End Breadcrumb Sections */}
 
-      {packetElements.sort((p) => p.type !== user?.type).map((p) => p.el)}
+      {user
+        ? packetElements.find((p) => p.type !== user?.type)?.el
+        : packetElements.map((pe) => pe.el)}
+
+      <section className={`our-pricing pb90 pt-0`}>
+        <div className="container row">
+          <div className="row" data-aos="fade-up" data-aos-delay="100">
+            <div className="col-lg-6 offset-lg-3">
+              <div className="main-title text-center mb30">
+                <h2>Podbicia</h2>
+              </div>
+            </div>
+          </div>
+          {boosts.map((item, idx) => (
+            <div className="col-md-6 col-xl-4" key={idx}>
+              <div className={`pricing_packages`}>
+                <div className="heading mb60">
+                  <h4 className={`package_title `}>{item.name}</h4>
+                  <p className="text">{item.price / 100} PLN</p>
+                </div>
+                <div className="details">
+                  <div className="d-grid">
+                    <button
+                      onClick={async () => {
+                        const res = await AccountPacketsController.buyPacket(
+                          item.id,
+                        );
+
+                        if (res.payment) {
+                          window?.open(res.payment.continueUrl, "mozillaTab");
+                        }
+                      }}
+                      className="ud-btn btn-thm-border text-thm"
+                    >
+                      Kup
+                      <i className="fal fa-arrow-right-long" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Our CTA */}
       <CallToActions />

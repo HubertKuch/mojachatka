@@ -41,11 +41,14 @@ const CallToActions = () => {
 
             <div className="col-lg-5 col-xl-6 " data-aos="fade-left">
               <div className="cta-btns-style1 d-block d-sm-flex align-items-center justify-content-lg-end">
-                <Link href="#" className="ud-btn btn-transparent mr30 mr0-xs">
+                <Link
+                  href="mailto:pomoc@mojachatka.pl"
+                  className="ud-btn btn-transparent mr30 mr0-xs"
+                >
                   Napisz do nas
                   <i className="fal fa-arrow-right-long" />
                 </Link>
-                <Link href="#" className="ud-btn btn-dark">
+                <Link href="tel:+48 789 857 202" className="ud-btn btn-dark">
                   <span className="flaticon-call vam pe-2" />
                   +48 789 857 202
                 </Link>

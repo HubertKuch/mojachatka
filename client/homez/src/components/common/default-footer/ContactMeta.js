@@ -9,8 +9,8 @@ const ContactMeta = () => {
     },
     {
       title: "Potrzebujesz pomocy?",
-      mail: "hi@homez.com",
-      mailLink: "mailto:hi@homez.com", // Changed mailLink to direct email address
+      mail: "pomoc@mojachatka.pl",
+      mailLink: "mailto:pomoc@mojachatka.pl", // Changed mailLink to direct email address
     },
   ];
 

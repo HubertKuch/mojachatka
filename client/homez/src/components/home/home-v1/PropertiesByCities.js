@@ -51,7 +51,6 @@ const PropertiesByCities = () => {
                   <div className="feature-content">
                     <div className="top-area">
                       <h6 className="title mb-1">{city.name}</h6>
-                      <p className="text">{city.propertyCount} nieruchomości</p>
                     </div>
                   </div>
                 </Link>

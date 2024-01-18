@@ -8,7 +8,7 @@ const FeaturedListings = ({ data, colstyle }) => {
     <>
       {data.map((listing) => (
         <div
-          className={` ${colstyle ? "col-sm-6 col-lg-6" : "col-sm-12"}  `}
+          className={`${colstyle ? "col-sm-6 col-lg-6" : "col-sm-12"}`}
           key={listing.id}
         >
           <div
@@ -32,7 +32,7 @@ const FeaturedListings = ({ data, colstyle }) => {
                   {!listing.forRent && (
                     <div className="list-tag fz12">
                       <span className="flaticon-electricity me-2" />
-                      FEATURED
+                      PROMOWANA
                     </div>
                   )}
                 </div>
@@ -50,32 +50,15 @@ const FeaturedListings = ({ data, colstyle }) => {
                 <Link href={`/oferta/${listing.id}`}>{listing.title}</Link>
               </h6>
               <p className="list-text">{listing.location}</p>
-              <div className="list-meta d-flex align-items-center">
-                <a href="#">
-                  <span className="flaticon-bed" /> {listing.bed} bed
-                </a>
-                <a href="#">
-                  <span className="flaticon-shower" /> {listing.bath} bath
-                </a>
-                <a href="#">
-                  <span className="flaticon-expand" /> {listing.sqft} sqft
-                </a>
-              </div>
               <p className="list-text2">{listing.description}</p>
               <hr className="mt-2 mb-2" />
               <div className="list-meta2 d-flex justify-content-between align-items-center">
-                <span className="for-what">{listing.sellType}</span>
-                <div className="icons d-flex align-items-center">
-                  <a href="#">
-                    <span className="flaticon-fullscreen" />
-                  </a>
-                  <a href="#">
-                    <span className="flaticon-new-tab" />
-                  </a>
-                  <a href="#">
-                    <span className="flaticon-like" />
-                  </a>
-                </div>
+                <span className="for-what">
+                  {listing.sellType === "BUY" ? "Sprzedaz" : "Najm"}
+                </span>
+                <span className="for-what">
+                  {listing.properties.address.city}
+                </span>
               </div>
             </div>
           </div>

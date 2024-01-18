@@ -1,5 +1,5 @@
 "use client";
-import useCatsStats from "@/hooks/useCatsStats";
+import apartmentType from "@/data/apartmentType";
 import Link from "next/link";
 import React from "react";
 import { Navigation, Pagination } from "swiper";
@@ -7,20 +7,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 
 const ApartmentType = () => {
-  const cats = useCatsStats();
-
-  const iconsByType = [
-    { icon: "flaticon-home", type: "DOM" },
-    { icon: "flaticon-corporation", type: "LOKAL" },
-    { icon: "flaticon-corporation", type: "MIESZKANIE" },
-    { icon: "flaticon-network", type: "POKOJ" },
-    { icon: "flaticon-garden", type: "OGROD" },
-    { icon: "flaticon-chat", type: "DOM" },
-    { icon: "flaticon-garage", type: "GARAZ" },
-    { icon: "flaticon-bird-house", type: "DZIALKA" },
-    { icon: "flaticon-garage", type: "MAGAZYN" },
-  ];
-
   return (
     <Swiper
       className="overflow-visible"
@@ -51,20 +37,14 @@ const ApartmentType = () => {
         },
       }}
     >
-      {cats.map((type) => (
+      {apartmentType.map((type) => (
         <SwiperSlide key={type.id}>
           <div className="item">
-            <Link href={`/oferty?type=${type.category}`}>
+            <Link href="/grid-default">
               <div className="iconbox-style1">
-                <span
-                  className={`icon ${
-                    iconsByType.find((ic) => ic.type === type.category)?.icon
-                  }`}
-                />
+                <span className={`icon ${type.icon}`} />
                 <div className="iconbox-content">
-                  <h6 className="title" style={{ textTransform: "capitalize" }}>
-                    {type.category.toLowerCase()}
-                  </h6>
+                  <h6 className="title">{type.title}</h6>
                   <p className="text mb-0">{`${type.count} Properties`}</p>
                 </div>
               </div>
