@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 const ListingStatus = ({ filters }) => {
   const [sellTypes, setSellTypes] = useState([
     {
-      label: "Sprzedaz",
+      label: "Sprzedaż",
       value: "BUY",
     },
     {

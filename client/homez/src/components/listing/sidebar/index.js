@@ -104,6 +104,10 @@ const ListingSidebar = ({ filters, setPageItems, setPageCapacity }) => {
                 setPageItems(res.offers.data);
                 setPageCapacity(res.offers.meta.perPage);
               });
+
+              if (window) {
+                window.scrollTo(0, 0);
+              }
             }}
           >
             <span className="flaticon-search align-text-top pr10" />

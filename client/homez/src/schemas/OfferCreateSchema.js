@@ -879,7 +879,7 @@ const createOfferSchema = {
           type: "string",
           enum: ["RENT", "BUY"],
           cases: {
-            BUY: "Sprzedaz",
+            BUY: "Sprzedaż",
             RENT: "Wynajem",
           },
           label: "Typ sprzedaży",

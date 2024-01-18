@@ -32,7 +32,7 @@ export default function SellTypesSelect({ set, filters, onChange }) {
       }}
       options={[
         { label: "Najm", value: "RENT" },
-        { label: "Sprzedaz", value: "BUY" },
+        { label: "Sprzedaż", value: "BUY" },
       ]}
       styles={customStyles}
       className="select-custom pl-0"
