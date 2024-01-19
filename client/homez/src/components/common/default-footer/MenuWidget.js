@@ -23,11 +23,10 @@ const MenuWidget = () => {
     {
       title: "O Mojejchatce",
       links: [
-        { label: "Warunki współpracy", href: "#" },
-        { label: "Polityka prywatności", href: "#" },
+        { label: "Warunki współpracy", href: "/regulamin" },
+        { label: "Polityka prywatności", href: "/regulamin" },
         { label: "Cennik", href: "/cennik" },
-        /*{ label: "Careers", href: "#" }, */
-        { label: "Najczęściej zadawane pytania", href: "#" },
+        { label: "Najczęściej zadawane pytania", href: "/faq" },
       ],
     },
   ];

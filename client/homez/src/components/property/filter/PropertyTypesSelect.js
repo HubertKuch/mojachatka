@@ -3,6 +3,36 @@ import Select from "react-select";
 
 export default function PropertyTypesSelect({ filters, className, onChange }) {
   const propertyTypes = usePropertyTypes();
+  const types = [
+    {
+      value: "DOM",
+      label: "Dom",
+    },
+    {
+      value: "MIESZKANIE",
+      label: "Mieszkanie",
+    },
+    {
+      value: "DZIALKA",
+      label: "Działka",
+    },
+    {
+      value: "GARAZ",
+      label: "Garaż",
+    },
+    {
+      value: "POKOJ",
+      label: "Pokój",
+    },
+    {
+      value: "LOKAL",
+      label: "Lokal użytkowy",
+    },
+    {
+      value: "MAGAZYN",
+      label: "Magazyn",
+    },
+  ];
 
   return (
     <Select
@@ -20,7 +50,7 @@ export default function PropertyTypesSelect({ filters, className, onChange }) {
       name="type"
       placeholder="Typ"
       menuPosition="absolute"
-      options={propertyTypes}
+      options={types}
       className="select-custom pl-0"
       classNamePrefix="select"
       required

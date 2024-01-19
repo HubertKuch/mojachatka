@@ -2,27 +2,28 @@ const Faq1 = () => {
   const faqItems = [
     {
       id: "headingOne",
-      question: "Can a home depreciate in value?",
+      question: "Jak dodać ogłoszenie?",
       answer:
-        "It doesn’t matter how organized you are — a surplus of toys will always ensure your house",
+        "Aby dodać ogłoszenie należy dokonać zakupu odpowiedniego pakietu, a następnie kliknij w prawym górnym rogu strony, Dodaj ogłoszenie. Opcję dodania ogłoszenia znajdziesz także na swoim proflu w zakładce Ogłoszenia, Dodaj ofertę.",
     },
     {
       id: "headingTwo",
-      question: "Is an older home as good a value as a new home?",
+      question:
+        "Jak działają promowania ogłoszeń oraz jaka jest różnica pomiędzy podbiciem, a podbiciem na stronę główną?",
       answer:
-        "It doesn’t matter how organized you are — a surplus of toys will always ensure your house",
+        "Promowanie ogłoszeń polega na ulepszeniu pozycjonowania danej oferty przez określony okres czasu. Mojachatka oferuje dwa rodzaje podbić. Pierwsze to zwykłe podbicie, dzięki któremu ogłoszenie zostaje wyświetlone w pierwszych trzech ofertach w danym mieście, co pozwala na zwiększenie zainteresowania. Natomiast drugim rodzajem podbicia jest podbicie na stronę główną. Promowanie to polega na wyświetleniu podbitego ogłoszenia na stronie głównej spośród sześciu podbitych ofert.",
     },
     {
       id: "headingThree",
-      question: "What is a broker?",
+      question: "W jaki sposób mogę skontaktować się z obsługą portalu?",
       answer:
-        "It doesn’t matter how organized you are — a surplus of toys will always ensure your house is a mess waiting to happen. Fortunately, getting kids on board with the idea of ditching their stuff is a lot easier than it sounds. <br /><br /> The trick is to make it an opportunity for them to define themselves and their interests. Encourage kids to make a pile of ”baby toys” to donate, and have them set aside any toys that no longer interest them, such as action figures from a forgotten TV show. Separating these toys will help them appreciate how much they’ve grown and rediscover the toys they love.",
+        "Oferujemy dwie możliwości kontaktu z obsługą mojejchatki, poprzez numer telefonu - 789 857 202 lub poprzez maila - pomoc@mojachatka.pl ",
     },
     {
       id: "headingFour",
-      question: "Can I pay my own taxes and insurance?",
+      question: "Czy ceny podane w cenniku są ostateczne?",
       answer:
-        "It doesn’t matter how organized you are — a surplus of toys will always ensure your house",
+        "Tak, ceny w cenniku są ostateczne. Nie posiadamy żadnych ukrytych opłat.",
     },
   ];
 
@@ -44,9 +45,7 @@ const Faq1 = () => {
           </h2>
           <div
             id={`collapse${index + 1}`}
-            className={`accordion-collapse collapse ${
-              index === 2 ? "show" : ""
-            }`}
+            className={`accordion-collapse collapse ${index === 2 ? "" : ""}`}
             aria-labelledby={item.id}
             data-parent="#accordionExample"
           >

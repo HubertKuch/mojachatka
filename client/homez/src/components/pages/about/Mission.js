@@ -2,13 +2,14 @@ const Mission = () => {
   const missionData = [
     {
       icon: "flaticon-garden",
-      title: "Modern Villa",
-      description: "Nullam sollicitudin blandit Nullam maximus.",
+      title: "Polski kapitał",
+      description: "Firma opiera się w 100% na polskim kapitale.",
     },
     {
       icon: "flaticon-secure-payment",
-      title: "Secure Payment",
-      description: "Nullam sollicitudin blandit Nullam maximus.",
+      title: "Bezpieczeństwo",
+      description:
+        "Każda płatność oraz konto jest zabezpieczone w najwyższym stopniu.",
     },
   ];
 
@@ -22,8 +23,7 @@ const Mission = () => {
               <div className="list-content flex-grow-1">
                 <h6 className="mb-1">{item.title}</h6>
                 <p className="text mb-0 fz14">
-                  Nullam sollicitudin blandit{" "}
-                  <br className="d-none d-sm-block" /> Nullam maximus.
+                  {item.description} <br className="d-none d-sm-block" />
                 </p>
               </div>
             </div>

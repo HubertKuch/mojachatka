@@ -8,11 +8,12 @@ const Footer = () => {
   const footerMenuItems = [
     {
       label: "Polityka Prywatności",
-      link: "#",
+      link: "/regulamin",
     },
+
     {
       label: "Warunki współpracy",
-      link: "#",
+      link: "/regulamin",
     },
   ];
 

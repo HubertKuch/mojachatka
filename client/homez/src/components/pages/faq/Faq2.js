@@ -2,7 +2,7 @@ const Faq2 = () => {
   const faqItems = [
     {
       id: "headingOne",
-      question: "Can a home depreciate in value?",
+      question: "test?",
       answer:
         "It doesn’t matter how organized you are — a surplus of toys will always ensure your house",
     },
@@ -44,9 +44,7 @@ const Faq2 = () => {
           </h2>
           <div
             id={`collapse${index + 1}`}
-            className={`accordion-collapse collapse ${
-              index === 2 ? "show" : ""
-            }`}
+            className={`accordion-collapse collapse ${index === 2 ? "" : ""}`}
             aria-labelledby={item.id}
             data-parent="#accordionExample2"
           >
