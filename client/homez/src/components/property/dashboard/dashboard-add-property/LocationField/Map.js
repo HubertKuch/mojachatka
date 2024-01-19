@@ -1,15 +1,24 @@
 "use client";
 
-import React, { useState } from "react";
-import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import dynamic from "next/dynamic";
+import React, { useEffect, useState } from "react";
+const { MapContainer, TileLayer, Marker, useMapEvents } = dynamic(
+  () => import("react-leaflet"),
+  { ssr: false },
+);
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-import { Field, useFormikContext } from "formik";
+const L = dynamic(() => import("react-leaflet"), { ssr: false });
+const { Field, useFormikContext } = dynamic(() => import("formik"), {
+  ssr: false,
+});
 
 const Map = ({ onChange }) => {
   const [marker, setMarker] = useState();
   const [pos, setPos] = useState([51, 19]);
   const { setFieldValue } = useFormikContext();
+
+  useEffect(() => {}, []);
+
   const markerSvgBase64 =
     "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAACW0lEQVR4nO2WPUiWURiGr6y0glwaFF0qaovCIYIwLCistlJrKyEoh6AfoiQdHCKNBlEHi6ZaSm2RkP6gIehvEikKHSOXpozKUst44BYOr+ec9/Pze5284YHvO/f9/Jz3nPOcA8vIH+uBE0ATUM4SYgXQAHwGZmU/gTagJOvkO4E3TuJXwKDz/xNwIIvEG4AuYEaJxvX57WsY9gIfnEIeARsLkXgVcA74psBTKqTUo10t7YS0v7Qsa/JNvh/4mJjVlhz8KoH7jt8YcHAhiYs0y38KMAocymMCtizvnUK6FTsVHXL4DTQDxSxuCS8plsVsT3PYBEwDf4FaCodaxZxO25xNqvQBhUefYp+Jia5LdDWDAloV+1pMdEei0xkUMPd1b8VEAxLVZ1DAMcW2pQjioUR1GRTQkMv+6pPIqk3DSqBCjceOWxqOK7Y1qSDuSWR93ocS7eInwB+nyViLfg6cjdyIJ6W9GyvgpkSXA/wpJ6n1+mHZD2c8dMyaxd+IFXBRos4A3+3s5HXO+FqgV5y1cR+6xJ+PFVDvXDw+PBZ/NLLJhgK+Q+KPxArYKtGXAP9W/C4Pt1vc64DvuPjNsQKKgO8Slnn4EXHbPNx2cbYnkigTN+E8YoIYlLjFw70Tt8PDVYmzJ1uoDVvsVOxzruPqBPdU3B6PX404O6Iuqp3r2GLnhE45TAIXnCfY7UifaEz0+lL5TqacLC+ss/U4Z9vsq8x+v9R774qsTWNJ3Zz15Ngt5+Ew8EKdbnaBNiXffJ5z81CsTdaoZ5UtRT/wTNavsXa13KpFPuWWwZLhPzyOx416KtY7AAAAAElFTkSuQmCC";
 

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import Map from "./Map";
+import dynamic from "next/dynamic";
+const Map = dynamic(() => import("./Map"), { ssr: false });
 import useRegion from "@/hooks/useRegion";
 import Select from "react-select";
 import { Field } from "formik";

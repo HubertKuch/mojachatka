@@ -11,7 +11,9 @@ import UserInboxList from "@/components/property/dashboard/dashboard-message/Use
 import useAuth from "@/hooks/useAuth";
 import useUser from "@/hooks/useUser";
 import { useEffect, useRef, useState } from "react";
-import { io } from "socket.io-client";
+import dynamic from "next/dynamic";
+
+const { io } = dynamic(() => import("socket.io-client"), { ssr: false });
 
 const DashboardMessage = () => {
   useAuth();
@@ -27,7 +29,7 @@ const DashboardMessage = () => {
     if (window) {
       window.onload = scrollToBottom;
     }
-  }, [window]);
+  }, []);
 
   function scrollToBottom() {
     if (contentRef.current) {
@@ -61,7 +63,7 @@ const DashboardMessage = () => {
 
       if (data.length !== 0) {
         setActiveChat(data[0]);
-        setActiveChatId(data[0].id);
+        setActiveChatId(data[0]?.id);
       }
     });
 
@@ -71,11 +73,11 @@ const DashboardMessage = () => {
     });
 
     socket.on("message", (msg) => {
-      msg.own = msg.meta.sender === user.id;
+      msg.own = msg.meta.sender === user?.id;
 
       setMessages((old) => [...old, msg]);
     });
-  }, [user.id]);
+  }, [user?.id]);
 
   useEffect(() => {
     if (socket && activeChatId) {

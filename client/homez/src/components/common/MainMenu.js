@@ -78,7 +78,7 @@ const MainMenu = () => {
       {/* End listings */}
 
       <li className="visible_list dropitem">
-        <a className="list-item" href="/about-us">
+        <a className="list-item" href="/about">
           <span
             className={topMenu == "property" ? "title menuActive" : "title"}
           >
@@ -92,21 +92,12 @@ const MainMenu = () => {
       {/* End blog Items */}
 
       <li className="visible_list dropitem">
-        <a className="list-item" href="#">
+        <a className="list-item" href="/faq">
           <span className={topMenu == "pages" ? "title menuActive" : "title"}>
-            Pages
+            Faq
           </span>
           <span className=""></span>
         </a>
-        <ul className="sub-menu">
-          {pageItems.map((item, index) => (
-            <li key={index}>
-              <Link className={`${handleActive(item.href)}`} href={item.href}>
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
       </li>
       {/* End pages Items */}
     </ul>

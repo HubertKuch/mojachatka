@@ -1,8 +1,9 @@
 "use client";
 import React, { useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import PropertyDescription from "./property-description";
 import UploadMedia from "./upload-media";
-import LocationField from "./LocationField";
+const LocationField = dynamic(() => import("./LocationField"), { ssr: false });
 import DetailsFiled from "./details-field";
 import { Form, Formik, useFormikContext } from "formik";
 import OffersControllers from "@/controllers/OffersController";
