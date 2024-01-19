@@ -5,12 +5,16 @@ import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 import Pricing from "@/components/pages/pricing/Pricing";
+import BoostingController from "@/controllers/BoostingController";
 import useBoosts from "@/hooks/useBoosts";
 import useStore from "@/store/store";
+import { useState } from "react";
+import Popup from "reactjs-popup";
 
 const PricingPlan = () => {
   const user = useStore((s) => s.user);
   const boosts = useBoosts();
+  const [popup, setPopup] = useState(false);
 
   const packetElements = [
     {
@@ -18,8 +22,9 @@ const PricingPlan = () => {
       el: (
         <section
           key={"developer"}
-          className={`our-pricing pb90 pt-0 ${user?.type === "DEVELOPER" ? "matched-type-packets-container" : ""
-            }`}
+          className={`our-pricing pb90 pt-0 ${
+            user?.type === "DEVELOPER" ? "matched-type-packets-container" : ""
+          }`}
         >
           <div className="container">
             <div className="row" data-aos="fade-up" data-aos-delay="100">
@@ -40,8 +45,9 @@ const PricingPlan = () => {
       el: (
         <section
           key={"agent"}
-          className={`our-pricing pb90 pt-0 ${user?.type === "AGENT" ? "matched-type-packets-container" : ""
-            }`}
+          className={`our-pricing pb90 pt-0 ${
+            user?.type === "AGENT" ? "matched-type-packets-container" : ""
+          }`}
         >
           <div className="container">
             <div className="row" data-aos="fade-up" data-aos-delay="100">
@@ -62,8 +68,9 @@ const PricingPlan = () => {
       el: (
         <section
           key={"individual"}
-          className={`our-pricing pb90 pt-0 ${user?.type === "INDIVIDUAL" ? "matched-type-packets-container" : ""
-            }`}
+          className={`our-pricing pb90 pt-0 ${
+            user?.type === "INDIVIDUAL" ? "matched-type-packets-container" : ""
+          }`}
         >
           <div className="container">
             <div className="row" data-aos="fade-up" data-aos-delay="100">
@@ -108,6 +115,18 @@ const PricingPlan = () => {
       {user
         ? packetElements.find((p) => p.type !== user?.type)?.el
         : packetElements.map((pe) => pe.el)}
+      <Popup closeOnDocumentClick onClose={() => setPopup(false)}>
+        <p
+          style={{
+            background: "white",
+            fontSize: "1.5rem",
+            borderRadius: "10px",
+            padding: "10px",
+          }}
+        >
+          Nie udalo sie utworzyc platnosci
+        </p>
+      </Popup>
 
       <section className={`our-pricing pb90 pt-0`}>
         <div className="container row">
@@ -129,12 +148,14 @@ const PricingPlan = () => {
                   <div className="d-grid">
                     <button
                       onClick={async () => {
-                        const res = await AccountPacketsController.buyPacket(
-                          item.id,
-                        );
+                        try {
+                          const url = await BoostingController.buyBoost(
+                            item.id,
+                          );
 
-                        if (res.payment) {
-                          window?.open(res.payment.continueUrl, "mozillaTab");
+                          window?.open(url, "mozillaTab");
+                        } catch (e) {
+                          setPopup(true);
                         }
                       }}
                       className="ud-btn btn-thm-border text-thm"

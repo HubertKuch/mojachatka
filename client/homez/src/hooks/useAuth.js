@@ -5,7 +5,6 @@ const { useState, useEffect } = require("react");
 
 const useAuth = ({ redirect } = { redirect: true }) => {
   const [auth, setAuth] = useState(true);
-  const logout = useStore((s) => s.logout);
 
   useEffect(() => {
     AuthController.authenticated().then(setAuth);
@@ -15,7 +14,7 @@ const useAuth = ({ redirect } = { redirect: true }) => {
 
   useEffect(() => {
     if (!auth) {
-      logout();
+      useStore.setState({ user: null, isLoggedIn: false });
     }
 
     if (!auth && redirect && window) {

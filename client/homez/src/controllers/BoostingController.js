@@ -17,10 +17,11 @@ class BoostingController {
     }
 
     if (boost.properties.type !== boostType) {
-      return { ok: false, body: { message: "Nie posiadasz podbic...2" } };
+      return {
+        ok: false,
+        body: { message: "Nie posiadasz podbic dla tego typu" },
+      };
     }
-
-    console.log(boost);
 
     const res = await axios.post(
       boostType === "GLOBAL"
@@ -30,6 +31,16 @@ class BoostingController {
     );
 
     return { ok: res.status === 200, body: res.data };
+  }
+
+  static async buyBoost(id) {
+    const res = await axios.post(`/buyBoost/${id}`);
+
+    if (res.status === 200) {
+      return res.data.payment.continueUrl;
+    }
+
+    throw new Error("Nie udalo sie utworzyc platnosci");
   }
 
   static async getBoosts() {
