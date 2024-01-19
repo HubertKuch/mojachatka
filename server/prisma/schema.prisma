@@ -211,7 +211,7 @@ model Verification {
   id      String   @id @unique @default(uuid())
   email   String
   User    User     @relation(fields: [email], references: [email], onDelete: Cascade)
-  code    String
+  code    String   @db.LongText
   expires DateTime
 }
 
@@ -222,7 +222,7 @@ model Offers {
   author        String
   authorName    String
   User          User           @relation(fields: [author], references: [id], onDelete: Cascade)
-  title         String         
+  title         String
   description   String         @db.VarChar(10000)
   price         Int?
   pricePerMonth Int?

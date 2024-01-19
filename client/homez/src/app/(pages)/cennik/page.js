@@ -20,12 +20,7 @@ const PricingPlan = () => {
     {
       type: "DEVELOPER",
       el: (
-        <section
-          key={"developer"}
-          className={`our-pricing pb90 pt-0 ${
-            user?.type === "DEVELOPER" ? "matched-type-packets-container" : ""
-          }`}
-        >
+        <section key={"developer"} className={`our-pricing pb90 pt-0 `}>
           <div className="container">
             <div className="row" data-aos="fade-up" data-aos-delay="100">
               <div className="col-lg-6 offset-lg-3">
@@ -43,12 +38,7 @@ const PricingPlan = () => {
     {
       type: "AGENT",
       el: (
-        <section
-          key={"agent"}
-          className={`our-pricing pb90 pt-0 ${
-            user?.type === "AGENT" ? "matched-type-packets-container" : ""
-          }`}
-        >
+        <section key={"agent"} className={`our-pricing pb90 pt-0 `}>
           <div className="container">
             <div className="row" data-aos="fade-up" data-aos-delay="100">
               <div className="col-lg-6 offset-lg-3">
@@ -66,12 +56,7 @@ const PricingPlan = () => {
     {
       type: "INDIVIDUAL",
       el: (
-        <section
-          key={"individual"}
-          className={`our-pricing pb90 pt-0 ${
-            user?.type === "INDIVIDUAL" ? "matched-type-packets-container" : ""
-          }`}
-        >
+        <section key={"individual"} className={`our-pricing pb90 pt-0 `}>
           <div className="container">
             <div className="row" data-aos="fade-up" data-aos-delay="100">
               <div className="col-lg-6 offset-lg-3">
@@ -113,7 +98,7 @@ const PricingPlan = () => {
       {/* End Breadcrumb Sections */}
 
       {user
-        ? packetElements.find((p) => p.type !== user?.type)?.el
+        ? packetElements.find((p) => p.type === user?.type)?.el
         : packetElements.map((pe) => pe.el)}
       <Popup closeOnDocumentClick onClose={() => setPopup(false)}>
         <p

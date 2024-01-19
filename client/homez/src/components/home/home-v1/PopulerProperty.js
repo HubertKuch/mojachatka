@@ -26,7 +26,7 @@ export default function PopulerProperty() {
           <div className="col-lg-12">
             <PopularListings data={pageData} />
             <div className="d-grid d-md-block text-center mt0-md">
-              <Link href="/about-us" className="ud-btn btn-thm">
+              <Link href="/about" className="ud-btn btn-thm">
                 Pragniemy Państwa poinformować iż nasz portal ogłoszeniowy
                 opracowany został przez grono wybitnych specjalistów. Oparty
                 został wyłącznie na krajowym kapitale dzięki czemu możemy

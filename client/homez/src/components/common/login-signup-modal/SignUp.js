@@ -28,7 +28,7 @@ const SignUp = () => {
         return setError(res.data.message);
       }
 
-      window?.location?.replace("/");
+      window?.location?.replace("/aktywuj-konto");
     });
   }
 

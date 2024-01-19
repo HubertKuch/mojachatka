@@ -19,11 +19,6 @@ const DashboardHeader = () => {
           text: "Panel Główny",
           href: "/dashboard-home",
         },
-        {
-          icon: "flaticon-chat-1",
-          text: "Wiadomości",
-          href: "/dashboard-message",
-        },
       ],
     },
     {

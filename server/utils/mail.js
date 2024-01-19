@@ -9,7 +9,8 @@ async function sendMail(email) {
     return dateCopy;
   }
 
-  const code = randomString.generate({ length: 190 });
+  const code = `${process.env.CLIENT_APP_URL
+    }/aktywuj-konto?email=${email}&code=${randomString.generate(190)}`;
   const date = new Date();
   const expires = addMinutes(date, 5);
 
@@ -56,17 +57,11 @@ async function sendMail(email) {
 async function verifyEmailCode({ email, code }) {
   const codeFound = await db.verification.findFirstOrThrow({
     where: {
-      code: parseInt(code),
+      email,
     },
   });
 
   if (codeFound === "NotFoundError: No User found error") {
-    return false;
-  }
-
-  const currentDate = new Date();
-
-  if (currentDate > codeFound.expires) {
     return false;
   }
 
@@ -224,8 +219,6 @@ function emailTemplate({ link }) {
 <br>
 Aby dokończyć proces rejestracji i aktywować swoje konto, prosimy o kliknięcie w poniższy link:
 <br>
-[Umieść tutaj bezpośredni link aktywacyjny]
-<br>
 Jeśli nie rejestrowałeś/rejestrowałaś się na naszej stronie, zignoruj tę wiadomość.
 <br>
 Dziękujemy i życzymy udanego korzystania z naszych usług!
@@ -250,7 +243,7 @@ Adres e-mail: pomoc@mojachatka.pl</p>
                             <table border="0" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
-<a target="${link}" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Aktywuj konto</a>
+<a target="_blank" href="${link}" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Aktywuj konto</a>
                                 </td>
                             </tr>
                             </table>
