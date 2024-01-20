@@ -113,7 +113,7 @@ const PricingPlan = () => {
         </p>
       </Popup>
 
-      <section className={`our-pricing pb90 pt-0`}>
+      <section className={`our-pricing container pb90 pt-0`}>
         <div className="container row">
           <div className="row" data-aos="fade-up" data-aos-delay="100">
             <div className="col-lg-6 offset-lg-3">

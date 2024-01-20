@@ -1,4 +1,5 @@
 import FormFromSchemaBuilder from "@/components/forms/FormFromSchemaBuilder";
+import OffersControllers from "@/controllers/OffersController";
 import {
   apartmentSchema,
   commercialLocalSchema,
@@ -15,9 +16,12 @@ const DetailsFiled = () => {
   const {
     setFieldValue,
     values: {
-      properties: {},
+      properties: { },
       type,
     },
+    values,
+    setErrors,
+    setFieldError,
   } = useFormikContext();
   const [schema, setSchema] = useState({ properties: {} });
   const [propertiesName, setPropertiesName] = useState("");
@@ -53,6 +57,27 @@ const DetailsFiled = () => {
         namePrefix={`properties.${propertiesName}`}
         schema={schema}
       />
+      <div className="row">
+        <button
+          type="submit"
+          className="form-control ud-btn btn-white2"
+          onClick={() => {
+            OffersControllers.createOffer({ data: values }).then((res) => {
+              if (res.status !== 200) {
+                res.body.message.forEach((err) => {
+                  setFieldError(err.path.replace("data.", ""), err.message);
+                });
+
+                window?.scrollTo(0, 0);
+              } else {
+                document.location.replace("/dashboard-my-properties");
+              }
+            });
+          }}
+        >
+          Dodaj
+        </button>
+      </div>
     </form>
   );
 };

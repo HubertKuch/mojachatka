@@ -1,15 +1,26 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import PropertyDescription from "./property-description";
 import UploadMedia from "./upload-media";
 const LocationField = dynamic(() => import("./LocationField"), { ssr: false });
 import DetailsFiled from "./details-field";
-import { Form, Formik, useFormikContext } from "formik";
+import { Form, Formik } from "formik";
 import OffersControllers from "@/controllers/OffersController";
 import { flatten } from "flat";
 
 const AddPropertyTabContent = () => {
+  const controls = ["nav-item1", "nav-item2", "nav-item3", "nav-item4"];
+  const [currentTab, setCurrentTab] = useState(0);
+
+  useEffect(() => {
+    if (window?.document) {
+      console.log(
+        document.querySelector(`[aria-controls=${controls[currentTab]}]`),
+      );
+    }
+  }, [currentTab]);
+
   return (
     <>
       <Formik
@@ -140,35 +151,6 @@ const AddPropertyTabContent = () => {
                       <DetailsFiled setValue={setFieldValue} />
                     </div>
                   </div>
-                </div>
-
-                <div className="row">
-                  <button
-                    type="submit"
-                    className="form-control ud-btn btn-white2"
-                    onClick={() => {
-                      OffersControllers.createOffer({ data: values }).then(
-                        (res) => {
-                          if (res.status !== 200) {
-                            res.body.message.forEach((err) => {
-                              setFieldError(
-                                err.path.replace("data.", ""),
-                                err.message,
-                              );
-                            });
-
-                            window?.scrollTo(0, 0);
-                          } else {
-                            document.location.replace(
-                              "/dashboard-my-properties",
-                            );
-                          }
-                        },
-                      );
-                    }}
-                  >
-                    Dodaj
-                  </button>
                 </div>
               </Form>
             </>

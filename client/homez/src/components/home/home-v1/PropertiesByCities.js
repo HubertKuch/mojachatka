@@ -47,7 +47,7 @@ const PropertiesByCities = () => {
                     alt="cities"
                   />
                 </div>
-                <Link href="#">
+                <Link href={city.link}>
                   <div className="feature-content">
                     <div className="top-area">
                       <h4 className="title mb-1" style={{ color: "black" }}>
