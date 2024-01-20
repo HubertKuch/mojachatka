@@ -1,43 +1,12 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import "leaflet/dist/leaflet.css";
-const L = dynamic(() => import("react-leaflet"), { ssr: false });
-const useFormikContext = dynamic(
-  async () => (await import("formik")).useFormikContext,
-  {
-    ssr: false,
-  },
-);
-const useMapEvents = dynamic(
-  async () => (await import("react-leaflet")).useMapEvents,
-  {
-    ssr: false,
-  },
-);
-const TileLayer = dynamic(
-  async () => (await import("react-leaflet")).TileLayer,
-  {
-    ssr: false,
-  },
-);
-const Marker = dynamic(async () => (await import("react-leaflet")).Marker, {
-  ssr: false,
-});
-
-const MapContainer = dynamic(
-  async () => (await import("react-leaflet")).MapContainer,
-  {
-    ssr: false,
-  },
-);
-const Field = dynamic(async () => (await import("formik")).Field, {
-  ssr: false,
-});
+import { useMapEvents, Marker, TileLayer, MapContainer } from "react-leaflet";
+import L from "leaflet";
+import { useFormikContext, Field } from "formik";
 
 export const Map = () => {
-  console.log(MapContainer);
   const [marker, setMarker] = useState();
   const [pos, setPos] = useState([51, 19]);
   const { setFieldValue } = useFormikContext();

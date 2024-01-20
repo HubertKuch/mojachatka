@@ -18,19 +18,19 @@ const PricingPlan = () => {
 
   const packetElements = [
     {
-      type: "DEVELOPER",
+      type: "INDIVIDUAL",
       el: (
-        <section key={"developer"} className={`our-pricing pb90 pt-0 `}>
+        <section key={"individual"} className={`our-pricing pb90 pt-0 `}>
           <div className="container">
             <div className="row" data-aos="fade-up" data-aos-delay="100">
               <div className="col-lg-6 offset-lg-3">
                 <div className="main-title text-center mb30">
-                  <h2>Pakiety dla dewelopera</h2>
+                  <h2>Pakiety indywidualne</h2>
                 </div>
               </div>
             </div>
 
-            <Pricing type={"DEVELOPER"} user={user} />
+            <Pricing type={"INDIVIDUAL"} user={user} />
           </div>
         </section>
       ),
@@ -54,19 +54,19 @@ const PricingPlan = () => {
       ),
     },
     {
-      type: "INDIVIDUAL",
+      type: "DEVELOPER",
       el: (
-        <section key={"individual"} className={`our-pricing pb90 pt-0 `}>
+        <section key={"developer"} className={`our-pricing pb90 pt-0 `}>
           <div className="container">
             <div className="row" data-aos="fade-up" data-aos-delay="100">
               <div className="col-lg-6 offset-lg-3">
                 <div className="main-title text-center mb30">
-                  <h2>Pakiety indywidualne</h2>
+                  <h2>Pakiety dla dewelopera</h2>
                 </div>
               </div>
             </div>
 
-            <Pricing type={"INDIVIDUAL"} user={user} />
+            <Pricing type={"DEVELOPER"} user={user} />
           </div>
         </section>
       ),

@@ -9,8 +9,9 @@ async function sendMail(email) {
     return dateCopy;
   }
 
-  const code = `${process.env.CLIENT_APP_URL
-    }/aktywuj-konto?email=${email}&code=${randomString.generate(190)}`;
+  const code = `${
+    process.env.CLIENT_APP_URL
+  }/aktywuj-konto?email=${email}&code=${randomString.generate(190)}`;
   const date = new Date();
   const expires = addMinutes(date, 5);
 
@@ -41,7 +42,7 @@ async function sendMail(email) {
   const mailOptions = {
     from: process.env.MAIL_EMAIL,
     to: email,
-    subject: `[${process.env.APP_NAME}] Please verify your email.`,
+    subject: `[${process.env.APP_NAME}] Weryfikacja maila.`,
     html: emailTemplate({ link }),
   };
 

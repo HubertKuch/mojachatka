@@ -1192,6 +1192,11 @@ decimal.js-light@^2.4.1:
   resolved "https://registry.npmjs.org/decimal.js-light/-/decimal.js-light-2.5.1.tgz"
   integrity sha512-qIMFpTMZmny+MMIitAB6D7iVPEorVw6YQRWkvarTkT4tBeSLLiHzcwj6q0MmYSFCiVpiqPJTJEYIrpcPzVEIvg==
 
+dedupe@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.npmjs.org/dedupe/-/dedupe-4.0.2.tgz"
+  integrity sha512-HTltbEJKZtOXA9RsABS5Q+sbS3dwHKEyCk2vkZSxh5q2bsH/tBOT6Bo/Y37OkrUUABeYLfuojhuZceSVtqXRpw==
+
 deep-is@^0.1.3:
   version "0.1.4"
   resolved "https://registry.npmjs.org/deep-is/-/deep-is-0.1.4.tgz"

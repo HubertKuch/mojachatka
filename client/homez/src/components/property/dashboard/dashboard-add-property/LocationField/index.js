@@ -36,7 +36,9 @@ const LocationField = ({ onChange }) => {
                     }
                   });
                 }}
-                name="properties.address.city"
+                onChange={({ value }) => {
+                  onChange("properties.address.city")(value);
+                }}
                 placeholder="Wpisz 3 znaki by wyszukac"
                 options={cities}
               />

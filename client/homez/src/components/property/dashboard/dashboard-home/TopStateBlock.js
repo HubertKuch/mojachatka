@@ -23,7 +23,7 @@ const TopStateBlock = ({ user, stats }) => {
       text: "Pozostale podbicia na glowna",
       title: user?.UserBoosts?.filter(
         (b) =>
-          b.properties.properties?.boostType === "MAIN" &&
+          b.properties.properties?.properties?.boostType === "MAIN" &&
           !b.properties.properties?.used,
       ).length,
       icon: "fa-solid fa-globe",
@@ -32,7 +32,7 @@ const TopStateBlock = ({ user, stats }) => {
       text: "Pozostale podbicia na liste",
       title: user?.UserBoosts?.filter(
         (b) =>
-          b.properties.properties?.boostType === "GLOBAL" &&
+          b.properties.properties?.properties?.boostType === "GLOBAL" &&
           !b.properties.properties?.used,
       ).length,
       icon: "fa-solid fa-globe",

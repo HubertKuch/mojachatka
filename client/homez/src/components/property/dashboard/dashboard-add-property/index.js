@@ -10,17 +10,6 @@ import OffersControllers from "@/controllers/OffersController";
 import { flatten } from "flat";
 
 const AddPropertyTabContent = () => {
-  const controls = ["nav-item1", "nav-item2", "nav-item3", "nav-item4"];
-  const [currentTab, setCurrentTab] = useState(0);
-
-  useEffect(() => {
-    if (window?.document) {
-      console.log(
-        document.querySelector(`[aria-controls=${controls[currentTab]}]`),
-      );
-    }
-  }, [currentTab]);
-
   return (
     <>
       <Formik
@@ -44,8 +33,8 @@ const AddPropertyTabContent = () => {
         }) => {
           return (
             <>
-              {Object.values(flatten(errors)).map((err) => (
-                <div className="error" style={{ textAlign: "left" }}>
+              {Object.values(flatten(errors)).map((err, key) => (
+                <div className="error" key={key} style={{ textAlign: "left" }}>
                   {err}
                 </div>
               ))}
