@@ -12,15 +12,7 @@ const Footer = () => {
           <div className="col-auto">
             <div className="copyright-widget">
               <p className="text">
-                © Homez {currentYear}{" "}
-                <a
-                  href="https://themeforest.net/user/ib-themes"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  ib-themes
-                </a>{" "}
-                - Wszelkie prawa zastrzeżone
+                © Mojachatka {currentYear} - Wszelkie prawa zastrzeżone
               </p>
             </div>
           </div>

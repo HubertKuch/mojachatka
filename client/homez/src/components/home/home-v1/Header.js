@@ -6,12 +6,16 @@ import LoginSignupModal from "@/components/common/login-signup-modal";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import useStore from "@/store/store";
+import useUser from "@/hooks/useUser";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
-  const isLoggedIn = useStore((s) => s.isLoggedIn);
-  const user = useStore((s) => s.user);
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const user = useUser({ reload: true });
+
+  useEffect(() => {
+    if (user) setLoggedIn(true);
+  }, [user]);
 
   const changeBackground = () => {
     if (window?.scrollY >= 10) {

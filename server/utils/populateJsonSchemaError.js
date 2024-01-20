@@ -1,9 +1,9 @@
 function getMessage(type, field, def) {
   const MESSAGE_BY_TYPE = {
-    required: `Pole nie moze byc puste`,
-    minLength: `Pole musi miec conajmniej ${def.minLength} znakow`,
-    maxLength: `Pole nie moze przekraczzac ${def.maxLength} znakow`,
-    type: `Pole niepoprawne`,
+    required: `Pole ${def?.label} nie moze byc puste`,
+    minLength: `Pole ${def?.label} musi miec conajmniej ${def.minLength} znakow`,
+    maxLength: `Pole ${def?.label} nie moze przekraczzac ${def.maxLength} znakow`,
+    type: `Pole ${field} niepoprawne`,
   };
 
   return MESSAGE_BY_TYPE[type] || "";

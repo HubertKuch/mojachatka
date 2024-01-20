@@ -25,14 +25,14 @@ class AuthController {
       const { email, password } = req.body;
 
       if (!email || !password) {
-        res.status(400).json({ message: "You must provide login credentials" });
+        res.status(400).json({ message: "Niepoprawne dane" });
         return;
       }
 
       const existingUser = await GetUserByEmail(email);
 
       if (!existingUser) {
-        res.status(403).json({ message: "Invalid login credentialsss" });
+        res.status(403).json({ message: "Niepoprawne dane" });
         return;
       }
 
@@ -42,7 +42,7 @@ class AuthController {
       );
 
       if (!validPassword) {
-        res.status(403).json({ message: "Invalid login credentials" });
+        res.status(403).json({ message: "Niepoprawne dane" });
         return;
       }
 
@@ -124,7 +124,7 @@ class AuthController {
         /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
       if (!emailRegex.test(body.email)) {
-        res.status(400).json({ message: "Invalid Email" });
+        res.status(400).json({ message: "Niepoprawny mail" });
         return;
       }
 
@@ -135,12 +135,12 @@ class AuthController {
       }));
 
       if (checkEmail) {
-        res.status(400).json({ message: "Email already exists." });
+        res.status(400).json({ message: "Mail istnieje." });
         return;
       }
 
       if (body.password !== body.passwordRepeat) {
-        res.status(400).json({ message: "Passwords must match" });
+        res.status(400).json({ message: "Hasła różnią się" });
         return;
       }
 

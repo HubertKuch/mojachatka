@@ -7,6 +7,7 @@ const LocationField = dynamic(() => import("./LocationField"), { ssr: false });
 import DetailsFiled from "./details-field";
 import { Form, Formik, useFormikContext } from "formik";
 import OffersControllers from "@/controllers/OffersController";
+import { flatten } from "flat";
 
 const AddPropertyTabContent = () => {
   return (
@@ -28,9 +29,15 @@ const AddPropertyTabContent = () => {
           setFieldValue,
           values: { type },
           values,
+          errors,
         }) => {
           return (
             <>
+              {Object.values(flatten(errors)).map((err) => (
+                <div className="error" style={{ textAlign: "left" }}>
+                  {err}
+                </div>
+              ))}
               <nav>
                 <div className="nav nav-tabs" id="nav-tab2" role="tablist">
                   <button
@@ -149,6 +156,8 @@ const AddPropertyTabContent = () => {
                                 err.message,
                               );
                             });
+
+                            window?.scrollTo(0, 0);
                           } else {
                             document.location.replace(
                               "/dashboard-my-properties",
