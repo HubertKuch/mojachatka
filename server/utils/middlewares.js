@@ -6,8 +6,12 @@ async function isAuthenticated(req, res, next) {
   const token = req.cookies["auth-token"];
   const refreshToken = req.cookies["refresh-token"];
 
-  if (!token) {
-    res.status(401).json({ message: "Token not provided" });
+  if (!token || !refreshToken) {
+    res
+      .status(401)
+      .clearCookie("auth-token")
+      .clearCookie("refresh-token")
+      .json({ message: "Token not provided" });
     return;
   }
 

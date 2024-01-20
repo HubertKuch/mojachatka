@@ -2,10 +2,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import ContactInfo from "./ContactInfo";
-import Social from "./Social";
 import ProSidebarContent from "./ProSidebarContent";
+import useUser from "@/hooks/useUser";
 
 const MobileMenu = () => {
+  const user = useUser();
+
   return (
     <div className="mobilie_header_nav stylehome1">
       <div className="mobile-menu">
@@ -34,7 +36,7 @@ const MobileMenu = () => {
                   alt="logo"
                 />
               </Link>
-              <Link href="/logowanie">
+              <Link href={user ? "/dashboard-home" : "/logowanie"}>
                 <span className="icon fz18 far fa-user-circle" />
               </Link>
             </div>

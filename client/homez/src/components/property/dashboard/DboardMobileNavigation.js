@@ -9,67 +9,47 @@ const DboardMobileNavigation = () => {
 
   const sidebarItems = [
     {
-      title: "MAIN",
+      title: "",
       items: [
         {
           href: "/dashboard-home",
           icon: "flaticon-discovery",
-          text: "Dashboard",
-        },
-        {
-          href: "/dashboard-message",
-          icon: "flaticon-chat-1",
-          text: "Message",
+          text: "Panel",
         },
       ],
     },
     {
-      title: "MANAGE LISTINGS",
+      title: "Oferty",
       items: [
         {
           href: "/dashboard-add-property",
           icon: "flaticon-new-tab",
-          text: "Add New Property",
+          text: "Dodaj",
         },
         {
           href: "/dashboard-my-properties",
           icon: "flaticon-home",
-          text: "My Properties",
-        },
-        {
-          href: "/dashboard-my-favourites",
-          icon: "flaticon-like",
-          text: "My Favorites",
-        },
-        {
-          href: "/dashboard-saved-search",
-          icon: "flaticon-search-2",
-          text: "Saved Search",
-        },
-        {
-          href: "/dashboard-reviews",
-          icon: "flaticon-review",
-          text: "Reviews",
+          text: "Twoje",
         },
       ],
     },
     {
-      title: "MANAGE ACCOUNT",
+      title: "Konto",
       items: [
         {
           href: "/dashboard-my-package",
           icon: "flaticon-protection",
-          text: "My Package",
+          text: "Wykupione pakiety",
         },
         {
           href: "/dashboard-my-profile",
           icon: "flaticon-user",
-          text: "My Profile",
+          text: "Profil",
         },
         {
           href: "/login",
           icon: "flaticon-logout",
-          text: "Logout",
+          text: "Wyloguj sie",
         },
       ],
     },
@@ -82,7 +62,7 @@ const DboardMobileNavigation = () => {
           className="dropbtn"
           onClick={() => setIsDropdownOpen((prevOpen) => !prevOpen)}
         >
-          <i className="fa fa-bars pr10" /> Dashboard Navigation
+          <i className="fa fa-bars pr10" /> Nawigacja
         </button>
         <ul className={`dropdown-content ${isDropdownOpen ? "show" : ""}`}>
           {sidebarItems.map((section, sectionIndex) => (
