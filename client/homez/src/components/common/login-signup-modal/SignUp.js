@@ -13,9 +13,15 @@ import UserController from "@/controllers/UserController";
 import Stepper from "react-stepper-horizontal";
 
 const SignUp = () => {
-  const [accountType, setAccountType] = useState("INDIVIDUAL");
-  const [steps, setSteps] = useState([]);
-  const [stepsTitles, setStepsTitles] = useState([]);
+  const [accountType, setAccountType] = useState(null);
+  const [steps, setSteps] = useState([
+    <AccountType
+      key={Math.random()}
+      accountType={accountType}
+      setAccountType={setAccountType}
+    />,
+  ]);
+  const [stepsTitles, setStepsTitles] = useState(["Typ konta"]);
   const { register, handleSubmit, formState } = useForm({ mode: "all" });
   const [endDataToDisplay, setEndDataToDisplay] = useState({});
   const formRef = useRef();

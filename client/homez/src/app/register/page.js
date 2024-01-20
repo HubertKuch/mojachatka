@@ -33,7 +33,7 @@ const Register = () => {
           >
             <div
               className="col-lg-6"
-              style={{ position: "relative", left: "25%", minHeight: "100%" }}
+              style={{ position: "relative", minHeight: "100%" }}
             >
               <div className="log-reg-form signup-modal form-style1 bgc-white p50 p30-sm default-box-shadow2 bdrs12">
                 <div className="text-center mb40">

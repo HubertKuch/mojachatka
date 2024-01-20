@@ -15,19 +15,27 @@ const PriceRange = ({ filters }) => {
   return (
     <>
       <div className="range-wrapper">
-        <InputRange
-          formatLabel={() => ``}
-          maxValue={1000000}
-          minValue={0}
-          value={{ min: price.value.min, max: price.value.max }}
-          onChange={(value) => handleOnChange(value)}
-          id="slider"
-        />
         <div className="d-flex align-items-center">
-          <span id="slider-range-value1">{price.value.min}zl</span>
+          <input
+            type="number"
+            id="slider-range-value1"
+            onInput={(e) =>
+              setPrice((prev) => ({
+                value: { ...prev.value, min: e.target.value },
+              }))
+            }
+          />
           <i className="fa-sharp fa-solid fa-minus mx-2 dark-color icon" />
-          <span id="slider-range-value2">{price.value.max}zl</span>
-        </div>
+          <input
+            type="number"
+            id="slider-range-value2"
+            onInput={(e) =>
+              setPrice((prev) => ({
+                value: { ...prev.value, max: e.target.value },
+              }))
+            }
+          />
+        </div>{" "}
       </div>
     </>
   );
