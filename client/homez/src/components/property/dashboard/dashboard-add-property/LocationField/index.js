@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
-const Map = dynamic(() => import("./Map"), { ssr: false });
+import { Map } from "./Map.js";
 import useRegion from "@/hooks/useRegion";
 import Select from "react-select";
 import { Field } from "formik";
@@ -121,7 +121,7 @@ const LocationField = ({ onChange }) => {
             <label className="heading-color ff-heading fw600 mb30">
               Miejsce na mapie
             </label>
-            <Map onChange={onChange} />
+            <Map />
           </div>
         </div>
       </div>

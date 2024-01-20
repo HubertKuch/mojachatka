@@ -13,7 +13,7 @@ const ProSidebarContent = () => {
     <Sidebar width="100%" backgroundColor="#fff" className="my-custom-class">
       <Menu>
         {mobileMenuItems.map((item, index) => (
-          <h3>
+          <h3 key={index}>
             {" "}
             <Link href={item.path}>{item.label}</Link>
           </h3>
