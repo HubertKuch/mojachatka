@@ -10,6 +10,8 @@ const PropertyAddress = ({ offer }) => {
         city: offer.properties.address.city,
         state: offer.properties.address.region,
         zipCode: offer.properties.address.zipCode,
+        house: offer.properties.address.houseNumber,
+        local: offer.properties.address.localNumber,
       });
     }
   }, [offer]);
@@ -23,12 +25,16 @@ const PropertyAddress = ({ offer }) => {
             <p className="fw600 mb10 ff-heading dark-color">Miasto</p>{" "}
             <p className="fw600 mb-0 ff-heading dark-color">Wojewodztwo</p>{" "}
             <p className="fw600 mb-0 ff-heading dark-color">Kod pocztowy</p>{" "}
+            <p className="fw600 mb-0 ff-heading dark-color">Nr domu</p>{" "}
+            <p className="fw600 mb-0 ff-heading dark-color">Nr lokalu</p>{" "}
           </div>
           <div className="pd-list">
             <p className="text mb10">{address.address}</p>
             <p className="text mb10">{address.city}</p>
             <p className="text mb-0">{address.state}</p>
             <p className="text mb-0">{address.zipCode}</p>
+            <p className="text mb-0">{address.house}</p>
+            <p className="text mb-0">{address.local}</p>
           </div>
         </div>
       </div>

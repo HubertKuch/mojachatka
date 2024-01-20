@@ -85,52 +85,6 @@ const AdvanceFilterModal = ({ filters }) => {
             {/* End .col-md-6 */}
           </div>
           {/* End .row */}
-
-          <div className="row">
-            <div className="col-sm-6">
-              <div className="widget-wrapper">
-                <h6 className="list-title">Lokalizacja</h6>
-                <div className="form-style2 input-group"></div>
-              </div>
-            </div>
-            {/* End .col-md-6 */}
-
-            <div className="col-sm-6">
-              <div className="widget-wrapper">
-                <h6 className="list-title">Powierzchnia - nie dziala</h6>
-                <div className="space-area">
-                  <div className="d-flex align-items-center justify-content-between">
-                    <div className="form-style1">
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Min."
-                      />
-                    </div>
-                    <span className="dark-color">-</span>
-                    <div className="form-style1">
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Max"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* End .col-md-6 */}
-          </div>
-          {/* End .row */}
-
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="widget-wrapper mb0">
-                <h6 className="list-title mb10">Udogodnienia</h6>
-              </div>
-            </div>
-            <Amenities filters={filters} />
-          </div>
         </div>
         {/* End modal body */}
 

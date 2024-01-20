@@ -52,20 +52,11 @@ const SingleAgentInfo = ({ id }) => {
           <div>
             <span className="title mb-1">
               <i className="flaticon-call pe-1 ps-1" />
-              {user?.phoneNumber}
+              {user?.telephone}
             </span>
           </div>
 
           <br />
-          <div>
-            <button
-              style={{ width: "100%" }}
-              onClick={() => setIsOpen(!modalIsOpen)}
-              className="btn-thm rounded"
-            >
-              Wyslij wiadomosc
-            </button>
-          </div>
         </div>
       </div>
     </>

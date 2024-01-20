@@ -6,7 +6,7 @@ class UserService {
   }
 
   static async getPublicUser(id) {
-    return await db.user.findUnique({
+    const user = await db.user.findUnique({
       where: {
         id,
       },
@@ -16,8 +16,13 @@ class UserService {
         firstName: true,
         lastName: true,
         SocialMedia: true,
+        telehpone: true,
       },
     });
+
+    user.username = `${user.firstName} ${user.lastName}`;
+
+    return user;
   }
 }
 

@@ -68,7 +68,7 @@ function PlotDetails({ offer }) {
                 CITY: "Miasto",
                 OUTSKIRTS: "Przedmieścia",
                 CONTRYSIDE: "Wieś",
-              }[offer?.properties?.plot?.media?.location],
+              }[offer?.properties?.plot?.location],
             },
             {
               label: "Dostęp do drogi",
@@ -76,7 +76,7 @@ function PlotDetails({ offer }) {
                 FIELD: "Polna",
                 PAVED: "Brukowana",
                 ASPHALT: "Asfaltowa",
-              }[offer?.properties?.plot?.media?.roadAccess],
+              }[offer?.properties?.plot?.roadAccess],
             },
             {
               label: "Ogrodzenie",
@@ -89,11 +89,7 @@ function PlotDetails({ offer }) {
                 METAL: "Metalowe",
                 HEDGE: "Żywopłot",
                 OTHER: "Inne",
-              }[offer?.properties?.plot?.media?.fence],
-            },
-            {
-              label: "Dostępny od",
-              value: offer.properties.plot.availableFrom,
+              }[offer?.properties?.plot?.fence],
             },
             {
               label: "Dostępny od",
