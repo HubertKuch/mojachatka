@@ -5,9 +5,7 @@ export default function useAmenities() {
   const [features, setFeatures] = useState([]);
 
   useEffect(() => {
-    return () => {
-      FeatureController.findAll().then(setFeatures);
-    };
+    FeatureController.findAll().then(setFeatures);
   }, []);
 
   return features;

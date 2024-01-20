@@ -5,9 +5,7 @@ export default function useSellType() {
   const [sellTypes, setSellTypes] = useState([]);
 
   useEffect(() => {
-    return () => {
-      OffersControllers.getSellTypes().then(setSellTypes);
-    };
+    OffersControllers.getSellTypes().then(setSellTypes);
   }, []);
 
   return sellTypes.map((type) => {

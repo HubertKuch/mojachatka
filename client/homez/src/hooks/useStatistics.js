@@ -7,9 +7,7 @@ const useStatistics = () => {
   const [stats, setStats] = useState({});
 
   useEffect(() => {
-    return () => {
-      StatisticsController.getStatistics().then(setStats);
-    };
+    StatisticsController.getStatistics().then(setStats);
   }, []);
 
   return stats;

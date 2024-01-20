@@ -7,9 +7,7 @@ function useCatsStats() {
   const [cats, setCats] = useState([]);
 
   useEffect(() => {
-    return () => {
-      OffersControllers.getCats().then(setCats);
-    };
+    OffersControllers.getCats().then(setCats);
   }, []);
 
   return cats;

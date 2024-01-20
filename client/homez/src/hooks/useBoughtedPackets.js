@@ -5,9 +5,7 @@ export default function useBoughtedPackets() {
   const [packets, setPackets] = useState([]);
 
   useEffect(() => {
-    return () => {
-      AccountPacketsController.getBoughtedPackets().then(setPackets);
-    };
+    AccountPacketsController.getBoughtedPackets().then(setPackets);
   }, []);
 
   return packets;

@@ -8,13 +8,11 @@ const useOffers = (query) => {
 
   useEffect(() => {
     if (query.random && query.type) {
-      return () => {
-        OffersControllers.getRandom(query.type).then(setOffers);
-      };
+      OffersControllers.getRandom(query.type).then(setOffers);
     } else {
-      return async () => {
-        setOffers((await OffersControllers.findAll(query)).offers.data);
-      };
+      OffersControllers.findAll(query).then((res) =>
+        setOffers(res.offers.data),
+      );
     }
   }, [query]);
 

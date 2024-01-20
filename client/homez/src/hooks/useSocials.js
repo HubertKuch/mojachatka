@@ -7,9 +7,7 @@ const useSocials = () => {
   const [socials, setSocials] = useState([]);
 
   useEffect(() => {
-    return () => {
-      SocialMediaController.getSocialMedia().then(setSocials);
-    };
+    SocialMediaController.getSocialMedia().then(setSocials);
   }, []);
 
   return socials;

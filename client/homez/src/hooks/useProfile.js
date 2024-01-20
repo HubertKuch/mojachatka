@@ -4,8 +4,6 @@ const { useState, useEffect } = require("react");
 const useProfile = (id) => {
   const [user, setUser] = useState(null);
 
-  console.log(id);
-
   if (!id) {
     return {};
   }

@@ -8,8 +8,6 @@ const useAuth = ({ redirect } = { redirect: true }) => {
 
   useEffect(() => {
     AuthController.authenticated().then(setAuth);
-
-    return () => {};
   });
 
   useEffect(() => {

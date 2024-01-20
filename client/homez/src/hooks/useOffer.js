@@ -7,9 +7,7 @@ const useOffer = (id) => {
   const [offer, setOffer] = useState({});
 
   useEffect(() => {
-    return async () => {
-      setOffer(await OffersControllers.findOneById(id));
-    };
+    OffersControllers.findOneById(id).then(setOffer);
   }, [id]);
 
   return offer;
