@@ -18,7 +18,7 @@ const LocationField = ({ onChange }) => {
         <div className="col-sm-12">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
-              Miejscowosc
+              Miejscowość
               <ReactSelect
                 onInputChange={(val) => {
                   if (val.length <= 2) {

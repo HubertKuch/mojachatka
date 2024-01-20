@@ -38,7 +38,7 @@ const ListingSidebar = ({ filters, setPageItems, setPageCapacity }) => {
       {/* End .widget-wrapper */}
 
       <div className="widget-wrapper">
-        <h6 className="list-title">Przedzial cenowy</h6>
+        <h6 className="list-title">Przedział cenowy</h6>
         {/* Range Slider Desktop Version */}
         <div className="range-slider-style1">
           <PriceSlider filters={filters} />
@@ -55,7 +55,7 @@ const ListingSidebar = ({ filters, setPageItems, setPageCapacity }) => {
       {/* End .widget-wrapper */}
 
       <div className="widget-wrapper">
-        <h6 className="list-title">Lazienki</h6>
+        <h6 className="list-title">Łazienki</h6>
         <div className="d-flex">
           <Bathroom filters={filters} />
         </div>
@@ -65,7 +65,7 @@ const ListingSidebar = ({ filters, setPageItems, setPageCapacity }) => {
       <div className="widget-wrapper advance-feature-modal">
         <div className="form-style2 input-group">
           <label className="heading-color ff-heading fw600 mb10">
-            Miejscowosc
+            Miejscowość
             <ReactSelect
               onChange={(val) => {
                 filters.city = val.value;

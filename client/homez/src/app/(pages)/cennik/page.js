@@ -25,7 +25,7 @@ const PricingPlan = () => {
             <div className="row" data-aos="fade-up" data-aos-delay="100">
               <div className="col-lg-6 offset-lg-3">
                 <div className="main-title text-center mb30">
-                  <h2>Pakiety dla Developera</h2>
+                  <h2>Pakiety dla dewelopera</h2>
                 </div>
               </div>
             </div>

@@ -31,7 +31,7 @@ export default function SellTypesSelect({ set, filters, onChange }) {
         if (onChange) onChange("sellType")(e.value);
       }}
       options={[
-        { label: "Najm", value: "RENT" },
+        { label: "Wynajem", value: "RENT" },
         { label: "Sprzedaż", value: "BUY" },
       ]}
       styles={customStyles}

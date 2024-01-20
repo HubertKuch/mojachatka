@@ -50,7 +50,9 @@ const PropertiesByCities = () => {
                 <Link href="#">
                   <div className="feature-content">
                     <div className="top-area">
-                      <h6 className="title mb-1">{city.name}</h6>
+                      <h4 className="title mb-1" style={{ color: "black" }}>
+                        {city.name}
+                      </h4>
                     </div>
                   </div>
                 </Link>

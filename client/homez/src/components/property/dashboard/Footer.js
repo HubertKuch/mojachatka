@@ -1,10 +1,6 @@
 import React from "react";
 
-const footerLinks = [
-  { text: "Privacy", href: "#" },
-  { text: "Terms", href: "#" },
-  { text: "Sitemap", href: "#" },
-];
+const footerLinks = [{ text: "Warunki", href: "/regulamin" }];
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -24,7 +20,7 @@ const Footer = () => {
                 >
                   ib-themes
                 </a>{" "}
-                - All rights reserved
+                - Wszelkie prawa zastrzeżone
               </p>
             </div>
           </div>

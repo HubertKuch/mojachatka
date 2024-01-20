@@ -55,7 +55,7 @@ const PaginationTwo = ({ pageNumber, setPageNumber, data, pageCapacity }) => {
 
         {data.length > pageCapacity * 4 && pageNumber != 4 && <span>...</span>}
         {pageNumber > 3 &&
-        Math.ceil(data.length / pageCapacity) != pageNumber ? (
+          Math.ceil(data.length / pageCapacity) != pageNumber ? (
           <li
             className={"active page-item"}
             onClick={() => setPageNumber(Math.ceil(data.length / pageCapacity))}
@@ -91,7 +91,7 @@ const PaginationTwo = ({ pageNumber, setPageNumber, data, pageCapacity }) => {
       <p className="mt10 pagination_page_count text-center">
         {(pageNumber - 1) * 8 + 1}-
         {pageNumber * 8 > data.length ? data.length : pageNumber * 8} of{" "}
-        {data.length}+ property available
+        {data.length}+ dostępnych ofert
       </p>
     </div>
   );

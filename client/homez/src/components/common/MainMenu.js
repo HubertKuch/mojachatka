@@ -69,7 +69,7 @@ const MainMenu = () => {
 
       <li className="megamenu_style dropitem">
         <a className="list-item" href="/cennik">
-          <span className={topMenu == "listing" ? "title menuActive" : "title"}>
+          <span className={topMenu == "cennik" ? "title menuActive" : "title"}>
             Cennik
           </span>
           <span className=""></span>
@@ -79,9 +79,7 @@ const MainMenu = () => {
 
       <li className="visible_list dropitem">
         <a className="list-item" href="/about">
-          <span
-            className={topMenu == "property" ? "title menuActive" : "title"}
-          >
+          <span className={topMenu == "about" ? "title menuActive" : "title"}>
             O nas
           </span>
           <span className=""></span>
@@ -93,7 +91,7 @@ const MainMenu = () => {
 
       <li className="visible_list dropitem">
         <a className="list-item" href="/faq">
-          <span className={topMenu == "pages" ? "title menuActive" : "title"}>
+          <span className={topMenu == "faq" ? "title menuActive" : "title"}>
             Faq
           </span>
           <span className=""></span>

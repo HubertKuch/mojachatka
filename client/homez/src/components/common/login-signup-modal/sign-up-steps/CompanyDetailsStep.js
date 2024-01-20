@@ -58,7 +58,7 @@ export default function CompanyDetailsStep({ register }) {
         />
       </div>
       <div>
-        <label htmlFor="city">Miejscowosc</label>
+        <label htmlFor="city">Miejscowość</label>
         <input
           {...register("city", { required: true })}
           className="form-control"

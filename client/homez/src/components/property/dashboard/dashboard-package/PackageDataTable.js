@@ -6,13 +6,13 @@ const PackageDataTable = ({ packages }) => {
       <thead className="t-head">
         <tr>
           <th scope="col">Nazwa</th>
-          <th scope="col">Ogloszenia</th>
+          <th scope="col">Ogłoszenia</th>
           <th scope="col">Podbicia</th>
-          <th scope="col">Znizka na podbicia</th>
+          <th scope="col">Zniżka na podbicia</th>
           <th scope="col">Data zakupu</th>
-          <th scope="col">Ilosc dni</th>
-          <th scope="col">Data wygasniecia</th>
-          <th scope="col">Czy wygasl</th>
+          <th scope="col">Ilość dni</th>
+          <th scope="col">Data wygaśnięcia</th>
+          <th scope="col">Czy wygasł</th>
         </tr>
       </thead>
       <tbody className="t-body">
@@ -23,8 +23,7 @@ const PackageDataTable = ({ packages }) => {
             <td>
               {packageItem.properties.boosts.map(
                 (b) =>
-                  `${b.type === "MAIN" ? "Glowne" : "Standardowe"} na ${
-                    b.days
+                  `${b.type === "MAIN" ? "Glowne" : "Standardowe"} na ${b.days
                   } dni`,
               )}
             </td>
