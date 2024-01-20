@@ -61,7 +61,9 @@ const DetailsFiled = () => {
         <button
           type="submit"
           className="form-control ud-btn btn-white2"
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
+
             OffersControllers.createOffer({ data: values }).then((res) => {
               if (res.status !== 200) {
                 res.body.message.forEach((err) => {

@@ -16,7 +16,7 @@ const useOffers = (query) => {
         setOffers((await OffersControllers.findAll(query)).offers.data);
       };
     }
-  }, []);
+  }, [query]);
 
   return offers;
 };

@@ -10,7 +10,7 @@ const useOffer = (id) => {
     return async () => {
       setOffer(await OffersControllers.findOneById(id));
     };
-  }, []);
+  }, [id]);
 
   return offer;
 };

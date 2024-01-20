@@ -11,7 +11,7 @@ export default function useUser({ reload } = { reload: false }) {
         setUser(user.body.user);
       });
     }
-  }, []);
+  }, [reload]);
 
   return user;
 }

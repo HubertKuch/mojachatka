@@ -13,7 +13,7 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
 
   useEffect(() => {
     setMeta(offers?.meta);
-  }, [offers]);
+  }, [offers, setMeta]);
 
   return (
     <table className="table-style3 table at-savesearch">
