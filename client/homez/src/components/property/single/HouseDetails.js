@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PropertyDetails from "../property-single-style/common/PropertyDetails";
+import formatPrice from "@/utilis/price";
 
 function HouseDatails({ offer }) {
   const [columns, setColumns] = useState([]);
@@ -11,8 +12,8 @@ function HouseDatails({ offer }) {
           {
             label: "Cena",
             value: offer.price
-              ? offer.price + "zl"
-              : `${offer.pricePerMonth}zl / mo`,
+              ? formatPrice(offer.price)
+              : `${formatPrice(offer.pricePerMonth)} / mo`,
           },
           {
             label: "Powierzchnia dzialki",

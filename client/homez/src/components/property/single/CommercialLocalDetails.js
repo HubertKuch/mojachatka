@@ -6,29 +6,31 @@ function CommercialLocalDetails({ offer }) {
   const [columns, setColumns] = useState([]);
 
   useEffect(() => {
-    if (offer) {
+    if (offer && offer.properties.commercialLocal) {
       setColumns(
         chunk(
           [
             {
               label: "Dostępny od",
-              value: offer.properties.commercialLocal.availableFrom,
+              value: offer.properties.commercialLocal?.availableFrom,
             },
             {
               label: "Rok budowy",
-              value: offer.properties.commercialLocal.buildYear,
+              value: offer.properties.commercialLocal?.buildYear,
             },
             {
               label: "Piętro",
-              value: offer.properties.commercialLocal.floor,
+              value: offer.properties.commercialLocal?.floor,
             },
             {
               label: "Powierzchnia",
-              value: offer.properties.commercialLocal.area + "m2",
+              value: offer.properties.commercialLocal?.area
+                ? offer.properties.commercialLocal?.area + "m2"
+                : "-",
             },
             {
               label: "Na rynku pierwotnym",
-              value: offer.properties.commercialLocal.primaryMarket,
+              value: offer.properties?.commercialLocal?.primaryMarket,
             },
             {
               label: "Przeznaczenie",
@@ -39,7 +41,7 @@ function CommercialLocalDetails({ offer }) {
                 INDUSTRIAL: "Przemysłowy",
                 HOTEL: "Hotel",
                 COMMERCIAL: "Handlowy",
-              }[offer.properties.commercialLocal.destiny],
+              }[offer.properties?.commercialLocal.destiny],
             },
             {
               label: "Dostępny od",
@@ -51,7 +53,7 @@ function CommercialLocalDetails({ offer }) {
                 PRIVATEHOUSE: "Dom prywatny",
                 HISTORICBUILDING: "Budynek zabytkowy",
                 SEPARATEOBJECT: "Oddzielny obiekt",
-              }[offer.properties.commercialLocal.localLocation],
+              }[offer.properties?.commercialLocal?.localLocation],
             },
             {
               label: "Stan",

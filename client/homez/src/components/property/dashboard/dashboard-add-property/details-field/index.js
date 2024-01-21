@@ -12,11 +12,11 @@ import {
 import { useFormikContext } from "formik";
 import React, { useEffect, useState } from "react";
 
-const DetailsFiled = () => {
+const DetailsFiled = ({ success }) => {
   const {
     setFieldValue,
     values: {
-      properties: { },
+      properties: {},
       type,
     },
     values,
@@ -60,6 +60,7 @@ const DetailsFiled = () => {
       <div className="row">
         <button
           type="submit"
+          disabled={success}
           className="form-control ud-btn btn-white2"
           onClick={(e) => {
             e.preventDefault();

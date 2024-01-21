@@ -230,12 +230,11 @@ model Offers {
   region        Region?
   type          OfferType
   sellType      SellType
-  lat           Float
-  lng           Float
   isBoosted     Boolean        @default(false)
   boostType     String?
   properties    Json
   expires       DateTime
+  deleted       Boolean        @default(false)
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
   createdOnIp   String

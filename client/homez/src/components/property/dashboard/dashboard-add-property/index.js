@@ -10,6 +10,7 @@ import OffersControllers from "@/controllers/OffersController";
 import { flatten } from "flat";
 
 const AddPropertyTabContent = () => {
+  const [success, setSuccess] = useState(false);
   return (
     <>
       <Formik
@@ -38,6 +39,20 @@ const AddPropertyTabContent = () => {
                   {err}
                 </div>
               ))}
+              {success && (
+                <div
+                  className="primary"
+                  style={{
+                    borderRadius: "20px",
+                    border: "2px solid #00968a",
+                    textAlign: "center",
+                    fontSize: "1rem",
+                    padding: "15px",
+                  }}
+                >
+                  Oferta dodana!
+                </div>
+              )}
               <nav>
                 <div className="nav nav-tabs" id="nav-tab2" role="tablist">
                   <button
@@ -137,7 +152,10 @@ const AddPropertyTabContent = () => {
                     aria-labelledby="nav-item4-tab"
                   >
                     <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-                      <DetailsFiled setValue={setFieldValue} />
+                      <DetailsFiled
+                        success={success}
+                        setValue={setFieldValue}
+                      />
                     </div>
                   </div>
                 </div>

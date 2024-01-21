@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PropertyDetails from "../property-single-style/common/PropertyDetails";
 import chunk from "chunk";
+import formatPrice from "@/utilis/price";
 
 function ApartmentDatails({ offer }) {
   const [columns, setColumns] = useState([]);
@@ -11,18 +12,10 @@ function ApartmentDatails({ offer }) {
         chunk(
           [
             {
-              label: "Property Type",
-              value: offer.type,
-            },
-            {
-              label: "Property Status",
-              value: offer.sellType,
-            },
-            {
               label: "Cena",
               value: offer.price
-                ? offer.price + "zl"
-                : `${offer.pricePerMonth}zl / mo`,
+                ? formatPrice(offer.price)
+                : `${formatPrice(offer.pricePerMonth)} / mo`,
             },
             {
               label: "Piętro",

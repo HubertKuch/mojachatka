@@ -8,6 +8,7 @@ import Pricing from "@/components/pages/pricing/Pricing";
 import BoostingController from "@/controllers/BoostingController";
 import useBoosts from "@/hooks/useBoosts";
 import useStore from "@/store/store";
+import formatPrice from "@/utilis/price";
 import { useState } from "react";
 import Popup from "reactjs-popup";
 
@@ -127,7 +128,7 @@ const PricingPlan = () => {
               <div className={`pricing_packages`}>
                 <div className="heading mb60">
                   <h4 className={`package_title `}>{item.name}</h4>
-                  <p className="text">{item.price / 100} PLN</p>
+                  <p className="text">{formatPrice(item.price / 100)}</p>
                 </div>
                 <div className="details">
                   <div className="d-grid">

@@ -23,7 +23,7 @@ const Pricing = ({ type, user }) => {
                   <h4 className={`package_title ${item.uniqueClass || ""}`}>
                     {item.name}
                   </h4>
-                  <p className="text">{item.price / 100} PLN</p>
+                  <p className="text">{formatPrice(item.price / 100)} PLN</p>
                   <Image
                     width={70}
                     height={70}
@@ -34,7 +34,7 @@ const Pricing = ({ type, user }) => {
                 </div>
                 <div className="details">
                   <div className="list-style1 mb40">
-                    <h4>Profity</h4>
+                    <h4>Zawartość pakietu</h4>
                     <ul>
                       {item.properties.fields.map((feature, featureIndex) => (
                         <li key={featureIndex}>
@@ -42,35 +42,6 @@ const Pricing = ({ type, user }) => {
                           {feature}
                         </li>
                       ))}
-                    </ul>
-                    <h4>Podbicia</h4>
-                    <ul>
-                      {dedupe(
-                        item.properties.boosts
-                          .map((boost, idx, arr) => {
-                            const counts = {};
-                            arr.forEach((item) => {
-                              const key = JSON.stringify(item);
-                              counts[key] = (counts[key] || 0) + 1;
-                            });
-
-                            return arr.map((item) => {
-                              const key = JSON.stringify(item);
-                              return { ...item, x: counts[key] };
-                            });
-                          })
-                          .flat(2),
-                      ).map((boost, featureIndex) => {
-                        console.log(boost);
-                        return (
-                          <li key={featureIndex}>
-                            <i className="far fa-check text-white bgc-dark fz15" />
-                            Podbicie na {boost.days} dni{" "}
-                            {boost.type === "MAIN" ? "na strone glowna" : ""} x{" "}
-                            {boost.x}
-                          </li>
-                        );
-                      })}
                     </ul>
                   </div>
                   <div className="d-grid">

@@ -14,13 +14,12 @@ class UserService {
         id: true,
         type: true,
         firstName: true,
-        lastName: true,
         SocialMedia: true,
         telephone: true,
       },
     });
 
-    user.username = `${user.firstName} ${user.lastName}`;
+    user.username = `${user.firstName}`;
 
     return user;
   }

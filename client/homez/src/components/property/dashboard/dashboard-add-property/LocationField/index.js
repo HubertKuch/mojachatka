@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
-import { Map } from "./Map.js";
 import useRegion from "@/hooks/useRegion";
 import Select from "react-select";
 import { Field } from "formik";
@@ -115,15 +114,6 @@ const LocationField = ({ onChange }) => {
                 required
               />
             </div>
-          </div>
-        </div>
-
-        <div className="col-sm-12">
-          <div className="mb20 mt30" style={{ width: "100%", height: "400px" }}>
-            <label className="heading-color ff-heading fw600 mb30">
-              Miejsce na mapie
-            </label>
-            <Map />
           </div>
         </div>
       </div>

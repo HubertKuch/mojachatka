@@ -884,8 +884,6 @@ const createOfferSchema = {
           },
           label: "Typ sprzedaży",
         },
-        lat: { type: "number", label: "Szerokość geograficzna" },
-        lng: { type: "number", label: "Długość geograficzna" },
         features: {
           type: "array",
           uniqueItems: true,
