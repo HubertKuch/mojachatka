@@ -1,3 +1,12 @@
+const errsole = require("errsole");
+
+errsole.initialize({
+  framework: "express",
+  token: "96cdcfad-e59b-44f4-84d2-2cc1ca9923bb",
+  exitOnException: false,
+  evalExpression: true,
+});
+
 const express = require("express");
 const { createServer } = require("node:http");
 const { Server } = require("socket.io");

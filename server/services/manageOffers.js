@@ -1,17 +1,11 @@
 const { db } = require("../utils/db");
-const { getUserByID } = require("./getUsers");
-const { addDays } = require("../utils/addDays");
-const { Prisma } = require("@prisma/client");
+
 const { createPaginator } = require("prisma-pagination");
 const { createDirectory, createFile } = require("../utils/fileSystem");
 const uuid = require("uuid");
 const { join } = require("path");
 
 async function getOffers(page, perPage, boosted, user) {
-  // get 20 offers and give a pagination
-  // Sort it by the newest ones
-  // delete expiration from each one of them
-
   try {
     const paginate = createPaginator({ page: page, perPage: perPage });
 
@@ -52,11 +46,11 @@ async function getOffers(page, perPage, boosted, user) {
       },
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return "Server Error";
   }
 }
-// TU KURWA
+
 async function getUserOffers(page, perPage, userId) {
   try {
     const paginate = createPaginator({ page: page, perPage: perPage });
@@ -83,7 +77,7 @@ async function getUserOffers(page, perPage, userId) {
       },
     );
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return "Server Error";
   }
 }
@@ -125,8 +119,6 @@ async function appendImages(userId, offerId, properties) {
       img.replace(process.env.APP_MEDIA_PATH, process.env.APP_MEDIA_URL),
     );
 
-    console.log(properties);
-
     return await db.offers.update({
       where: {
         id: offerId,
@@ -139,102 +131,9 @@ async function appendImages(userId, offerId, properties) {
   }
 }
 
-async function postOffer(data, userId) {}
-
-async function postBoostedOffer(userId, offerId) {
-  const date = new Date();
-  const expiration = addDays(date, 15);
-
-  try {
-    const user = await getUserByID(userId);
-
-    if (user === "User not Found") {
-      return user;
-    }
-
-    if (user.bids === 0) {
-      return false;
-    }
-
-    const offer = await getOfferByID(offerId);
-
-    if (offer === "Offer not found") {
-      return offer;
-    }
-
-    offer.isBoosted = true;
-    offer.boostType = "GLOBAL";
-    offer.expires = expiration;
-
-    await db.BoostedOffers.create({
-      data: offer,
-    });
-
-    await db.user.update({
-      where: {
-        id: userId,
-      },
-      data: {
-        bids: user.bids - 1,
-      },
-    });
-
-    return true;
-  } catch (err) {
-    return "Server Error";
-  }
-}
-
-async function postBoostedMainOffer(userId, offerId) {
-  const date = new Date();
-  const expiration = addDays(date, 7);
-
-  try {
-    const user = await getUserByID(userId);
-
-    if (user === "User not Found") {
-      return user;
-    }
-
-    if (user.bids === 0) {
-      return false;
-    }
-
-    const offer = await getOfferByID(offerId);
-
-    if (offer === "Offer not found") {
-      return offer;
-    }
-
-    offer.isBoosted = true;
-    offer.boostType = "MAIN";
-    offer.expires = expiration;
-
-    await db.MainBoostedOffers.create({
-      data: offer,
-    });
-
-    await db.user.update({
-      where: {
-        id: userId,
-      },
-      data: {
-        premiumBids: user.premiumBids - 1,
-      },
-    });
-
-    return true;
-  } catch (err) {
-    return "Server Error";
-  }
-}
-
 module.exports = {
   getOffers,
   getOfferByID,
   getUserOffers,
-  postOffer,
-  postBoostedOffer,
-  postBoostedMainOffer,
   appendImages,
 };

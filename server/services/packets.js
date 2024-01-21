@@ -1,3 +1,4 @@
+const dayjs = require("dayjs");
 const { db } = require("../utils/db");
 const { initCheckoutSession } = require("./payments");
 
@@ -11,12 +12,14 @@ async function getUserAccountPackets(userId) {
   });
 
   return packets.map((packet) => {
-    packet.expiringDate = new Date(
-      Date.parse(packet.boughtAt) +
-      packet.properties.expirationDays * 24 * 60 * 1000,
+    const expiringDate = dayjs(packet.boughtAt).add(
+      packet.properties.expirationDays,
+      "days",
     );
 
-    packet.isExpired = Date.now() > packet.expiringDate.valueOf();
+    packet.expiringDate = expiringDate.toDate();
+
+    packet.isExpired = Date.now() > expiringDate.valueOf();
 
     return packet;
   });

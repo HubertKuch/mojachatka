@@ -3,6 +3,9 @@ const { PaymentsEventEmitter } = require("../emitters/PaymentEmitter");
 
 const instance = PaymentsEventEmitter.getInstance();
 
+/**
+ * @param {import("@prisma/client").AccountPacketPayment} payment
+ * */
 async function resolveAccountPacketPayment(payment) {
   const packet = await db.accountPacketPayment.findFirst({
     where: {
@@ -36,7 +39,7 @@ async function resolveAccountPacketPayment(payment) {
         await db.userBoosts.create({
           data: {
             userId: relatedUser.id,
-            properties: { ...boost, used: false },
+            properties: { days: boost.days, type: boost.type, used: false },
           },
         });
       }
@@ -46,13 +49,6 @@ async function resolveAccountPacketPayment(payment) {
       await db.user.update({
         where: { id: relatedUser.id },
         data: { listings: { increment: snap.properties.listings } },
-      });
-    }
-
-    if (snap.properties.bids) {
-      await db.user.update({
-        where: { id: relatedUser.id },
-        data: { bids: { increment: snap.properties.bids } },
       });
     }
   }
@@ -68,7 +64,11 @@ async function resolveBoostPacketPayment(payment) {
   await db.userBoosts.create({
     data: {
       userId: relatedUser.id,
-      properties: { ...boostPayment.boostPacket, used: false },
+      properties: {
+        days: boostPayment.boostPacket.days,
+        type: boostPayment.boostPacket.properties.boostType,
+        used: false,
+      },
     },
   });
 }

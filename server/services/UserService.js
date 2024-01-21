@@ -16,7 +16,7 @@ class UserService {
         firstName: true,
         lastName: true,
         SocialMedia: true,
-        telehpone: true,
+        telephone: true,
       },
     });
 
