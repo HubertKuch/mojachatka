@@ -82,7 +82,9 @@ const DashboardMyPackage = () => {
                           </tr>
                         </thead>
                         <tbody className="t-body">
-                          {user.UserBoosts.map((packageItem, index) => (
+                          {user.UserBoosts.sort(
+                            (p1, p2) => p1.properties.used - p2.properties.used,
+                          ).map((packageItem, index) => (
                             <tr key={index}>
                               <th scope="row">
                                 {packageItem.properties.days} dni
