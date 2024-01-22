@@ -11,8 +11,13 @@ export default class AccountPacketsController {
   }
 
   static async buyPacket(packetId) {
-    return (await instance.post("/buyPacket", JSON.stringify({ packetId })))
-      .data;
+    const res = await instance.post("/buyPacket", JSON.stringify({ packetId }));
+
+    if (res.status === 401) {
+      return window?.location?.replace("/logowanie");
+    }
+
+    return res.data;
   }
 
   static async getBoughtedPackets() {

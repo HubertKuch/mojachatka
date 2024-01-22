@@ -5,6 +5,7 @@ import Modal from "react-modal";
 const SingleAgentInfo = ({ id }) => {
   const user = useProfile(id);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [telephone, showTelephone] = useState(false);
 
   const customStyles = {
     content: {
@@ -52,7 +53,24 @@ const SingleAgentInfo = ({ id }) => {
           <div>
             <span className="title mb-1">
               <i className="flaticon-call pe-1 ps-1" />
-              {user?.telephone}
+              {telephone ? (
+                user?.telephone?.replace(/(\d{3})(\d{3})(\d{3})/, "$1 $2 $3")
+              ) : (
+                <span>
+                  {user?.telephone?.substring(0, 3)}...
+                  <span
+                    onClick={() => showTelephone(true)}
+                    style={{
+                      cursor: "pointer",
+                      color: "#00989c",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {" "}
+                    pokaż numer
+                  </span>
+                </span>
+              )}
             </span>
           </div>
 

@@ -45,7 +45,7 @@ const PropertyType = ({ filters }) => {
         >
           {option.label}
           <input
-            type="checkbox"
+            type="radio"
             name="type"
             onChange={() => {
               filters.type = option.value;

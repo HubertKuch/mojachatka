@@ -2,6 +2,7 @@
 import Modal from "@/components/customs/Modal";
 import BoostingController from "@/controllers/BoostingController";
 import useOwnOffers from "@/hooks/useOwnOffers";
+import formatPrice from "@/utilis/price";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
@@ -45,7 +46,11 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                   </div>
                   <p className="list-text mb-0">{property.location}</p>
                   <div className="list-price">
-                    <a href="#">{property.price}</a>
+                    <a href="#">
+                      {property.price
+                        ? formatPrice(property.price)
+                        : formatPrice(property.pricePerMonth)}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -119,6 +124,7 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                     mozesz zakupic pakiet promocyjny.
                   </p>
                   <ReactSelect
+                    isSearchable={false}
                     name="type"
                     options={[
                       {

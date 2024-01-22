@@ -101,7 +101,7 @@ const PricingPlan = () => {
       {user
         ? packetElements.find((p) => p.type === user?.type)?.el
         : packetElements.map((pe) => pe.el)}
-      <Popup closeOnDocumentClick onClose={() => setPopup(false)}>
+      <Popup open={popup} closeOnDocumentClick onClose={() => setPopup(false)}>
         <p
           style={{
             background: "white",
@@ -139,7 +139,7 @@ const PricingPlan = () => {
                             item.id,
                           );
 
-                          window?.open(url, "mozillaTab");
+                          if (url) window?.open(url, "mozillaTab");
                         } catch (e) {
                           setPopup(true);
                         }

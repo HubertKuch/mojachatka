@@ -5,6 +5,31 @@ body {
   }
 }
 
+.cookie {
+  width: 90%;
+  height: "fit-content";
+  border-radius: 20px;
+  background: white;
+  position: fixed;
+  padding: 40px;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 5%;
+  z-index: 10000;
+  overflow: auto;
+}
+
+.cookie-button {
+  background: #48b5ac;
+  color: "white";
+  text-transform: uppercase;
+}
+
+.cookie-button:hover {
+  background: white;
+}
+
 .listCustom {
   &.listing-type {
     display: flex;

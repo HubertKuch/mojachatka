@@ -46,6 +46,7 @@ export default function PropertyTypesSelect({ filters, className, onChange }) {
 
         if (onChange) onChange("type")(value);
       }}
+      isSearchable={false}
       defaultValue={[propertyTypes[1]]}
       name="type"
       placeholder="Typ"

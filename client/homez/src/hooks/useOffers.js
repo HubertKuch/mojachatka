@@ -14,7 +14,7 @@ const useOffers = (query) => {
         setOffers(res.offers.data),
       );
     }
-  }, [query]);
+  }, []);
 
   return offers;
 };

@@ -10,7 +10,7 @@ const HeroContent = ({ filters }) => {
 
   const handleTabClick = (tab) => {
     setActiveTab(tab.id);
-    filters.rentType = tab.id;
+    filters.sellType = tab.id;
   };
 
   const tabs = [

@@ -36,6 +36,10 @@ class BoostingController {
   static async buyBoost(id) {
     const res = await axios.post(`/buyBoost/${id}`);
 
+    if (res.status === 401) {
+      return window?.location?.replace("/logowanie");
+    }
+
     if (res.status === 200) {
       return res.data.payment.continueUrl;
     }

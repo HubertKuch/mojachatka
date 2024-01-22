@@ -48,7 +48,7 @@ const DashboardMyProperties = () => {
               <div className="row align-items-center pb40">
                 <div className="col-xxl-3">
                   <div className="dashboard_title_area">
-                    <h2>My Properties</h2>
+                    <h2>Twoje oferty</h2>
                   </div>
                 </div>
               </div>

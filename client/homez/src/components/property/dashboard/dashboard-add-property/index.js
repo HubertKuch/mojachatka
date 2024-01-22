@@ -140,7 +140,7 @@ const AddPropertyTabContent = () => {
                     aria-labelledby="nav-item3-tab"
                   >
                     <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-                      <h4 className="title fz17 mb30">Listing Location</h4>
+                      <h4 className="title fz17 mb30">Lokalizacja</h4>
                       <LocationField onChange={handleChange} />
                     </div>
                   </div>
@@ -153,6 +153,7 @@ const AddPropertyTabContent = () => {
                   >
                     <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
                       <DetailsFiled
+                        setSuccess={setSuccess}
                         success={success}
                         setValue={setFieldValue}
                       />

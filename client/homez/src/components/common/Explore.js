@@ -7,10 +7,10 @@ const Explore = () => {
     {
       id: 1,
       icon: "/images/icon/property-buy.svg",
-      title: "Kup nieruchomość",
+      title: "Znajdź nieruchomość",
       text: "Odkryj idealny dom dla siebie dzięki naszej zaawansowanej wyszukiwarce nieruchomości. Znajdź miejsce, które spełnia wszystkie Twoje oczekiwania!.",
-      linkText: "Znajdź dom",
-      link: "/oferty?type=DOM",
+      linkText: "Znajdź nieruchomość",
+      link: "/kategorie",
     },
     {
       id: 2,
@@ -26,7 +26,7 @@ const Explore = () => {
       title: "Wynajmij nieruchomość",
       text: "Z naszą pomocą znajdziesz idealną nieruchomość dla Ciebie w celu wynajmu. Przekonaj się już teraz i sprawdź dostępne oferty.",
       linkText: "Znajdź wynajem",
-      link: "/oferty?rentType=RENT",
+      link: "/oferty?sellType=RENT",
     },
   ];
 

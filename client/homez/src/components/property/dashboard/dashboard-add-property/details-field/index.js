@@ -12,7 +12,7 @@ import {
 import { useFormikContext } from "formik";
 import React, { useEffect, useState } from "react";
 
-const DetailsFiled = ({ success }) => {
+const DetailsFiled = ({ success, setSuccess }) => {
   const {
     setFieldValue,
     values: {
@@ -70,11 +70,11 @@ const DetailsFiled = ({ success }) => {
                 res.body.message.forEach((err) => {
                   setFieldError(err.path.replace("data.", ""), err.message);
                 });
-
-                window?.scrollTo(0, 0);
               } else {
-                document.location.replace("/dashboard-my-properties");
+                setSuccess(true);
               }
+
+              window?.scrollTo(0, 0);
             });
           }}
         >

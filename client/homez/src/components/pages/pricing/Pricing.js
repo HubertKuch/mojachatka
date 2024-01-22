@@ -2,7 +2,7 @@
 
 import AccountPacketsController from "@/controllers/AccountPacketsController";
 import useAccountPackets from "@/hooks/useAccountPackets";
-import dedupe from "dedupe";
+import formatPrice from "@/utilis/price";
 import Image from "next/image";
 import React from "react";
 

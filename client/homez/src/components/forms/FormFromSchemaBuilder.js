@@ -95,12 +95,17 @@ const FormFromSchemaBuilder = ({ namePrefix = "", schema }) => {
     return (
       <div className="row">
         <div className="col-12">
-          <label className="heading-color ff-heading fw600 mb10">
+          <label className="heading-color w-100 ff-heading fw600 mb10">
             {property.label}
             <Select
+              placeholder={property.label}
               styles={{
                 menu: (prov) => ({ ...prov, zIndex: 99999999 }),
                 menuList: (prov) => ({ ...prov, zIndex: 99999999 }),
+                container: (prov) => ({
+                  ...prov,
+                  width: "100%",
+                }),
               }}
               onChange={({ value }) => {
                 setFieldValue(getFullName(nameKey), value);

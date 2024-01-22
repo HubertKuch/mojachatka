@@ -1,5 +1,6 @@
 "use client";
 
+import formatPrice from "@/utilis/price";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -39,9 +40,9 @@ const FeaturedListings = ({ data, colstyle }) => {
               ) : null}
               <div className="list-price">
                 {listing.price ? (
-                  <span>{listing.price}PLN </span>
+                  <span>{formatPrice(listing.price)}</span>
                 ) : (
-                  <span>${listing.pricePerMonth}PLN mo </span>
+                  <span>{formatPrice(listing.pricePerMonth)}/mo</span>
                 )}
               </div>
             </div>

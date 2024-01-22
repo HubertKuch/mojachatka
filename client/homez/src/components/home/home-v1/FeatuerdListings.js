@@ -1,5 +1,6 @@
 "use client";
 import useOffers from "@/hooks/useOffers";
+import formatPrice from "@/utilis/price";
 import Image from "next/image";
 import Link from "next/link";
 import "swiper/swiper-bundle.min.css";
@@ -32,7 +33,7 @@ const FeaturedListings = () => {
                   </div>
 
                   <div className="list-price">
-                    {listing.price} / <span>mo</span>
+                    {formatPrice(listing.price)} / <span>mo</span>
                   </div>
                 </div>
                 <div className="list-content">
@@ -42,20 +43,11 @@ const FeaturedListings = () => {
                     </Link>
                   </h6>
                   <p className="list-text">{listing.location}</p>
-                  <div className="list-meta d-flex align-items-center">
-                    <a href="#">
-                      <span className="flaticon-bed" /> {listing.bed} bed
-                    </a>
-                    <a href="#">
-                      <span className="flaticon-shower" /> {listing.bath} bath
-                    </a>
-                    <a href="#">
-                      <span className="flaticon-expand" /> {listing.sqft} sqft
-                    </a>
-                  </div>
                   <hr className="mt-2 mb-2" />
                   <div className="list-meta2 d-flex justify-content-between align-items-center">
-                    <span className="for-what">For Rent</span>
+                    <span className="for-what">
+                      {listing.type === "RENT" ? "Wynajem" : "Sprzedaż"}
+                    </span>
                     <div className="icons d-flex align-items-center">
                       <a href="#">
                         <span className="flaticon-fullscreen" />

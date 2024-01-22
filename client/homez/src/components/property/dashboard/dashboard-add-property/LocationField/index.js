@@ -19,6 +19,7 @@ const LocationField = ({ onChange }) => {
             <label className="heading-color ff-heading fw600 mb10">
               Miejscowość
               <ReactSelect
+                isSearchable={false}
                 onInputChange={(val) => {
                   if (val.length <= 2) {
                     return;
@@ -56,7 +57,7 @@ const LocationField = ({ onChange }) => {
 
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
-              Dom
+              Nr budynku
               <Field
                 name="properties.address.houseNumber"
                 type="text"
@@ -65,7 +66,7 @@ const LocationField = ({ onChange }) => {
               />
             </label>{" "}
             <label className="heading-color ff-heading fw600 mb10">
-              Mieszkanie
+              Nr lokalu
               <Field
                 type="text"
                 name="properties.address.localNumber"
