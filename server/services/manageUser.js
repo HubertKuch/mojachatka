@@ -46,11 +46,8 @@ async function isBanned(id) {
 
 async function isActivated(id) {
   const user = await getUserByID(id);
-  if (!user.activated) {
-    return false;
-  }
 
-  return true;
+  return user.activated;
 }
 
 async function checkAdmin(id) {
