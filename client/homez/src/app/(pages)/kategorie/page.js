@@ -31,7 +31,10 @@ const Invoice = () => {
             {chunk(cats, 3)
               .map((cats) => {
                 return cats.map((cat) => (
-                  <div className="item col-lg-3 col-md-4 col-sm-6">
+                  <div
+                    key={cat.category}
+                    className="item col-lg-3 col-md-4 col-sm-6"
+                  >
                     <Link href={`/oferty?type=${cat.category}`}>
                       <div className="iconbox-style1">
                         <span

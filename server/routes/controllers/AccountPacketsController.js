@@ -9,6 +9,38 @@ const getOrThrow = require("../../utils/getOrThrow");
 const APIError = require("../../errors/APIError");
 const AccountPacketsService = require("../../services/AccountPacketsService");
 
+async function gowno(data) {
+  for (const packet of data) {
+    const boosts = [];
+
+    for (const boost of packet.boosts) {
+      for (let i = 0; i < boost.x; i++) {
+        boosts.push({ type: boost.type, days: boost.days });
+      }
+    }
+
+    db.accountPackets
+      .create({
+        data: {
+          name: packet.name,
+          subname: packet.subname,
+          price: packet.price,
+          properties: {
+            boosts: boosts,
+            boostDiscount: packet.boostDiscount,
+            allowedFor: [packet.type],
+            listings: packet.listinfs,
+            expirationDays: packet.expirationDays,
+            fields: packet.fields,
+          },
+        },
+      })
+      .then(() => console.log("inserted"));
+  }
+}
+
+gowno([]).then();
+
 class AccountPacketsController {
   static async buyPacket(req, res) {
     const packetId = getOrThrow(
@@ -22,11 +54,9 @@ class AccountPacketsController {
     });
 
     if (!packet || !packet.properties.allowedFor.includes(user.type)) {
-      return res
-        .status(400)
-        .json({
-          message: "Invalid packet data for that user or invalid packet id",
-        });
+      return res.status(400).json({
+        message: "Invalid packet data for that user or invalid packet id",
+      });
     }
 
     try {

@@ -2,15 +2,19 @@
 import Modal from "@/components/customs/Modal";
 import BoostingController from "@/controllers/BoostingController";
 import useOwnOffers from "@/hooks/useOwnOffers";
+import useUser from "@/hooks/useUser";
 import formatPrice from "@/utilis/price";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ReactSelect from "react-select";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const PropertyDataTable = ({ currPage, setMeta }) => {
   const offers = useOwnOffers(currPage);
+  const user = useUser({ reload: true });
+  const [type, setType] = useState("MAIN");
+  const [id, setId] = useState(null);
 
   useEffect(() => {
     setMeta(offers?.meta);
@@ -89,18 +93,12 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                     <button
                       className="form-control btn"
                       onClick={async () => {
-                        const value =
-                          document.querySelector("[name=type]").value;
-
                         const err = document.querySelector("#modal-error");
-
-                        if (!["GLOBAL", "MAIN"].includes(value)) {
-                          return (err.innerText = "Nie poprawny rodzaj");
-                        }
 
                         const res = await BoostingController.boostOffer(
                           property.id,
-                          value,
+                          type,
+                          id,
                         );
 
                         if (!res.ok) {
@@ -123,9 +121,15 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                     Wybierz typ promowania. W razie braku mozliwej promocje
                     mozesz zakupic pakiet promocyjny.
                   </p>
+                  <p className="fz16">Typ promocji</p>
+
                   <ReactSelect
                     isSearchable={false}
                     name="type"
+                    onChange={({ value }) => {
+                      setType(value);
+                    }}
+                    placeholder="Typ promocji"
                     options={[
                       {
                         value: "MAIN",
@@ -136,6 +140,21 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                         label: "Na strone glowna",
                       },
                     ]}
+                  />
+                  <p className="fz16">Ilosc dni</p>
+                  <ReactSelect
+                    isSearchable={false}
+                    name="type"
+                    onChange={({ value }) => {
+                      setId(value);
+                    }}
+                    placeholder={"Dni"}
+                    options={user?.UserBoosts.filter(
+                      (b) => b.properties.type === type && !b.properties.used,
+                    ).map((b) => ({
+                      value: b.id,
+                      label: `Na ${b.properties.days} dni`,
+                    }))}
                   />
                 </Modal>
                 {property.isBoosted ? (

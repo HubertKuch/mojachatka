@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Thumbs, Navigation } from "swiper";
+import { FreeMode, Thumbs, Navigation, Scrollbar, Pagination } from "swiper";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -35,27 +35,25 @@ const PropertyGallery = ({ offer }) => {
                           height={"auto !important"}
                           loop={true}
                           spaceBetween={10}
-                          navigation={{
-                            prevEl: ".prev-btn",
-                            nextEl: ".next-btn",
-                          }}
-                          thumbs={{
-                            swiper:
-                              thumbsSwiper && !thumbsSwiper.destroyed
-                                ? thumbsSwiper
-                                : null,
-                          }}
-                          modules={[FreeMode, Navigation, Thumbs]}
-                          className="mySwiper2"
+                          pagination={{ clickable: true }}
+                          scrollbar={{ draggable: true }}
+                          modules={[FreeMode, Navigation, Pagination]}
+                          navigation
                         >
-                          {(offer.properties?.images || []).map((item, i) => (
+                          {(offer.properties
+                            ? [
+                                ...offer?.properties?.images,
+                                ...offer?.properties?.images,
+                              ]
+                            : []
+                          ).map((item, i) => (
                             <SwiperSlide key={i}>
                               <Image
                                 height={736}
                                 width={409}
                                 src={item}
                                 alt="gallery"
-                                className="w-100 h-auto bdrs12"
+                                className="w-100 "
                               />
                             </SwiperSlide>
                           ))}

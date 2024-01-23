@@ -82,7 +82,7 @@ const DashboardMyPackage = () => {
                           </tr>
                         </thead>
                         <tbody className="t-body">
-                          {user.UserBoosts.sort(
+                          {user?.UserBoosts.sort(
                             (p1, p2) => p1.properties.used - p2.properties.used,
                           ).map((packageItem, index) => (
                             <tr key={index}>
