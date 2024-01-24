@@ -44,7 +44,7 @@ const FormFromSchemaBuilder = ({ namePrefix = "", schema }) => {
               setFieldValue(e.currentTarget.name, e.currentTarget.checked);
             }}
           />{" "}
-          {property.label || ""}
+          {property.label || ""} *
         </label>
       </div>
     );
@@ -53,7 +53,7 @@ const FormFromSchemaBuilder = ({ namePrefix = "", schema }) => {
   function NumberField({ property, nameKey }) {
     return (
       <label className="heading-color ff-heading fw600 mb10">
-        {property.label || ""}
+        {property.label || ""} *
         <Error name={getFullName(nameKey)} />
         <Field
           placeholder={property.label}
@@ -74,7 +74,7 @@ const FormFromSchemaBuilder = ({ namePrefix = "", schema }) => {
         <div className="col-12">
           <label className="heading-color ff-heading fw600 mb10">
             {" "}
-            {property.label || ""}
+            {property.label || ""} *
             <Error name={getFullName(nameKey)} />
             <Field
               placeholder={property.label}
@@ -96,7 +96,7 @@ const FormFromSchemaBuilder = ({ namePrefix = "", schema }) => {
       <div className="row">
         <div className="col-12">
           <label className="heading-color w-100 ff-heading fw600 mb10">
-            {property.label}
+            {property.label} *
             <Select
               placeholder={property.label}
               styles={{

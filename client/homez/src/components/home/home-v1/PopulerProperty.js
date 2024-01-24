@@ -25,19 +25,23 @@ export default function PopulerProperty() {
         <div className="row" data-aos="fade-up" data-aos-delay="300">
           <div className="col-lg-12">
             <PopularListings data={pageData} />
-            <div className="d-grid d-md-block text-center mt0-md">
-              <Link href="/about" className="ud-btn btn-thm">
-                Pragniemy Państwa poinformować iż nasz portal ogłoszeniowy
-                opracowany został przez grono wybitnych specjalistów. Oparty
-                został wyłącznie na krajowym kapitale dzięki czemu możemy
-                utrzymać ceny na optymalnie niskim poziomie. Pragniemy również
-                dodać iż każda sugestia z Państwa strony odnośnie funkcjonowania
-                naszego portalu będzie niezwłocznie przeanalizowana przez
-                naszych techników. Wszelkie uwagi oraz sugestie prosimy kierować
-                na adres e-mail bezpośrednio do naszego zespołu
-                techniczno-prawnego.
-                <i className="fal fa-arrow-right-long"></i>
-              </Link>
+
+            <div className="d-grid d-md-block text-center mt0-md ud-btn btn-thm">
+              Atuty naszej strony:
+              <ol
+                style={{
+                  alignItems: "left",
+                  textAlign: "center",
+                }}
+              >
+                <li>Przyjrzysta strona</li>
+                <li>Prostota obsługi</li> <li>Niezmiennie niska cena</li>
+              </ol>
+              Kliknij{" "}
+              <a style={{ color: "black" }} href="/about">
+                TUTAJ
+              </a>
+              , aby przeczytaj więcej szczegółów na temat mojejchatki
             </div>
           </div>
         </div>

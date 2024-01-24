@@ -61,12 +61,15 @@ const UploadPhotoGallery = () => {
         <div className="icon mb30">
           <span className="flaticon-upload" />
         </div>
-        <h4 className="title fz17 mb10">Upload/Drag photos of your property</h4>
+        <h4 className="title fz17 mb10">
+          Wybierz lub upuść zdjęcia twojej nieruchomości
+        </h4>
         <p className="text mb25">
-          Photos must be JPEG or PNG format and at least 2048x768
+          Obrazy muszą być w formacie JPEG lub PNG i muszą mieć co najmniej
+          2048x768
         </p>
         <label className="ud-btn btn-white">
-          Browse Files
+          Przeglądaj pliki
           <input
             ref={fileInputRef}
             id="fileInput"

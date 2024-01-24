@@ -42,11 +42,6 @@ const DboardMobileNavigation = () => {
           text: "Wykupione pakiety",
         },
         {
-          href: "/dashboard-my-profile",
-          icon: "flaticon-user",
-          text: "Profil",
-        },
-        {
           href: "/login",
           icon: "flaticon-logout",
           text: "Wyloguj sie",

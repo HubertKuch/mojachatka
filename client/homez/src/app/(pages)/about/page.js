@@ -52,6 +52,19 @@ const About = () => {
                 Mojachatka to dobry wybór, <br className="d-none d-lg-block" />{" "}
                 a jeśli masz wybór to po co przepłacać.
               </h2>
+              <div>
+                <p className="text mb25">
+                  Pragniemy Państwa poinformować iż nasz portal ogłoszeniowy
+                  opracowany został przez grono wybitnych specjalistów. Oparty
+                  został wyłącznie na krajowym kapitale dzięki czemu możemy
+                  utrzymać ceny na optymalnie niskim poziomie. Pragniemy również
+                  dodać iż każda sugestia z Państwa strony odnośnie
+                  funkcjonowania naszego portalu będzie niezwłocznie
+                  przeanalizowana przez naszych techników. Wszelkie uwagi oraz
+                  sugestie prosimy kierować na adres e-mail bezpośrednio do
+                  naszego zespołu techniczno-prawnego.
+                </p>
+              </div>
             </div>
             <div className="col-lg-6">
               <p className="text mb25">

@@ -11,7 +11,11 @@ function Modal({ trigger, actions, children, title }) {
               {" "}
               &times;{" "}
             </button>{" "}
-            {title ? <div className="header">{title} </div> : null}
+            {title ? (
+              <div className="header" style={{ height: "auto" }}>
+                {title}{" "}
+              </div>
+            ) : null}
             <div className="content">{children ?? ""}</div>
             <div className="actions">{actions ?? ""}</div>
           </div>

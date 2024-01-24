@@ -2,6 +2,10 @@ import objectToQueryUri from "../utilis/queryParams";
 import instance from "./axios";
 
 class OffersControllers {
+  static async delete(id) {
+    return (await instance.delete("/deleteOffer/" + id)).data;
+  }
+
   static async getCats() {
     return (await instance.get("/categoriesStats")).data;
   }

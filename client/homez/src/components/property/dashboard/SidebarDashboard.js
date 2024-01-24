@@ -41,11 +41,6 @@ const SidebarDashboard = () => {
           text: "Wykupione pakiety",
         },
         {
-          href: "/dashboard-my-profile",
-          icon: "flaticon-user",
-          text: "Profil",
-        },
-        {
           href: "/login",
           icon: "flaticon-logout",
           text: "Wyloguj sie",
@@ -60,8 +55,9 @@ const SidebarDashboard = () => {
         {sidebarItems.map((section, sectionIndex) => (
           <div key={sectionIndex}>
             <p
-              className={`fz15 fw400 ff-heading ${sectionIndex === 0 ? "mt-0" : "mt30"
-                }`}
+              className={`fz15 fw400 ff-heading ${
+                sectionIndex === 0 ? "mt-0" : "mt30"
+              }`}
             >
               {section.title}
             </p>
@@ -69,8 +65,9 @@ const SidebarDashboard = () => {
               <div key={itemIndex} className="sidebar_list_item">
                 <Link
                   href={item.href}
-                  className={`items-center   ${pathname == item.href ? "-is-active" : ""
-                    } `}
+                  className={`items-center   ${
+                    pathname == item.href ? "-is-active" : ""
+                  } `}
                 >
                   <i className={`${item.icon} mr15`} />
                   {item.text}

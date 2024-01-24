@@ -14,7 +14,9 @@ const PropertyDescription = ({ onChange }) => {
       <div className="row">
         <div className="col-sm-12">
           <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">Tytul</label>
+            <label className="heading-color ff-heading fw600 mb10">
+              Tytul *
+            </label>
             <Error name="title" />
             <FastField
               name="title"
@@ -27,7 +29,9 @@ const PropertyDescription = ({ onChange }) => {
       <div className="row">
         <div className="col-sm-12">
           <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">Opis</label>
+            <label className="heading-color ff-heading fw600 mb10">
+              Opis *
+            </label>
             <Error name="description" />
 
             <Field
@@ -45,7 +49,7 @@ const PropertyDescription = ({ onChange }) => {
         <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
-              Rodzaj nieruchomości
+              Rodzaj nieruchomości *
             </label>
             <Error name="type" />
 
@@ -59,7 +63,7 @@ const PropertyDescription = ({ onChange }) => {
         <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
-              Rodzaj sprzedazy
+              Rodzaj sprzedazy *
             </label>
             <Error name="sellType" />
 
@@ -75,7 +79,7 @@ const PropertyDescription = ({ onChange }) => {
             {rentType === "BUY" ? (
               <>
                 <label className="heading-color ff-heading fw600 mb10">
-                  Cena
+                  Cena *
                 </label>
                 <Error name={"price"} />
                 <FastField
@@ -92,7 +96,7 @@ const PropertyDescription = ({ onChange }) => {
             ) : (
               <>
                 <label className="heading-color ff-heading fw600 mb10">
-                  Cena najmu
+                  Cena najmu *
                 </label>
                 <Error name={"pricePerMonth"} />
                 <FastField

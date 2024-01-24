@@ -107,6 +107,18 @@ class OffersController {
     }
   }
 
+  static async deleteOffer(req, res) {
+    const offerId = req.params.id;
+
+    if (!offerId) {
+      return res.status(400).json({ message: "Id musi byc podane" });
+    }
+
+    await db.offers.update({ where: { id: offerId }, data: { deleted: true } });
+
+    return res.status(200).json({ message: "Sukces" });
+  }
+
   static async editOffer(req, res) {
     const offerId = req.params.offerId;
 

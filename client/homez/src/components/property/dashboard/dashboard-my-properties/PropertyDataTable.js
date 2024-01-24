@@ -1,6 +1,7 @@
 "use client";
 import Modal from "@/components/customs/Modal";
 import BoostingController from "@/controllers/BoostingController";
+import OffersControllers from "@/controllers/OffersController";
 import useOwnOffers from "@/hooks/useOwnOffers";
 import useUser from "@/hooks/useUser";
 import formatPrice from "@/utilis/price";
@@ -63,20 +64,31 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
               <div
                 style={{ display: "grid", gap: "10px", alignItems: "right" }}
               >
-                <button
-                  className="icon"
-                  style={{ border: "none" }}
-                  data-tooltip-id={`edit-${property.id}`}
-                >
-                  <span className="fas fa-pen fa" />
-                </button>
-                <button
-                  className="icon"
-                  style={{ border: "none" }}
-                  data-tooltip-id={`delete-${property.id}`}
-                >
-                  <span className="flaticon-bin" />
-                </button>
+                <Modal
+                  title={`Czy na pewno chcesz usunąć ofertę ${property.title}? Ta operacja będzie niemożliwa do cofnięcia.
+`}
+                  trigger={
+                    <button
+                      className="icon"
+                      style={{ border: "none" }}
+                      data-tooltip-id={`delete-${property.id}`}
+                    >
+                      <span className="flaticon-bin" />
+                    </button>
+                  }
+                  actions={
+                    <button
+                      className="form-control btn"
+                      onClick={async () => {
+                        OffersControllers.delete(property.id).then(() =>
+                          window?.location?.reload(),
+                        );
+                      }}
+                    >
+                      Tak
+                    </button>
+                  }
+                ></Modal>
                 <Modal
                   title={`Podbicie oferty ${property.title}`}
                   trigger={
@@ -168,11 +180,6 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                     ></i>
                   </button>
                 ) : null}
-                <ReactTooltip
-                  id={`edit-${property.id}`}
-                  place="top"
-                  content="Edytuj"
-                />
                 {property.isBoosted ? (
                   <ReactTooltip
                     id={"promote"}

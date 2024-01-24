@@ -17,7 +17,7 @@ const LocationField = ({ onChange }) => {
         <div className="col-sm-12">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
-              Miejscowość
+              Miejscowość *
               <ReactSelect
                 isSearchable={false}
                 onInputChange={(val) => {
@@ -45,7 +45,7 @@ const LocationField = ({ onChange }) => {
             </label>
             {"  "}
             <label className="heading-color ff-heading fw600 mb10">
-              Adres
+              Adres *
               <Field
                 name="properties.address.address"
                 type="text"
@@ -57,7 +57,7 @@ const LocationField = ({ onChange }) => {
 
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
-              Nr budynku
+              Nr budynku *
               <Field
                 name="properties.address.houseNumber"
                 type="text"
@@ -66,7 +66,7 @@ const LocationField = ({ onChange }) => {
               />
             </label>{" "}
             <label className="heading-color ff-heading fw600 mb10">
-              Nr lokalu
+              Nr lokalu *
               <Field
                 type="text"
                 name="properties.address.localNumber"
@@ -80,7 +80,7 @@ const LocationField = ({ onChange }) => {
         <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
-              Kod pocztowy
+              Kod pocztowy *
             </label>
             <Field
               type="text"
@@ -94,7 +94,7 @@ const LocationField = ({ onChange }) => {
         <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
-              Region
+              Region *
             </label>
             <div className="location-area">
               <Select

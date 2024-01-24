@@ -20,6 +20,10 @@ class AuthController {
     res.status(200).json({ authenticated: !!req.cookies["auth-token"] });
   }
 
+  static async logout(req, res) {
+    res.status(200).clearCookie("auth-token").clearCookie("refresh-token");
+  }
+
   static async login(req, res) {
     try {
       const { email, password } = req.body;

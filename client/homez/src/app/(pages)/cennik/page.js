@@ -74,32 +74,60 @@ const PricingPlan = () => {
     },
   ];
 
+  const [selectedTab, setSelectedTab] = useState("INDIVIDUAL");
+
   return (
     <>
-      {/* Main Header Nav */}
       <DefaultHeader />
-      {/* End Main Header Nav */}
-
-      {/* Mobile Nav  */}
       <MobileMenu />
-      {/* End Mobile Nav  */}
 
-      {/* Breadcrumb Sections */}
       <section className="breadcumb-section">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
               <div className="breadcumb-style1">
-                <h2 className="title">Pakiety</h2>
+                <ul class="nav nav-tabs">
+                  <li class="nav-item">
+                    <a
+                      onClick={() => setSelectedTab("INDIVIDUAL")}
+                      class={`nav-link ${
+                        selectedTab === "INDIVIDUAL" ? "active" : ""
+                      }`}
+                      href="#"
+                    >
+                      Pakiety indywidualne
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      onClick={() => setSelectedTab("AGENT")}
+                      class={`nav-link ${
+                        selectedTab === "AGENT" ? "active" : ""
+                      }`}
+                      href="#"
+                    >
+                      Pakiety dla agenta
+                    </a>
+                  </li>
+                  <li
+                    onClick={() => setSelectedTab("DEVELOPER")}
+                    class={`nav-link ${
+                      selectedTab === "DEVELOPER" ? "active" : ""
+                    }`}
+                  >
+                    <a class="nav-link" href="#">
+                      Pakiety dla dewelopera
+                    </a>
+                  </li>
+                </ul>{" "}
               </div>
             </div>
           </div>
         </div>
       </section>
-      {/* End Breadcrumb Sections */}
 
       {user
-        ? packetElements.find((p) => p.type === user?.type)?.el
+        ? packetElements.find((p) => p.type === selectedTab)?.el
         : packetElements.map((pe) => pe.el)}
       <Popup open={popup} closeOnDocumentClick onClose={() => setPopup(false)}>
         <p
