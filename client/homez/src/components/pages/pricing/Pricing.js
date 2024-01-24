@@ -30,23 +30,27 @@ const Pricing = ({ type, user }) => {
   return (
     <>
       <div className="row" data-aos="fade-up" data-aos-delay="300">
-        <p style={{ textAlign: "center" }}>
-          Wybierz ilość {type === "DEVELOPER" ? "inwestycji" : "ogłoszeń"}
-        </p>
-        <ReactSelect
-          className="mb-20"
-          placeholder="Sprawdź cenę"
-          onChange={({ value }) => {
-            setGroup(groups[value]);
-          }}
-          options={Object.keys(groups)
-            .sort()
-            .map((key) => ({
-              label: key,
-              value: key,
-            }))}
-        />
-        {group
+        {type !== "INDIVIDUAL" && (
+          <>
+            <p style={{ textAlign: "center" }}>
+              Wybierz ilość {type === "DEVELOPER" ? "inwestycji" : "ogłoszeń"}
+            </p>
+            <ReactSelect
+              className="mb-20"
+              placeholder="Sprawdź cenę"
+              onChange={({ value }) => {
+                setGroup(groups[value]);
+              }}
+              options={Object.keys(groups)
+                .sort()
+                .map((key) => ({
+                  label: key,
+                  value: key,
+                }))}
+            />
+          </>
+        )}
+        {(type === "INDIVIDUAL" ? packets : group)
           .sort((p1, p2) => p1.price - p2.price)
           .map((item, index) => (
             <div className="col-md-6 col-xl-4 mt-4" key={index}>

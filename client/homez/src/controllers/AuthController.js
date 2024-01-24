@@ -2,6 +2,10 @@ import useStore from "@/store/store";
 import axios from "./axios";
 
 class AuthController {
+  static async logout() {
+    await axios.get("/logout");
+  }
+
   static async activateAccount(email, code) {
     const res = await axios.get(`/verifyEmail?email=${email}&code=${code}`);
 

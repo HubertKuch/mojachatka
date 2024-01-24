@@ -27,17 +27,8 @@ export default function PopulerProperty() {
             <PopularListings data={pageData} />
 
             <div className="d-grid d-md-block text-center mt0-md ud-btn btn-thm">
-              Atuty naszej strony:
-              <ol
-                style={{
-                  alignItems: "left",
-                  textAlign: "center",
-                }}
-              >
-                <li>Przyjrzysta strona</li>
-                <li>Prostota obsługi</li> <li>Niezmiennie niska cena</li>
-              </ol>
-              Kliknij{" "}
+              Atuty naszej strony: przejrzysta strona, prostota obsługi,
+              niezmiennie niska cena. Kliknij{" "}
               <a style={{ color: "black" }} href="/about">
                 TUTAJ
               </a>

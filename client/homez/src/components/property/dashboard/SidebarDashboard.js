@@ -41,7 +41,7 @@ const SidebarDashboard = () => {
           text: "Wykupione pakiety",
         },
         {
-          href: "/login",
+          href: "/wyloguj",
           icon: "flaticon-logout",
           text: "Wyloguj sie",
         },

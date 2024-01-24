@@ -111,7 +111,7 @@ const PricingPlan = () => {
                   </li>
                   <li
                     onClick={() => setSelectedTab("DEVELOPER")}
-                    class={`nav-link ${
+                    class={`nav-item ${
                       selectedTab === "DEVELOPER" ? "active" : ""
                     }`}
                   >
@@ -147,41 +147,90 @@ const PricingPlan = () => {
           <div className="row" data-aos="fade-up" data-aos-delay="100">
             <div className="col-lg-6 offset-lg-3">
               <div className="main-title text-center mb30">
-                <h2>Podbicia</h2>
+                <h2>Podbicia na stronę główną</h2>
               </div>
             </div>
           </div>
-          {boosts.map((item, idx) => (
-            <div className="col-md-6 col-xl-4" key={idx}>
-              <div className={`pricing_packages`}>
-                <div className="heading mb60">
-                  <h4 className={`package_title `}>{item.name}</h4>
-                  <p className="text">{formatPrice(item.price / 100)}</p>
-                </div>
-                <div className="details">
-                  <div className="d-grid">
-                    <button
-                      onClick={async () => {
-                        try {
-                          const url = await BoostingController.buyBoost(
-                            item.id,
-                          );
+          {boosts
+            .filter((b) => b.properties.boostType === "MAIN")
+            .sort((b1, b2) => b1.price - b2.price)
+            .map((item, idx) => (
+              <div className="col-md-6 col-xl-4" key={idx}>
+                <div className={`pricing_packages`}>
+                  <div className="heading mb60">
+                    <h4 className={`package_title `}>{item.name}</h4>
+                    <p className="text">{formatPrice(item.price / 100)}</p>
+                  </div>
+                  <div className="details">
+                    <div className="d-grid">
+                      <button
+                        onClick={async () => {
+                          try {
+                            const url = await BoostingController.buyBoost(
+                              item.id,
+                            );
 
-                          if (url) window?.open(url, "mozillaTab");
-                        } catch (e) {
-                          setPopup(true);
-                        }
-                      }}
-                      className="ud-btn btn-thm-border text-thm"
-                    >
-                      Kup
-                      <i className="fal fa-arrow-right-long" />
-                    </button>
+                            if (url) window?.open(url, "mozillaTab");
+                          } catch (e) {
+                            setPopup(true);
+                          }
+                        }}
+                        className="ud-btn btn-thm-border text-thm"
+                      >
+                        Kup
+                        <i className="fal fa-arrow-right-long" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
+            ))}
+        </div>
+      </section>
+
+      <section className={`our-pricing container pb90 pt-0`}>
+        <div className="container row">
+          <div className="row" data-aos="fade-up" data-aos-delay="100">
+            <div className="col-lg-6 offset-lg-3">
+              <div className="main-title text-center mb30">
+                <h2>Podbicia na liste</h2>
+              </div>
             </div>
-          ))}
+          </div>
+          {boosts
+            .filter((b) => b.properties.boostType === "GLOBAL")
+            .sort((b1, b2) => b1.price - b2.price)
+            .map((item, idx) => (
+              <div className="col-md-6 col-xl-4" key={idx}>
+                <div className={`pricing_packages`}>
+                  <div className="heading mb60">
+                    <h4 className={`package_title `}>{item.name}</h4>
+                    <p className="text">{formatPrice(item.price / 100)}</p>
+                  </div>
+                  <div className="details">
+                    <div className="d-grid">
+                      <button
+                        onClick={async () => {
+                          try {
+                            const url = await BoostingController.buyBoost(
+                              item.id,
+                            );
+
+                            if (url) window?.open(url, "mozillaTab");
+                          } catch (e) {
+                            setPopup(true);
+                          }
+                        }}
+                        className="ud-btn btn-thm-border text-thm"
+                      >
+                        Kup
+                        <i className="fal fa-arrow-right-long" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
         </div>
       </section>
 

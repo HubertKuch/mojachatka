@@ -21,7 +21,11 @@ class AuthController {
   }
 
   static async logout(req, res) {
-    res.status(200).clearCookie("auth-token").clearCookie("refresh-token");
+    res
+      .status(200)
+      .clearCookie("auth-token")
+      .clearCookie("refresh-token")
+      .json({});
   }
 
   static async login(req, res) {
