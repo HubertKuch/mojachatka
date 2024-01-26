@@ -36,6 +36,14 @@ const Pricing = ({ type, user }) => {
               Wybierz ilość {type === "DEVELOPER" ? "inwestycji" : "ogłoszeń"}
             </p>
             <ReactSelect
+              styles={{
+                menu: (prov) => ({ ...prov, zIndex: 99999999 }),
+                menuList: (prov) => ({ ...prov, zIndex: 99999999 }),
+                container: (prov) => ({
+                  ...prov,
+                  width: "100%",
+                }),
+              }}
               className="mb-20"
               placeholder="Sprawdź cenę"
               onChange={({ value }) => {

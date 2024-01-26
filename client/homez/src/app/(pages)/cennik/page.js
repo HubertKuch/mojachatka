@@ -86,8 +86,8 @@ const PricingPlan = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="breadcumb-style1">
-                <ul class="nav nav-tabs">
-                  <li class="nav-item">
+                <ul className="nav nav-tabs">
+                  <li className="nav-item">
                     <a
                       onClick={() => setSelectedTab("INDIVIDUAL")}
                       class={`nav-link ${
@@ -98,7 +98,7 @@ const PricingPlan = () => {
                       Pakiety indywidualne
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <li className="nav-item">
                     <a
                       onClick={() => setSelectedTab("AGENT")}
                       class={`nav-link ${
@@ -115,7 +115,7 @@ const PricingPlan = () => {
                       selectedTab === "DEVELOPER" ? "active" : ""
                     }`}
                   >
-                    <a class="nav-link" href="#">
+                    <a className="nav-link" href="#">
                       Pakiety dla dewelopera
                     </a>
                   </li>
@@ -126,9 +126,7 @@ const PricingPlan = () => {
         </div>
       </section>
 
-      {user
-        ? packetElements.find((p) => p.type === selectedTab)?.el
-        : packetElements.map((pe) => pe.el)}
+      {packetElements.find((p) => p.type === selectedTab)?.el}
       <Popup open={popup} closeOnDocumentClick onClose={() => setPopup(false)}>
         <p
           style={{
@@ -142,7 +140,10 @@ const PricingPlan = () => {
         </p>
       </Popup>
 
-      <section className={`our-pricing container pb90 pt-0`}>
+      <section
+        className={`our-pricing container pb90 pt-0`}
+        style={{ zIndex: 0 }}
+      >
         <div className="container row">
           <div className="row" data-aos="fade-up" data-aos-delay="100">
             <div className="col-lg-6 offset-lg-3">

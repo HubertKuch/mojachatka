@@ -8,11 +8,32 @@ import DetailsFiled from "./details-field";
 import { Form, Formik } from "formik";
 import OffersControllers from "@/controllers/OffersController";
 import { flatten } from "flat";
+import useUser from "@/hooks/useUser";
+import Popup from "reactjs-popup";
 
 const AddPropertyTabContent = () => {
   const [success, setSuccess] = useState(false);
+  const user = useUser({ reload: true });
+
   return (
     <>
+      <Popup open={user?.listings === 0}>
+        <div
+          className="popup-modal"
+          style={{ fontSize: "1.5em", padding: "2em" }}
+        >
+          <a href="/cennik">
+            Wygląda na to, że nie posiadasz dostępnych ogłoszeń. Udaj się do{" "}
+            <span style={{ fontWeight: "bold", color: "#48b5ac" }}>
+              Cennika
+            </span>
+            , aby dokonać zakupu odpowiedniego pakietu. Kliknij{" "}
+            <span style={{ fontWeight: "bold", color: "#48b5ac" }}>
+              tutaj.{" "}
+            </span>
+          </a>
+        </div>
+      </Popup>
       <Formik
         initialValues={{
           type: null,

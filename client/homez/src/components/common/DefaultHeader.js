@@ -10,7 +10,7 @@ import useUser from "@/hooks/useUser";
 
 const DefaultHeader = () => {
   const [navbar, setNavbar] = useState(false);
-  const user = useUser();
+  const user = useUser({ reload: true });
 
   const changeBackground = () => {
     if (window?.scrollY >= 10) {
@@ -30,8 +30,9 @@ const DefaultHeader = () => {
   return (
     <>
       <header
-        className={`header-nav nav-homepage-style light-header menu-home4 main-menu ${navbar ? "sticky slideInDown animated" : ""
-          }`}
+        className={`header-nav nav-homepage-style light-header menu-home4 main-menu ${
+          navbar ? "sticky slideInDown animated" : ""
+        }`}
       >
         <nav className="posr">
           <div className="container posr menu_bdrt1">

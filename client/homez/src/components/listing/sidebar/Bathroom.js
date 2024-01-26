@@ -6,7 +6,7 @@ const Bathroom = ({ filters }) => {
   const [options, setOptions] = useState([
     {
       id: "bathany",
-      label: "any",
+      label: "-",
       defaultChecked: true,
       checked: true,
       value: undefined,
