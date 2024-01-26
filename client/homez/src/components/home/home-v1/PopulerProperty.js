@@ -36,7 +36,15 @@ export default function PopulerProperty() {
             </div>
           </div>
         </div>
-
+        <div
+          className="row text-justify"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <h2 className="text-white mt10" style={{ textAlign: "center" }}>
+            Z nami kupisz, sprzedaż lub wynajmiesz każdą nieruchomość
+          </h2>
+        </div>
         {/* End .row */}
       </div>
     </section>

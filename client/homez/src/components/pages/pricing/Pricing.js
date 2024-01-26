@@ -3,14 +3,17 @@
 import AccountPacketsController from "@/controllers/AccountPacketsController";
 import useAccountPackets from "@/hooks/useAccountPackets";
 import formatPrice from "@/utilis/price";
+import dedupe from "dedupe";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import ReactSelect from "react-select";
+import React, { useEffect, useRef, useState } from "react";
+import ReactSelect, { useStateManager } from "react-select";
 
 const Pricing = ({ type, user }) => {
   const packets = useAccountPackets(type);
   const [groups, setGroups] = useState({});
   const [group, setGroup] = useState([]);
+  const [selected, setSelected] = useState(undefined);
+  const [options, setOptions] = useState([]);
 
   useEffect(() => {
     if (packets) {
@@ -27,6 +30,41 @@ const Pricing = ({ type, user }) => {
     }
   }, [packets]);
 
+  useEffect(() => {
+    setOptions(
+      Object.keys(groups)
+        .sort((a, b) => {
+          const numA = parseInt(a.match(/\d+/)[0]);
+          const numB = parseInt(b.match(/\d+/)[0]);
+
+          return numA - numB;
+        })
+        .map((key) => ({
+          label: key,
+          value: key,
+        })),
+    );
+  }, [groups]);
+
+  useEffect(() => {
+    if (group) {
+      setSelected(
+        Object.keys(groups)
+          .sort()
+          .map((key) => ({
+            label: key,
+            value: key,
+          }))[0],
+      );
+    }
+  }, [groups]);
+
+  useEffect(() => {
+    if (selected) {
+      setGroup(groups[selected.value]);
+    }
+  }, [selected]);
+
   return (
     <>
       <div className="row" data-aos="fade-up" data-aos-delay="300">
@@ -36,6 +74,8 @@ const Pricing = ({ type, user }) => {
               Wybierz ilość {type === "DEVELOPER" ? "inwestycji" : "ogłoszeń"}
             </p>
             <ReactSelect
+              defaultValue={selected}
+              value={selected}
               styles={{
                 menu: (prov) => ({ ...prov, zIndex: 99999999 }),
                 menuList: (prov) => ({ ...prov, zIndex: 99999999 }),
@@ -44,31 +84,32 @@ const Pricing = ({ type, user }) => {
                   width: "100%",
                 }),
               }}
+              menuPosition="absolute"
               className="mb-20"
               placeholder="Sprawdź cenę"
               onChange={({ value }) => {
                 setGroup(groups[value]);
               }}
-              options={Object.keys(groups)
-                .sort()
-                .map((key) => ({
-                  label: key,
-                  value: key,
-                }))}
+              options={options}
             />
           </>
         )}
-        {(type === "INDIVIDUAL" ? packets : group)
-          .sort((p1, p2) => p1.price - p2.price)
+        {dedupe(type === "INDIVIDUAL" ? packets : group, (val) => val.name)
+          .sort(
+            (p1, p2) => Number.parseInt(p1.price) - Number.parseInt(p2.price),
+          )
           .map((item, index) => (
-            <div className="col-md-6 col-xl-4 mt-4" key={index}>
+            <div
+              className="col-md-6 col-xl-4 mt-4"
+              key={index}
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
               <div
                 className={`pricing_packages ${index === 1 ? "active" : ""}`}
               >
                 <div className="heading mb60">
-                  <h4 className={`package_title ${item.uniqueClass || ""}`}>
-                    {item.name}
-                  </h4>
+                  <h4 className="package_title">{item.name}</h4>
                   <p className="text">{formatPrice(item.price / 100)} PLN</p>
                   <Image
                     width={70}

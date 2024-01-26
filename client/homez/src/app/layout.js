@@ -10,6 +10,7 @@ import Head from "next/head";
 
 if (typeof window !== "undefined") {
   import("bootstrap");
+  window.bootstrap = require("bootstrap/dist/js/bootstrap.bundle.js");
 }
 
 // DM_Sans font

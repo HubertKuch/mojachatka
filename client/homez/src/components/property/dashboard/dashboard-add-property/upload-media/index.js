@@ -12,6 +12,15 @@ const UploadMedia = ({ onChange }) => {
           </div>
         </div>
       </form>
+      <button
+        className="form-control ud-btn btn-white2"
+        type="button"
+        onClick={() => {
+          document.querySelector('[aria-controls="nav-item3"]').click();
+        }}
+      >
+        Dalej
+      </button>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import PropertyTypesSelect from "@/components/property/filter/PropertyTypesSelec
 import SellTypesSelect from "@/components/property/filter/SellTypesSelect";
 import { ErrorMessage, FastField, Field, useFormikContext } from "formik";
 import Error from "@/components/common/Error";
+import { Tab } from "bootstrap";
 
 const PropertyDescription = ({ onChange }) => {
   const [rentType, setRentType] = useState("BUY");
@@ -116,6 +117,17 @@ const PropertyDescription = ({ onChange }) => {
             )}
           </div>
         </div>
+      </div>
+      <div>
+        <button
+          className="form-control ud-btn btn-white2"
+          type="button"
+          onClick={() => {
+            document.querySelector('[aria-controls="nav-item2"]').click();
+          }}
+        >
+          Dalej
+        </button>
       </div>
     </form>
   );

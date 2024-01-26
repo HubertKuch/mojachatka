@@ -1,5 +1,6 @@
 "use client";
 
+import formatPrice from "@/utilis/price";
 import React from "react";
 
 const PropertyHeader = ({ offer }) => {
@@ -16,14 +17,7 @@ const PropertyHeader = ({ offer }) => {
               className="ff-heading text-thm fz15 bdrr1 pr10 ml0-sm ml10 bdrrn-sm"
               href="#"
             >
-              <i className="fas fa-circle fz10 pe-2" />
-              {offer?.sellType || ""}
-            </a>
-          </div>
-          <div className="property-meta d-flex align-items-center">
-            <a className="text fz15" href="#">
-              <i className="flaticon-bed pe-2 align-text-top" />
-              {offer.properties?.bedrooms || 0}
+              {offer?.sellType === "BUY" ? "Sprzedaż" : "Wynajem"}
             </a>
           </div>
         </div>
@@ -34,7 +28,7 @@ const PropertyHeader = ({ offer }) => {
         <div className="single-property-content">
           <div className="property-action text-lg-end">
             <h3 className="price mb-0">
-              {offer?.price || offer?.pricePerMonth}zl{" "}
+              {formatPrice(offer?.price || offer?.pricePerMonth)}
               <small>{offer.price ? "" : "/mo"}</small>
             </h3>
           </div>

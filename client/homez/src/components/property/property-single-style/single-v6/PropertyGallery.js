@@ -49,6 +49,7 @@ const PropertyGallery = ({ offer }) => {
                           ).map((item, i) => (
                             <SwiperSlide key={i}>
                               <Image
+                                style={{ height: "fit-content" }}
                                 height={736}
                                 width={409}
                                 src={item}

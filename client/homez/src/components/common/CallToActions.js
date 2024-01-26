@@ -45,7 +45,7 @@ const CallToActions = () => {
                   href="mailto:pomoc@mojachatka.pl"
                   className="ud-btn btn-transparent mr30 mr0-xs"
                 >
-                  Napisz do nas
+                  Napisz do nas: pomoc@mojachatka.pl
                   <i className="fal fa-arrow-right-long" />
                 </Link>
                 <Link href="tel:+48 789 857 202" className="ud-btn btn-dark">

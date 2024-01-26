@@ -59,9 +59,9 @@ const Home_V1 = () => {
           <div className="row align-items-center" data-aos="fade-up">
             <div className="col-lg-9">
               <div className="main-title2">
-                <h1 className="title text-white">
+                <h2 className="title text-white">
                   Odkryj nasze wyróżnione oferty
-                </h1>
+                </h2>
                 <p className="paragraph"></p>
               </div>
             </div>
