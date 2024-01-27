@@ -1,3 +1,4 @@
+"use client";
 import FormFromSchemaBuilder from "@/components/forms/FormFromSchemaBuilder";
 import OffersControllers from "@/controllers/OffersController";
 import {

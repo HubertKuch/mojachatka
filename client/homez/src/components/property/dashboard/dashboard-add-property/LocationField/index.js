@@ -105,7 +105,8 @@ const LocationField = ({ onChange }) => {
           className="form-control ud-btn btn-white2"
           type="button"
           onClick={() => {
-            document.querySelector('[aria-controls="nav-item4"]').click();
+            if (typeof document !== "undefined")
+              document?.querySelector('[aria-controls="nav-item4"]')?.click();
           }}
         >
           Dalej

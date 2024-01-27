@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import UploadPhotoGallery from "./UploadPhotoGallery";
 import { useFormikContext } from "formik";
@@ -17,7 +18,8 @@ const UploadMedia = ({ onChange }) => {
         className="form-control ud-btn btn-white2"
         type="button"
         onClick={() => {
-          document.querySelector('[aria-controls="nav-item3"]').click();
+          if (typeof document !== "undefined")
+            document?.querySelector('[aria-controls="nav-item3"]')?.click();
         }}
       >
         Dalej

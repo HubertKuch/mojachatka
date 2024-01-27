@@ -115,7 +115,7 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                     <button
                       className="form-control btn"
                       onClick={async () => {
-                        const err = document.querySelector("#modal-error");
+                        const err = document?.querySelector("#modal-error");
 
                         const res = await BoostingController.boostOffer(
                           property.id,

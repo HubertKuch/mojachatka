@@ -1,10 +1,17 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import PropertyDescription from "./property-description";
-import UploadMedia from "./upload-media";
 const LocationField = dynamic(() => import("./LocationField"), { ssr: false });
-import DetailsFiled from "./details-field";
+const UploadMedia = dynamic(() => import("./upload-media/index"), {
+  ssr: false,
+});
+const PropertyDescription = dynamic(
+  () => import("./property-description/index"),
+  { ssr: false },
+);
+const DetailsFiled = dynamic(() => import("./details-field/index"), {
+  ssr: false,
+});
 import { Form, Formik } from "formik";
 import OffersControllers from "@/controllers/OffersController";
 import { flatten } from "flat";
@@ -14,6 +21,8 @@ import Popup from "reactjs-popup";
 const AddPropertyTabContent = ({ content }) => {
   const [success, setSuccess] = useState(false);
   const user = useUser({ reload: true });
+
+  useEffect(() => { }, []);
 
   return (
     <>

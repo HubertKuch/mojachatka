@@ -8,9 +8,7 @@ const ApplicationSelect = (
     required: false,
   },
 ) => {
-  const { setFieldValue } = !useFormikContext()
-    ? { setFieldValue: null }
-    : useFormikContext();
+  const formik = useFormikContext();
 
   const config = {
     initialSelectedItem:
@@ -28,12 +26,12 @@ const ApplicationSelect = (
   } = useSelect(config);
 
   useEffect(() => {
-    if (selectedItem) setFieldValue(name, selectedItem.value);
+    if (selectedItem) formik?.setFieldValue(name, selectedItem.value);
   }, [selectedItem]);
 
   useEffect(() => {
     if (defaultOptionValue && options && setFieldValue) {
-      setFieldValue(name, defaultOptionValue);
+      formik?.setFieldValue(name, defaultOptionValue);
     }
   }, [defaultOptionValue]);
 

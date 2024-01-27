@@ -49,7 +49,7 @@ const EditOffer = ({ params }) => {
               <div className="row align-items-center pb40">
                 <div className="col-lg-12">
                   <div className="dashboard_title_area">
-                    <h2>Edycja oferty "{offer?.offer?.title}"</h2>
+                    <h2>Edycja oferty {offer?.offer?.title}</h2>
                     <p className="text" id="add-offer-error"></p>
                   </div>
                 </div>
