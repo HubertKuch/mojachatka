@@ -84,7 +84,6 @@ export default function PropertyFiltering() {
     setBathroms(elm);
   };
   const handlelocation = (elm) => {
-    console.log(elm);
     setLocation(elm);
   };
   const handlesquirefeet = (elm) => {
@@ -159,8 +158,8 @@ export default function PropertyFiltering() {
       !categories.length
         ? [...refItems]
         : refItems.filter((elm) =>
-            categories.every((elem) => elm.features.includes(elem)),
-          ),
+          categories.every((elem) => elm.features.includes(elem)),
+        ),
     ];
 
     if (location != "All Cities") {
@@ -174,7 +173,7 @@ export default function PropertyFiltering() {
       const filtered = refItems.filter(
         (elm) =>
           Number(elm.price.split("$")[1].split(",").join("")) >=
-            priceRange[0] &&
+          priceRange[0] &&
           Number(elm.price.split("$")[1].split(",").join("")) <= priceRange[1],
       );
       filteredArrays = [...filteredArrays, filtered];

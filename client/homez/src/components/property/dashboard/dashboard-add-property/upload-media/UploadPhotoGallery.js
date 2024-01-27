@@ -5,9 +5,16 @@ import Image from "next/image";
 import { Field, useFormikContext } from "formik";
 
 const UploadPhotoGallery = () => {
+  const { setFieldValue, values } = useFormikContext();
   const [uploadedImages, setUploadedImages] = useState([]);
   const fileInputRef = useRef(null);
-  const { setFieldValue } = useFormikContext();
+
+  useEffect(() => {
+    if (uploadedImages.length === 0) {
+      setUploadedImages(values?.properties?.images || []);
+      console.log(values?.properties?.images);
+    }
+  }, []);
 
   useEffect(() => {
     setFieldValue(

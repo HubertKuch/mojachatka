@@ -8,7 +8,7 @@ import { Tab } from "bootstrap";
 
 const PropertyDescription = ({ onChange }) => {
   const [rentType, setRentType] = useState("BUY");
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue, values } = useFormikContext();
 
   return (
     <form className="form-style1">
@@ -69,7 +69,11 @@ const PropertyDescription = ({ onChange }) => {
             <Error name="sellType" />
 
             <div className="location-area">
-              <SellTypesSelect onChange={onChange} set={setRentType} />
+              <SellTypesSelect
+                defaultOptionValue={values.sellType}
+                onChange={onChange}
+                set={setRentType}
+              />
             </div>
           </div>
         </div>

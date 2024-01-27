@@ -10,8 +10,6 @@ const PropertyAddress = ({ offer }) => {
         city: offer.properties.address.city,
         state: offer.properties.address.region,
         zipCode: offer.properties.address.zipCode,
-        house: offer.properties.address.houseNumber,
-        local: offer.properties.address.localNumber,
       });
     }
   }, [offer]);

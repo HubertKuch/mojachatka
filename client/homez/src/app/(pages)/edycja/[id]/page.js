@@ -20,8 +20,6 @@ const EditOffer = ({ params }) => {
 
   const offer = useOffer(id);
 
-  useEffect(() => console.log(offer), [offer]);
-
   return (
     <>
       {/* Main Header Nav */}
@@ -51,7 +49,7 @@ const EditOffer = ({ params }) => {
               <div className="row align-items-center pb40">
                 <div className="col-lg-12">
                   <div className="dashboard_title_area">
-                    <h2>Edycja oferty {offer?.title}</h2>
+                    <h2>Edycja oferty "{offer?.offer?.title}"</h2>
                     <p className="text" id="add-offer-error"></p>
                   </div>
                 </div>
@@ -62,7 +60,19 @@ const EditOffer = ({ params }) => {
                 <div className="col-xl-12">
                   <div className="ps-widget bgc-white bdrs12 default-box-shadow2 pt30 mb30 overflow-hidden position-relative">
                     <div className="navtab-style1">
-                      <AddPropertyTabContent />
+                      <AddPropertyTabContent
+                        content={
+                          offer?.offer || {
+                            type: null,
+                            properties: {
+                              security: {},
+                              address: {},
+                              price: null,
+                              pricePerMonth: null,
+                            },
+                          }
+                        }
+                      />
                     </div>
                   </div>
                 </div>

@@ -123,7 +123,7 @@ class OffersController {
     const offerId = req.params.offerId;
 
     if (!offerId) {
-      res.status(400).json({ message: "Offer id must be specified" });
+      res.status(400).json({ message: "Id musi byc podane" });
       return;
     }
 
@@ -132,91 +132,70 @@ class OffersController {
     });
 
     if (!offer) {
-      res.status(400).json({ message: "Invalid id" });
+      res.status(400).json({ message: "Niepoprawne id" });
       return;
     }
 
     const user = req.payload.data;
 
     if (offer.author !== user.id) {
-      res.status(401).json({ message: "You cannot edit not your offer" });
+      res.status(401).json({ message: "Oferta nie nalezy do ciebie" });
       return;
     }
 
-    // title description price region type sellType city properties => {bedrooms, rooms, images}
-    const requestFieldsOnDatabase = {
-      title: "title",
-      description: "description",
-      price: "price",
-      region: "region",
-      type: "type",
-      sellType: "sellType",
-      city: "city",
-      properties: "properties",
-    };
+    const data = req.body;
+    const validate = getCreateOfferValidator();
 
-    const requiredPropertiesKeys = ["images", "rooms", "bedrooms"];
-    try {
-      if (
-        !validateOfferImages.validateOfferImages(
-          req.body.data.properties.images,
-        )
-      ) {
-        res.status(400).json({ message: "Invalid images" });
-        return;
-      }
-    } catch (error) {
-      res.status(400).json({ message: error.message });
-      return;
+    validate(data);
+
+    if (validate.errors) {
+      console.error(validate.errors);
+      return next(
+        new APIError(
+          populateJsonSchemaError(createOfferSchema, validate.errors),
+        ),
+      );
     }
 
-    const validKeys = Object.keys(requestFieldsOnDatabase);
-    const { data } = req.body;
-    const properties = Object.keys(req.body.data.properties)
-      .filter((key) => requiredPropertiesKeys.includes(key))
-      .reduce((obj, key) => {
-        obj[key] = req.body.data.properties[key];
+    if (!data.data.price && !data.data.pricePerMonth) {
+      return next(new APIError("Price or price per month must be specified"));
+    }
 
-        return obj;
-      }, {});
+    delete data.data.author;
+    delete data.data.viewsCount;
 
-    const definedData = validKeys
-      .filter((key) => {
-        return data[key];
-      })
-      .reduce((obj, key) => {
-        obj[key] = data[key];
-
-        return obj;
-      }, {});
-
-    delete definedData.properties.images;
-
-    const dbOffer = await db.offers.update({
+    await db.offers.update({
       where: { id: offerId },
-      data: definedData,
+      data: { ...data.data },
     });
 
-    const updatedOffer = await appendImages(user.id, dbOffer.id, properties);
+    await appendImages(user.id, offer.id, data.properties);
 
-    res.status(200).json({ message: "Success", data: updatedOffer });
+    res.status(200).json({
+      message: "Success",
+      data: await db.offers.findFirst({ where: { id: offer.id } }),
+    });
   }
 
   static async getById(req, res, next) {
-    const { id } = req.params;
+    try {
+      const { id } = req.params;
 
-    if (!id) {
-      return next(new APIError("Id must be provided", 400));
+      if (!id) {
+        return next(new APIError("Id must be provided", 400));
+      }
+
+      const offer = await OffersService.getById(id);
+
+      if (!offer) {
+        return next(new APIError("Offer not found", 404));
+      }
+
+      await OffersViewsService.viewed(req.clientIp, [offer]);
+      res.status(200).json(offer);
+    } catch (e) {
+      return next(e);
     }
-
-    const offer = await OffersService.getById(id);
-
-    if (!offer) {
-      return next(new APIError("Offer not found", 404));
-    }
-
-    await OffersViewsService.viewed(req.clientIp, [offer]);
-    res.status(200).json(offer);
   }
 
   static async getUserOffers(req, res) {

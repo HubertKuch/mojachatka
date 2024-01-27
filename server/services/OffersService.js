@@ -22,13 +22,6 @@ class OffersService extends PaginatorService {
     properties: true,
     createdAt: true,
     createdOnIp: false,
-    OfferFeature: {
-      select: {
-        Feature: {
-          select: { name: true, id: true },
-        },
-      },
-    },
     OfferViews: {
       select: {
         id: true,
@@ -39,15 +32,10 @@ class OffersService extends PaginatorService {
   static toDTO(offer) {
     const dto = {
       ...offer,
-      features: offer.OfferFeature.map((f) => ({
-        name: f.Feature.name,
-        id: f.Feature.id,
-      })),
       viewsCount: offer.OfferViews.length,
     };
 
     delete dto.OfferViews;
-    delete dto.OfferFeature;
 
     return dto;
   }
@@ -218,22 +206,6 @@ class OffersService extends PaginatorService {
     const expiration = addDays(date, 30);
 
     try {
-      const features = data.features
-        ? await Promise.all(
-            data.features.map(async (featureId) => {
-              const feature = await db.feature.findUnique({
-                where: { id: featureId },
-              });
-
-              if (!feature) {
-                throw new APIError(`Feature ${featureId} not recognized`);
-              }
-
-              return feature;
-            }),
-          )
-        : [];
-
       const [offer] = await db.$transaction([
         db.offers.create({
           data: {
@@ -265,12 +237,6 @@ class OffersService extends PaginatorService {
         }),
       ]);
 
-      features.forEach(async (feature) => {
-        await db.offerFeature.create({
-          data: { featureId: feature.id, offerId: offer.id },
-        });
-      });
-
       await appendImages(user.id, offer.id, data.properties);
 
       return await db.offers.findUnique({
@@ -301,12 +267,16 @@ class OffersService extends PaginatorService {
   }
 
   static async getById(id) {
-    return this.toDTO(
-      await db.offers.findUnique({
-        where: { id },
-        select: this.selectedFields,
-      }),
-    );
+    const offer = await db.offers.findUnique({
+      where: { id },
+      select: this.selectedFields,
+    });
+
+    if (!offer) {
+      throw new APIError("Nie znaleziono oferty");
+    }
+
+    return this.toDTO(offer);
   }
 }
 

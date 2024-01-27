@@ -1,7 +1,6 @@
 import React from "react";
 
 const TopStateBlock = ({ user, stats }) => {
-  console.log(user);
   const statisticsData = [
     {
       text: "Oferty",

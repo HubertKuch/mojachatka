@@ -1,5 +1,6 @@
 import React from "react";
 import UploadPhotoGallery from "./UploadPhotoGallery";
+import { useFormikContext } from "formik";
 
 const UploadMedia = ({ onChange }) => {
   return (

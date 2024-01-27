@@ -47,7 +47,7 @@ const Invoice = () => {
                           <h6 className="title">
                             {aliases[cat.category].toLowerCase()}
                           </h6>
-                          <p className="text mb-0">{`${cat.count} ofert`}</p>
+                          <p className="text mb-0">{`${cat.count} nieruchomości`}</p>
                         </div>
                       </div>
                     </Link>

@@ -11,7 +11,7 @@ import { flatten } from "flat";
 import useUser from "@/hooks/useUser";
 import Popup from "reactjs-popup";
 
-const AddPropertyTabContent = () => {
+const AddPropertyTabContent = ({ content }) => {
   const [success, setSuccess] = useState(false);
   const user = useUser({ reload: true });
 
@@ -35,15 +35,21 @@ const AddPropertyTabContent = () => {
         </div>
       </Popup>
       <Formik
-        initialValues={{
-          type: null,
-          properties: {
-            security: {},
-            address: {},
-            price: null,
-            pricePerMonth: null,
-          },
-        }}
+        enableReinitialize
+        initialValues={
+          content
+            ? content
+            : {
+              type: null,
+              properties: {
+                images: [],
+                security: {},
+                address: {},
+                price: null,
+                pricePerMonth: null,
+              },
+            }
+        }
       >
         {({
           handleChange,
@@ -71,7 +77,7 @@ const AddPropertyTabContent = () => {
                     padding: "15px",
                   }}
                 >
-                  Oferta dodana!
+                  Zakończono sukcesem!{" "}
                 </div>
               )}
               <nav>
@@ -173,11 +179,7 @@ const AddPropertyTabContent = () => {
                     aria-labelledby="nav-item4-tab"
                   >
                     <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-                      <DetailsFiled
-                        setSuccess={setSuccess}
-                        success={success}
-                        setValue={setFieldValue}
-                      />
+                      <DetailsFiled content={content} setSuccess={setSuccess} />
                     </div>
                   </div>
                 </div>

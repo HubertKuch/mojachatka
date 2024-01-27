@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Select from "react-select";
 import Error from "../common/Error";
+import ApplicationSelect from "../customs/ApplicationSelect";
+import { flatten } from "flat";
 
 const FormFromSchemaBuilder = ({ namePrefix = "", schema }) => {
   const { setFieldValue } = useFormikContext();
@@ -92,32 +94,35 @@ const FormFromSchemaBuilder = ({ namePrefix = "", schema }) => {
   }
 
   function EnumField({ property, nameKey }) {
+    const formikContext = useFormikContext();
+    const [defaultVal, setDefaultVal] = useState(undefined);
+    const fullName = getFullName(nameKey);
+
+    useEffect(() => {
+      if (formikContext && !defaultVal) {
+        const flat = flatten(formikContext.values);
+        const valueKey = Object.keys(flat).find((key) => key === fullName);
+
+        setDefaultVal(flat[valueKey]);
+      }
+    }, []);
+
     return (
       <div className="row">
         <div className="col-12">
           <label className="heading-color w-100 ff-heading fw600 mb10">
             {property.label} *
-            <Select
-              placeholder={property.label}
-              styles={{
-                menu: (prov) => ({ ...prov, zIndex: 99999999 }),
-                menuList: (prov) => ({ ...prov, zIndex: 99999999 }),
-                container: (prov) => ({
-                  ...prov,
-                  width: "100%",
-                }),
+            <ApplicationSelect
+              name={fullName}
+              label={property.label}
+              defaultOptionValue={defaultVal}
+              onChange={() => {
+                setFieldValue(fullName, value);
               }}
-              onChange={({ value }) => {
-                setFieldValue(getFullName(nameKey), value);
-              }}
-              name="type"
-              menuPosition="fixed"
               options={Object.keys(property.cases).map((propKey) => ({
                 value: propKey,
                 label: property.cases[propKey],
               }))}
-              className="select-custom pl-0"
-              classNamePrefix="select"
               required
             />
           </label>

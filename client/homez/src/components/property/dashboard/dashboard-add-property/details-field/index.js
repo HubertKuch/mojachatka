@@ -12,13 +12,10 @@ import {
 import { useFormikContext } from "formik";
 import React, { useEffect, useState } from "react";
 
-const DetailsFiled = ({ success, setSuccess }) => {
+const DetailsFiled = ({ success, setSuccess, content }) => {
   const {
     setFieldValue,
-    values: {
-      properties: {},
-      type,
-    },
+    values: { properties, type },
     values,
     setErrors,
     setFieldError,
@@ -47,6 +44,8 @@ const DetailsFiled = ({ success, setSuccess }) => {
       MIESZKANIE: "apartment",
     };
 
+    if (type === "Error") return;
+
     if (type) setSchema(SCHEMA_BY_TYPE[type]);
     if (type) setPropertiesName(PROPERTIES_NAME_BY_TYPE[type]);
   }, [type]);
@@ -65,6 +64,18 @@ const DetailsFiled = ({ success, setSuccess }) => {
           onClick={(e) => {
             e.preventDefault();
 
+            if (content) {
+              OffersControllers.updateOffer(content.id, { data: values }).then(
+                (res) => {
+                  if (res.status === 200) {
+                    setSuccess(true);
+                    window?.scrollTo(0, 0);
+                  }
+                },
+              );
+              return;
+            }
+
             OffersControllers.createOffer({ data: values }).then((res) => {
               if (res.status !== 200) {
                 res.body.message.forEach((err) => {
@@ -78,7 +89,7 @@ const DetailsFiled = ({ success, setSuccess }) => {
             });
           }}
         >
-          Dodaj
+          {content ? "Edytuj" : "Dodaj"}
         </button>
       </div>
     </form>

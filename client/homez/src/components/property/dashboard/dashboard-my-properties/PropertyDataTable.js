@@ -64,6 +64,16 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
               <div
                 style={{ display: "grid", gap: "10px", alignItems: "right" }}
               >
+                <button
+                  className="icon"
+                  style={{ border: "none" }}
+                  data-tooltip-id={`edit-${property.id}`}
+                >
+                  <a href={`/edycja/${property.id}`}>
+                    <span className="fas fa-pen fa" />
+                  </a>
+                </button>
+
                 <Modal
                   title={`Czy na pewno chcesz usunąć ofertę ${property.title}? Ta operacja będzie niemożliwa do cofnięcia.
 `}
@@ -193,6 +203,11 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                   id={`delete-${property.id}`}
                   place="top"
                   content="Delete"
+                />
+                <ReactTooltip
+                  id={`edit-${property.id}`}
+                  place="top"
+                  content="Edytuj"
                 />
               </div>
             </td>

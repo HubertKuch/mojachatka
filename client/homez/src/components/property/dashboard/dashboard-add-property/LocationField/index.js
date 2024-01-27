@@ -1,14 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import dynamic from "next/dynamic";
 import useRegion from "@/hooks/useRegion";
 import Select from "react-select";
-import { Field } from "formik";
+import { Field, useFormikContext } from "formik";
 import ReactSelect from "react-select";
 import OffersControllers from "@/controllers/OffersController";
+import ApplicationSelect from "@/components/customs/ApplicationSelect";
 
 const LocationField = ({ onChange }) => {
   const regions = useRegion();
+  const formik = useFormikContext();
   const [cities, setCities] = useState([]);
 
   return (
@@ -19,7 +20,15 @@ const LocationField = ({ onChange }) => {
             <label className="heading-color ff-heading fw600 mb10">
               Miejscowość *
               <ReactSelect
-                isSearchable={false}
+                isSearchable={true}
+                value={
+                  formik
+                    ? {
+                      value: formik.values?.properties?.address?.city,
+                      label: formik.values?.properties?.address?.city,
+                    }
+                    : ""
+                }
                 onInputChange={(val) => {
                   if (val.length <= 2) {
                     return;
@@ -54,27 +63,6 @@ const LocationField = ({ onChange }) => {
               />
             </label>
           </div>
-
-          <div className="mb20">
-            <label className="heading-color ff-heading fw600 mb10">
-              Nr budynku *
-              <Field
-                name="properties.address.houseNumber"
-                type="text"
-                className="form-control"
-                placeholder="1"
-              />
-            </label>{" "}
-            <label className="heading-color ff-heading fw600 mb10">
-              Nr lokalu *
-              <Field
-                type="text"
-                name="properties.address.localNumber"
-                className="form-control"
-                placeholder="4"
-              />
-            </label>
-          </div>
         </div>
 
         <div className="col-sm-6 col-xl-4">
@@ -97,22 +85,18 @@ const LocationField = ({ onChange }) => {
               Region *
             </label>
             <div className="location-area">
-              <Select
+              <ApplicationSelect
+                name={"properties.address.region"}
+                label={"Region"}
+                defaultOptionValue={
+                  formik
+                    ? formik.values?.properties?.address?.region
+                    : undefined
+                }
                 onChange={({ value }) =>
                   onChange("properties.address.region")(value)
                 }
-                defaultValue={[regions[1]]}
-                name="properties.address.region"
-                styles={{
-                  menu: (prov) => ({ ...prov, zIndex: 99999999 }),
-                  menuList: (prov) => ({ ...prov, zIndex: 99999999 }),
-                }}
                 options={regions}
-                className="select-custom pl-0"
-                menuPosition="fixed"
-                menuPortalTarget={document.body}
-                classNamePrefix="select"
-                required
               />
             </div>
           </div>

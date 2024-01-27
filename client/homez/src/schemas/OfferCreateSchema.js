@@ -833,8 +833,6 @@ const addressSchema = {
     city: { type: "string", label: "Miasto" },
     zipCode: { type: "string", label: "Kod pocztowy" },
     address: { type: "string", label: "Adres" },
-    houseNumber: { type: "string", label: "Numer domu" },
-    localNumber: { type: "string", label: "Numer lokalu" },
   },
 };
 

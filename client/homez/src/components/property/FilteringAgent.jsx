@@ -45,7 +45,6 @@ export default function FilteringAgent() {
   };
 
   const handlelocation = (elm) => {
-    console.log(elm);
     setLocation(elm);
   };
 

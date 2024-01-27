@@ -49,6 +49,10 @@ class OffersControllers {
     return { body: res.data, status: res.status };
   }
 
+  static async updateOffer(id, body) {
+    return await instance.patch(`/editOffer/${id}`, JSON.stringify(body));
+  }
+
   static async getSellTypes() {
     return (await instance.get("/sellTypes")).data;
   }
