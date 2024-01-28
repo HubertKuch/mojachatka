@@ -61,7 +61,9 @@ const HeroContent = ({ filters }) => {
                           name="search"
                           placeholder={`Wpisz miejscowość lub kod pocztowy dla ${tab.label}`}
                         />
-                        <PropertyTypesSelect filters={filters} />
+                        <div className="location-area">
+                          <PropertyTypesSelect filters={filters} />
+                        </div>
                       </div>
                     </form>
                   </div>

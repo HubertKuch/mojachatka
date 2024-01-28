@@ -20,7 +20,6 @@ const LocationField = ({ onChange }) => {
             <label className="heading-color ff-heading fw600 mb10">
               Miejscowość *
               <ReactSelect
-                isSearchable={true}
                 value={
                   formik
                     ? {

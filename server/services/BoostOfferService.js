@@ -64,8 +64,12 @@ class BoostOfferService {
       throw new APIError("Boost already used", 409);
     }
 
-    if (boost.properties.type !== type) {
+    if (!boost.properties.type.includes(type)) {
       throw new APIError(`Boost type is not the same as ${type}`, 400);
+    }
+
+    if (offer.properties.boostType.includes(type)) {
+      throw new APIError(`Property already boosted with ${type} type`, 400);
     }
 
     if (!user || !offer) {
@@ -73,10 +77,6 @@ class BoostOfferService {
         "Offer, boost and user id must specified properly",
         400,
       );
-    }
-
-    if (offer.isBoosted) {
-      throw new APIError("Offer is already boosted");
     }
 
     boost.properties["used"] = true;
@@ -96,7 +96,13 @@ class BoostOfferService {
       }),
       db.offers.update({
         where: { id: offerId },
-        data: { isBoosted: true, boostType: type },
+        data: {
+          properties: {
+            ...offer.properties,
+            isBoosted: true,
+            boostType: [...offer.properties.boostType, type],
+          },
+        },
       }),
     ]);
 

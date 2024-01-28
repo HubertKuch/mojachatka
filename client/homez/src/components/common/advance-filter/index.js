@@ -54,7 +54,10 @@ const AdvanceFilterModal = ({ filters }) => {
             <div className="col-sm-6">
               <div className="widget-wrapper">
                 <h6 className="list-title">Typ</h6>
-                <div className="form-style2 input-group">
+                <div
+                  className="form-style2 input-group location-area"
+                  style={{ height: "100%" }}
+                >
                   <SellTypesSelect filters={filters} />
                 </div>
               </div>

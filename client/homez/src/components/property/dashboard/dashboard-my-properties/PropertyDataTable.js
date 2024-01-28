@@ -21,6 +21,18 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
     setMeta(offers?.meta);
   }, [offers, setMeta]);
 
+  function getBoostOptions(property) {
+    const types = [];
+
+    if (!property.properties.boostType.includes("MAIN"))
+      types.push({ label: "Na strone glowna", value: "MAIN" });
+
+    if (!property.properties.boostType.includes("GLOBAL"))
+      types.push({ label: "Na liste", value: "GLOBAL" });
+
+    return types;
+  }
+
   return (
     <table className="table-style3 table at-savesearch">
       <thead className="t-head">
@@ -106,7 +118,7 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                       className="icon"
                       style={{ border: "none" }}
                       data-tooltip-id="promote"
-                      disabled={property.isBoosted}
+                      disabled={property.properties.boostType.length === 2}
                     >
                       <i class="fa-solid fa-rectangle-ad"></i>
                     </button>
@@ -152,16 +164,7 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                       setType(value);
                     }}
                     placeholder="Typ promocji"
-                    options={[
-                      {
-                        value: "MAIN",
-                        label: "Standardowe",
-                      },
-                      {
-                        value: "GLOBAL",
-                        label: "Na strone glowna",
-                      },
-                    ]}
+                    options={getBoostOptions(property)}
                   />
                   <p className="fz16">Ilosc dni</p>
                   <ReactSelect
@@ -172,14 +175,15 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                     }}
                     placeholder={"Dni"}
                     options={user?.UserBoosts.filter(
-                      (b) => b.properties.type === type && !b.properties.used,
+                      (b) =>
+                        b.properties.type.includes(type) && !b.properties.used,
                     ).map((b) => ({
                       value: b.id,
                       label: `Na ${b.properties.days} dni`,
                     }))}
                   />
                 </Modal>
-                {property.isBoosted ? (
+                {property.properties.isBoosted ? (
                   <button disabled className="icon" style={{ border: "none" }}>
                     {" "}
                     <i
@@ -190,7 +194,7 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                     ></i>
                   </button>
                 ) : null}
-                {property.isBoosted ? (
+                {property.properties.boostType.length === 2 ? (
                   <ReactTooltip
                     id={"promote"}
                     place="top"

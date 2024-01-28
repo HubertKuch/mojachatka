@@ -30,14 +30,24 @@ const ApplicationSelect = (
   }, [selectedItem]);
 
   useEffect(() => {
-    if (defaultOptionValue && options && setFieldValue) {
+    if (defaultOptionValue && options && formik?.setFieldValue) {
       formik?.setFieldValue(name, defaultOptionValue);
     }
   }, [defaultOptionValue]);
 
   return (
     <>
-      <div aria-role="select">
+      <div
+        aria-role="select"
+        {...getToggleButtonProps()}
+        style={{
+          width: "fit-content",
+          height: "fit-content",
+          maxHeight: "fit-content",
+          position: "relative",
+          display: "inline-block",
+        }}
+      >
         <div className="w-72 flex flex-col gap-1 form-select">
           <input
             type="hidden"
@@ -52,10 +62,7 @@ const ApplicationSelect = (
             }
             required={required}
           />
-          <div
-            className="p-2 bg-white flex justify-between cursor-pointer"
-            {...getToggleButtonProps()}
-          >
+          <div className="p-2 bg-white flex justify-between cursor-pointer">
             <span>
               {selectedItem
                 ? selectedItem.label
@@ -69,8 +76,12 @@ const ApplicationSelect = (
       </div>
       {isOpen && (
         <ul
-          className={`border rounded absolute dropdown-list w-72 bg-white mt-1 shadow-md max-h-80 overflow-scroll p-0 z-10`}
-          {...getMenuProps({ required: true, name: name })}
+          className={`border rounded absolute dropdown-list w-72 bg-white mt-1 shadow-md max-h-80 overflow-scroll p-0 pointer `}
+          {...getMenuProps({
+            required: true,
+            name: name,
+            style: { position: "absolute", top: "2em", left: 0, zIndex: 9999 },
+          })}
         >
           {options.map((item, index) => (
             <li

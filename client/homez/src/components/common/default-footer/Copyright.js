@@ -23,14 +23,7 @@ const Footer = () => {
         <div className="col-sm-6">
           <div className="text-center text-lg-start">
             <p className="copyright-text text-gray ff-heading">
-              © Mojachatka.pl {getCurrentYear()}{" "}
-              <a
-                href=""
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white"
-              ></a>{" "}
-              - Wszelkie prawa zastrzeżone
+              © Mojachatka.pl {getCurrentYear()} - Wszelkie prawa zastrzeżone
             </p>
           </div>
         </div>

@@ -67,7 +67,6 @@ const ListingSidebar = ({ filters, setPageItems, setPageCapacity }) => {
           <label className="heading-color ff-heading fw600 mb10">
             Miejscowość
             <ReactSelect
-              isSearchable={false}
               onChange={(val) => {
                 filters.city = val.value;
               }}

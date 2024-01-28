@@ -230,8 +230,6 @@ model Offers {
   region        Region?
   type          OfferType
   sellType      SellType
-  isBoosted     Boolean        @default(false)
-  boostType     String?
   properties    Json
   expires       DateTime
   deleted       Boolean        @default(false)

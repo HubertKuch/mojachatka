@@ -7,6 +7,7 @@ const conditionSchema = {
     FORFINISHING: "do wykonczenia",
     FORRENOVATION: "do remontu",
   },
+  required: [],
 };
 
 const securitySchema = {
@@ -129,6 +130,7 @@ const equipmentSchema = {
       type: "boolean",
     },
   },
+  required: [],
 };
 
 const mediaSchema = {
@@ -173,6 +175,7 @@ const mediaSchema = {
       type: "boolean",
     },
   },
+  required: [],
 };
 
 const garageSchema = {
@@ -183,7 +186,6 @@ const garageSchema = {
       type: "boolean",
       label: "Ogrzewanie",
     },
-
     lighting: {
       label: "Oświetlenie",
       type: "boolean",
@@ -321,6 +323,7 @@ const apartmentSchema = {
       label: "Typ zabudowy",
     },
   },
+  required: [],
 };
 
 const commercialLocalSchema = {
@@ -393,6 +396,7 @@ const commercialLocalSchema = {
     equipment: equipmentSchema,
     media: mediaSchema,
   },
+  required: [],
 };
 
 const plotSchema = {
@@ -489,6 +493,7 @@ const plotSchema = {
       label: "Ogrodzenie",
     },
   },
+  required: [],
 };
 
 const warehouseSchema = {
@@ -570,6 +575,7 @@ const warehouseSchema = {
     },
     equipment: equipmentSchema,
   },
+  required: [],
 };
 
 const fenceSchema = {
@@ -605,6 +611,7 @@ const roomsSchema = {
       label: "Liczba łazienek",
     },
   },
+  required: [],
 };
 
 const houseSchema = {
@@ -753,6 +760,7 @@ const houseSchema = {
     houseArea: { type: "number", label: "Powierzchnia domu" },
     plotArea: { type: "number", label: "Powierzchnia działki" },
   },
+  required: [],
 };
 
 const roomSchema = {
@@ -783,6 +791,7 @@ const roomSchema = {
       },
     },
   },
+  required: [],
 };
 
 const addressSchema = {
@@ -834,6 +843,7 @@ const addressSchema = {
     zipCode: { type: "string", label: "Kod pocztowy" },
     address: { type: "string", label: "Adres" },
   },
+  required: [],
 };
 
 const createOfferSchema = {

@@ -28,7 +28,7 @@ const FeaturedListings = ({ data, colstyle }) => {
                 src={listing.properties.images[0]}
                 alt="listings"
               />
-              {listing.isBoosted ? (
+              {listing.properties.isBoosted ? (
                 <div className="sale-sticker-wrap">
                   {!listing.forRent && (
                     <div className="list-tag fz12">

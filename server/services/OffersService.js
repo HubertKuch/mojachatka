@@ -18,7 +18,6 @@ class OffersService extends PaginatorService {
     pricePerMonth: true,
     type: true,
     sellType: true,
-    isBoosted: true,
     properties: true,
     createdAt: true,
     createdOnIp: false,
@@ -55,7 +54,12 @@ class OffersService extends PaginatorService {
 
   static async getRandomBoostedOffers(type) {
     const count = await db.offers.count({
-      where: { isBoosted: true, boostType: type },
+      where: {
+        AND: [
+          { properties: { path: "$.isBoosted", equals: true } },
+          { properties: { path: "$.boostType", array_contains: type } },
+        ],
+      },
     });
 
     const takeTo = { [OfferBoostType.MAIN]: 6, [OfferBoostType.GLOBAL]: 3 }[
@@ -69,7 +73,12 @@ class OffersService extends PaginatorService {
     }
 
     const offers = await db.offers.findMany({
-      where: { isBoosted: true, boostType: type },
+      where: {
+        AND: [
+          { properties: { path: "$.isBoosted", equals: true } },
+          { properties: { path: "$.boostType", array_contains: type } },
+        ],
+      },
       skip: skipTo,
       select: this.selectedFields,
       take: takeTo,
@@ -105,8 +114,10 @@ class OffersService extends PaginatorService {
       ];
     if (user) where.author = user;
     if (boostType) {
-      where.boostType = boostType;
-      where.isBoosted = true;
+      where.AND.push(
+        { path: "$.isBoosted", equals: true },
+        { path: "$.boostType", array_contains: type },
+      );
     }
     if (type) {
       if (!Object.values(OfferType).includes(type)) {

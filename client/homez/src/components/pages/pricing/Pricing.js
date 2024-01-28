@@ -87,7 +87,8 @@ const Pricing = ({ type, user }) => {
               menuPosition="absolute"
               className="mb-20"
               placeholder="Sprawdź cenę"
-              onChange={({ value }) => {
+              onChange={({ value, label }) => {
+                setSelected({ value, label });
                 setGroup(groups[value]);
               }}
               options={options}
