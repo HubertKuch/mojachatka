@@ -6,7 +6,6 @@ const nextConfig = {
     REFRESH_KEY: "refresh_token",
   },
   output: "standalone",
-  typescript: { ignoreBuildErrors: true },
   images: {
     remotePatterns: [
       {
@@ -18,7 +17,6 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-
 
 // Injected content via Sentry wizard below
 
@@ -59,5 +57,5 @@ module.exports = withSentryConfig(
     // https://docs.sentry.io/product/crons/
     // https://vercel.com/docs/cron-jobs
     automaticVercelMonitors: true,
-  }
+  },
 );

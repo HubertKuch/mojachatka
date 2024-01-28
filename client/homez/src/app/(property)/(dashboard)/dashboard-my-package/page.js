@@ -87,10 +87,10 @@ const DashboardMyPackage = () => {
                           ).map((packageItem, index) => (
                             <tr key={index}>
                               <th scope="row">
-                                {packageItem.properties.days} dni
+                                {packageItem?.properties?.days} dni
                               </th>
                               <td>
-                                {packageItem.properties.type === "MAIN"
+                                {packageItem?.properties?.type === "MAIN"
                                   ? "Na Strone Główną"
                                   : "Na Liste"}
                               </td>

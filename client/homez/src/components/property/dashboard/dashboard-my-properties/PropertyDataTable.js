@@ -176,14 +176,15 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                     placeholder={"Dni"}
                     options={user?.UserBoosts.filter(
                       (b) =>
-                        b.properties.type.includes(type) && !b.properties.used,
+                        b?.properties?.type?.includes(type) &&
+                        !b.properties.used,
                     ).map((b) => ({
                       value: b.id,
-                      label: `Na ${b.properties.days} dni`,
+                      label: `Na ${b?.properties?.days} dni`,
                     }))}
                   />
                 </Modal>
-                {property.properties.isBoosted ? (
+                {property?.properties?.isBoosted ? (
                   <button disabled className="icon" style={{ border: "none" }}>
                     {" "}
                     <i
@@ -194,7 +195,7 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                     ></i>
                   </button>
                 ) : null}
-                {property.properties.boostType.length === 2 ? (
+                {property?.properties?.boostType.length === 2 ? (
                   <ReactTooltip
                     id={"promote"}
                     place="top"
