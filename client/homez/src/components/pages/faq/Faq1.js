@@ -55,6 +55,7 @@ const Faq1 = () => {
           </div>
         </div>
       ))}
+      <p>Wszystkie z podanych cen są cenami brutto.</p>
     </div>
   );
 };

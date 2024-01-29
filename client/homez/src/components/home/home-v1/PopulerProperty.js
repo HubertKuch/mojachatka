@@ -32,7 +32,7 @@ export default function PopulerProperty() {
               <a style={{ color: "black" }} href="/about">
                 TUTAJ
               </a>
-              , aby przeczytaj więcej szczegółów na temat mojejchatki
+              , aby przeczytać więcej szczegółów na temat mojejchatki
             </div>
           </div>
         </div>

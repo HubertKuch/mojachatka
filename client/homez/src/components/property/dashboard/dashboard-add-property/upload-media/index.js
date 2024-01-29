@@ -6,7 +6,7 @@ import { useFormikContext } from "formik";
 const UploadMedia = ({ onChange }) => {
   return (
     <div className="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-      <h4 className="title fz17 mb30">Wrzuc zdjecia swojej oferty *</h4>
+      <h4 className="title fz17 mb30">Wrzuć zdjęcia swojej oferty *</h4>
       <form className="form-style1">
         <div className="row">
           <div className="col-lg-12">

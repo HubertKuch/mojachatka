@@ -74,7 +74,7 @@ const About = () => {
                 rzeczy nie powinno się komplikować.
               </p>
               <p className="text mb55">
-                Zero ukrytych kosztów. U naszej firmy ceni się uczciwość.
+                Zero ukrytych kosztów. W naszej firmie ceni się uczciwość.
                 Dlatego też gwarantujemy, że żadna opłata nie pozostanie ukryta.
                 Każda cena jest transparentnie przedstawiona, aby każdy zawsze
                 wiedział, na co się decyduje.

@@ -55,7 +55,7 @@ const FeaturedListings = ({ data, colstyle }) => {
               <hr className="mt-2 mb-2" />
               <div className="list-meta2 d-flex justify-content-between align-items-center">
                 <span className="for-what">
-                  {listing.sellType === "BUY" ? "Sprzedaż" : "Najm"}
+                  {listing.sellType === "BUY" ? "Sprzedaż" : "Najem"}
                 </span>
                 <span className="for-what">
                   {listing.properties.address.city}

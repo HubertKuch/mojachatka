@@ -24,6 +24,8 @@ const ApplicationSelect = (
       options.find((opt) => opt.value === defaultOptionValue) || undefined,
     items: options,
     itemToString: (item) => item.label,
+    onSelectedItemChange: ({ selectedItem: newSelectedItem }) =>
+      onChange(newSelectedItem),
   };
 
   const {

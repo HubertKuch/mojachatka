@@ -40,7 +40,7 @@ const Pricing = ({ type, user }) => {
           return numA - numB;
         })
         .map((key) => ({
-          label: key,
+          label: type === "AGENT" ? `${key} ogłoszeń` : `${key}`,
           value: key,
         })),
     );
@@ -70,7 +70,7 @@ const Pricing = ({ type, user }) => {
       <div className="row" data-aos="fade-up" data-aos-delay="300">
         {type !== "INDIVIDUAL" && (
           <>
-            <p style={{ textAlign: "center" }}>
+            <p style={{ textAlign: "center", fontSize: "1.2em" }}>
               Wybierz ilość {type === "DEVELOPER" ? "inwestycji" : "ogłoszeń"}
             </p>
             <ReactSelect

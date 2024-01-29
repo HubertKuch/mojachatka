@@ -107,7 +107,7 @@ export const pageItems = [
   { href: "/contact", label: "Contact" },
   { href: "/compare", label: "Compate" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/faq", label: "Faq" },
+  { href: "/faq", label: "FAQ" },
   { href: "/login", label: "Login" },
   { href: "/register", label: "Register" },
   { href: "/not-found", label: "404" },

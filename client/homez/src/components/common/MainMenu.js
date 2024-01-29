@@ -92,7 +92,7 @@ const MainMenu = () => {
       <li className="visible_list dropitem">
         <a className="list-item" href="/faq">
           <span className={topMenu == "faq" ? "title menuActive" : "title"}>
-            Faq
+            FAQ
           </span>
           <span className=""></span>
         </a>

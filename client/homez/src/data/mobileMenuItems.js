@@ -16,7 +16,7 @@ module.exports = [
     path: "/about",
   },
   {
-    label: "Faq",
+    label: "FAQ",
     path: "/faq",
   },
 ];

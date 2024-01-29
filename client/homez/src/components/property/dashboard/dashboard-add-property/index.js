@@ -22,7 +22,7 @@ const AddPropertyTabContent = ({ content }) => {
   const [success, setSuccess] = useState(false);
   const user = useUser({ reload: true });
 
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -49,15 +49,15 @@ const AddPropertyTabContent = ({ content }) => {
           content
             ? content
             : {
-              type: null,
-              properties: {
-                images: [],
-                security: {},
-                address: {},
-                price: null,
-                pricePerMonth: null,
-              },
-            }
+                type: null,
+                properties: {
+                  images: [],
+                  security: {},
+                  address: {},
+                  price: null,
+                  pricePerMonth: null,
+                },
+              }
         }
       >
         {({
@@ -114,7 +114,7 @@ const AddPropertyTabContent = ({ content }) => {
                     aria-controls="nav-item2"
                     aria-selected="false"
                   >
-                    2. Media
+                    2. Zdjęcia
                   </button>
                   <button
                     className="nav-link fw600"
@@ -140,7 +140,7 @@ const AddPropertyTabContent = ({ content }) => {
                     aria-controls="nav-item4"
                     aria-selected="false"
                   >
-                    4. Szczegoly
+                    4. Szczegóły
                   </button>
                 </div>
               </nav>

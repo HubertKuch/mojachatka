@@ -37,7 +37,7 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
     <table className="table-style3 table at-savesearch">
       <thead className="t-head">
         <tr>
-          <th scope="col">Tytul</th>
+          <th scope="col">Tytuł</th>
           <th scope="col">Akcje</th>
         </tr>
       </thead>
@@ -146,43 +146,53 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                     </button>
                   }
                 >
-                  <p
-                    className="fz16"
-                    style={{ color: "red" }}
-                    id={"modal-error"}
-                  ></p>
-                  <p className="fz16">
-                    Wybierz typ promowania. W razie braku mozliwej promocje
-                    mozesz zakupic pakiet promocyjny.
-                  </p>
-                  <p className="fz16">Typ promocji</p>
+                  {user?.UserBoosts.filter((b) => !b.properties.used).length >
+                  0 ? (
+                    <>
+                      <p
+                        className="fz16"
+                        style={{ color: "red" }}
+                        id={"modal-error"}
+                      ></p>
+                      <p className="fz16">
+                        Wybierz typ promowania.{" "}
+                        <Link href={"/cennik"}>
+                          W razie braku możliwej promocji możesz zakupić pakiet
+                          promocyjny
+                        </Link>
+                      </p>
+                      <p className="fz16">Typ promocji</p>
 
-                  <ReactSelect
-                    isSearchable={false}
-                    name="type"
-                    onChange={({ value }) => {
-                      setType(value);
-                    }}
-                    placeholder="Typ promocji"
-                    options={getBoostOptions(property)}
-                  />
-                  <p className="fz16">Ilosc dni</p>
-                  <ReactSelect
-                    isSearchable={false}
-                    name="type"
-                    onChange={({ value }) => {
-                      setId(value);
-                    }}
-                    placeholder={"Dni"}
-                    options={user?.UserBoosts.filter(
-                      (b) =>
-                        b?.properties?.type?.includes(type) &&
-                        !b.properties.used,
-                    ).map((b) => ({
-                      value: b.id,
-                      label: `Na ${b?.properties?.days} dni`,
-                    }))}
-                  />
+                      <ReactSelect
+                        isSearchable={false}
+                        name="type"
+                        onChange={({ value }) => {
+                          setType(value);
+                        }}
+                        placeholder="Typ promocji"
+                        options={getBoostOptions(property)}
+                      />
+                      <p className="fz16">Ilosc dni</p>
+                      <ReactSelect
+                        isSearchable={false}
+                        name="type"
+                        onChange={({ value }) => {
+                          setId(value);
+                        }}
+                        placeholder={"Dni"}
+                        options={user?.UserBoosts.filter(
+                          (b) =>
+                            b?.properties?.type?.includes(type) &&
+                            !b.properties.used,
+                        ).map((b) => ({
+                          value: b.id,
+                          label: `Na ${b?.properties?.days} dni`,
+                        }))}
+                      />
+                    </>
+                  ) : (
+                    "GOwno"
+                  )}
                 </Modal>
                 {property?.properties?.isBoosted ? (
                   <button disabled className="icon" style={{ border: "none" }}>

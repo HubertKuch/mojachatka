@@ -30,7 +30,7 @@ const WeeklyBarChart = ({ data }) => {
         <YAxis />
         <Tooltip cursor={{ fill: "transparent" }} />
         <Legend />
-        <Bar dataKey="views" fill="#82ca9d" />
+        <Bar dataKey="wyświetlenia" fill="#82ca9d" />
       </BarChart>
     </ResponsiveContainer>
   );

@@ -25,7 +25,7 @@ const Explore = () => {
       icon: "/images/icon/property-rent.svg",
       title: "Wynajmij nieruchomość",
       text: "Z naszą pomocą znajdziesz idealną nieruchomość dla Ciebie w celu wynajmu. Przekonaj się już teraz i sprawdź dostępne oferty.",
-      linkText: "Znajdź wynajem",
+      linkText: "Znajdź nieruchomość na wynajem",
       link: "/oferty?sellType=RENT",
     },
   ];

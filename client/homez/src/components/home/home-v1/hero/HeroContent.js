@@ -14,7 +14,7 @@ const HeroContent = ({ filters }) => {
   };
 
   const tabs = [
-    { id: "BUY", label: "Sprzedaz" },
+    { id: "BUY", label: "Sprzedaż" },
     { id: "RENT", label: "Wynajem" },
   ];
 

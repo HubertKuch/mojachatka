@@ -9,17 +9,17 @@ const TopStateBlock = ({ user, stats }) => {
     },
 
     {
-      text: "Wyswietlen",
+      text: "Wyświetleń",
       title: stats?.views?.total || 0,
       icon: "flaticon-search-chart",
     },
     {
-      text: "Pozostalych ofert",
+      text: "Pozostałych ofert",
       title: user?.listings,
       icon: "flaticon-home",
     },
     {
-      text: "Pozostale podbicia na glowna",
+      text: "Pozostałe podbicia na glowna",
       title: user?.UserBoosts?.filter(
         (b) => b?.properties?.type?.includes("MAIN") && !b?.properties?.used,
       ).length,

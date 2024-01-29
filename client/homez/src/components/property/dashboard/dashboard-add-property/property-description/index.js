@@ -16,13 +16,13 @@ const PropertyDescription = ({ onChange }) => {
         <div className="col-sm-12">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
-              Tytul *
+              Tytuł *
             </label>
             <Error name="title" />
             <FastField
               name="title"
               className="form-control"
-              placeholder="Tytul oferty"
+              placeholder="Tytuł oferty"
             />
           </div>
         </div>
