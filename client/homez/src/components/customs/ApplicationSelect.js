@@ -21,11 +21,11 @@ const ApplicationSelect = (
 
   const config = {
     initialSelectedItem:
-      options.find((opt) => opt.value === defaultOptionValue) || undefined,
+      options?.find((opt) => opt?.value === defaultOptionValue) || undefined,
     items: options,
-    itemToString: (item) => item.label,
-    onSelectedItemChange: ({ selectedItem: newSelectedItem }) =>
-      onChange(newSelectedItem),
+    itemToString: (item) => item?.label,
+    onSelectedItemChange: (selectedItem) =>
+      onChange(selectedItem?.selectedItem),
   };
 
   const {

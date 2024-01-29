@@ -35,12 +35,12 @@ export default function SellTypesSelect({
           ? defaultOptionValue
           : { label: "Wynajem", value: "RENT" }
       }
-      onChange={({ selectedItem }) => {
-        if (filters) filters.sellType = selectedItem.value;
+      onChange={({ value }) => {
+        if (filters) filters.sellType = value;
 
-        if (set) set(selectedItem.value);
+        if (set) set(value);
 
-        if (onChange) onChange("sellType")(selectedItem.value);
+        if (onChange) onChange("sellType")(value);
       }}
       options={[
         { label: "Wynajem", value: "RENT" },
