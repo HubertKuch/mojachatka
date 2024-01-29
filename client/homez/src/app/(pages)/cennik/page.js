@@ -150,7 +150,7 @@ const PricingPlan = () => {
             </div>
           </div>
           {boosts
-            .filter((b) => b.properties.boostType.includes("MAIN"))
+            .filter((b) => b?.properties?.boostType?.includes("MAIN"))
             .sort((b1, b2) => b1.price - b2.price)
             .map((item, idx) => (
               <div className="col-md-6 col-xl-4" key={idx}>
@@ -196,7 +196,7 @@ const PricingPlan = () => {
             </div>
           </div>
           {boosts
-            .filter((b) => b.properties.boostType.includes("GLOBAL"))
+            .filter((b) => b?.properties?.boostType?.includes("GLOBAL"))
             .sort((b1, b2) => b1.price - b2.price)
             .map((item, idx) => (
               <div className="col-md-6 col-xl-4" key={idx}>

@@ -1,3 +1,5 @@
+const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
@@ -16,7 +18,30 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+const prodConfig = {
+  env: {
+    BASE_URL: "https://mojachatka.pl:2053",
+    TOKEN_KEY: "token",
+    REFRESH_KEY: "refresh_token",
+  },
+  output: "standalone",
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "mojachatka.pl",
+      },
+    ],
+  },
+};
+
+module.exports = module.exports = (phase, { defaultConfig }) => {
+  if (phase === PHASE_DEVELOPMENT_SERVER) {
+    return nextConfig;
+  }
+
+  return prodConfig;
+};
 
 // Injected content via Sentry wizard below
 

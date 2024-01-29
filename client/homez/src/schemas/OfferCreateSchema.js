@@ -7,7 +7,6 @@ const conditionSchema = {
     FORFINISHING: "do wykonczenia",
     FORRENOVATION: "do remontu",
   },
-  required: [],
 };
 
 const securitySchema = {
@@ -323,7 +322,18 @@ const apartmentSchema = {
       label: "Typ zabudowy",
     },
   },
-  required: [],
+  required: [
+    "floor",
+    "availableFrom",
+    "propertyFrom",
+    "area",
+    "material",
+    "condition",
+    "floorsNumber",
+    "heating",
+    "windows",
+    "developmentType",
+  ],
 };
 
 const commercialLocalSchema = {
@@ -396,7 +406,14 @@ const commercialLocalSchema = {
     equipment: equipmentSchema,
     media: mediaSchema,
   },
-  required: [],
+  required: [
+    "localLocation",
+    "destiny",
+    "availableFrom",
+    "area",
+    "floor",
+    "buildYear",
+  ],
 };
 
 const plotSchema = {
@@ -493,7 +510,15 @@ const plotSchema = {
       label: "Ogrodzenie",
     },
   },
-  required: [],
+  required: [
+    "fence",
+    "sizeInMeters",
+    "availableFrom",
+    "type",
+    "surroundings",
+    "location",
+    "roadAccess",
+  ],
 };
 
 const warehouseSchema = {
@@ -575,7 +600,14 @@ const warehouseSchema = {
     },
     equipment: equipmentSchema,
   },
-  required: [],
+  required: [
+    "heightInMeters",
+    "heating",
+    "useFacility",
+    "availableFrom",
+    "road",
+    "construction",
+  ],
 };
 
 const fenceSchema = {
@@ -611,12 +643,29 @@ const roomsSchema = {
       label: "Liczba łazienek",
     },
   },
-  required: [],
+  required: ["total", "bedrooms", "bathrooms"],
 };
 
 const houseSchema = {
   type: "object",
   label: "Dom",
+  required: [
+    "plotArea",
+    "houseArea",
+    "roadAccess",
+    "heating",
+    "fence",
+    "availableFrom",
+    "location",
+    "roofing",
+    "attic",
+    "buildYear",
+    "developmentType",
+    "material",
+    "windows",
+    "condition",
+    "roof",
+  ],
   properties: {
     rooms: roomsSchema,
     media: mediaSchema,

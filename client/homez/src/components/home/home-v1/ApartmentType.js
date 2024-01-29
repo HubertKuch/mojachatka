@@ -49,7 +49,7 @@ const ApartmentType = () => {
                   <h6 className="title" style={{ textTransform: "capitalize" }}>
                     {aliases[type.category].toLowerCase()}
                   </h6>
-                  <p className="text mb-0">{`${type.count} ofert`}</p>
+                  <p className="text mb-0">{`${type.count} nieruchomości`}</p>
                 </div>
               </div>
             </Link>

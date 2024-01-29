@@ -201,6 +201,7 @@ const garageSchema = {
       enum: ["BRICK", "SHED", "TIN", "WOODEN"],
     },
   },
+  required: ["sizeInMeters", "availableFrom", "location", "construction"],
 };
 
 const roomSchema = {
@@ -231,6 +232,7 @@ const roomSchema = {
       },
     },
   },
+  required: ["personsInRooms", "sizeInMeters", "availableFrom"],
 };
 
 const apartmentSchema = {
@@ -333,6 +335,18 @@ const apartmentSchema = {
       label: "Typ zabudowy",
     },
   },
+  required: [
+    "floor",
+    "availableFrom",
+    "propertyFrom",
+    "area",
+    "material",
+    "condition",
+    "floorsNumber",
+    "heating",
+    "windows",
+    "developmentType",
+  ],
 };
 
 const commercialLocalSchema = {
@@ -404,6 +418,14 @@ const commercialLocalSchema = {
     equipment: equipmentSchema,
     media: mediaSchema,
   },
+  required: [
+    "localLocation",
+    "destiny",
+    "availableFrom",
+    "area",
+    "floor",
+    "buildYear",
+  ],
 };
 
 const plotSchema = {
@@ -499,6 +521,15 @@ const plotSchema = {
       label: "Ogrodzenie",
     },
   },
+  required: [
+    "fence",
+    "sizeInMeters",
+    "availableFrom",
+    "type",
+    "surroundings",
+    "location",
+    "roadAccess",
+  ],
 };
 
 const warehouseSchema = {
@@ -573,6 +604,14 @@ const warehouseSchema = {
     },
     equipment: equipmentSchema,
   },
+  required: [
+    "heightInMeters",
+    "heating",
+    "useFacility",
+    "availableFrom",
+    "road",
+    "construction",
+  ],
 };
 
 const fenceSchema = {
@@ -606,10 +645,29 @@ const roomsSchema = {
       label: "Liczba łazienek",
     },
   },
+  required: ["total", "bedrooms", "bathrooms"],
 };
 
 const houseSchema = {
   type: "object",
+
+  required: [
+    "plotArea",
+    "houseArea",
+    "roadAccess",
+    "heating",
+    "fence",
+    "availableFrom",
+    "location",
+    "roofing",
+    "attic",
+    "buildYear",
+    "developmentType",
+    "material",
+    "windows",
+    "condition",
+    "roof",
+  ],
   properties: {
     rooms: roomsSchema,
     media: mediaSchema,

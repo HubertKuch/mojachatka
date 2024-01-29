@@ -24,10 +24,10 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
   function getBoostOptions(property) {
     const types = [];
 
-    if (!property.properties.boostType.includes("MAIN"))
+    if (!property?.properties?.boostType?.includes("MAIN"))
       types.push({ label: "Na strone glowna", value: "MAIN" });
 
-    if (!property.properties.boostType.includes("GLOBAL"))
+    if (!property?.properties?.boostType?.includes("GLOBAL"))
       types.push({ label: "Na liste", value: "GLOBAL" });
 
     return types;
@@ -118,7 +118,7 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                       className="icon"
                       style={{ border: "none" }}
                       data-tooltip-id="promote"
-                      disabled={property.properties.boostType.length === 2}
+                      disabled={property.properties?.boostType?.length === 2}
                     >
                       <i class="fa-solid fa-rectangle-ad"></i>
                     </button>
@@ -195,7 +195,7 @@ const PropertyDataTable = ({ currPage, setMeta }) => {
                     ></i>
                   </button>
                 ) : null}
-                {property?.properties?.boostType.length === 2 ? (
+                {property?.properties?.boostType?.length === 2 ? (
                   <ReactTooltip
                     id={"promote"}
                     place="top"

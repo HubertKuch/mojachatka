@@ -27,6 +27,7 @@ export default function SellTypesSelect({
 
   return (
     <ApplicationSelect
+      menuPosition={"absolute"}
       name={"sellType"}
       label={"Rodzaj"}
       defaultOptionValue={

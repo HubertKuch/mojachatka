@@ -46,7 +46,7 @@ const FormFromSchemaBuilder = ({ namePrefix = "", schema }) => {
               setFieldValue(e.currentTarget.name, e.currentTarget.checked);
             }}
           />{" "}
-          {property.label || ""} *
+          {property.label || ""}
         </label>
       </div>
     );
@@ -114,6 +114,7 @@ const FormFromSchemaBuilder = ({ namePrefix = "", schema }) => {
             {property.label} *
             <ApplicationSelect
               name={fullName}
+              menuPosition="relative"
               label={property.label}
               defaultOptionValue={defaultVal}
               onChange={() => {
