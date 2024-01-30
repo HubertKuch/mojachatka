@@ -115,8 +115,8 @@ class OffersService extends PaginatorService {
     if (user) where.author = user;
     if (boostType) {
       where.AND.push(
-        { path: "$.isBoosted", equals: true },
-        { path: "$.boostType", array_contains: type },
+        { properties: { path: "$.isBoosted", equals: true } },
+        { properties: { path: "$.boostType", array_contains: boostType } },
       );
     }
     if (type) {
