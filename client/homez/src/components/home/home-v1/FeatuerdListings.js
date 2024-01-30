@@ -33,7 +33,9 @@ const FeaturedListings = () => {
                   </div>
 
                   <div className="list-price">
-                    {formatPrice(listing.price)} / <span>mo</span>
+                    {formatPrice(
+                      listing.price ? listing.price : listing.pricePerMonth,
+                    )}{" "}
                   </div>
                 </div>
                 <div className="list-content">
@@ -48,17 +50,6 @@ const FeaturedListings = () => {
                     <span className="for-what">
                       {listing.type === "RENT" ? "Wynajem" : "Sprzedaż"}
                     </span>
-                    <div className="icons d-flex align-items-center">
-                      <a href="#">
-                        <span className="flaticon-fullscreen" />
-                      </a>
-                      <a href="#">
-                        <span className="flaticon-new-tab" />
-                      </a>
-                      <a href="#">
-                        <span className="flaticon-like" />
-                      </a>
-                    </div>
                   </div>
                 </div>
               </div>

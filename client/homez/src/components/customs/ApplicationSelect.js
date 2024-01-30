@@ -25,7 +25,7 @@ const ApplicationSelect = (
     items: options,
     itemToString: (item) => item?.label,
     onSelectedItemChange: (selectedItem) =>
-      onChange(selectedItem?.selectedItem),
+      onChange ? onChange(selectedItem?.selectedItem) : undefined,
   };
 
   const {

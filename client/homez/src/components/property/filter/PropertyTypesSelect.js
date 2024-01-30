@@ -42,7 +42,7 @@ export default function PropertyTypesSelect({ filters, className, onChange }) {
     <ApplicationSelect
       name={"type"}
       label={"Typ"}
-      defaultOptionValue={formik ? formik.values.type : types[0].value}
+      defaultOptionValue={undefined}
       onChange={({ value }) => {
         if (filters) filters.type = value;
 
