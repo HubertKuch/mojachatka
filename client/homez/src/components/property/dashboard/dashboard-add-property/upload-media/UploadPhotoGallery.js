@@ -92,7 +92,7 @@ const UploadPhotoGallery = () => {
       {/* Display uploaded images */}
       <div className="row profile-box position-relative d-md-flex align-items-end mb50">
         {uploadedImages.map((imageData, index) => (
-          <div className="col-2" key={index}>
+          <div className="col-12" key={index}>
             <div className="profile-img mb20 position-relative">
               <Image
                 width={212}

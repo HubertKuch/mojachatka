@@ -163,10 +163,19 @@ class OffersController {
 
     delete data.data.author;
     delete data.data.viewsCount;
+    delete data.data.properties.boostType;
+    delete data.data.properties.isBoosted;
 
     await db.offers.update({
       where: { id: offerId },
-      data: { ...data.data },
+      data: {
+        ...data.data,
+        properties: {
+          ...data.data.properties,
+          isBoosted: offer.properties.isBoosted,
+          boostType: offer.properties.boostType,
+        },
+      },
     });
 
     await appendImages(user.id, offer.id, data.properties);
