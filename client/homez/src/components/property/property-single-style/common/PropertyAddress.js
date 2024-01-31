@@ -23,8 +23,6 @@ const PropertyAddress = ({ offer }) => {
             <p className="fw600 mb10 ff-heading dark-color">Miasto</p>{" "}
             <p className="fw600 mb-0 ff-heading dark-color">Wojewodztwo</p>{" "}
             <p className="fw600 mb-0 ff-heading dark-color">Kod pocztowy</p>{" "}
-            <p className="fw600 mb-0 ff-heading dark-color">Nr domu</p>{" "}
-            <p className="fw600 mb-0 ff-heading dark-color">Nr lokalu</p>{" "}
           </div>
           <div className="pd-list">
             <p className="text mb10">{address.address}</p>

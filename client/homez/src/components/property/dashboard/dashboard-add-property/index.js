@@ -18,31 +18,31 @@ import { flatten } from "flat";
 import useUser from "@/hooks/useUser";
 import Popup from "reactjs-popup";
 
-const AddPropertyTabContent = ({ content }) => {
+const AddPropertyTabContent = ({ content, params }) => {
   const [success, setSuccess] = useState(false);
   const user = useUser({ reload: true });
 
-  useEffect(() => {}, []);
-
   return (
     <>
-      <Popup open={user?.listings === 0}>
-        <div
-          className="popup-modal"
-          style={{ fontSize: "1.5em", padding: "2em" }}
-        >
-          <a href="/cennik">
-            Wygląda na to, że nie posiadasz dostępnych ogłoszeń. Udaj się do{" "}
-            <span style={{ fontWeight: "bold", color: "#48b5ac" }}>
-              Cennika
-            </span>
-            , aby dokonać zakupu odpowiedniego pakietu. Kliknij{" "}
-            <span style={{ fontWeight: "bold", color: "#48b5ac" }}>
-              tutaj.{" "}
-            </span>
-          </a>
-        </div>
-      </Popup>
+      {!content && (
+        <Popup open={user?.listings === 0}>
+          <div
+            className="popup-modal"
+            style={{ fontSize: "1.5em", padding: "2em" }}
+          >
+            <a href="/cennik">
+              Wygląda na to, że nie posiadasz dostępnych ogłoszeń. Udaj się do{" "}
+              <span style={{ fontWeight: "bold", color: "#48b5ac" }}>
+                Cennika
+              </span>
+              , aby dokonać zakupu odpowiedniego pakietu. Kliknij{" "}
+              <span style={{ fontWeight: "bold", color: "#48b5ac" }}>
+                tutaj.{" "}
+              </span>
+            </a>
+          </div>
+        </Popup>
+      )}
       <Formik
         enableReinitialize
         initialValues={
@@ -166,7 +166,11 @@ const AddPropertyTabContent = ({ content }) => {
                     role="tabpanel"
                     aria-labelledby="nav-item2-tab"
                   >
-                    <UploadMedia onChange={handleChange} />
+                    <UploadMedia
+                      params={params}
+                      content={content}
+                      onChange={handleChange}
+                    />
                   </div>
 
                   <div

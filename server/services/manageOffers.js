@@ -4,6 +4,8 @@ const { createPaginator } = require("prisma-pagination");
 const { createDirectory, createFile } = require("../utils/fileSystem");
 const uuid = require("uuid");
 const { join } = require("path");
+const { rmdir } = require("node:fs/promises");
+const { CLIENT_RENEG_LIMIT } = require("tls");
 
 async function getOffers(page, perPage, boosted, user) {
   try {
@@ -102,6 +104,12 @@ async function writeImages(dir, base64Arr) {
   });
 }
 
+async function removeOfferImages(userId, offerId) {
+  const directory = `${process.env.APP_MEDIA_PATH}/${userId}/${offerId}`;
+
+  await rmdir(directory, { recursive: true, maxRetries: 100 });
+}
+
 async function appendImages(userId, offerId, properties) {
   const directory = `${process.env.APP_MEDIA_PATH}/${userId}/${offerId}`;
 
@@ -116,6 +124,8 @@ async function appendImages(userId, offerId, properties) {
     properties.images = newImageArray.map((img) =>
       img.replace(process.env.APP_MEDIA_PATH, process.env.APP_MEDIA_URL),
     );
+
+    console.log(newImageArray)
 
     return await db.offers.update({
       where: {
@@ -133,5 +143,6 @@ module.exports = {
   getOffers,
   getOfferByID,
   getUserOffers,
+  removeOfferImages,
   appendImages,
 };

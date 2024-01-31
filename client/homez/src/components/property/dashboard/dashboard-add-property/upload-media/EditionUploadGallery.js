@@ -2,35 +2,17 @@
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { Field, connect, useFormikContext } from "formik";
+import { Field, useFormikContext } from "formik";
 import useOffer from "@/hooks/useOffer";
 
-const imageUrlToBase64 = async (url) => {
-  const data = await fetch(url);
-  const blob = await data.blob();
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(blob);
-    reader.onloadend = () => {
-      const base64data = reader.result;
-      resolve(base64data);
-    };
-    reader.onerror = reject;
-  });
-};
-
-const UploadPhotoGallery = ({ content, id }) => {
+const EditionUploadGallery = ({ content, params }) => {
   const { setFieldValue, values } = useFormikContext();
   const [uploadedImages, setUploadedImages] = useState([]);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
-    Promise.all(
-      (content?.properties?.images || [])?.map(
-        async (img) => await imageUrlToBase64(img),
-      ),
-    ).then(setUploadedImages);
-  }, []);
+    console.log(params);
+  }, [params]);
 
   useEffect(() => {
     setFieldValue(
@@ -141,4 +123,4 @@ const UploadPhotoGallery = ({ content, id }) => {
   );
 };
 
-export default UploadPhotoGallery;
+export default EditionUploadGallery;

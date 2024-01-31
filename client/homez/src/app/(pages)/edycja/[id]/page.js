@@ -61,16 +61,19 @@ const EditOffer = ({ params }) => {
                   <div className="ps-widget bgc-white bdrs12 default-box-shadow2 pt30 mb30 overflow-hidden position-relative">
                     <div className="navtab-style1">
                       <AddPropertyTabContent
+                        params={params}
                         content={
-                          offer?.offer || {
-                            type: null,
-                            properties: {
-                              security: {},
-                              address: {},
-                              price: null,
-                              pricePerMonth: null,
-                            },
-                          }
+                          offer?.offer
+                            ? offer.offer
+                            : {
+                                type: null,
+                                properties: {
+                                  security: {},
+                                  address: {},
+                                  price: null,
+                                  pricePerMonth: null,
+                                },
+                              }
                         }
                       />
                     </div>

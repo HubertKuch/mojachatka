@@ -310,6 +310,7 @@ const apartmentSchema = {
         "TENEMENT",
         "MANOR",
         "FARM",
+        "BLOCK",
       ],
       cases: {
         DETACHED: "Wolnostojący",
@@ -318,6 +319,7 @@ const apartmentSchema = {
         TENEMENT: "Kamienica",
         MANOR: "Dwór",
         FARM: "Gospodarstwo",
+        BLOCK: "Blok",
       },
       label: "Typ zabudowy",
     },

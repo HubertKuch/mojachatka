@@ -4,6 +4,7 @@ function getMessage(type, field, def) {
     minLength: `Pole ${def?.label} musi miec conajmniej ${def.minLength} znakow`,
     maxLength: `Pole ${def?.label} nie moze przekraczzac ${def.maxLength} znakow`,
     type: `Pole ${field} niepoprawne`,
+    format: `Pole ${def.label || field} nie moze byc puste`
   };
 
   return MESSAGE_BY_TYPE[type] || "";

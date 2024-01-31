@@ -323,6 +323,7 @@ const apartmentSchema = {
         "TENEMENT",
         "MANOR",
         "FARM",
+        "BLOCK",
       ],
       cases: {
         DETACHED: "Wolnostojący",
@@ -331,6 +332,7 @@ const apartmentSchema = {
         TENEMENT: "Kamienica",
         MANOR: "Dwór",
         FARM: "Gospodarstwo",
+        BLOCK: "Blok",
       },
       label: "Typ zabudowy",
     },
@@ -338,14 +340,11 @@ const apartmentSchema = {
   required: [
     "floor",
     "availableFrom",
-    "propertyFrom",
     "area",
-    "material",
     "condition",
     "floorsNumber",
     "heating",
     "windows",
-    "developmentType",
   ],
 };
 
@@ -662,7 +661,6 @@ const houseSchema = {
     "roofing",
     "attic",
     "buildYear",
-    "developmentType",
     "material",
     "windows",
     "condition",

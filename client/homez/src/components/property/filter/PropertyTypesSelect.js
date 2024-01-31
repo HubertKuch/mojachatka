@@ -3,7 +3,12 @@ import usePropertyTypes from "@/hooks/usePropertyType";
 import { useFormikContext } from "formik";
 import Select from "react-select";
 
-export default function PropertyTypesSelect({ filters, className, onChange }) {
+export default function PropertyTypesSelect({
+  filters,
+  className,
+  onChange,
+  defaultOptionValue,
+}) {
   const propertyTypes = usePropertyTypes();
   const formik = useFormikContext();
 
@@ -42,7 +47,7 @@ export default function PropertyTypesSelect({ filters, className, onChange }) {
     <ApplicationSelect
       name={"type"}
       label={"Typ"}
-      defaultOptionValue={undefined}
+      defaultOptionValue={defaultOptionValue}
       onChange={({ value }) => {
         if (filters) filters.type = value;
 

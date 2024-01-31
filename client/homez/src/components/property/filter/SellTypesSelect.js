@@ -30,11 +30,7 @@ export default function SellTypesSelect({
       menuPosition={"absolute"}
       name={"sellType"}
       label={"Rodzaj"}
-      defaultOptionValue={
-        defaultOptionValue
-          ? defaultOptionValue
-          : { label: "Wynajem", value: "RENT" }
-      }
+      defaultOptionValue={defaultOptionValue}
       onChange={({ value }) => {
         if (filters) filters.sellType = value;
 

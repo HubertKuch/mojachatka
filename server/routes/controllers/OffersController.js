@@ -1,6 +1,6 @@
 const { db } = require("../../utils/db");
 const validateOfferImages = require("../../utils/validateOfferImages");
-const { appendImages } = require("../../services/manageOffers");
+const { appendImages, removeOfferImages } = require("../../services/manageOffers");
 const OffersService = require("../../services/OffersService");
 const APIError = require("../../errors/APIError");
 const { deleteFile } = require("../../utils/fileSystem");
@@ -119,7 +119,7 @@ class OffersController {
     return res.status(200).json({ message: "Sukces" });
   }
 
-  static async editOffer(req, res) {
+  static async editOffer(req, res, next) {
     const offerId = req.params.offerId;
 
     if (!offerId) {
@@ -178,7 +178,8 @@ class OffersController {
       },
     });
 
-    await appendImages(user.id, offer.id, data.properties);
+    await removeOfferImages(user.id, offer.id);
+    await appendImages(user.id, offer.id, data.data.properties);
 
     res.status(200).json({
       message: "Success",

@@ -55,7 +55,10 @@ const PropertyDescription = ({ onChange }) => {
             <Error name="type" />
 
             <div className="location-area">
-              <PropertyTypesSelect onChange={onChange} />
+              <PropertyTypesSelect
+                defaultOptionValue={values.type}
+                onChange={onChange}
+              />
             </div>
           </div>
         </div>

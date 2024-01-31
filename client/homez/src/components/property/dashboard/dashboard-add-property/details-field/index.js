@@ -71,6 +71,11 @@ const DetailsFiled = ({ success, setSuccess, content }) => {
                   if (res.status === 200) {
                     setSuccess(true);
                     window?.scrollTo(0, 0);
+                  } else {
+                    res.data.message.forEach((err) => {
+                      setFieldError(err.path.replace("data.", ""), err.message);
+                    });
+                    window?.scrollTo(0, 0);
                   }
                 },
               );

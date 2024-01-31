@@ -19,7 +19,7 @@ const FeaturedListings = () => {
                   <Image
                     width={382}
                     height={248}
-                    className="w-100 h-100 cover"
+                    className="w-100 cover"
                     src={listing.properties.images[0]}
                     alt="listings"
                   />
