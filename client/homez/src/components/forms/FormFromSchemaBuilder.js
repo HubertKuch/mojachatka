@@ -117,9 +117,6 @@ const FormFromSchemaBuilder = ({ namePrefix = "", schema }) => {
               menuPosition="relative"
               label={property.label}
               defaultOptionValue={defaultVal}
-              onChange={({ value }) => {
-                setFieldValue(fullName, value);
-              }}
               options={Object.keys(property.cases).map((propKey) => ({
                 value: propKey,
                 label: property.cases[propKey],

@@ -39,7 +39,7 @@ async function resolveAccountPacketPayment(payment) {
         await db.userBoosts.create({
           data: {
             userId: relatedUser.id,
-            properties: { days: boost.days, type: boost.type, used: false },
+            properties: { days: boost.days, type: [boost.type], used: false },
           },
         });
       }

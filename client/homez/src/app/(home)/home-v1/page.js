@@ -69,7 +69,7 @@ const Home_V1 = () => {
               <div className="text-start text-lg-end mb-3">
                 <Link
                   className="text-white ud-btn2"
-                  href="/ofert?boostType=MAIN"
+                  href="/oferty?boostType=MAIN"
                 >
                   Zobacz pozostałe
                   <i className="fal fa-arrow-right-long" />

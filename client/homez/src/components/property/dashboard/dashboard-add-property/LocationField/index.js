@@ -23,9 +23,9 @@ const LocationField = ({ onChange }) => {
                 value={
                   formik
                     ? {
-                      value: formik.values?.properties?.address?.city,
-                      label: formik.values?.properties?.address?.city,
-                    }
+                        value: formik.values?.properties?.address?.city,
+                        label: formik.values?.properties?.address?.city,
+                      }
                     : ""
                 }
                 onInputChange={(val) => {
@@ -87,6 +87,7 @@ const LocationField = ({ onChange }) => {
               <ApplicationSelect
                 name={"properties.address.region"}
                 label={"Region"}
+                menuPosition="relative"
                 defaultOptionValue={
                   formik
                     ? formik.values?.properties?.address?.region
