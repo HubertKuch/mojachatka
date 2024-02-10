@@ -10,6 +10,7 @@ const nextConfig = {
   output: "standalone",
   images: {
     remotePatterns: [
+      { protocol: "https", hostname: "cataas.com" },
       {
         protocol: "http",
         hostname: "localhost",

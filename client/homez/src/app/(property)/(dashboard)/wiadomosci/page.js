@@ -21,7 +21,11 @@ const DashboardMessage = () => {
   const contentRef = useRef();
   const user = useUser();
 
-  window.onload = scrollToBottom;
+  useEffect(() => {
+    if (window) {
+      window.onload = scrollToBottom;
+    }
+  });
 
   function scrollToBottom() {
     if (contentRef.current) {

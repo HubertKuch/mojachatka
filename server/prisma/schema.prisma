@@ -170,7 +170,7 @@ model Company {
   user     User      @relation(fields: [userId], references: [id])
   userId   String    @unique
   name     String
-  license  String
+  license  String?
   address  String
   house    String
   zipCode  String

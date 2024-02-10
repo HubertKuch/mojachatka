@@ -67,7 +67,7 @@ const SingleAgentInfo = ({ id }) => {
           <br />
           <button
             onClick={() => {
-              socket.emit("message", user?.id, message.current.innerText);
+              socket.emit("message", user?.id, message.current.value);
               socket.on("message", (data) => {
                 if (data.error) setError(data.error.message);
                 else setIsOpen(false);

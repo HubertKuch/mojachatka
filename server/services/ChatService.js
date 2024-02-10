@@ -131,6 +131,12 @@ class ChatService {
       };
     }
 
+    if (message.length === 0) {
+      return {
+        error: { message: "Nie mozesz wyslac pustej wiadomosci" },
+      };
+    }
+
     let chat = await db.chat.findFirst({
       where: {
         AND: [

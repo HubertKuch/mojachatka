@@ -1,6 +1,7 @@
 import React from "react";
 
 const UserItem = ({ chat, isActive }) => {
+  console.log(chat);
   return (
     <div className="list-item" style={{ borderRadius: "1rem" }}>
       <a href="#">
@@ -16,7 +17,7 @@ const UserItem = ({ chat, isActive }) => {
             >
               <div>
                 <div className="fz14 fw600 mb-0">
-                  {chat?.receiver?.username}
+                  {chat?.receiver?.firstName}
                 </div>
                 <div>{chat.lastMessage?.message || ""}</div>
               </div>
