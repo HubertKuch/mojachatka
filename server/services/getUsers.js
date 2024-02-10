@@ -6,12 +6,10 @@ async function getUserByID(id) {
       where: {
         id,
       },
-      include: {
-        offers: true,
-        UserBoosts: true,
-      },
+      include: { offers: { where: { deleted: false } }, UserBoosts: true },
     });
   } catch (err) {
+    console.error(err);
     return "User not Found";
   }
 }

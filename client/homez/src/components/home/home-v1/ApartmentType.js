@@ -47,7 +47,7 @@ const ApartmentType = () => {
                 <span className={`icon ${iconByType[type.category] || ""}`} />
                 <div className="iconbox-content">
                   <h6 className="title" style={{ textTransform: "capitalize" }}>
-                    {aliases[type.category].toLowerCase()}
+                    {aliases[type.category]?.toLowerCase()}
                   </h6>
                   <p className="text mb-0">{`${type.count} nieruchomości`}</p>
                 </div>

@@ -47,6 +47,9 @@ const io = new Server(server, {
 });
 const port = process.env.SERVER_PORT || 3000;
 
+app.disable("x-powered-by");
+app.set("x-powered-by", false);
+
 app.use(
   cors({
     credentials: true,

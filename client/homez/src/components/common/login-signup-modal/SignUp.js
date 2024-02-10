@@ -16,6 +16,7 @@ const SignUp = () => {
   const [accountType, setAccountType] = useState(null);
   const [steps, setSteps] = useState([
     <AccountType
+      href={"#"}
       key={Math.random()}
       accountType={accountType}
       setAccountType={setAccountType}
@@ -41,43 +42,55 @@ const SignUp = () => {
   const titleByType = {
     INDIVIDUAL: [
       {
+        href: "#",
         title: "Typ konta",
       },
       {
+        href: "#",
         title: "Podstawowe dane",
       },
       {
-        title: "Haslo",
+        thref: "#",
+        itle: "Haslo",
       },
       {
-        title: "Zakonczenie",
+        thref: "#",
+        itle: "Zakonczenie",
       },
     ],
     AGENT: [
       {
-        title: "Typ konta",
+        thref: "#",
+        itle: "Typ konta",
       },
       {
-        title: "Firma",
+        thref: "#",
+        itle: "Firma",
       },
       {
-        title: "Haslo",
+        thref: "#",
+        itle: "Haslo",
       },
       {
-        title: "Zakonczenie",
+        thref: "#",
+        itle: "Zakonczenie",
       },
     ],
     DEVELOPER: [
       {
+        href: "#",
         title: "Typ konta",
       },
       {
+        href: "#",
         title: "Firma",
       },
       {
-        title: "Haslo",
+        thref: "#",
+        itle: "Haslo",
       },
       {
+        href: "#",
         title: "Zakonczenie",
       },
     ],
@@ -88,22 +101,26 @@ const SignUp = () => {
       type: "INDIVIDUAL",
       steps: [
         <AccountType
+          href={"#"}
           key={Math.random()}
           accountType={accountType}
           setAccountType={setAccountType}
         />,
         <AccountDataStep
-          title={"Podstawowe dane"}
+          thref={"#"}
+          itle={"Podstawowe dane"}
           register={register}
           key={Math.random()}
         />,
         <PasswordDataStep
+          href={"#"}
           key={Math.random()}
           title={"Haslo"}
           register={register}
         />,
         <EndStep
-          title="Zakonczenie"
+          thref={"#"}
+          itle="Zakonczenie"
           key={Math.random()}
           data={endDataToDisplay}
           onSubmit={handleSubmit((data) => onSubmit(data))}
@@ -114,27 +131,32 @@ const SignUp = () => {
       type: "AGENT",
       steps: [
         <AccountType
+          href={"#"}
           key={Math.random()}
           accountType={accountType}
           setAccountType={setAccountType}
         />,
         <CompanyDetailsStep
+          href={"#"}
           key={Math.random()}
           title={"Firma"}
           register={register}
         />,
         <SalesRepStep
+          href={"#"}
           key={Math.random()}
           title={"Przedstawiciel"}
           register={register}
         />,
         <PasswordDataStep
+          href={"#"}
           key={Math.random()}
           title={"Haslo"}
           register={register}
         />,
         <EndStep
           title="Zakonczenie"
+          href={"#"}
           key={Math.random()}
           data={endDataToDisplay}
           onSubmit={handleSubmit((data) => onSubmit(data))}
@@ -145,6 +167,7 @@ const SignUp = () => {
       type: "DEVELOPER",
       steps: [
         <AccountType
+          href={"#"}
           key={Math.random()}
           accountType={accountType}
           setAccountType={setAccountType}
@@ -152,19 +175,23 @@ const SignUp = () => {
         <CompanyDetailsStep
           key={Math.random()}
           title={"firma"}
+          href={"#"}
           register={register}
         />,
         <SalesRepStep
           key={Math.random()}
           title={"Przedstawiciel"}
+          href={"#"}
           register={register}
         />,
         <PasswordDataStep
+          href={"#"}
           key={Math.random()}
           title={"Haslo"}
           register={register}
         />,
         <EndStep
+          href={"#"}
           key={Math.random()}
           title="Zakonczenie"
           data={endDataToDisplay}

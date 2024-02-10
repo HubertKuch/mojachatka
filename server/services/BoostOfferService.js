@@ -64,8 +64,12 @@ class BoostOfferService {
       throw new APIError("Boost already used", 409);
     }
 
-    if (!boost.properties.type.includes(type)) {
+    if (!boost.properties?.type?.includes(type)) {
       throw new APIError(`Boost type is not the same as ${type}`, 400);
+    }
+
+    if (!offer.properties.boostType) {
+      offer.properties.boostType = [];
     }
 
     if (offer.properties.boostType.includes(type)) {

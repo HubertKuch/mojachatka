@@ -30,7 +30,9 @@ function CommercialLocalDetails({ offer }) {
             },
             {
               label: "Na rynku pierwotnym",
-              value: offer.properties?.commercialLocal?.primaryMarket,
+              value: offer.properties?.commercialLocal?.primaryMarket
+                ? "Tak"
+                : "Nie",
             },
             {
               label: "Przeznaczenie",

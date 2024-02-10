@@ -1,16 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 
 const PriceRange = ({ filters }) => {
-  const [price, setPrice] = useState({ value: { min: 20, max: 1000000 } });
+  const [price, setPrice] = useState({
+    value: { min: 20, max: Number.MAX_SAFE_INTEGER },
+  });
 
   const handleOnChange = (value) => {
-    setPrice({ value });
     filters.minPrice = value.min;
     filters.maxPrice = value.max;
   };
+
+  useEffect(() => {
+    handleOnChange(price.value);
+  }, [price]);
 
   return (
     <>
@@ -29,11 +34,18 @@ const PriceRange = ({ filters }) => {
           <input
             type="number"
             id="slider-range-value2"
-            onInput={(e) =>
-              setPrice((prev) => ({
-                value: { ...prev.value, max: e.target.value },
-              }))
-            }
+            max={Number.MAX_SAFE_INTEGER}
+            onInput={(e) => {
+              try {
+                Number.parseInt(e.target.value);
+                setPrice((prev) => ({
+                  value: { ...prev.value, max: e.target.value },
+                }));
+              } catch (error) {
+                console.error(error);
+                return;
+              }
+            }}
           />
         </div>{" "}
       </div>

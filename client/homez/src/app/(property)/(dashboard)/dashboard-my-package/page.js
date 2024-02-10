@@ -84,33 +84,37 @@ const DashboardMyPackage = () => {
                         <tbody className="t-body">
                           {user?.UserBoosts.sort(
                             (p1, p2) => p1.properties.used - p2.properties.used,
-                          ).map((packageItem, index) => (
-                            <tr key={index}>
-                              <th scope="row">
-                                {packageItem?.properties?.days} dni
-                              </th>
-                              <td>
-                                {packageItem?.properties?.type === "MAIN"
-                                  ? "Na Strone Główną"
-                                  : "Na Liste"}
-                              </td>
-                              <td>
-                                <p
-                                  className="
+                          )
+                            .sort()
+                            .map((packageItem, index) => (
+                              <tr key={index}>
+                                <th scope="row">
+                                  {packageItem?.properties?.days} dni
+                                </th>
+                                <td>
+                                  {packageItem?.properties?.type === "MAIN"
+                                    ? "Na Strone Główną"
+                                    : "Na Liste"}
+                                </td>
+                                <td>
+                                  <p
+                                    className="
                 rounded
                 "
-                                  style={{
-                                    background: packageItem.properties.used
-                                      ? "#ff6962"
-                                      : "#009edd",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  {packageItem.properties.used ? "Tak" : "Nie"}
-                                </p>
-                              </td>
-                            </tr>
-                          ))}
+                                    style={{
+                                      background: packageItem.properties.used
+                                        ? "#ff6962"
+                                        : "#009edd",
+                                      textAlign: "center",
+                                    }}
+                                  >
+                                    {packageItem.properties.used
+                                      ? "Tak"
+                                      : "Nie"}
+                                  </p>
+                                </td>
+                              </tr>
+                            ))}
                         </tbody>
                       </table>
                     </div>

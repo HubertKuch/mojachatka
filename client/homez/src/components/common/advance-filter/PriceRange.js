@@ -4,11 +4,9 @@ import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 
 const PriceRange = ({ filters }) => {
-  const [price, setPrice] = useState({ value: { min: 0, max: 1000000 } });
-
-  const handleOnChange = (value) => {
-    setPrice({ value });
-  };
+  const [price, setPrice] = useState({
+    value: { min: 0, max: Number.MAX_SAFE_INTEGER },
+  });
 
   useEffect(() => {
     filters.minPrice = price.value.min;
@@ -32,11 +30,17 @@ const PriceRange = ({ filters }) => {
           <input
             type="number"
             id="slider-range-value2"
-            onInput={(e) =>
-              setPrice((prev) => ({
-                value: { ...prev.value, max: e.target.value },
-              }))
-            }
+            onInput={(e) => {
+              try {
+                Number.parseInt(e.target.value);
+                setPrice((prev) => ({
+                  value: { ...prev.value, max: e.target.value },
+                }));
+              } catch (error) {
+                console.error(error);
+                return;
+              }
+            }}
           />
         </div>
       </div>

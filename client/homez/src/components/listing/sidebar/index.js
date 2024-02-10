@@ -8,6 +8,8 @@ import Bathroom from "./Bathroom";
 import OtherFeatures from "./OtherFeatures";
 import OffersControllers from "@/controllers/OffersController";
 import ReactSelect from "react-select";
+import CitiesSelect from "./CitiesSelect";
+import ProvinceSelect from "./ProvinceSelect";
 
 const ListingSidebar = ({ filters, setPageItems, setPageCapacity }) => {
   const [cities, setCities] = useState([]);
@@ -19,7 +21,6 @@ const ListingSidebar = ({ filters, setPageItems, setPageCapacity }) => {
         <SearchBox filters={filters} />
       </div>
       {/* End .widget-wrapper */}
-
       <div className="widget-wrapper">
         <h6 className="list-title">Status</h6>
         <div className="radio-element">
@@ -27,16 +28,13 @@ const ListingSidebar = ({ filters, setPageItems, setPageCapacity }) => {
         </div>
       </div>
       {/* End .widget-wrapper */}
-
       <div className="widget-wrapper">
         <h6 className="list-title">Typ</h6>
         <div className="checkbox-style1">
           <PropertyType filters={filters} />
         </div>
       </div>
-
       {/* End .widget-wrapper */}
-
       <div className="widget-wrapper">
         <h6 className="list-title">Przedział cenowy</h6>
         {/* Range Slider Desktop Version */}
@@ -45,7 +43,6 @@ const ListingSidebar = ({ filters, setPageItems, setPageCapacity }) => {
         </div>
       </div>
       {/* End .widget-wrapper */}
-
       <div className="widget-wrapper">
         <h6 className="list-title">Sypialnie</h6>
         <div className="d-flex">
@@ -53,7 +50,6 @@ const ListingSidebar = ({ filters, setPageItems, setPageCapacity }) => {
         </div>
       </div>
       {/* End .widget-wrapper */}
-
       <div className="widget-wrapper">
         <h6 className="list-title">Łazienki</h6>
         <div className="d-flex">
@@ -61,39 +57,33 @@ const ListingSidebar = ({ filters, setPageItems, setPageCapacity }) => {
         </div>
       </div>
       {/* End .widget-wrapper */}
-
-      <div className="widget-wrapper advance-feature-modal">
-        <div className="form-style2 input-group">
-          <label className="heading-color ff-heading fw600 mb10">
+      <div classname="widget-wrapper advance-feature-modal">
+        <div classname="form-style2 input-group" style={{ width: "100%" }}>
+          <label
+            classname="heading-color ff-heading fw600 mb10"
+            style={{ width: "100%" }}
+          >
             Miejscowość
-            <ReactSelect
-              onChange={(val) => {
-                filters.city = val.value;
-              }}
-              onInputChange={(val) => {
-                if (val.length <= 2) {
-                  return;
-                }
-
-                OffersControllers.getCities(val).then((res) => {
-                  if (res?.data?.cities) {
-                    setCities(
-                      res.data.cities.map((city) => ({
-                        value: city,
-                        label: city,
-                      })),
-                    );
-                  }
-                });
-              }}
-              name="properties.address.city"
-              placeholder="Wpisz 3 znaki by wyszukac"
-              options={cities}
+            <CitiesSelect
+              cities={cities}
+              setCities={setCities}
+              filters={filters}
             />
           </label>
         </div>
       </div>
-
+      <div classname="widget-wrapper advance-feature-modal">
+        <div classname="form-style2 input-group" style={{ width: "100%" }}>
+          <label
+            classname="heading-color ff-heading fw600 mb10"
+            style={{ width: "100%" }}
+          >
+            Region
+            <ProvinceSelect filters={filters} />
+          </label>
+        </div>
+      </div>{" "}
+      <br />
       <div className="widget-wrapper mb20">
         <div className="btn-area d-grid align-items-center">
           <button

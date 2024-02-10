@@ -125,8 +125,6 @@ async function appendImages(userId, offerId, properties) {
       img.replace(process.env.APP_MEDIA_PATH, process.env.APP_MEDIA_URL),
     );
 
-    console.log(newImageArray)
-
     return await db.offers.update({
       where: {
         id: offerId,

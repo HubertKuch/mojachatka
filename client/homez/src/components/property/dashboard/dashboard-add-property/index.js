@@ -71,8 +71,12 @@ const AddPropertyTabContent = ({ content, params }) => {
           return (
             <>
               {Object.values(flatten(errors)).map((err, key) => (
-                <div className="error" key={key} style={{ textAlign: "left" }}>
-                  {err}
+                <div
+                  className="error"
+                  key={key}
+                  style={{ textAlign: "left", textTransform: "capitalize" }}
+                >
+                  {err?.toLowerCase()}
                 </div>
               ))}
               {success && (

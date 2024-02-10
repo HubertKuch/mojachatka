@@ -72,10 +72,18 @@ const DetailsFiled = ({ success, setSuccess, content }) => {
                     setSuccess(true);
                     window?.scrollTo(0, 0);
                   } else {
-                    res.data.message.forEach((err) => {
-                      setFieldError(err.path.replace("data.", ""), err.message);
-                    });
-                    window?.scrollTo(0, 0);
+                    if (typeof res.data.message === "string") {
+                      setFieldError("price", res.data.message);
+                    } else {
+                      window?.scrollTo(0, 0);
+                      console.log(res.data.message);
+                      res.data.message.forEach((err) => {
+                        setFieldError(
+                          err.path.replace("data.", ""),
+                          err.message,
+                        );
+                      });
+                    }
                   }
                 },
               );
@@ -84,9 +92,13 @@ const DetailsFiled = ({ success, setSuccess, content }) => {
 
             OffersControllers.createOffer({ data: values }).then((res) => {
               if (res.status !== 200) {
-                res.body.message.forEach((err) => {
-                  setFieldError(err.path.replace("data.", ""), err.message);
-                });
+                if (typeof res.body.message === "string") {
+                  setFieldError("price", res.body.message);
+                } else {
+                  res.body.message.forEach((err) => {
+                    setFieldError(err.path.replace("data.", ""), err.message);
+                  });
+                }
               } else {
                 setSuccess(true);
               }

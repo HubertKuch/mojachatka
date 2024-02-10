@@ -49,7 +49,7 @@ const PricingPlan = () => {
               </div>
             </div>
 
-            <Pricing type={"AGENT"} />
+            <Pricing type={"AGENT"} user={user} />
           </div>
         </section>
       ),
@@ -90,8 +90,9 @@ const PricingPlan = () => {
                   <li className="nav-item">
                     <a
                       onClick={() => setSelectedTab("INDIVIDUAL")}
-                      class={`nav-link ${selectedTab === "INDIVIDUAL" ? "active" : ""
-                        }`}
+                      class={`nav-link ${
+                        selectedTab === "INDIVIDUAL" ? "active" : ""
+                      }`}
                       href="#"
                     >
                       Pakiety indywidualne
@@ -100,8 +101,9 @@ const PricingPlan = () => {
                   <li className="nav-item">
                     <a
                       onClick={() => setSelectedTab("AGENT")}
-                      class={`nav-link ${selectedTab === "AGENT" ? "active" : ""
-                        }`}
+                      class={`nav-link ${
+                        selectedTab === "AGENT" ? "active" : ""
+                      }`}
                       href="#"
                     >
                       Pakiety dla agenta
@@ -109,8 +111,9 @@ const PricingPlan = () => {
                   </li>
                   <li
                     onClick={() => setSelectedTab("DEVELOPER")}
-                    class={`nav-item ${selectedTab === "DEVELOPER" ? "active" : ""
-                      }`}
+                    class={`nav-item ${
+                      selectedTab === "DEVELOPER" ? "active" : ""
+                    }`}
                   >
                     <a className="nav-link" href="#">
                       Pakiety dla dewelopera

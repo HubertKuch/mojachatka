@@ -38,6 +38,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pl">
       <head>
+        <link
+          rel="apple-touch-icon"
+          href="/images/apple-touch-icon-72x72.png"
+        />
         <title>Mojachatka: Nieruchomości, Domy, Mieszkania, Działki</title>
         <meta
           name="description"

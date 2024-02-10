@@ -46,7 +46,6 @@ async function isBanned(id) {
 
 async function isActivated(id) {
   const user = await getUserByID(id);
-
   return user.activated;
 }
 

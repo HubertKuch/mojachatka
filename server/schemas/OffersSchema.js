@@ -49,6 +49,7 @@ const securitySchema = {
 
 const conditionSchema = {
   type: "string",
+  label: "Kondycja",
   enum: ["FORRESIDENCE", "FORFINISHING", "FORRENOVATION"],
   cases: {
     FORRESIDENCE: "do zamieszkania",
@@ -59,6 +60,7 @@ const conditionSchema = {
 
 const heatingSchema = {
   type: "string",
+  label: "Ogrzewanie",
   cases: {
     OIL: "Olejowe",
     FIREPLACE: "Kominkowe",
@@ -794,7 +796,7 @@ const houseSchema = {
     availableFrom: { type: "string", label: "Dostępny od" },
     fence: fenceSchema,
     heating: heatingSchema,
-    roadAcces: {
+    roadAccess: {
       type: "string",
       cases: {
         FIELD: "Bez utwardzenia",

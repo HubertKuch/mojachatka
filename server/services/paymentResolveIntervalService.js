@@ -9,7 +9,8 @@ const { PaymentsEventEmitter } = require("../events/emitters/PaymentEmitter");
     });
 
     for (const dbPayment of notResolvedPaymentes) {
-      const stripePayment = await retrieveCheckout(dbPayment.stripeId);
+      try { 
+        const stripePayment = await retrieveCheckout(dbPayment.stripeId);
 
       if (!stripePayment) {
         continue;
@@ -39,6 +40,10 @@ const { PaymentsEventEmitter } = require("../events/emitters/PaymentEmitter");
             status: "FAILED",
           },
         });
+      }
+
+      } catch (e) {
+        console.error(e)
       }
     }
   }, process.env.PAYMENT_RESOLVE_INTERVAL);

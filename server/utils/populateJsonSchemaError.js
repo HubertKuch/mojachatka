@@ -1,13 +1,13 @@
 function getMessage(type, field, def) {
   const MESSAGE_BY_TYPE = {
-    required: `Pole ${def?.label} nie moze byc puste`,
+    required: `Pole ${def?.label || def[field]?.label} nie moze byc puste`,
     minLength: `Pole ${def?.label} musi miec conajmniej ${def.minLength} znakow`,
     maxLength: `Pole ${def?.label} nie moze przekraczzac ${def.maxLength} znakow`,
     type: `Pole ${field} niepoprawne`,
-    format: `Pole ${def.label || field} nie moze byc puste`
+    format: `Pole ${def.label || field} nie moze byc puste`,
   };
 
-  return MESSAGE_BY_TYPE[type] || "";
+  return (MESSAGE_BY_TYPE[type] || "").toLowerCase();
 }
 
 function populateJsonSchemaError(schema, errors) {

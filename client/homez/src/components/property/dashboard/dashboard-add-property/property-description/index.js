@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropertyTypesSelect from "@/components/property/filter/PropertyTypesSelect";
 import SellTypesSelect from "@/components/property/filter/SellTypesSelect";
 import { ErrorMessage, FastField, Field, useFormikContext } from "formik";
@@ -7,8 +7,14 @@ import Error from "@/components/common/Error";
 import { Tab } from "bootstrap";
 
 const PropertyDescription = ({ onChange }) => {
-  const [rentType, setRentType] = useState("BUY");
   const { setFieldValue, values } = useFormikContext();
+  const [rentType, setRentType] = useState("BUY");
+
+  useEffect(() => {
+    if (values?.sellType) {
+      setRentType(values?.sellType);
+    }
+  }, [values]);
 
   return (
     <form className="form-style1">

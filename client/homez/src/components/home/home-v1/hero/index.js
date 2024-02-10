@@ -5,7 +5,7 @@ import HeroContent from "./HeroContent";
 import { useState } from "react";
 
 const Hero = () => {
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState({ sellType: "BUY" });
 
   return (
     <>

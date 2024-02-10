@@ -797,7 +797,7 @@ const houseSchema = {
     availableFrom: { type: "string", label: "Dostępny od" },
     fence: fenceSchema,
     heating: heatingSchema,
-    roadAcces: {
+    roadAccess: {
       type: "string",
       cases: {
         FIELD: "Bez utwardzenia",

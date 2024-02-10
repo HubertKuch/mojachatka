@@ -118,7 +118,10 @@ const SingleV6 = ({ params }) => {
               </div>
               {/* End .ps-widget */}
 
-              <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
+              <div
+                className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative"
+                style={{ textTransform: "capitalize" }}
+              >
                 {details}
               </div>
 

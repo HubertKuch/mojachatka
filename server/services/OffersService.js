@@ -42,6 +42,7 @@ class OffersService extends PaginatorService {
   static async countByCategory(category) {
     const count = await db.offers.count({
       where: {
+        deleted: false,
         type: category,
       },
     });
@@ -96,6 +97,7 @@ class OffersService extends PaginatorService {
     user,
     type,
     city,
+    region,
     sellType,
     minPrice,
     maxPrice,
@@ -182,6 +184,15 @@ class OffersService extends PaginatorService {
         properties: {
           path: "$.address.city",
           equals: city,
+        },
+      });
+    }
+
+    if (region) {
+      where.AND.push({
+        properties: {
+          path: "$.address.region",
+          equals: region,
         },
       });
     }

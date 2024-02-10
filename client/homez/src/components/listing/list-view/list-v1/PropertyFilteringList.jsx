@@ -14,7 +14,6 @@ export default function PropertyFilteringList() {
   const searchParams = useSearchParams();
   const [filters, setFilters] = useState({
     ...Object.fromEntries(searchParams),
-    offerTypes: [],
   });
 
   useEffect(() => {

@@ -17,35 +17,35 @@ function HouseDatails({ offer }) {
           },
           {
             label: "Powierzchnia dzialki",
-            value: offer.properties.house.plotArea + "m2",
+            value: offer.properties.house?.plotArea + "m2",
           },
           {
             label: "Powierzchnia domu",
-            value: offer.properties.house.houseArea + "m2",
+            value: offer.properties.house?.houseArea + "m2",
           },
           {
             label: "Bathrooms",
-            value: offer.properties.house.rooms.bathrooms || "Brak danych",
+            value: offer.properties.house?.rooms?.bathrooms || "Brak danych",
           },
           {
             label: "Bedrooms",
-            value: offer.properties.house.rooms.bedrooms || "Brak danych",
+            value: offer.properties.house?.rooms?.bedrooms || "Brak danych",
           },
           {
             label: "Pokoje",
             value: offer.properties?.rooms?.total,
           },
           {
-            label: "Property Type",
-            value: offer.type,
+            label: "Typ",
+            value: offer?.type?.toLowerCase(),
           },
           {
-            label: "Property Status",
-            value: offer.sellType,
+            label: "Rodzaj",
+            value: offer.sellType === "RENT" ? "Wynajem" : "Sprzedaż",
           },
           {
             label: "Rok budowy",
-            value: offer.properties.house.buildYear,
+            value: offer.properties.house?.buildYear,
           },
           {
             label: "Typ zabudowy",
@@ -56,10 +56,10 @@ function HouseDatails({ offer }) {
               TENEMENT: "Kamienica",
               MANOR: "Dwór",
               FARM: "Farma",
-            }[offer.properties.house.developmentType],
+            }[offer.properties.house?.developmentType],
           },
           {
-            label: "Material",
+            label: "Materiał",
             value: {
               BRICK: "Cegła",
               WOOD: "Drewno",
@@ -69,7 +69,7 @@ function HouseDatails({ offer }) {
               SILICATE: "Silikat",
               "CELLULAR CONCRETE": "Beton komórkowy",
               OTHER: "Inny",
-            }[offer.properties.house.material],
+            }[offer.properties.house?.material],
           },
         ],
         [
@@ -83,7 +83,7 @@ function HouseDatails({ offer }) {
               METAL: "Metalowe",
               HEDGE: "Żywopłot",
               OTHER: "Inne",
-            }[offer.properties.house.fence],
+            }[offer.properties.house?.fence],
           },
           {
             value: {
@@ -98,11 +98,11 @@ function HouseDatails({ offer }) {
               CITY: "miejskie",
               GAS: "gazowe",
               PUMP: "pompa ciepła",
-            }[offer.properties.house.heating],
+            }[offer.properties.house?.heating],
             label: "Ogrzewanie",
           },
           {
-            value: offer.properties.house.primaryMarket ? "Tak" : "Nie",
+            value: offer.properties.house?.primaryMarket ? "Tak" : "Nie",
             label: "Rynek pierwotny",
           },
           {
@@ -112,7 +112,7 @@ function HouseDatails({ offer }) {
               PLASTIC: "Plastikowe",
               WOODEN: "Drewniane",
               ALUMINUM: "Aluminiowe",
-            }[offer.properties.house.windows],
+            }[offer.properties.house?.windows],
           },
           {
             label: "Dach",
@@ -120,7 +120,7 @@ function HouseDatails({ offer }) {
               NO: "Brak",
               OBLIQUE: "Skosy",
               FLAT: "Płaski",
-            }[offer.properties.house.roof],
+            }[offer.properties.house?.roof],
           },
           {
             label: "Strych",
@@ -128,7 +128,7 @@ function HouseDatails({ offer }) {
               NONE: "Brak",
               UTILITARIAN: "Użytkowe",
               NOTUTILITARIAN: "Nie użytkowe",
-            }[offer.properties.house.attic],
+            }[offer.properties.house?.attic],
           },
           {
             label: "Pokrycie dachu",
@@ -141,7 +141,7 @@ function HouseDatails({ offer }) {
               ROOFINGFELT: "Papa",
               THATCH: "Strzecha",
               OTHER: "Inne",
-            }[offer.properties.house.roofing],
+            }[offer.properties.house?.roofing],
           },
           {
             label: "Lokalizacja",
@@ -149,18 +149,18 @@ function HouseDatails({ offer }) {
               CITY: "Miasto",
               OUTSKIRTS: "Przedmieścia",
               COUNTRYSIDE: "Wieś",
-            }[offer.properties.house.location],
+            }[offer.properties.house?.location],
           },
           {
             label: "Dostępny od",
-            value: offer.properties.house.availableFrom,
+            value: offer.properties.house?.availableFrom,
           },
           {
             value: {
               FIELD: "Bez utwardzenia",
               PAVED: "Utylizowana",
               ASPHALT: "Asfaltowa",
-            }[offer.properties.house.roadAcces],
+            }[offer.properties.house?.roadAcces],
             label: "Dostęp do drogi",
           },
         ],

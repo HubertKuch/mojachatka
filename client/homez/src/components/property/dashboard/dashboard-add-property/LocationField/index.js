@@ -20,6 +20,13 @@ const LocationField = ({ onChange }) => {
             <label className="heading-color ff-heading fw600 mb10">
               Miejscowość *
               <ReactSelect
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    minWidth: "100%",
+                    width: "400px",
+                  }),
+                }}
                 value={
                   formik
                     ? {

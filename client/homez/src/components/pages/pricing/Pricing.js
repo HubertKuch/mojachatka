@@ -7,6 +7,7 @@ import dedupe from "dedupe";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import ReactSelect, { useStateManager } from "react-select";
+import { Tooltip } from "react-tooltip";
 
 const Pricing = ({ type, user }) => {
   const packets = useAccountPackets(type);
@@ -44,6 +45,8 @@ const Pricing = ({ type, user }) => {
           value: key,
         })),
     );
+
+    console.log(user?.type);
   }, [groups]);
 
   useEffect(() => {
@@ -133,7 +136,13 @@ const Pricing = ({ type, user }) => {
                     </ul>
                   </div>
                   <div className="d-grid">
+                    {!item?.properties?.allowedFor?.includes(user?.type) && (
+                      <Tooltip id={item.id}>
+                        Twoje konto jest innego typu
+                      </Tooltip>
+                    )}
                     <button
+                      data-tooltip-id={item.id}
                       onClick={async () => {
                         const res = await AccountPacketsController.buyPacket(
                           item.id,
@@ -143,7 +152,9 @@ const Pricing = ({ type, user }) => {
                           window?.open(res.payment.continueUrl, "mozillaTab");
                         }
                       }}
-                      disabled={user?.type !== type}
+                      disabled={
+                        !item?.properties?.allowedFor?.includes(user?.type)
+                      }
                       href="#"
                       className="ud-btn btn-thm-border text-thm"
                     >

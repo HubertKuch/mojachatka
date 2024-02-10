@@ -16,7 +16,7 @@ const PropertyDetails = ({ columns }) => {
                 </p>
               </div>
               <div className="pd-list">
-                <p className="text mb10">{detail.value}</p>
+                <p className="text mb10">{detail.value || "-"}</p>
               </div>
             </div>
           ))}
