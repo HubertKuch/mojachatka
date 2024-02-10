@@ -125,6 +125,12 @@ class ChatService {
   }
 
   static async sendMessage(senderId, receiverId, message) {
+    if (senderId === receiverId) {
+      return {
+        error: { message: "Nie mozesz wyslac wiadomosci do samego siebie" },
+      };
+    }
+
     let chat = await db.chat.findFirst({
       where: {
         AND: [

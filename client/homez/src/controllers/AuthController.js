@@ -17,6 +17,7 @@ class AuthController {
     const body = res.data;
 
     if (res.status === 200) {
+      localStorage.setItem(process.env.TOKEN_KEY, body.token);
       return { ...body, success: true };
     }
 

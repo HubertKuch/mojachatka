@@ -39,10 +39,9 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    allowedHeaders: ["Content-Type", "Accept"],
-    origin: "http://localhost:3001",
     credentials: true,
     methods: ["POST", "GET", "PUT", "OPTIONS", "DELETE", "PATCH"],
+    origin: "http://localhost:3001",
   },
 });
 const port = process.env.SERVER_PORT || 3000;
@@ -52,8 +51,6 @@ app.set("x-powered-by", false);
 
 app.use(
   cors({
-    credentials: true,
-    origin: "http://localhost:3001",
     credentials: true,
     methods: ["POST", "GET", "PUT", "OPTIONS", "DELETE", "PATCH"],
     origin: "http://localhost:3001",

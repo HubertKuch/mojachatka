@@ -22,7 +22,7 @@ const ChatBoxForm = ({ chat, socket }) => {
         required
       />
       <button type="submit" className="btn ud-btn btn-thm">
-        Send Message
+        Wyślij
         <i className="fal fa-arrow-right-long" />
       </button>
     </form>

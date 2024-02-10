@@ -42,6 +42,10 @@ function initializeChatsIo(io) {
           msg,
         );
 
+        if (message.error) {
+          return socket.emit("message", message);
+        }
+
         socket.to(message.chatId).emit("message", message);
       });
     } catch (e) {
