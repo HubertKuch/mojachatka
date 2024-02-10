@@ -8,8 +8,15 @@ export default function ProvinceSelect({ filters }) {
     <ReactSelect
       placeholder="Region"
       menuPosition="absolute"
-      onChange={({ value }) => (filters.region = value)}
+      onChange={(value) => {
+        if (!value) {
+          return delete filters.region;
+        }
+
+        filters.region = value?.value;
+      }}
       options={regions}
+      isClearable
     />
   );
 }

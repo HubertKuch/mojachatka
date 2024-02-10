@@ -8,9 +8,12 @@ import PropertyTypesSelect from "@/components/property/filter/PropertyTypesSelec
 import SellTypesSelect from "@/components/property/filter/SellTypesSelect";
 import { useState } from "react";
 import queryParams from "@/utilis/queryParams";
+import CitiesSelect from "@/components/listing/sidebar/CitiesSelect";
+import ProvinceSelect from "@/components/listing/sidebar/ProvinceSelect";
 
 const AdvanceFilterModal = ({ filters }) => {
   const router = useRouter();
+  const [cities, setCities] = useState([]);
 
   return (
     <div className="modal-dialog modal-dialog-centered modal-lg">
@@ -87,7 +90,33 @@ const AdvanceFilterModal = ({ filters }) => {
             </div>
             {/* End .col-md-6 */}
           </div>
+
           {/* End .row */}
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="widget-wrapper">
+                <h6 className="list-title">Region</h6>
+                <div className="d-flex">
+                  <ProvinceSelect filters={filters} />
+                </div>
+              </div>
+            </div>
+            {/* End .col-md-6 */}
+
+            <div className="col-sm-6">
+              <div className="widget-wrapper">
+                <h6 className="list-title">Miasto</h6>
+                <div className="d-flex">
+                  <CitiesSelect
+                    cities={cities}
+                    setCities={setCities}
+                    filters={filters}
+                  />
+                </div>
+              </div>
+            </div>
+            {/* End .col-md-6 */}
+          </div>
         </div>
         {/* End modal body */}
 

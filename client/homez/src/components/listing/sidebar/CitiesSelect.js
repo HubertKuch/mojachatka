@@ -13,7 +13,11 @@ export default function CitiesSelect({ cities, setCities, filters }) {
         }),
         container: (base) => ({ ...base, width: "100%" }),
       }}
+      isClearable
       onChange={(val) => {
+        if (!val) {
+          return delete filters.city;
+        }
         filters.city = val.value;
       }}
       onInputChange={(val) => {
