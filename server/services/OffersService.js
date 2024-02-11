@@ -6,6 +6,7 @@ const PaginatorService = require("./PaginatorService");
 const UserService = require("./UserService");
 const { appendImages } = require("./manageOffers");
 const OfferBoostType = require("../utils/OfferBoostType");
+const nodemailer = require("nodemailer");
 
 class OffersService extends PaginatorService {
   static selectedFields = {
@@ -298,6 +299,43 @@ class OffersService extends PaginatorService {
     }
 
     return this.toDTO(offer);
+  }
+
+  static async report(userId, offerId) {
+    if (
+      await db.report.findFirst({ where: { byId: userId, offerId: offerId } })
+    ) {
+      throw new APIError("Juz zglosiles te oferte");
+    }
+    const transporter = nodemailer.createTransport({
+      port: process.env.MAIL_PORT,
+      host: process.env.MAIL_HOST,
+      auth: {
+        user: process.env.MAIL_EMAIL,
+        pass: process.env.MAIL_PASSWORD,
+      },
+      secure: true,
+    });
+
+    const report = await db.report.create({
+      data: { offerId, byId: userId },
+      include: { offer: { select: { title: true } } },
+    });
+
+    const mailOptions = {
+      from: process.env.MAIL_EMAIL,
+      to: "pomoc@mojachatka.pl",
+      subject: `[ZGLOSZENIE] ${report.offer.title}`,
+      html: `<a href="https://mojachatka.pl/oferta/${offerId}">Odnosnik</a>`,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Wyslano zglosozenie: " + info.response);
+      }
+    });
   }
 }
 

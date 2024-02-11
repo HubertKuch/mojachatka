@@ -152,7 +152,7 @@ model User {
   offers                      Offers[]
   createdAt                   DateTime                      @default(now())
   updatedAt                   DateTime                      @updatedAt
-  telephone String
+  telephone                   String
   AccountPacketPayment        AccountPacketPayment[]
   UserAccountPacketsSnapshots UserAccountPacketsSnapshots[]
   UserBoosts                  UserBoosts[]
@@ -163,6 +163,7 @@ model User {
   Messages          Message[]
   Company           Company?
   BoostOfferPayment BoostOfferPayment[]
+  Report            Report[]
 }
 
 model Company {
@@ -238,6 +239,7 @@ model Offers {
   createdOnIp   String
   OfferFeature  OfferFeature[]
   OfferViews    OfferViews[]
+  Report        Report[]
 }
 
 model Feature {
@@ -302,4 +304,13 @@ model Message {
   chatId   String
   sender   User     @relation(fields: [senderId], references: [id])
   senderId String
+}
+
+model Report {
+  id      String   @id @unique @default(uuid())
+  offerId String
+  offer   Offers   @relation(fields: [offerId], references: [id])
+  byId    String
+  by      User     @relation(fields: [byId], references: [id])
+  at      DateTime @default(now())
 }

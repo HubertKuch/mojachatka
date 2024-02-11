@@ -1,6 +1,9 @@
 const { db } = require("../../utils/db");
 const validateOfferImages = require("../../utils/validateOfferImages");
-const { appendImages, removeOfferImages } = require("../../services/manageOffers");
+const {
+  appendImages,
+  removeOfferImages,
+} = require("../../services/manageOffers");
 const OffersService = require("../../services/OffersService");
 const APIError = require("../../errors/APIError");
 const { deleteFile } = require("../../utils/fileSystem");
@@ -16,6 +19,23 @@ const cities = require("../../data/cities.json");
 const { normalizeToEn } = require("../../utils/normalizeChars");
 
 class OffersController {
+  static async report(req, res, next) {
+    const offerId = req.query.id;
+    const userId = req.payload.data.id;
+
+    if (!offerId) {
+      return next(new APIError("ID oferty nie moze byc puste"));
+    }
+
+    try {
+      await OffersService.report(userId, offerId);
+
+      return res.status(200).json({ message: "Zgloszono oferte!" });
+    } catch (e) {
+      return next(e);
+    }
+  }
+
   static async findCities(req, res) {
     const chars = req.query.chars;
 
@@ -149,7 +169,6 @@ class OffersController {
     validate(data);
 
     if (validate.errors) {
-      console.error(validate.errors);
       return next(
         new APIError(
           populateJsonSchemaError(createOfferSchema, validate.errors),
@@ -166,14 +185,17 @@ class OffersController {
     delete data.data.properties.boostType;
     delete data.data.properties.isBoosted;
 
+    if (offer.properties.isBoosted) {
+      data.data.properties.isBoosted = true;
+      data.data.properties.boostType = offer.properties.boostType;
+    }
+
     await db.offers.update({
       where: { id: offerId },
       data: {
         ...data.data,
         properties: {
           ...data.data.properties,
-          isBoosted: offer.properties.isBoosted,
-          boostType: offer.properties.boostType,
         },
       },
     });

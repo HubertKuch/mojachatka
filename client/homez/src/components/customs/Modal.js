@@ -1,10 +1,10 @@
 import Popup from "reactjs-popup";
 import "@/../public/scss/_modal.scss";
 
-function Modal({ trigger, actions, children, title }) {
+function Modal({ trigger, actions, children, title, isOpen }) {
   return (
     <>
-      <Popup trigger={trigger} modal>
+      <Popup trigger={trigger} modal open={isOpen}>
         {(close) => (
           <div className="popup-modal">
             <button className="close" onClick={close}>

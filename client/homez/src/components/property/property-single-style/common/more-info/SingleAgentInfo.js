@@ -1,15 +1,21 @@
+import ConfirmModal from "@/components/customs/ConfirmModal";
+import OffersControllers from "@/controllers/OffersController";
 import useProfile from "@/hooks/useProfile";
 import React, { useEffect, useRef, useState } from "react";
 import Modal from "react-modal";
 import { io } from "socket.io-client";
+import messagePop from "react-message-popup";
+import useUser from "@/hooks/useUser";
 
-const SingleAgentInfo = ({ id }) => {
+const SingleAgentInfo = ({ offer, id }) => {
   const user = useProfile(id);
+  const loggedInUser = useUser({ reload: true });
   const [modalIsOpen, setIsOpen] = useState(false);
   const [telephone, showTelephone] = useState(false);
   const message = useRef();
   const [socket, setSocket] = useState(null);
   const [error, setError] = useState("");
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
 
   useEffect(() => {
     setSocket(
@@ -112,7 +118,16 @@ const SingleAgentInfo = ({ id }) => {
             </span>
             <div className="col">
               <button
-                onClick={() => setIsOpen(true)}
+                onClick={() => {
+                  if (loggedInUser) {
+                    setIsOpen(true);
+                  } else {
+                    messagePop.info(
+                      "Musisz byc zalogowany by wyslac wiadomosc.",
+                      5000,
+                    );
+                  }
+                }}
                 className="ud-btn btn-white mx-2 mx-xl-4"
                 style={{ width: "max-content" }}
               >
@@ -122,6 +137,35 @@ const SingleAgentInfo = ({ id }) => {
           </div>
 
           <br />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+          <ConfirmModal
+            isOpen={isReportModalOpen}
+            buttonType="button"
+            setState={() => {
+              OffersControllers.report(offer?.id).then((res) => {
+                if (res.status === 200) {
+                  messagePop.success(res.data.message, 3000);
+                } else {
+                  messagePop.error(res.data.message, 3000);
+                }
+
+                setIsReportModalOpen(false);
+              });
+            }}
+            title={"Czy na pewno chcesz zglosic to ogloszenie?"}
+            trigger={
+              <button
+                onClick={() => setIsReportModalOpen(true)}
+                className="btn rounded mx-2 mx-xl-4"
+                style={{ background: "#ff6962" }}
+              >
+                Zglos
+              </button>
+            }
+          ></ConfirmModal>
         </div>
       </div>
     </>

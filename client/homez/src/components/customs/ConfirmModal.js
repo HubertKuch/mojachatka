@@ -1,19 +1,25 @@
 import Modal from "./Modal";
 
-export default function ConfirmModal({ trigger, title, setState }) {
+export default function ConfirmModal(
+  { trigger, title, setState, buttonType, isOpen } = {
+    buttonType: "submit",
+    modalError: "",
+    isOpen: false,
+  },
+) {
   return (
-    <Modal title={title} trigger={trigger}>
+    <Modal title={title} trigger={trigger} isOpen={isOpen}>
       <form style={{ display: "flex", gap: "20px" }}>
         <button
-          style={{ background: "#7ce05e", padding: "10px 40px" }}
+          style={{ background: "#26aca1", padding: "10px 40px" }}
           className="form-control"
-          type="submit"
+          type={buttonType}
           onClick={() => setState(true)}
         >
           Tak
         </button>
         <button
-          style={{ background: "#fc4254", padding: "10px 40px" }}
+          style={{ background: "#a9dddc", padding: "10px 40px" }}
           className="form-control"
           type="button"
           onClick={(ev) => {

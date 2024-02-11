@@ -927,7 +927,7 @@ const createOfferSchema = {
             ],
             label: "Zdjęcia nieruchomości",
           },
-          required: ["images", "security", "address"],
+          required: ["images", "address"],
         },
       },
       required: ["title", "description", "type", "sellType", "properties"],

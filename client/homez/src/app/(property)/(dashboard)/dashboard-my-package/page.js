@@ -93,8 +93,8 @@ const DashboardMyPackage = () => {
                                 </th>
                                 <td>
                                   {packageItem?.properties?.type === "MAIN"
-                                    ? "Na Strone Główną"
-                                    : "Na Liste"}
+                                    ? "Na liste"
+                                    : "Na Strone Główną"}
                                 </td>
                                 <td>
                                   <p

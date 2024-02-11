@@ -148,8 +148,8 @@ const DashboardMessage = () => {
 
                   <div className="row">
                     <p>
-                      Możesz utworzyć czat za pomocą przycisku "Wyślij
-                      wiadomość" na dole oferty{" "}
+                      Możesz utworzyć czat za pomocą przycisku &quot;wyślij
+                      wiadomość&quot; na dole oferty{" "}
                     </p>
                   </div>
                 </>

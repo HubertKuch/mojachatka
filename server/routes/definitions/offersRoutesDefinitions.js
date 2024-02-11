@@ -11,6 +11,7 @@ router.get("/categoriesStats", OffersController.getCategories);
 router.get("/sellTypes", OffersController.getSellTypes);
 router.get("/regions", OffersController.getRegions);
 router.get("/cities", OffersController.findCities);
+router.post("/reportOffer", isAuthenticated, OffersController.report);
 router.delete(
   "/deleteOffer/:id",
   isAuthenticated,

@@ -6,6 +6,10 @@ class OffersControllers {
     return (await instance.delete("/deleteOffer/" + id)).data;
   }
 
+  static async report(id) {
+    return await instance.post("/reportOffer?id=" + id);
+  }
+
   static async getCats() {
     return (await instance.get("/categoriesStats")).data;
   }
