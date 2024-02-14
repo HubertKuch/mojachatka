@@ -77,6 +77,7 @@ const Pricing = ({ type, user }) => {
               Wybierz ilość {type === "DEVELOPER" ? "inwestycji" : "ogłoszeń"}
             </p>
             <ReactSelect
+              isSearchable={false}
               defaultValue={selected}
               value={selected}
               styles={{

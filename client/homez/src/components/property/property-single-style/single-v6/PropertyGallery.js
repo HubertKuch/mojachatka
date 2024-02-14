@@ -32,6 +32,7 @@ const PropertyGallery = ({ offer }) => {
                     <div className="col-lg-12">
                       <div className="">
                         <Swiper
+                          style={{ height: "45rem" }}
                           loop={true}
                           spaceBetween={10}
                           pagination={{ clickable: true }}
@@ -48,12 +49,15 @@ const PropertyGallery = ({ offer }) => {
                           ).map((item, i) => (
                             <SwiperSlide key={i}>
                               <Image
-                                style={{ height: "100% !important" }}
+                                style={{
+                                  height: "100% !important",
+                                  width: "100% !important",
+                                }}
                                 height={736}
                                 width={409}
                                 src={item}
                                 alt="gallery"
-                                className="w-100"
+                                className="w-100 h-100"
                               />
                             </SwiperSlide>
                           ))}

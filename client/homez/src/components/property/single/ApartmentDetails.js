@@ -15,7 +15,7 @@ function ApartmentDatails({ offer }) {
               label: "Cena",
               value: offer.price
                 ? formatPrice(offer.price)
-                : `${formatPrice(offer.pricePerMonth)} / mo`,
+                : `${formatPrice(offer.pricePerMonth)}`,
             },
             {
               label: "Piętro",
