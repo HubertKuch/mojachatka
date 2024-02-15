@@ -67,6 +67,7 @@ const Home_V1 = () => {
             <div className="col-lg-3">
               <div className="text-start text-lg-end mb-3">
                 <Link
+                  rel="nofollow"
                   className="text-white ud-btn2"
                   href="/oferty?boostType=MAIN"
                 >

@@ -36,6 +36,17 @@ const initializeChatsIo = require("./routes/chat");
 const cookieParser = require("cookie-parser");
 
 const app = express();
+
+app.disable("x-powered-by");
+app.set("x-powered-by", false);
+
+app.use(function (req, res, next) {
+  res.removeHeader("X-Powered-By");
+  res.removeHeader("x-powered-by");
+
+  next();
+});
+
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
@@ -45,9 +56,6 @@ const io = new Server(server, {
   },
 });
 const port = process.env.SERVER_PORT || 3000;
-
-app.disable("x-powered-by");
-app.set("x-powered-by", false);
 
 app.use(
   cors({

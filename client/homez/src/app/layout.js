@@ -35,9 +35,25 @@ export default function RootLayout({ children }) {
     });
   }, []);
 
+  function gtag() {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "AW-11416815519");
+  }
+
   return (
     <html lang="pl">
       <head>
+        {"<!-- Google tag (gtag.js) -->"}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11416815519"
+        ></script>
+        <script>{gtag()}</script>
         <link
           rel="apple-touch-icon"
           href="/images/apple-touch-icon-72x72.png"

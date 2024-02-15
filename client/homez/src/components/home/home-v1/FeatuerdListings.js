@@ -12,7 +12,7 @@ const FeaturedListings = () => {
     <div className="featured-listings">
       <div className="row">
         {listingsToShow.map((listing) => (
-          <Link key={listing.id} href={`/oferta/${listing.id}`}>
+          <Link key={listing.id} rel="nofollow" href={`/oferta/${listing.id}`}>
             <div className="col-lg-4 mb-4">
               <div className="item">
                 <div className="listing-style1">

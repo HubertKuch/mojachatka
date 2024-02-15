@@ -35,7 +35,7 @@ const Invoice = () => {
                     key={cat.category}
                     className="item col-lg-3 col-md-4 col-sm-6"
                   >
-                    <Link href={`/oferty?type=${cat.category}`}>
+                    <Link rel="nofollow" href={`/oferty?type=${cat.category}`}>
                       <div className="iconbox-style1">
                         <span
                           className={`icon ${iconByType[cat.category] || ""}`}
