@@ -28,15 +28,8 @@ const poppins = Poppins({
 });
 
 export default function RootLayout({ children }) {
-  useEffect(() => {
-    Aos.init({
-      duration: 1200,
-      once: true,
-    });
-  }, []);
-
   function gtag() {
-    window.dataLayer = window.dataLayer || [];
+    if (window) window.dataLayer = window.dataLayer || [];
     function gtag() {
       dataLayer.push(arguments);
     }
@@ -44,6 +37,15 @@ export default function RootLayout({ children }) {
 
     gtag("config", "AW-11416815519");
   }
+
+  useEffect(() => {
+    Aos.init({
+      duration: 1200,
+      once: true,
+    });
+
+    gtag();
+  }, []);
 
   return (
     <html lang="pl">
@@ -53,7 +55,6 @@ export default function RootLayout({ children }) {
           async
           src="https://www.googletagmanager.com/gtag/js?id=AW-11416815519"
         ></script>
-        <script>{gtag()}</script>
         <link
           rel="apple-touch-icon"
           href="/images/apple-touch-icon-72x72.png"
