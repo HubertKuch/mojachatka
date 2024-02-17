@@ -10,6 +10,7 @@ import Hero from "@/components/home/home-v1/hero";
 import Image from "next/image";
 import Link from "next/link";
 import PopulerProperty from "@/components/home/home-v1/PopulerProperty";
+import bootstrap from "bootstrap";
 
 const Home_V1 = () => {
   return (
@@ -225,8 +226,13 @@ const Home_V1 = () => {
               <button
                 className={`accordion-button `}
                 type="button"
+                onClick={() => {
+                  bootstrap.Collapse.getInstance(
+                    "#collapse-about-mojachatka",
+                  ).toggle();
+                }}
                 data-bs-toggle="collapse"
-                data-bs-target={`#collapseabout-mojachatka`}
+                data-bs-target={`#collapse-about-mojachatka`}
                 aria-controls={`collapseabout-mojachatka`}
               >
                 Witaj w świecie nieruchomości, gdzie marzenia o własnym kącie
@@ -235,10 +241,8 @@ const Home_V1 = () => {
               </button>
             </h2>
             <div
-              id={`collapseabout-mojachatka`}
-              className={`accordion-collapse collapse `}
-              aria-labelledby={"aboutmojachatka"}
-              data-parent="#accordionExample"
+              id={`collapse-about-mojachatka`}
+              className={`accordion-collapse collapse`}
             >
               <div className="accordion-body">
                 <p>

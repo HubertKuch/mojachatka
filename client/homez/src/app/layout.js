@@ -55,15 +55,13 @@ export default function RootLayout({ children }) {
           async
           src="https://www.googletagmanager.com/gtag/js?id=AW-11416815519"
         ></script>
-        <link
-          rel="apple-touch-icon"
-          href="/images/apple-touch-icon-72x72.png"
-        />
+        <link rel="icon" href="/favicon.ico" />
         <title>Mojachatka: Nieruchomości, Domy, Mieszkania, Działki</title>
         <meta
           name="description"
           content="Najtańszy portal ogłoszeniowy. Nieruchomości, sprzedaż, kupno, wynajem. Mieszkania, domy, działki i więcej."
         />
+        <meta name="robots" content="all" />
       </head>{" "}
       <body
         className={`body  ${poppins.className} ${dmSans.className}`}
