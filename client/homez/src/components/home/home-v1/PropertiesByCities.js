@@ -11,6 +11,7 @@ const PropertiesByCities = () => {
   return (
     <>
       <Swiper
+        className=" property-slider"
         spaceBetween={30}
         modules={[Navigation]}
         navigation={{

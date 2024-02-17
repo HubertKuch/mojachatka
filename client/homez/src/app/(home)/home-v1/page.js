@@ -1,3 +1,4 @@
+"use client";
 import Explore from "@/components/common/Explore";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
@@ -10,7 +11,6 @@ import Hero from "@/components/home/home-v1/hero";
 import Image from "next/image";
 import Link from "next/link";
 import PopulerProperty from "@/components/home/home-v1/PopulerProperty";
-import bootstrap from "bootstrap";
 
 const Home_V1 = () => {
   return (
@@ -210,7 +210,7 @@ const Home_V1 = () => {
 
           <div className="row">
             <div className="col-lg-12" data-aos="fade-up" data-aos-delay="300">
-              <div className="property-city-slider position-relative">
+              <div className="property-city-slider position-relative h-100">
                 <PropertiesByCities />
               </div>
             </div>
@@ -226,13 +226,11 @@ const Home_V1 = () => {
               <button
                 className={`accordion-button `}
                 type="button"
-                onClick={() => {
-                  bootstrap.Collapse.getInstance(
-                    "#collapse-about-mojachatka",
-                  ).toggle();
-                }}
-                data-bs-toggle="collapse"
-                data-bs-target={`#collapse-about-mojachatka`}
+                onClick={() =>
+                  document
+                    .querySelector("#collapse-about-mojachatka")
+                    .classList.toggle("show")
+                }
                 aria-controls={`collapseabout-mojachatka`}
               >
                 Witaj w świecie nieruchomości, gdzie marzenia o własnym kącie
@@ -242,7 +240,7 @@ const Home_V1 = () => {
             </h2>
             <div
               id={`collapse-about-mojachatka`}
-              className={`accordion-collapse collapse`}
+              className={`accordion-collapse collapse `}
             >
               <div className="accordion-body">
                 <p>
