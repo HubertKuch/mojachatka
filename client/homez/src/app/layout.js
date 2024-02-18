@@ -28,33 +28,16 @@ const poppins = Poppins({
 });
 
 export default function RootLayout({ children }) {
-  function gtag() {
-    if (window) window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-
-    gtag("config", "AW-11416815519");
-  }
-
   useEffect(() => {
     Aos.init({
       duration: 1200,
       once: true,
     });
-
-    gtag();
   }, []);
 
   return (
     <html lang="pl">
       <head>
-        {"<!-- Google tag (gtag.js) -->"}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=AW-11416815519"
-        ></script>
         <link rel="icon" href="/favicon.ico" />
         <title>Mojachatka: Nieruchomości, Domy, Mieszkania, Działki</title>
         <meta

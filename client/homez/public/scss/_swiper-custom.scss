@@ -217,3 +217,9 @@
     color: #000;
   }
 }
+
+@media (max-width: 575.98px) {
+  .swiper {
+    height: 12rem !important;
+  }
+}
