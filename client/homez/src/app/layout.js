@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pl">
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" size="any" />
         <title>Mojachatka: Nieruchomości, Domy, Mieszkania, Działki</title>
         <meta
           name="description"
