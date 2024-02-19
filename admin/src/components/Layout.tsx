@@ -1,6 +1,12 @@
 import Navigation from "./Navigation";
 
-export default function Layout({ children }: { children: any }): JSX.Element {
+export default function Layout({
+  children,
+  title,
+}: {
+  children: any;
+  title: string | undefined | null;
+}): JSX.Element {
   return (
     <html lang="en">
       <head>
@@ -13,7 +19,10 @@ export default function Layout({ children }: { children: any }): JSX.Element {
       </head>
       <body className="w-full h-full flex">
         <Navigation />
-        <main className={"w-10/12"}>{children}</main>
+        <main className={"w-10/12 p-10 flex gap-5 flex-col"}>
+          <h1 className="text-3xl">{title}</h1>
+          {children}
+        </main>
       </body>
     </html>
   );
