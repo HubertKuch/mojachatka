@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="375.12329"
+   height="85.735443"
+   viewBox="0 0 375.12329 85.735443"
+   fill="none"
+   version="1.1"
+   id="svg15"
+   sodipodi:docname="header-logo.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview17"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="204.0003"
+     inkscape:cy="138.23937"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg15" />
+  <defs
+     id="defs13">
+    <clipPath
+       id="clip0_27_590">
+      <rect
+         width="24"
+         height="24"
+         fill="#ffffff"
+         transform="translate(10,10)"
+         id="rect10"
+         x="0"
+         y="0" />
+    </clipPath>
+    <linearGradient
+       id="SVGID_1_"
+       gradientUnits="userSpaceOnUse"
+       x1="29.622299"
+       y1="67.433296"
+       x2="114.6415"
+       y2="67.433296">
+      <stop
+         offset="0"
+         style="stop-color:#008D36"
+         id="stop7" />
+      <stop
+         offset="1"
+         style="stop-color:#009FE3"
+         id="stop9" />
+    </linearGradient>
+    <linearGradient
+       id="SVGID_00000174589189527068242850000004263732313725633410_"
+       gradientUnits="userSpaceOnUse"
+       x1="28.122299"
+       y1="67.433296"
+       x2="116.1415"
+       y2="67.433296">
+      <stop
+         offset="0"
+         style="stop-color:#008D36"
+         id="stop12" />
+      <stop
+         offset="1"
+         style="stop-color:#009FE3"
+         id="stop14" />
+    </linearGradient>
+  </defs>
+  <g
+     id="Warstwa_2"
+     transform="matrix(0.76454984,0,0,0.76454984,-21.499084,-8.6941061)">
+    <linearGradient
+       id="linearGradient2870"
+       gradientUnits="userSpaceOnUse"
+       x1="29.622299"
+       y1="67.433296"
+       x2="114.6415"
+       y2="67.433296">
+      <stop
+         offset="0"
+         style="stop-color:#008D36"
+         id="stop2866" />
+      <stop
+         offset="1"
+         style="stop-color:#009FE3"
+         id="stop2868" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2876"
+       gradientUnits="userSpaceOnUse"
+       x1="28.122299"
+       y1="67.433296"
+       x2="116.1415"
+       y2="67.433296">
+      <stop
+         offset="0"
+         style="stop-color:#008D36"
+         id="stop2872" />
+      <stop
+         offset="1"
+         style="stop-color:#009FE3"
+         id="stop2874" />
+    </linearGradient>
+    <path
+       style="fill:url(#SVGID_1_);stroke:url(#SVGID_00000174589189527068242850000004263732313725633410_);stroke-width:3;stroke-miterlimit:10"
+       d="M 113.74,49.77 74.54,13.69 c -0.66,-0.61 -1.55,-0.87 -2.41,-0.81 -0.86,-0.06 -1.75,0.2 -2.41,0.81 l -39.2,36.08 c -0.69,0.63 -0.97,1.49 -0.87,2.31 -0.01,0.11 -0.03,0.21 -0.03,0.32 l -7.5e-5,66.7151 c -2e-6,1.57 1.27,2.83 2.83,2.83 1.57,0 2.829998,-1.27 2.83,-2.83 L 35.28,53.4 72.12,19.49 108.96,53.4 v 62.94 H 74.68 l -0.203893,-38.769105 12.44,12.44 c 1.11,1.11 2.9,1.11 4.01,0 1.11,-1.11 1.11,-2.9 0,-4.01 l -16.03,-16.04 c -0.68,-0.68 -1.61,-0.93 -2.48,-0.78 -0.87,-0.15 -1.81,0.11 -2.48,0.78 l -16.04,16.03 c -1.11,1.11 -1.11,2.9 0,4.01 1.11,1.11 2.9,1.11 4.01,0 l 10.9,-10.9 L 69.01,118.08 c 0.0023,0.43999 0.11,0.85 0.28,1.22 0.07,1.51 1.3,2.71 2.82,2.71 h 39.69 c 1.57,0 2.83,-1.27 2.83,-2.83 0,-0.27 -0.05,-0.53 -0.12,-0.79 0.07,-0.25 0.12,-0.51 0.12,-0.79 V 52.4 c 0,-0.11 -0.02,-0.21 -0.03,-0.32 0.11,-0.83 -0.17,-1.68 -0.86,-2.31 z"
+       id="path17"
+       sodipodi:nodetypes="ccccccssssccccccsscccccsscscssscsscc" />
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-weight:bold;font-size:67.1509px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.67877"
+     x="114.15273"
+     y="46.824032"
+     id="text2599"><tspan
+       sodipodi:role="line"
+       id="tspan2597"
+       x="114.15273"
+       y="46.824032"
+       style="stroke-width:1.67877" /></text>
+  <text
+     xml:space="preserve"
+     style="font-weight:bold;font-size:67.1509px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff;stroke-width:1.67877"
+     x="111.48181"
+     y="80.35878"
+     id="text3989"><tspan
+       sodipodi:role="line"
+       id="tspan3987"
+       x="111.48181"
+       y="80.35878"
+       style="stroke-width:1.67877" /></text>
+  <text
+     xml:space="preserve"
+     style="font-weight:bold;font-size:67.1509px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.67877"
+     x="150.95192"
+     y="60.772118"
+     id="text5181"><tspan
+       sodipodi:role="line"
+       id="tspan5179"
+       x="150.95192"
+       y="60.772118"
+       style="stroke-width:1.67877" /></text>
+  <text
+     xml:space="preserve"
+     style="font-weight:bold;font-size:29.0987px;line-height:1.25;font-family:'Malgun Gothic';-inkscape-font-specification:'Malgun Gothic Bold';stroke-width:1.67877"
+     x="117.56555"
+     y="54.836761"
+     id="text16125"><tspan
+       sodipodi:role="line"
+       id="tspan16123"
+       x="117.56555"
+       y="54.836761"
+       style="stroke-width:1.67877" /></text>
+  <text
+     xml:space="preserve"
+     style="font-weight:bold;font-size:29.0987px;line-height:1.35;font-family:'Malgun Gothic';-inkscape-font-specification:'Malgun Gothic Bold';stroke-width:1.67877"
+     x="125.42989"
+     y="55.430302"
+     id="text21233"><tspan
+       sodipodi:role="line"
+       id="tspan21231"
+       x="125.42989"
+       y="55.430302"
+       style="stroke-width:1.67877" /></text>
+  <text
+     xml:space="preserve"
+     style="font-weight:bold;font-size:29.0987px;line-height:1.25;font-family:'Malgun Gothic';-inkscape-font-specification:'Malgun Gothic Bold';stroke-width:1.67877"
+     x="138.1909"
+     y="44.449894"
+     id="text21941"><tspan
+       sodipodi:role="line"
+       id="tspan21939"
+       x="138.1909"
+       y="44.449894"
+       style="stroke-width:1.67877" /></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:53.8705px;line-height:1.25;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold,  Bold';fill:#ffffff;stroke-width:3.10792"
+     x="79.598366"
+     y="66.384552"
+     id="text24035"><tspan
+       sodipodi:role="line"
+       id="tspan24033"
+       x="79.598366"
+       y="66.384552"
+       style="stroke-width:3.10792">Mojachatka</tspan></text>
+</svg>
