@@ -29,7 +29,7 @@ const PropertyHeader = ({ offer }) => {
           <div className="property-action text-lg-end">
             <h3 className="price mb-0">
               {formatPrice(offer?.price || offer?.pricePerMonth)}
-              <small>{offer.price ? "" : "/mo"}</small>
+              <small>{offer.price ? "" : ""}</small>
             </h3>
           </div>
         </div>

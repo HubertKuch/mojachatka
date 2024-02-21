@@ -17,7 +17,7 @@ export default function Layout({
         <link rel="stylesheet" href="/static/style/output.css" />
         <link rel="stylesheet" hre="/static/style/main.css" />
       </head>
-      <body className="w-full h-full flex">
+      <body className="w-full bg-[#f7f7f9] h-full flex">
         <Navigation />
         <main className={"w-10/12 p-10 flex gap-5 flex-col"}>
           <h1 className="text-3xl">{title}</h1>
