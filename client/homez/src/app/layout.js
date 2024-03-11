@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
           name="description"
           content="Najtańszy portal ogłoszeniowy. Nieruchomości, sprzedaż, kupno, wynajem. Mieszkania, domy, działki i więcej."
         />
-        <meta name="robots" content="all" />
+        <meta name="robots" content="index, follow" />
       </head>{" "}
       <body
         className={`body  ${poppins.className} ${dmSans.className}`}

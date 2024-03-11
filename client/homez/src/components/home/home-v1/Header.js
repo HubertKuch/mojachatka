@@ -35,8 +35,9 @@ const Header = () => {
   return (
     <>
       <header
-        className={`header-nav nav-homepage-style main-menu  ${navbar ? "sticky slideInDown animated" : ""
-          }`}
+        className={`header-nav nav-homepage-style main-menu  ${
+          navbar ? "sticky slideInDown animated" : ""
+        }`}
       >
         <nav className="posr">
           <div className="container posr menu_bdrt1">
@@ -49,7 +50,8 @@ const Header = () => {
                         width={200}
                         height={44}
                         src="/images/header-logo.svg"
-                        alt="Header Logo"
+                        title="nieruchomości"
+                        alt="Mojachatka nieruchomości - Logo"
                       />
                     </Link>
                     <Link className="header-logo logo2" href="/">
@@ -57,7 +59,8 @@ const Header = () => {
                         width={200}
                         height={44}
                         src="/images/header-logo2.svg"
-                        alt="Header Logo"
+                        title="nieruchomości"
+                        alt="Mojachatka nieruchomości - Logo"
                       />
                     </Link>
                   </div>

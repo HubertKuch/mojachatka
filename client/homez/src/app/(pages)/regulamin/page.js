@@ -25,7 +25,7 @@ const Regulamin = () => {
           <div className="row">
             <p style={{ cursor: "pointer" }}>
               <a
-                href="/01._Regulamin_serwisu_-_www.mojachatka.pl_-_v.1.2._1.pdf"
+                href="/01._Regulamin_serwisu_-_www.mojachatka.pl.docx"
                 download
               >
                 Regulamin serwisu

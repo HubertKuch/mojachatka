@@ -41,6 +41,10 @@ const Footer = () => {
       </div>
       {/* End .container */}
 
+      <div className="container" style={{ color: "#bebdbd", opacity: "40%" }}>
+        Moja chatka - Najtańszy portal ogłoszeniowy. Nieruchomości, sprzedaż,
+        kupno, wynajem. Mieszkania, domy, działki i więcej.
+      </div>
       <Copyright />
       {/* End copyright */}
     </>
