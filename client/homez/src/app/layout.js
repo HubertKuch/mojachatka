@@ -1,6 +1,4 @@
 "use client";
-
-import ScrollToTop from "@/components/common/ScrollTop";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import "../../public/scss/main.scss";
@@ -13,14 +11,12 @@ if (typeof window !== "undefined") {
   window.bootstrap = require("bootstrap/dist/js/bootstrap.bundle.js");
 }
 
-// DM_Sans font
 const dmSans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   variable: "--body-font-family",
 });
 
-// Poppins font
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -37,7 +33,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="pl">
-      <head>
+      <Head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <title>Mojachatka: Nieruchomości, Domy, Mieszkania, Działki</title>
         <meta
@@ -45,14 +41,12 @@ export default function RootLayout({ children }) {
           content="Najtańszy portal ogłoszeniowy. Nieruchomości, sprzedaż, kupno, wynajem. Mieszkania, domy, działki i więcej."
         />
         <meta name="robots" content="index, follow" />
-      </head>{" "}
+      </Head>
       <body
         className={`body  ${poppins.className} ${dmSans.className}`}
         cz-shortcut-listen="false"
       >
         <div className="wrapper ovh">{children}</div>
-
-        <ScrollToTop />
       </body>
     </html>
   );

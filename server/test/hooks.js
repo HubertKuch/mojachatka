@@ -1,17 +1,7 @@
 const proxyquire = require("proxyquire");
 
 exports.mochaHooks = {
-  beforeEach: function () {
-    proxyquire("../utils/db.js", {
-      "@prisma/client": {
-        PrismaClient: function () {
-          return {
-            ds: "ds",
-          };
-        },
-      },
-    });
-  },
+  beforeEach: function () {},
 
   afterAll: function () {
     // one-time final cleanup

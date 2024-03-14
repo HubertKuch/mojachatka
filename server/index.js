@@ -18,6 +18,8 @@ const path = require("node:path");
 require("dotenv").config({ path: path.join(__dirname, "./prisma/.env") });
 require("./services/paymentResolveIntervalService");
 require("./events/listeners/paymentListener");
+require("./schedules/deleteExpiredOffersSchedule");
+
 const { logError, handleError } = require("./errors/middleware");
 
 const paymenentsNofity = require("./routes/paymentNotify");

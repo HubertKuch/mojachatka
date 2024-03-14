@@ -1,6 +1,7 @@
 const { PrismockClient } = require("prismock");
 const client = new PrismockClient();
 const { faker } = require("@faker-js/faker");
+const dayjs = require("dayjs");
 // MAN MAIN
 (async () => {
   for (let i = 0; i <= 100; i++) {
@@ -26,6 +27,11 @@ const { faker } = require("@faker-js/faker");
           title: faker.lorem.words({ min: 4, max: 12 }),
           properties: {},
           User: user,
+          expires:
+            i >= 5
+              ? dayjs().subtract(30, "days").toDate()
+              : dayjs().add(30, "days").toDate(),
+          deleted: false,
           author: user.id,
         },
       });
