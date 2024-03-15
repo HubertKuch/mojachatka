@@ -6,7 +6,9 @@ const Wrapper = ({ children }) => {
       <Helmet>
         {" "}
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <title>Mojachatka: Nieruchomości, Domy, Mieszkania, Działki</title>
+        <title>
+          Nieruchomości ogłoszenia - sprzedaż i wynajem - Cała Polska
+        </title>
         <meta
           name="description"
           content="Najtańszy portal ogłoszeniowy. Nieruchomości, sprzedaż, kupno, wynajem. Mieszkania, domy, działki i więcej."

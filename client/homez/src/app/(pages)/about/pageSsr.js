@@ -11,7 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Mojachatka: Nieruchomości, Domy, Mieszkania, Działki",
+  title: "Informacje o portalu Mojachatka.pl",
 };
 
 const About = () => {
