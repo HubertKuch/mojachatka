@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function RedirectToMain() {
   redirect(
-    "/oferty?sellType=RENT&minPrice=0&maxPrice=9007199254740991&type=GARAZ",
+    "/oferty?sellType=BUY&minPrice=0&maxPrice=9007199254740991&type=GARAZ",
   );
   return <></>;
 }

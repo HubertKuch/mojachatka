@@ -7,6 +7,8 @@ export const metadata = {
 };
 
 export default function RedirectToMain() {
-  redirect("/");
+  redirect(
+    "/oferty?sellType=BUY&minPrice=0&maxPrice=9007199254740991&type=DOM",
+  );
   return <></>;
 }

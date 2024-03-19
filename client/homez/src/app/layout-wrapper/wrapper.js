@@ -11,7 +11,7 @@ const Wrapper = ({ children }) => {
         </title>
         <meta
           name="description"
-          content="Najtańszy portal ogłoszeniowy. Nieruchomości, sprzedaż, kupno, wynajem. Mieszkania, domy, działki i więcej."
+          content="Nieruchomości ogłoszenia na sprzedaż i na wynajem. Sprawdź wszystkie ogłoszenia nieruchomości od osób prywatnych, agencji nieruchomości oraz deweloperów."
         />
         <meta name="robots" content="index, follow" />
       </Helmet>
