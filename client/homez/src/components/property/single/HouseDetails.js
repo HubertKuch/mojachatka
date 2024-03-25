@@ -167,101 +167,115 @@ function HouseDatails({ offer }) {
         [
           {
             label: "System antywłamaniowy",
-            value: offer.properties.security?.antiBreakingRoles ? "Tak" : "Nie",
+            value: offer.properties.house.security?.antiBreakingRoles
+              ? "Tak"
+              : "Nie",
           },
           {
-            value: offer.properties.security?.monitoring ? "Tak" : "Nie",
+            value: offer.properties.house.security?.monitoring ? "Tak" : "Nie",
             label: "Monitoring",
           },
           {
-            value: offer.properties.security?.security ? "Tak" : "Nie",
+            value: offer.properties.house.security?.security ? "Tak" : "Nie",
             label: "System ochrony",
           },
           {
-            value: offer.properties.security?.antiBurglaryWindows
+            value: offer.properties.house.security?.antiBurglaryWindows
               ? "Tak"
               : "Nie",
             label: "Okna antywłamaniowe",
           },
           {
-            value: offer.properties.security?.antiBurglaryDoors ? "Tak" : "Nie",
+            value: offer.properties.house.security?.antiBurglaryDoors
+              ? "Tak"
+              : "Nie",
             label: "Drzwi antywłamaniowe",
           },
           {
-            value: offer.properties.security?.alarmSystem ? "Tak" : "Nie",
+            value: offer.properties.house.security?.alarmSystem ? "Tak" : "Nie",
             label: "System alarmowy",
           },
           {
-            value: offer.properties.security?.intercom ? "Tak" : "Nie",
+            value: offer.properties.house.security?.intercom ? "Tak" : "Nie",
             label: "Domofon",
           },
           {
-            value: offer.properties.security?.videophone ? "Tak" : "Nie",
+            value: offer.properties.house.security?.videophone ? "Tak" : "Nie",
             label: "Wideofon",
           },
           {
-            value: offer.properties.security?.closedArea ? "Tak" : "Nie",
+            value: offer.properties.house.security?.closedArea ? "Tak" : "Nie",
             label: "Ogrodzony teren",
           },
         ],
         [
           {
             label: "Internet",
-            value: offer?.properties?.equipment?.internet ? "Tak" : "Nie",
+            value: offer?.properties?.house?.media?.internet ? "Tak" : "Nie",
           },
           {
             label: "Telewizja kablowa",
-            value: offer?.properties?.equipment?.cableTv ? "Tak" : "Nie",
+            value: offer?.properties?.house?.media?.cableTv ? "Tak" : "Nie",
           },
           {
             label: "Telefon",
-            value: offer?.properties?.equipment?.telephone ? "Tak" : "Nie",
+            value: offer?.properties?.house?.media?.telephone ? "Tak" : "Nie",
           },
           {
             label: "Woda",
-            value: offer?.properties?.equipment?.water ? "Tak" : "Nie",
+            value: offer?.properties?.house?.media?.water ? "Tak" : "Nie",
           },
           {
             label: "Energia elektryczna",
-            value: offer?.properties?.equipment?.energy ? "Tak" : "Nie",
+            value: offer?.properties?.house?.media?.energy ? "Tak" : "Nie",
           },
           {
             label: "Gaz",
-            value: offer?.properties?.equipment?.gas ? "Tak" : "Nie",
+            value: offer?.properties?.house?.media?.gas ? "Tak" : "Nie",
           },
           {
             label: "Kanalizacja",
-            value: offer?.properties?.equipment?.sewage ? "Tak" : "Nie",
+            value: offer?.properties?.house?.media?.sewage ? "Tak" : "Nie",
           },
           {
             label: "Śmieci",
-            value: offer?.properties?.equipment?.severs ? "Tak" : "Nie",
+            value: offer?.properties?.house?.media?.severs ? "Tak" : "Nie",
           },
           {
             label: "Szambo",
-            value: offer?.properties?.equipment?.setpticTank ? "Tak" : "Nie",
+            value: offer?.properties?.house?.media?.setpticTank ? "Tak" : "Nie",
           },
         ],
         [
           {
             label: "Piwnica",
-            value: offer?.properties?.equipment?.basement ? "Tak" : "Nie",
+            value: offer?.properties?.house?.additionalInfo?.basement
+              ? "Tak"
+              : "Nie",
           },
           {
             label: "Basen",
-            value: offer?.properties?.equipment?.pool ? "Tak" : "Nie",
+            value: offer?.properties?.house?.additionalInfo?.pool
+              ? "Tak"
+              : "Nie",
           },
           {
             label: "Strych",
-            value: offer?.properties?.equipment?.attic ? "Tak" : "Nie",
+            value: offer?.properties?.house?.additionalInfo?.attic
+              ? "Tak"
+              : "Nie",
           },
           {
             label: "Klimatyzacja",
-            value: offer?.properties?.equipment?.airConditioner ? "Tak" : "Nie",
+            value: offer?.properties?.house?.additionalInfo?.airConditioner
+              ? "Tak"
+              : "Nie",
           },
           {
             label: "Garaż",
-            value: offer?.properties?.equipment?.garage ? "Tak" : "Nie",
+            value: offer?.properties?.house?.additionalInfo?.garage
+              ? "Tak"
+              : "Nie",
           },
         ],
       ]);

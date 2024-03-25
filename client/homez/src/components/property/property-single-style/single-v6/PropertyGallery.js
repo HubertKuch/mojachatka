@@ -50,6 +50,7 @@ const PropertyGallery = ({ offer }) => {
                             <SwiperSlide key={i}>
                               <Image
                                 style={{
+                                  objectFit: "cover",
                                   height: "100% !important",
                                   width: "100% !important",
                                 }}

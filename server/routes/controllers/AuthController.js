@@ -289,12 +289,17 @@ class AuthController {
   }
 
   static async getProfile(req, res) {
-    const userId = req.payload.data.id;
+    try {
+      const userId = req.payload.data.id;
 
-    const user = await getUserByID(userId);
-    delete user.password;
-    user.username = `${user.firstName} ${user.lastName}`;
-    res.status(200).json({ message: "Successfull", user: user });
+      const user = await getUserByID(userId);
+      delete user.password;
+      user.username = `${user.firstName} ${user.lastName}`;
+      res.status(200).json({ message: "Successfull", user: user });
+    } catch (e) {
+      console.error(e);
+      res.status(500);
+    }
   }
 }
 
