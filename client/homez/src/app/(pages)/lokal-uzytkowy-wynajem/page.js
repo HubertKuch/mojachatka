@@ -1,3 +1,4 @@
+import ListV1 from "@/app/(listing)/(list-view)/oferty/page";
 import { redirect } from "next/navigation";
 
 export const metadata = {
@@ -7,8 +8,5 @@ export const metadata = {
 };
 
 export default function RedirectToMain() {
-  redirect(
-    "/oferty?sellType=RENT&minPrice=0&maxPrice=9007199254740991&type=LOKAL",
-  );
-  return <></>;
+  return <ListV1 type={"LOKAL"} sellType={"RENT"} />;
 }

@@ -5,6 +5,7 @@ rm -rf ./client/homez/node_modules/
 echo Removed client modules
 rm -rf ./server/node_modules/
 echo Removed server modules
+rm -r ./client/homez/.next
 
 # Tar files
 cd ..
@@ -13,7 +14,7 @@ tar -czf mojachatka.tar.gz mojachatka-kurwa
 echo Tared files
 
 # Make backup
-ssh ubuntu@57.128.194.146 "rm -rf ~/mojachatka.tar.gz && mv ~/mojachatka-kurwa ~/backup"
+ssh ubuntu@57.128.194.146 "rm -rf ~/mojachatka.tar.gz && mv ~/mojachatka-kurwa ~/backup/$(date +%s)"
 
 # Send it
 scp -r ~/projects/mojachatka.tar.gz ubuntu@57.128.194.146:/home/ubuntu/

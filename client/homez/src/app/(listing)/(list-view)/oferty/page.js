@@ -9,7 +9,7 @@ import PropertyFilteringList from "@/components/listing/list-view/list-v1/Proper
 
 import React from "react";
 
-const ListV1 = () => {
+const ListV1 = ({ params: { type, sellType, location }, params }) => {
   return (
     <>
       {/* Main Header Nav */}
@@ -26,7 +26,11 @@ const ListV1 = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="breadcumb-style1">
-                <h2 className="title">Ogłoszenia</h2>
+                <h2 className="title">
+                  {type
+                    ? `Ogłoszenia dla ${type} na ${sellType === "BUY" ? "sprzedaż" : "wynajem"}`
+                    : "Ogłoszenia"}
+                </h2>
                 <div className="breadcumb-list">
                   <a href="/">Strona Główna</a>
                   <a href="/">Oferty</a>
@@ -48,7 +52,7 @@ const ListV1 = () => {
       {/* End Breadcumb Sections */}
 
       {/* Property Filtering */}
-      <PropertyFilteringList />
+      <PropertyFilteringList defaultParams={params || undefined} />
 
       {/* Property Filtering */}
 

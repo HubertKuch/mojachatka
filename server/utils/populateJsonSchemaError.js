@@ -5,6 +5,7 @@ function getMessage(type, field, def) {
     maxLength: `Pole ${def?.label} nie moze przekraczzac ${def.maxLength} znakow`,
     type: `Pole ${field} niepoprawne`,
     format: `Pole ${def.label || field} nie moze byc puste`,
+    enum: `Pole ${def.label || field} nie jest poprawne`,
   };
 
   return (MESSAGE_BY_TYPE[type] || "").toLowerCase();

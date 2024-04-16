@@ -7,21 +7,36 @@ import OffersControllers from "@/controllers/OffersController";
 import PaginationTwo from "../../PaginationTwo";
 import { useSearchParams } from "next/navigation";
 
-export default function PropertyFilteringList() {
+export default function PropertyFilteringList(
+  { defaultParams } = { defaultParams: null },
+) {
   const [pageNumber, setPageNumber] = useState(1);
   const [pageCapacity, setPageCapacity] = useState(1);
   const [pageItems, setPageItems] = useState([]);
-  const searchParams = useSearchParams();
-  const [filters, setFilters] = useState({
-    ...Object.fromEntries(searchParams),
-  });
+  const searchParamsFromPage = useSearchParams();
+  const [filters, setFilters] = useState({});
 
   useEffect(() => {
-    OffersControllers.findAll(filters).then((res) => {
-      setPageItems(res.offers.data);
-      setPageCapacity(res.offers.meta.perPage);
-    });
-  }, [pageNumber]);
+    if (defaultParams) {
+      setFilters(defaultParams);
+    } else {
+      try {
+        setFilters(Object.fromEntries(searchParamsFromPage));
+      } catch (e) {
+        setFilters(searchParamsFromPage);
+      }
+    }
+  }, [defaultParams]);
+
+  useEffect(() => {
+    console.log(filters);
+    OffersControllers.findAll(filters ? filters : searchParamsFromPage).then(
+      (res) => {
+        setPageItems(res.offers.data);
+        setPageCapacity(res.offers.meta.perPage);
+      },
+    );
+  }, [pageNumber, filters]);
 
   return (
     <>
@@ -35,9 +50,7 @@ export default function PropertyFilteringList() {
                 setPageCapacity={setPageCapacity}
               />
             </div>
-            {/* End .col-lg-4 */}
 
-            {/* start mobile filter sidebar */}
             <div
               className="offcanvas offcanvas-start p-0"
               tabIndex="-1"
@@ -66,16 +79,7 @@ export default function PropertyFilteringList() {
             {/* End mobile filter sidebar */}
 
             <div className="col-lg-8">
-              <div className="row align-items-center mb20">
-                {/* <TopFilterBar
-                  pageContentTrac={pageContentTrac}
-                  colstyle={colstyle}
-                  setColstyle={setColstyle}
-                  setCurrentSortingOption={setCurrentSortingOption}
-                /> 
-                */}
-              </div>
-              {/* End TopFilterBar */}
+              <div className="row align-items-center mb20"></div>
 
               <div className="row mt15">
                 <FeaturedListings data={pageItems} />

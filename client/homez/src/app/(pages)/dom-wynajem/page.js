@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+import ListV1 from "@/app/(listing)/(list-view)/oferty/page";
 
 export const metadata = {
   title: "Domy na wynajem | Ogłoszenia Mojachatka.pl",
@@ -7,8 +7,5 @@ export const metadata = {
 };
 
 export default function RedirectToMain() {
-  redirect(
-    "/oferty?sellType=RENT&minPrice=0&maxPrice=9007199254740991&type=DOM",
-  );
-  return <></>;
+  return <ListV1 sellType={"RENT"} type={"DOM"} />;
 }

@@ -1,14 +1,11 @@
-import { redirect } from "next/navigation";
+import ListV1 from "@/app/(listing)/(list-view)/oferty/page";
 
 export const metadata = {
-  title: "Garaże na wynajem | Ogłoszenia Mojachatka.pl",
+  title: "Mieszkania na wynajem | Ogłoszenia Mojachatka.pl",
   description:
-    "Garaże na wynajem w Mojachatka.pl. Sprawdź wszystkie ogłoszenia nieruchomości od osób prywatnych, agencji nieruchomości oraz deweloperów.",
+    "Mieszkania na wynajem w Mojachatka.pl. Sprawdź wszystkie ogłoszenia nieruchomości od osób prywatnych, agencji nieruchomości oraz deweloperów.",
 };
 
 export default function RedirectToMain() {
-  redirect(
-    "/oferty?sellType=RENT&minPrice=0&maxPrice=9007199254740991&type=MIESZKANIE",
-  );
-  return <></>;
+  return <ListV1 type={"MIESZKANIE"} sellType={"RENT"} />;
 }

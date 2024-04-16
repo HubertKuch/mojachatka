@@ -472,7 +472,7 @@ const plotSchema = {
       cases: {
         CITY: "Miasto",
         OUTSKIRTS: "Przedmieścia",
-        CONTRYSIDE: "Wieś",
+        COUNTRYSIDE: "Wieś",
       },
       enum: ["CITY", "OUTSKIRTS", "COUNTRYSIDE"],
       label: "Lokalizacja",

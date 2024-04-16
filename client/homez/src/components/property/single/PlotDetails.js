@@ -67,7 +67,7 @@ function PlotDetails({ offer }) {
               value: {
                 CITY: "Miasto",
                 OUTSKIRTS: "Przedmieścia",
-                CONTRYSIDE: "Wieś",
+                COUNTRYSIDE: "Wieś",
               }[offer?.properties?.plot?.location],
             },
             {

@@ -203,7 +203,7 @@ const garageSchema = {
       enum: ["BRICK", "SHED", "TIN", "WOODEN"],
     },
   },
-  required: ["sizeInMeters", "availableFrom", "location", "construction"],
+  required: ["sizeInMeters", "availableFrom", "construction"],
 };
 
 const roomSchema = {
@@ -482,7 +482,7 @@ const plotSchema = {
       cases: {
         CITY: "Miasto",
         OUTSKIRTS: "Przedmieścia",
-        CONTRYSIDE: "Wieś",
+        COUNTRYSIDE: "Wieś",
       },
       enum: ["CITY", "OUTSKIRTS", "COUNTRYSIDE"],
       label: "Lokalizacja",
@@ -528,7 +528,6 @@ const plotSchema = {
     "availableFrom",
     "type",
     "surroundings",
-    "location",
     "roadAccess",
   ],
 };
@@ -659,7 +658,6 @@ const houseSchema = {
     "heating",
     "fence",
     "availableFrom",
-    "location",
     "roofing",
     "attic",
     "buildYear",
